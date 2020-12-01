@@ -1,0 +1,279 @@
+@media (min-width: 992px) {
+    .mr-auto {
+        margin-left: auto;
+        margin-right: 0 !important;
+    }
+
+    .nav-icon {
+        visibility: visible;
+    }
+
+    .nav-icon-text {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-icon {
+        display: none;
+    }
+
+    .nav-icon-text {
+        display: inline-block;
+        margin: 0;
+    }
+
+    a.nav-link > .nav-link {
+        padding: 0;
+    }
+}
+
+.nav-icon {
+    max-width: 25px;
+}
+
+.nav-form {
+    margin-left: auto;
+}
+
+.form-control {
+    margin-right: 8px;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a7a1;
+    border-color: #28a7a1;
+}
+
+.btn-outline-success {
+    color: #28a7a1;
+    border-color: #28a7a1;
+}
+
+.banner {
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6)), url("../img/banner.jpg");
+    height: 250px;
+    text-align: center;
+}
+
+.banner-button {
+    background-color: transparent;
+    border-radius: 0.25rem;
+    padding: 5px;
+    color: #28a7a1;
+    border: 1px solid #28a7a1;
+}
+
+.banner-button:hover {
+    background: #28a7a1;
+    color: white;
+    text-decoration: unset;
+}
+
+.banner > h1 {
+    margin-bottom: 15px;
+}
+
+
+/*          MODAL              */
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-menu {
+    margin: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 00.40rem;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    width: 25%;
+    min-width: auto;
+    max-width: 250px;
+}
+
+.modal-menu > .btn {
+    background: transparent;
+    color: white;
+    border-color: white;
+    width: auto;
+}
+
+.modal-menu > .btn:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 1250px) {
+    button > span {
+        display: none;
+    }
+
+    .modal-menu > p {
+        font-size: 1.5vw;
+    }
+}
+
+@media (max-width: 767px) {
+    .modal-menu > p {
+        display: none;
+    }
+
+    .modal-menu > img {
+        width: 50px;
+        display: block;
+        margin: auto auto 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal-menu > img {
+        display: none;
+    }
+}
+
+.modal-title {
+    font-size: 30px;
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+input.popup {
+    margin-bottom: 20px;
+}
+
+label.popup {
+    width: 49.5%;
+}
+
+button.popup {
+    margin: auto;
+    display: block;
+}
+
+.modal-menu.giallo > .btn:hover {
+    background: #ce8d00;
+}
+
+.modal-menu.giallo {
+    background: #e69d00;
+}
+
+
+button.giallo {
+    color: #e69d00;
+    border-color: #e69d00;
+}
+
+button.giallo:hover {
+    background: #e69d00;
+    border-color: #e69d00;
+}
+
+.modal-header.giallo {
+    background-color: #e69d00;
+}
+
+.modal-menu.verde > .btn:hover {
+    background: #20b602;
+}
+
+.modal-menu.verde {
+    background: #23d100;
+}
+
+
+button.verde {
+    color: #23d100;
+    border-color: #23d100;
+}
+
+button.verde:hover {
+    background: #23d100;
+    border-color: #23d100;
+}
+
+.modal-header.verde {
+    background-color: #23d100;
+}
+
+.modal-menu.rosso > .btn:hover {
+    background: #ad2300;
+}
+
+.modal-menu.rosso {
+    background: #ce2900;
+}
+
+
+button.rosso {
+    color: #ce2900;
+    border-color: #ce2900;
+}
+
+button.rosso:hover {
+    background: #ce2900;
+    border-color: #ce2900;
+}
+
+.modal-header.rosso {
+    background-color: #ce2900;
+}
+
+.modal-menu.blu > .btn:hover {
+    background: #0040a0;
+}
+
+.modal-menu.blu {
+    background: #0050c7;
+}
+
+
+button.blu {
+    color: #0050c7;
+    border-color: #0050c7;
+}
+
+button.blu:hover {
+    background: #0050c7;
+    border-color: #0050c7;
+}
+
+.modal-header.blu {
+    background-color: #0050c7;
+}
+
+@media (max-width: 767px) {
+    .col-newLineMiddle {
+        width: 100%
+    }
+
+    .modal-menu {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 630px) {
+    .col-newLine {
+        width: 100%;
+    }
+
+    .modal-menu {
+        min-width: 250px;
+    }
+}
+
+.bbb_viewed_nav > img {
+    width: 20px;
+    margin: auto 20px;
+}

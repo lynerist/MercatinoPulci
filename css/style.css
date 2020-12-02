@@ -321,8 +321,9 @@ button.blu:hover {
     }
 }
 
-a.nav-link{
-    padding-top: 10px;
+ul.navbar-nav :nth-child(2),
+ul.navbar-nav :nth-child(3){
+    padding-top: 3px;
 }
 
 .navbar-collapse{

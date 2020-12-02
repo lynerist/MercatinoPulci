@@ -314,3 +314,17 @@ button.blu:hover {
 .footer-content{
     padding-left: 5%;
 }
+
+@media (max-width: 460px) {
+    .bbb_viewed_title > span{
+        display: block;
+    }
+}
+
+a.nav-link{
+    padding-top: 10px;
+}
+
+.navbar-collapse{
+    margin: 5px auto;
+}

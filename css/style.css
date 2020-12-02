@@ -71,6 +71,7 @@ body {
     padding: 5px;
     color: #28a7a1;
     border: 1px solid #28a7a1;
+    font-size: 20px;
 }
 
 .banner-button:hover {
@@ -90,6 +91,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 
 .modal-menu {
@@ -297,7 +299,7 @@ button.blu:hover {
 
 .link-footer:hover {
     text-decoration: none;
-    color: #ffffff;
+    color: #d4dcff;
 }
 
 .link-footer {
@@ -307,4 +309,8 @@ button.blu:hover {
 
 .modal-menu > p > span {
     user-select: none;
+}
+
+.footer-content{
+    padding-left: 5%;
 }

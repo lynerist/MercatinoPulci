@@ -96,6 +96,7 @@
     width: 25%;
     min-width: auto;
     max-width: 250px;
+    white-space: nowrap;
 }
 
 .modal-menu > .btn {
@@ -276,4 +277,8 @@ button.blu:hover {
 .bbb_viewed_nav > img {
     width: 20px;
     margin: auto 20px;
+}
+
+.modal-menu > p > span {
+    user-select: none;
 }

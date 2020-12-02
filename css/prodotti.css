@@ -6,14 +6,6 @@
     text-shadow: rgba(0, 0, 0, .01) 0 0 1px
 }
 
-body {
-    font-family: 'Rubik', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    background: #eff6fa;
-    color: #000000
-}
-
 div {
     display: block;
     position: relative;

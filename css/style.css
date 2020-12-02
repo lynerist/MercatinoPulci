@@ -1,3 +1,11 @@
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    background: #eff6fa;
+    color: #000000;
+}
+
 @media (min-width: 992px) {
     .mr-auto {
         margin-left: auto;
@@ -239,7 +247,6 @@ button.rosso:hover {
     background: #0050c7;
 }
 
-
 button.blu {
     color: #0050c7;
     border-color: #0050c7;
@@ -275,8 +282,27 @@ button.blu:hover {
 }
 
 .bbb_viewed_nav > img {
-    width: 20px;
-    margin: auto 20px;
+    width: 15px;
+    margin: auto 15px;
+}
+
+.blue {
+    background: #2196f3;
+    color: white;
+}
+
+.footer-copyright {
+    background: #1a78c2;
+}
+
+.link-footer:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.link-footer {
+    background: transparent;
+    color: white;
 }
 
 .modal-menu > p > span {

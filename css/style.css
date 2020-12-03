@@ -6,6 +6,18 @@ body {
     color: #000000;
 }
 
+.navbar-dark{
+    background: #bb892c !important;
+}
+
+.navbar-brand > span{
+    color: black;
+}
+
+.navbar-brand > span:first-child {
+    color: #ebe711;
+}
+
 @media (min-width: 992px) {
     .mr-auto {
         margin-left: auto;
@@ -60,7 +72,7 @@ body {
 }
 
 .banner {
-    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6)), url("../img/banner.jpg");
+    background: url("../img/banner.jpg");
     height: 250px;
     text-align: center;
 }

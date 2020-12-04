@@ -152,7 +152,12 @@ body {
 }
 
 .modal-menu > .btn:focus {
-    box-shadow: none;
+    box-shadow: none !important;    
+}
+
+.modal-menu > .btn:active {
+    background: transparent !important;
+    border-color: #000000 !important;    
 }
 
 @media (max-width: 1250px) {

@@ -7,11 +7,13 @@ body {
 }
 
 .navbar-dark{
-    background: #bb892c !important;
+    background: #000000 !important;
 }
 
 .navbar-brand > span{
-    color: black;
+    color: rgba(0, 0, 0, 0.822);
+    text-shadow: 0px 0px 11px white;
+
 }
 
 .navbar-brand > span:first-child {
@@ -62,17 +64,19 @@ body {
 }
 
 .btn-outline-success:hover {
-    background-color: #28a7a1;
-    border-color: #28a7a1;
+    background-color: #ffeb38;
+    border-color: #ffeb38;
+    color: black;
 }
 
 .btn-outline-success {
-    color: #28a7a1;
-    border-color: #28a7a1;
+    color: #ffeb38;
+    border-color: #ffeb38;
 }
 
 .banner {
-    background: url("../img/banner.jpg");
+    background-image: url("../img/banner.jpg");
+    background-size: cover;
     height: 250px;
     text-align: center;
 }
@@ -81,14 +85,14 @@ body {
     background-color: transparent;
     border-radius: 0.25rem;
     padding: 5px;
-    color: #28a7a1;
-    border: 1px solid #28a7a1;
+    color: black;
+    border: 1px solid black;
     font-size: 20px;
 }
 
 .banner-button:hover {
-    background: #28a7a1;
-    color: white;
+    background: #ffeb38;
+    color: black;
     text-decoration: unset;
 }
 
@@ -301,12 +305,12 @@ button.blu:hover {
 }
 
 .blue {
-    background: #2196f3;
-    color: white;
+    background: #d4a001;
+    color: black;
 }
 
 .footer-copyright {
-    background: #1a78c2;
+    background: #FEC724;
 }
 
 .link-footer:hover {

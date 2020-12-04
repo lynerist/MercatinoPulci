@@ -8,8 +8,9 @@ body {
 
 .icon-bee{
     width: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     margin-right: 10px;
+
 }
 
 .navbar-dark{
@@ -18,7 +19,8 @@ body {
 
 .navbar-brand > span{
     font-weight: 700;
-    font-size: xxx-large;
+    font-size: xx-large;
+
 }
 
 .navbar-brand > span:nth-child(2) {
@@ -27,7 +29,7 @@ body {
 }
 
 .navbar-brand > span:nth-child(3){
-    -webkit-text-stroke: 0.4px #ffd207;
+    -webkit-text-stroke: 0.04ch #ffd207;
     color: black;
 }
 
@@ -59,6 +61,9 @@ body {
 
     a.nav-link > .nav-link {
         padding: 0;
+    }
+    .icon-bee{
+        float: right;
     }
 }
 

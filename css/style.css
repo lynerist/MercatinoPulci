@@ -80,6 +80,14 @@ body {
     color: black;
 }
 
+.btn-outline-success:active {
+    background-color: #dbdad4 !important;
+    border-color: #dbdad4 !important; 
+    color: black !important;
+}
+
+
+
 .btn-outline-success {
     color: #ffd207;
     border-color: #ffd207;

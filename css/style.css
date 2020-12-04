@@ -49,7 +49,7 @@ body {
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .nav-icon {
         display: none;
     }
@@ -64,6 +64,12 @@ body {
     }
     .icon-bee{
         float: right;
+    }
+}
+
+@media (max-width: 1055px){
+    .form-inline> label:nth-child(2){
+        display: none;
     }
 }
 
@@ -143,7 +149,6 @@ body {
     color: white;
     font-size: 20px;
     font-weight: 600;
-    width: 25%;
     min-width: auto;
     max-width: 250px;
     white-space: nowrap;

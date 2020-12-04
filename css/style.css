@@ -369,6 +369,10 @@ button.blu:hover {
     padding-left: 5%;
 }
 
+.footer-left{
+    padding-left: 0;
+}
+
 @media (max-width: 460px) {
     .bbb_viewed_title > span{
         display: block;

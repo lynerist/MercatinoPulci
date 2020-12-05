@@ -74,10 +74,7 @@ div {
     width: 100%;
     background: #FFFFFF;
     border-radius: 2px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    padding-left: 30px;
-    padding-right: 30px
+    padding: 25px 30px;
 }
 
 .bbb_viewed_image {

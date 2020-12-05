@@ -123,14 +123,19 @@
 }
 
 @media (max-width: 767px) {
-
-    .profile-work{
+    .profile-work-hiding{
         display: none;
+    }
+    .profile-work{
+        padding-left: 0;
     }
 }
 
-/*@media (min-width: 768px) {
+@media (min-width: 768px) {
     .hidden-block{
         display: none;
     }
-}*/
+    .profile-work{
+        white-space: nowrap;
+    }
+}

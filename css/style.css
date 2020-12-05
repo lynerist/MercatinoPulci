@@ -231,22 +231,22 @@ button.popup {
 }
 
 .modal-menu.giallo {
-    background: #FFD207;
+    background: #ffd207;
 }
 
 
 button.giallo {
-    color: #ffc317;
-    border-color: #e69d00;
+    color: #ffd207;
+    border-color: #ffd207;
 }
 
 button.giallo:hover {
-    background: #e69d00;
-    border-color: #e69d00;
+    background: #ffd207;
+    border-color: #ffd207;
 }
 
 .modal-header.giallo {
-    background-color: #e69d00;
+    background-color: #ffd207;
 }
 
 .modal-menu.verde > .btn:hover {

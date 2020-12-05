@@ -9,7 +9,6 @@ body {
     width: 40px;
     margin-bottom: 0;
     margin-right: 10px;
-
 }
 
 .navbar-dark {
@@ -83,8 +82,13 @@ body {
 
 .form-control {
     margin-right: 8px;
+    width: 100%;
+}
+
+.nav-search {
     width: auto;
 }
+
 
 .btn-outline-success:hover {
     background-color: #ffd207;

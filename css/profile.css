@@ -123,19 +123,30 @@
 }
 
 @media (max-width: 767px) {
-    .profile-work-hiding{
+    .profile-work-hiding {
         display: none;
     }
-    .profile-work{
+
+    .profile-work {
         padding-left: 0;
     }
 }
 
 @media (min-width: 768px) {
-    .hidden-block{
+    .hidden-block {
         display: none;
     }
-    .profile-work{
+
+    .profile-work {
         white-space: nowrap;
     }
+}
+
+ul.rating{
+    display: flex;
+    list-style-type: none;
+}
+
+.orange-color{
+    color: #ff6c00 !important;
 }

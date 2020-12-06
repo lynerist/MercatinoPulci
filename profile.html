@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet" type="text/css" href="css/profile.css">
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -77,12 +78,11 @@
                     <h5>
                         Rossi Cecilia
                     </h5>
-                    <div>                    
+                    <div>
                         <!-- Button trigger modal -->
                         <button type="button" class="profile-edit-btn" data-toggle="modal" data-target="#basicExampleModal">
                             Modifica
                         </button>
-                    
                         <!-- Modal -->
                         <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -98,17 +98,57 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-primary ">Save changes</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>                  
+                        </div>
                     </div>
                     <h6>
                         Acquirente e Babao
                     </h6>
-                    <p class="profile-rating">PUNTEGGIO ACQUIRENTE: <span>4/5</span></p>
-                    <p class="profile-rating">PUNTEGGIO VENDITORE: <span>4/5</span></p>
+                    <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
+                    <ul class="rating">
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                        </li>
+                        <span class="ml-1">4.9/5.0
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                        </span>
+                    </ul>
+                    <p class="profile-rating">PUNTEGGIO VENDITORE</p>
+                    <ul class="rating">
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                        </li>
+                        <span class="ml-1">4.9/5.0
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                        </span>
+                    </ul>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Annunci acquistati</a>
@@ -295,10 +335,10 @@
     </div>
     <!-- Copyright -->
 </footer>
+
 <script src="js/jquery-3.3.1.slim.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
-<script src="js/prodotti.js"></script>
 <script src="js/regioneProvincia.js"></script>
 </body>
 </html>

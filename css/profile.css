@@ -150,3 +150,13 @@ ul.rating{
 .orange-color{
     color: #ff6c00 !important;
 }
+
+.orange-btn{
+    background-color: #ff6c00;
+    border-color: #ff6c00;
+}
+
+.orange-btn:hover{
+    background-color: #ff3200;
+    border-color: #ff3200;
+}

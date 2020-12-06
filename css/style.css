@@ -90,20 +90,20 @@ body {
 }
 
 
-.btn-outline-success:hover {
+.btn-custom:hover {
     background-color: #ffd207;
     border-color: #ffd207;
     color: black;
 }
 
-.btn-outline-success:active {
+.btn-custom:active {
     background-color: #dbdad4 !important;
     border-color: #dbdad4 !important;
     color: black !important;
 }
 
 
-.btn-outline-success {
+.btn-custom {
     color: #ffd207;
     border-color: #ffd207;
 }
@@ -227,7 +227,7 @@ button.popup {
 }
 
 .modal-menu.giallo > .btn:hover {
-    background: #c2a500;
+    background: #eac100;
 }
 
 .modal-menu.giallo {

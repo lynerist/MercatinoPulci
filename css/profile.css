@@ -160,3 +160,31 @@ ul.rating{
     background-color: #ff3200;
     border-color: #ff3200;
 }
+
+.edit-profile{
+    width: 80%;
+    max-width: none;
+}
+
+.no-padding-top{
+    padding-top: 0 !important;
+}
+
+.form-width > div > div > label{
+    width: 90%;
+}
+
+.modal-header.arancio {
+    background-color: #ff6c00;
+}
+
+.modal-header.arancio > h5 {
+    color: white;
+}
+
+@media (max-width: 575px) {
+    .edit-profile{
+        width: auto;
+    }
+
+}

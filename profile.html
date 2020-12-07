@@ -224,7 +224,7 @@
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <nav class="pagination-wrapper" aria-label="Esempio di navigazione con jump to page">
+                        <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
                             <ul class="pagination">
                                 <li class="page-item">
                                     <a class="page-link" href="#">
@@ -235,13 +235,13 @@
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item"><span class="page-link">...</span></li>
                                 <li class="page-item"><a class="page-link" href="#">24</a></li>
-                                <li class="page-item"><a class="page-link" href="#">25</a></li>
+                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
                                 <li class="page-item active">
                                     <a class="page-link" href="#" aria-current="page">
                                         <span class="d-inline-block d-sm-none">Pagina </span>26
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">27</a></li>
+                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
                                 <li class="page-item"><a class="page-link" href="#">28</a></li>
                                 <li class="page-item"><span class="page-link">...</span></li>
                                 <li class="page-item"><a class="page-link" href="#">50</a></li>
@@ -252,9 +252,12 @@
                                     </a>
                                 </li>
                             </ul>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="jumpToPage" maxlength="3">
-                                <label for="jumpToPage"><span aria-hidden="true">Vai a ...</span><span class="sr-only">Indica la pagina desiderata</span></label>
+                            <div class="form-group page-box">
+                                <label for="jumpToPage">
+                                    <span aria-hidden="true"></span>
+                                    <input type="text" class="form-control" id="jumpToPage" maxlength="3">
+                                    Vai a ...</span><span class="sr-only">Indica la pagina desiderata</span>
+                                </label>
                             </div>
                         </nav>
                     </div>

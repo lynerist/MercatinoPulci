@@ -187,3 +187,18 @@ ul.rating{
         width: auto;
     }
 }
+
+.page-box{
+    width: 60px;
+    margin-left: 1%;
+}
+
+.pagination-box{
+    display: inline-flex;
+}
+
+@media (max-width: 895px) {
+    .sparisci{
+        display: none;
+    }
+}

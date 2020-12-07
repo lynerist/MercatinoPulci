@@ -24,14 +24,14 @@
 
         <form class="form-inline my-2 my-lg-0 nav-form">
             <label>
-                <select class="form-control white-inputs" name="regione" id="regione">
+                <select class="form-control form-custom white-inputs" name="regione" id="regione">
                     <option value="0">Tutta Italia</option>
                     <option value="1">Lombardia</option>
                     <option value="2">Sardegna</option>
                 </select>
             </label>
             <label>
-                <select class="form-control white-inputs" name="provincia" id="provincia">
+                <select class="form-control form-custom white-inputs" name="provincia" id="provincia">
                     <option value="0">Ogni provincia</option>
                     <option value="1">Ogni provincia</option>
                     <option value="1">Lecco</option>
@@ -40,7 +40,7 @@
                 </select>
             </label>
             <div class="nav-newline"></div>
-            <input class="form-control mr-sm-2 white-inputs" type="search" placeholder="Cerca" aria-label="Search">
+            <input class="form-control form-custom mr-sm-2 white-inputs" type="search" placeholder="Cerca" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerca</button>
         </form>
 
@@ -101,20 +101,20 @@
                                                 <div class="col-md-8">
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
-                                                            <div class="col-md-6"><label>Codice Fiscale<input type="text" class="form-control" placeholder="Codice fiscale" value="" readonly></label></div>
-                                                            <div class="col-md-6"><label>E-mail<input type="text" class="form-control" placeholder="E-mail" value=""></label></div>
+                                                            <div class="col-md-6"><label>Codice Fiscale<input type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
+                                                            <div class="col-md-6"><label>E-mail<input type="text" class="form-control form-custom" placeholder="E-mail" value=""></label></div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label>Nome<input type="text" class="form-control" placeholder="Nome" value=""></label></div>
-                                                            <div class="col-md-6"><label>Regione<input type="text" class="form-control" placeholder="Regione" value=""></label></div>
+                                                            <div class="col-md-6"><label>Nome<input type="text" class="form-control form-custom" placeholder="Nome" value=""></label></div>
+                                                            <div class="col-md-6"><label>Regione<input type="text" class="form-control form-custom" placeholder="Regione" value=""></label></div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label>Cognome<input type="text" class="form-control" placeholder="Cognome" value=""></label></div>
-                                                            <div class="col-md-6"><label>Provincia<input type="text" class="form-control" placeholder="Provincia" value=""></label></div>
+                                                            <div class="col-md-6"><label>Cognome<input type="text" class="form-control form-custom" placeholder="Cognome" value=""></label></div>
+                                                            <div class="col-md-6"><label>Provincia<input type="text" class="form-control form-custom" placeholder="Provincia" value=""></label></div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label>Tipo Account<input type="text" class="form-control" placeholder="" value=""></label></div>
-                                                            <div class="col-md-6"><label>Comune<input type="text" class="form-control" placeholder="Comune" value=""></label></div>
+                                                            <div class="col-md-6"><label>Tipo Account<input type="text" class="form-control form-custom" placeholder="" value=""></label></div>
+                                                            <div class="col-md-6"><label>Comune<input type="text" class="form-control form-custom" placeholder="Comune" value=""></label></div>
                                                         </div>
                                                         <br>
                                                         <div class="mb-2">
@@ -123,21 +123,21 @@
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>Current Password
-                                                                    <input class="form-control" type="password" placeholder="••••••">
+                                                                    <input class="form-control form-custom" type="password" placeholder="••••••">
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>New Password
-                                                                    <input class="form-control" type="password" placeholder="••••••">
+                                                                    <input class="form-control form-custom" type="password" placeholder="••••••">
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>Confirm <span class="d-none d-xl-inline">Password</span>
-                                                                    <input class="form-control" type="password" placeholder="••••••">
+                                                                    <input class="form-control form-custom" type="password" placeholder="••••••">
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -224,46 +224,39 @@
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>User Id</label>
+                        <nav class="pagination-wrapper" aria-label="Esempio di navigazione con jump to page">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-angle-left"></i>
+                                        <span class="sr-only">Pagina precedente</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><span class="page-link">...</span></li>
+                                <li class="page-item"><a class="page-link" href="#">24</a></li>
+                                <li class="page-item"><a class="page-link" href="#">25</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#" aria-current="page">
+                                        <span class="d-inline-block d-sm-none">Pagina </span>26
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">27</a></li>
+                                <li class="page-item"><a class="page-link" href="#">28</a></li>
+                                <li class="page-item"><span class="page-link">...</span></li>
+                                <li class="page-item"><a class="page-link" href="#">50</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <span class="sr-only">Pagina successiva</span>
+                                        <i class="fas fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="jumpToPage" maxlength="3">
+                                <label for="jumpToPage"><span aria-hidden="true">Vai a ...</span><span class="sr-only">Indica la pagina desiderata</span></label>
                             </div>
-                            <div class="col-md-6">
-                                <p>Kshiti123</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Kshiti Ghelani</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>kshitighelani@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>123 456 7890</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Profession</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Web Developer and Designer</p>
-                            </div>
-                        </div>
+                        </nav>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">

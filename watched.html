@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <title>bee-market</title>
     <meta charset="UTF-8">
@@ -14,195 +15,226 @@
     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" type="text/css" href="css/posts.css">
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html"><img src="img/bee.svg" class="icon-bee" alt="bee"><span>Be</span><span>e-Market</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><img src="img/bee.svg" class="icon-bee"
+                alt="bee"><span>Be</span><span>e-Market</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <form class="form-inline my-2 my-lg-0 nav-form">
-            <label>
-                <select class="form-control form-custom white-inputs" name="regione" id="regione">
-                    <option value="0">Tutta Italia</option>
-                    <option value="1">Lombardia</option>
-                    <option value="2">Sardegna</option>
-                </select>
-            </label>
-            <label>
-                <select class="form-control form-custom white-inputs" name="provincia" id="provincia">
-                    <option value="0">Ogni provincia</option>
-                    <option value="1">Ogni provincia</option>
-                    <option value="1">Lecco</option>
-                    <option value="2">Ogni provincia</option>
-                    <option value="2">Olbia</option>
-                </select>
-            </label>
-            <div class="nav-newline"></div>
-            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search">
-            <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
-        </form>
+            <form class="form-inline my-2 my-lg-0 nav-form">
+                <label>
+                    <select class="form-control form-custom white-inputs" name="regione" id="regione">
+                        <option value="0">Tutta Italia</option>
+                        <option value="1">Lombardia</option>
+                        <option value="2">Sardegna</option>
+                    </select>
+                </label>
+                <label>
+                    <select class="form-control form-custom white-inputs" name="provincia" id="provincia">
+                        <option value="0">Ogni provincia</option>
+                        <option value="1">Ogni provincia</option>
+                        <option value="1">Lecco</option>
+                        <option value="2">Ogni provincia</option>
+                        <option value="2">Olbia</option>
+                    </select>
+                </label>
+                <div class="nav-newline"></div>
+                <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search"
+                    placeholder="Cerca" aria-label="Search">
+                <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
+            </form>
 
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="watched.html">
-                    <img src="img/binocolo.svg" class="nav-icon" alt="Annunci osservati">
-                    <p class="nav-icon-text nav-link">Annunci osservati</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Accedi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Registrati</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<h1 style="margin: 10px !important;">Annunci osservati</h1>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="watched.html">
+                        <img src="img/binocolo.svg" class="nav-icon" alt="Annunci osservati">
+                        <p class="nav-icon-text nav-link">Annunci osservati</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accedi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrati</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="row col-md-12">
-    <div class="container pb-5 mt-n2 mt-md-n3">
-        <div class="row">
-            <div class="col-md-12 d-flex flex-row row">
-                <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
-                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
-                        <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                            <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 destra">
-                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto2"></a>
-                        <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                            <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                            <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                            <div class="font-size-lg text-primary pt-2" id="prezzo2">€125.00</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 d-flex flex-row row">
-                <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
-                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto3"></a>
-                        <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                            <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                            <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                            <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
-                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto4"></a>
-                        <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                            <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                            <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                            <div class="font-size-lg text-primary pt-2" id="prezzo4">€125.00</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 d-flex flex-row row">
-                <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+    <h1 class="title-watched container">Annunci osservati</h1>
+    <div class="container pb-5 mt-n2 mt-md-n3 drop-shadow">
+        <div class="col-md-12 d-flex flex-row row">
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
-                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto5"></a>
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                            alt="Product" id="foto1"></a>
                     <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo5"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                        <div class="font-size-sm" id="prodotto5"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                        <div class="font-size-sm" id="tempoUsura5"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                                target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto1"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
+                        <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 destra">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                            alt="Product" id="foto2"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#"
+                                target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto2"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
+                        <div class="font-size-lg text-primary pt-2" id="prezzo2">€125.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex flex-row row">
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                            alt="Product" id="foto3"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#"
+                                target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto3"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
+                        <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                            alt="Product" id="foto4"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#"
+                                target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto4"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
+                        <div class="font-size-lg text-primary pt-2" id="prezzo4">€125.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex flex-row row">
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                            alt="Product" id="foto5"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo5"><a href="#"
+                                target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto5"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura5"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
                         <div class="font-size-lg text-primary pt-2" id="prezzo5">€125.00</div>
                     </div>
                 </div>
             </div>
-                <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
-                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto6"></a>
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                            alt="Product" id="foto6"></a>
                     <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo6"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                        <div class="font-size-sm" id="prodotto6"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                        <div class="font-size-sm" id="tempoUsura6"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo6"><a href="#"
+                                target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto6"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura6"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
                         <div class="font-size-lg text-primary pt-2" id="prezzo6">€125.00</div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-        <!-- Grid row -->
-        <div class="row">
-            <!-- Grid column -->
-            <div class="col-md-5 mt-md-0 mt-3 footer-content">
-                <!-- Content -->
-                <h5 class="text-uppercase">Come vendere</h5>
-                <p>Per vendere un prodotto è necessario essere iscritti alla piattaforma.
-                    <br>Dopo aver effettuato il login, tramite il bottone posizionato nella <a class="link-footer" href="index.html">home</a>.
-                    <br>Lì verranno chiesti i dati e fornite le spiegazioni necessarie.</p>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-5 mt-md-0 mt-3 footer-content">
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Come vendere</h5>
+                    <p>Per vendere un prodotto è necessario essere iscritti alla piattaforma.
+                        <br>Dopo aver effettuato il login, tramite il bottone posizionato nella <a class="link-footer"
+                            href="index.html">home</a>.
+                        <br>Lì verranno chiesti i dati e fornite le spiegazioni necessarie.</p>
 
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3 footer-left">
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Chi siamo | Contattaci</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="link-footer" href="https://github.com/lynerist">Leonardo Albani</a> | <a
+                                class="link-footer"
+                                href="mailto:leonardo.albani@studenti.unimi.it">leonardo.albani@studenti.unimi.it</a>
+                        </li>
+                        <li>
+                            <a class="link-footer" href="https://github.com/FilippoUslenghi">Filippo Uslenghi</a> | <a
+                                class="link-footer"
+                                href="mailto:filippo.uslenghi@studenti.unimi.it">filippo.uslenghi@studenti.unimi.it</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-4 mb-md-0 mb-3">
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Cookies</h5>
+
+                    <p>Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti. Utilizziamo
+                        solo cookie tecnici. Proseguendo nella navigazione si accetta l’uso dei cookie.</p>
+                </div>
+                <!-- Grid column -->
             </div>
-            <!-- Grid column -->
-            <hr class="clearfix w-100 d-md-none pb-3">
-            <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3 footer-left">
-                <!-- Links -->
-                <h5 class="text-uppercase">Chi siamo | Contattaci</h5>
-
-                <ul class="list-unstyled">
-                    <li>
-                        <a class="link-footer" href="https://github.com/lynerist">Leonardo Albani</a> | <a class="link-footer" href="mailto:leonardo.albani@studenti.unimi.it">leonardo.albani@studenti.unimi.it</a>
-                    </li>
-                    <li>
-                        <a class="link-footer" href="https://github.com/FilippoUslenghi">Filippo Uslenghi</a> | <a class="link-footer" href="mailto:filippo.uslenghi@studenti.unimi.it">filippo.uslenghi@studenti.unimi.it</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-md-4 mb-md-0 mb-3">
-                <!-- Links -->
-                <h5 class="text-uppercase">Cookies</h5>
-
-                <p>Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti. Utilizziamo solo cookie tecnici. Proseguendo nella navigazione si accetta l’uso dei cookie.</p>
-            </div>
-            <!-- Grid column -->
+            <!-- Grid row -->
         </div>
-        <!-- Grid row -->
-    </div>
-    <!-- Footer Links -->
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright | Designed by: Leonardo Albani e Filippo Uslenghi |
-        <a class="link-footer"> All rights reserved</a>
-    </div>
-    <!-- Copyright -->
-</footer>
-<!-- Footer -->
-<script src="js/jquery-3.3.1.slim.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap.bundle.js"></script>
-<script src="js/regioneProvincia.js"></script>
-<script src="js/owl.carousel.js"></script>
+        <!-- Footer Links -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright | Designed by: Leonardo Albani e Filippo
+            Uslenghi |
+            <a class="link-footer"> All rights reserved</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/regioneProvincia.js"></script>
+    <script src="js/owl.carousel.js"></script>
 </body>
+
 </html>

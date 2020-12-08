@@ -415,3 +415,11 @@ ul.navbar-nav :nth-child(3) {
 
     }
 }
+
+.title-watched{
+    background: #ffd207;
+    margin: 10px auto !important;
+    border-radius: 0.4em;
+    padding: 30px;
+    text-align: center;
+}

@@ -431,3 +431,18 @@ ul.navbar-nav :nth-child(3) {
 .non-osservare > button.btn-outline-warning{
     display: none;
 }
+
+.luogo{
+    float: right;
+    margin-right: 5%;
+}
+
+.destra{
+    float: right !important;
+    margin-right: 5px;
+    margin-bottom: auto;
+}
+
+.box-info{
+    padding: 50px
+}

@@ -423,3 +423,11 @@ ul.navbar-nav :nth-child(3) {
     padding: 30px;
     text-align: center;
 }
+
+.non-osservare{
+    float: right;
+}
+
+.non-osservare > button.btn-outline-warning{
+    display: none;
+}

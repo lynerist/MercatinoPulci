@@ -423,3 +423,15 @@ body{
     text-align: left;
     list-style-type: none;
 }
+
+.custom-range{
+    width: 100%;
+    height: 1.4rem;
+    padding: 0;
+    background-color: transparent;
+}
+
+.price-color{
+    color: #fc5959;
+}
+

@@ -165,7 +165,7 @@
 
                     <div class="d-flex justify-content-center my-4">
                         <div class="w-75">
-                            <input type="range" class="custom-range table-warning" id="customRange11" min="0" max="100">
+                            <input type="range" class="custom-range table-warning" id="customRange11" min="0" max="1000">
                         </div>
                         <span class="font-weight-bold price-color ml-2 valueSpan2" id="custom-span"></span>
                     </div>
@@ -475,11 +475,11 @@
     function logslider(position) {
         // position will be between 0 and 100
         var minp = 0;
-        var maxp = 100;
+        var maxp = 1000;
 
         // The result should be between 100 an 10000000
         var minv = Math.log(1);
-        var maxv = Math.log(2000);
+        var maxv = Math.log(3000);
 
         // calculate adjustment factor
         var scale = (maxv-minv) / (maxp-minp);

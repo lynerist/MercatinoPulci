@@ -1,0 +1,45 @@
+
+
+/*
+@media (min-width: 576px) {
+     { font-size: 1.25rem; }
+}
+@media (min-width: 768px) {
+     { font-size: 1.5rem; }
+}
+@media (min-width: 992px) {
+     { font-size: 1.75rem; }
+}
+@media (min-width: 1200px) {
+     { font-size: 2rem; }
+}*/
+
+
+
+
+@media (max-width: 527px) {
+    .title-watched{
+        font-size: 6.0vw;
+    }
+}
+
+.orange-nav{
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    color: black;
+}
+
+.orange-nav:hover{
+    color: #ff6c00;
+}
+
+.orange-nav:active, .orange-nav:focus{
+    background: #ff6c00 !important;
+    color: white;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: white;
+    background-color: #ff6c00;
+}

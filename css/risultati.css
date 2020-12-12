@@ -435,3 +435,37 @@ body{
     color: #fc5959;
 }
 
+@media (min-width: 768px){
+    .col-lg-4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .adtocart{
+        left: 40%;
+    }
+}
+
+.obs-icon{
+    width: 30px !important;
+    margin-top: 7px;
+}
+
+.adtocart:hover > .obs-icon{
+    width: 35px !important;
+    margin-top: 5px;
+}
+
+.adtocart{
+    background: black;
+    bottom: 0;
+}
+
+.pro-img-box{
+    padding-bottom: 25px;
+}
+
+.obs-icon:last-child{
+    display: none;
+}

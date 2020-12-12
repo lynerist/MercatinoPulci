@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>bee-market</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/products.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/operazioni.css">
+    <link rel="stylesheet" type="text/css" href="css/watched.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html"><img src="img/bee.svg" class="icon-bee" alt="bee"><span>Be</span><span>e-Market</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="form-inline my-2 my-lg-0 nav-form">
+            <label>
+                <select class="form-control form-custom white-inputs" name="regione" id="regione">
+                    <option value="0">Tutta Italia</option>
+                    <option value="1">Lombardia</option>
+                    <option value="2">Sardegna</option>
+                </select>
+            </label>
+            <label>
+                <select class="form-control form-custom white-inputs" name="provincia" id="provincia">
+                    <option value="0">Ogni provincia</option>
+                    <option value="1">Ogni provincia</option>
+                    <option value="1">Lecco</option>
+                    <option value="2">Ogni provincia</option>
+                    <option value="2">Olbia</option>
+                </select>
+            </label>
+            <div class="nav-newline"></div>
+            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search">
+            <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
+        </form>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="watched.html">
+                    <img src="img/binocolo.svg" class="nav-icon" alt="Annunci osservati">
+                    <p class="nav-icon-text nav-link">Annunci osservati</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Accedi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Registrati</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="d-flex flex-row container">
+    <div class="p-2 text-center container-fluid"><h1 class="title-watched">Richieste</h1></div>
+    <div class="p-2 text-center container-fluid"><h1 class="title-watched">Valutazioni</h1></div>
+</div>
+
+
+
+<ul class="nav nav-pills mb-3 justify-content-center container" id="pills-tab" role="tablist">
+    <li class="nav-item w-25">
+        <a class="nav-link active orange-nav" data-toggle="pill" href="#tab-1" role="tab" aria-controls="pills-home" aria-selected="true">Da approvare</a>
+    </li>
+    <li class="nav-item w-25">
+        <a class="nav-link orange-nav" data-toggle="pill" href="#tab-2" role="tab" aria-controls="pills-profile" aria-selected="false">Effettuate</a>
+    </li>
+    <li class="nav-item w-25">
+        <a class="nav-link border-left orange-nav" data-toggle="pill" href="#tab-3" role="tab" aria-controls="pills-contact" aria-selected="false">Verso venditore</a>
+    </li>
+    <li class="nav-item w-25">
+        <a class="nav-link orange-nav" data-toggle="pill" href="#tab-4" role="tab" aria-controls="pills-contact" aria-selected="false">Verso acquirente</a>
+    </li>
+</ul>
+<div class="tab-content container drop-shadow" id="pills-tabContent">
+    <div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="container pb-5 mt-n2 mt-md-n3">
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="1">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                            <div class="non-osservare">
+                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi1" onclick="rimuovi(id, 'annulla1')">Rimuovi</button>
+                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla1" onclick="rimuovi(id, 'rimuovi1')">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                 alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                            <div class="non-osservare">
+                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi2" onclick="rimuovi(id, 'annulla2')">Rimuovi</button>
+                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla2" onclick="rimuovi(id, 'rimuovi2')">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="3">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                 alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                            <div class="non-osservare">
+                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi3" onclick="rimuovi(id, 'annulla3')">Rimuovi</button>
+                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla3" onclick="rimuovi(id, 'rimuovi3')">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="4">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                 alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                            <div class="non-osservare">
+                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi4" onclick="rimuovi(id, 'annulla4')">Rimuovi</button>
+                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla4" onclick="rimuovi(id, 'rimuovi4')">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="5">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                 alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                            <div class="non-osservare">
+                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi5" onclick="rimuovi(id, 'annulla5')">Rimuovi</button>
+                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla5" onclick="rimuovi(id, 'rimuovi5')">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="6">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                 alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                            <div class="non-osservare">
+                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi6" onclick="rimuovi(id, 'annulla6')">Rimuovi</button>
+                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla6" onclick="rimuovi(id, 'rimuovi6')">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="pills-profile-tab">Ciao</div>
+    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="pills-contact-tab">come</div>
+    <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="pills-contact-tab">va</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+        <!-- Grid row -->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-5 mt-md-0 mt-3 footer-content">
+                <!-- Content -->
+                <h5 class="text-uppercase">Come vendere</h5>
+                <p>Per vendere un prodotto è necessario essere iscritti alla piattaforma.
+                    <br>Dopo aver effettuato il login, tramite il bottone posizionato nella <a class="link-footer" href="index.html">home</a>.
+                    <br>Lì verranno chiesti i dati e fornite le spiegazioni necessarie.</p>
+
+            </div>
+            <!-- Grid column -->
+            <hr class="clearfix w-100 d-md-none pb-3">
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3 footer-left">
+                <!-- Links -->
+                <h5 class="text-uppercase">Chi siamo | Contattaci</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="link-footer" href="https://github.com/lynerist" target="_blank">Leonardo Albani</a> | <a class="link-footer" href="mailto:leonardo.albani@studenti.unimi.it">leonardo.albani@studenti.unimi.it</a>
+                    </li>
+                    <li>
+                        <a class="link-footer" href="https://github.com/FilippoUslenghi" target="_blank">Filippo Uslenghi</a> | <a class="link-footer" href="mailto:filippo.uslenghi@studenti.unimi.it">filippo.uslenghi@studenti.unimi.it</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 mb-md-0 mb-3">
+                <!-- Links -->
+                <h5 class="text-uppercase">Cookies</h5>
+
+                <p>Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti. Utilizziamo solo cookie tecnici. Proseguendo nella navigazione si accetta l’uso dei cookie.</p>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright | Designed by: Leonardo Albani e Filippo Uslenghi |
+        <a class="link-footer"> All rights reserved</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/regioneProvincia.js"></script>
+</body>
+</html>

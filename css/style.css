@@ -431,3 +431,7 @@ ul.navbar-nav :nth-child(3) {
 .non-osservare > button.btn-outline-warning{
     display: none;
 }
+
+.orange-color {
+    color: #ff6c00 !important;
+}

@@ -1,0 +1,15 @@
+.starrating > input { /* Remove radio buttons */
+    display: none;
+}
+
+.starrating > label { /* Start color when not clicked */
+    color: #222222;
+}
+
+.starrating > input:checked ~ label { /* Set yellow color when star checked */
+    color: #ff6c00 ;
+}
+
+.starrating > input:hover ~ label { /* Set yellow color when star hover */
+    color: #ff6c00 ;
+}

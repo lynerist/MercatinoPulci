@@ -12,6 +12,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/operazioni.css">
     <link rel="stylesheet" type="text/css" href="css/watched.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/rating.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -68,7 +70,6 @@
 </div>
 
 
-
 <ul class="nav nav-pills mb-3 justify-content-center container" id="pills-tab" role="tablist">
     <li class="nav-item w-25">
         <a class="nav-link active orange-nav" data-toggle="pill" href="#tab-1" role="tab" aria-controls="pills-home" aria-selected="true">Da approvare</a>
@@ -83,12 +84,15 @@
         <a class="nav-link orange-nav" data-toggle="pill" href="#tab-4" role="tab" aria-controls="pills-contact" aria-selected="false">Verso acquirente</a>
     </li>
 </ul>
+
+
 <div class="tab-content container drop-shadow" id="pills-tabContent">
+
     <div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="container pb-5 mt-n2 mt-md-n3">
             <div class="col-md-12 d-flex flex-row row">
                 <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="1">
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
                         <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
                                                                                                              alt="Product" id="foto1"></a>
@@ -100,29 +104,41 @@
                             <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
                             </div>
                             <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                            <div class="non-osservare">
-                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi1" onclick="rimuovi(id, 'annulla1')">Rimuovi</button>
-                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla1" onclick="rimuovi(id, 'rimuovi1')">Annulla</button>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Item-->
                 <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
-                                                                                                 alt="Product" id="foto1"></a>
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
                         <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
-                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
-                            <div class="font-size-sm" id="prodotto1"><span
-                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                            <div class="non-osservare">
-                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi2" onclick="rimuovi(id, 'annulla2')">Rimuovi</button>
-                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla2" onclick="rimuovi(id, 'rimuovi2')">Annulla</button>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                            <div class="non-osservare d-flex">
+                                <button type="button" class="btn btn-sm btn-outline-success mr-1">Approva</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Rifiuta</button>
                             </div>
                         </div>
                     </div>
@@ -130,41 +146,53 @@
             </div>
             <div class="col-md-12 d-flex flex-row row">
                 <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="3">
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
-                                                                                                 alt="Product" id="foto1"></a>
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
                         <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
                                                                                                               target="_blank">Calvin Klein Jeans Keds</a></h3>
                             <div class="font-size-sm" id="prodotto1"><span
                                     class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
                             <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
                             </div>
                             <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                            <div class="non-osservare">
-                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi3" onclick="rimuovi(id, 'annulla3')">Rimuovi</button>
-                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla3" onclick="rimuovi(id, 'rimuovi3')">Annulla</button>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="4">
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
-                                                                                                 alt="Product" id="foto1"></a>
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
                         <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
-                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
-                            <div class="font-size-sm" id="prodotto1"><span
-                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                            <div class="non-osservare">
-                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi4" onclick="rimuovi(id, 'annulla4')">Rimuovi</button>
-                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla4" onclick="rimuovi(id, 'rimuovi4')">Annulla</button>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                            <div class="non-osservare d-flex">
+                                <button type="button" class="btn btn-sm btn-outline-success mr-1">Approva</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Rifiuta</button>
                             </div>
                         </div>
                     </div>
@@ -172,41 +200,401 @@
             </div>
             <div class="col-md-12 d-flex flex-row row">
                 <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="5">
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
-                                                                                                 alt="Product" id="foto1"></a>
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
                         <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#"
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
                                                                                                               target="_blank">Calvin Klein Jeans Keds</a></h3>
                             <div class="font-size-sm" id="prodotto1"><span
                                     class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
                             <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
                             </div>
                             <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                            <div class="non-osservare">
-                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi5" onclick="rimuovi(id, 'annulla5')">Rimuovi</button>
-                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla5" onclick="rimuovi(id, 'rimuovi5')">Annulla</button>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Item-->
-                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="6">
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
                     <div class="media d-block d-sm-flex text-center text-sm-left">
-                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/lidl.jpeg"
-                                                                                                 alt="Product" id="foto1"></a>
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
                         <div class="media-body pt-3">
-                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#"
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                            <div class="non-osservare d-flex">
+                                <button type="button" class="btn btn-sm btn-outline-success mr-1">Approva</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Rifiuta</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="container pb-5 mt-n2 mt-md-n3">
+            <div class="col-md-12 d-flex flex-row row">
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                         alt="Product" id="foto1"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
+                                                                                                          target="_blank">Calvin Klein Jeans Keds</a></h3>
+                        <div class="font-size-sm" id="prodotto1"><span
+                                class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                        <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                        </div>
+                        <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Item-->
+            <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
+                    <div class="media-body pt-3">
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                        <div class="font-size-sm stelline" id="tempoUsura1">
+                            <ul class="rating p-0">
+                                <li>
+                                    <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                </li>
+                                <li class="ml-1">
+                                    <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
                                                                                                               target="_blank">Calvin Klein Jeans Keds</a></h3>
                             <div class="font-size-sm" id="prodotto1"><span
                                     class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
                             <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
                             </div>
                             <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
-                            <div class="non-osservare">
-                                <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi6" onclick="rimuovi(id, 'annulla6')">Rimuovi</button>
-                                <button type="button" class="btn btn-secondary btn-outline-warning btn-sm" data-dismiss="modal" id="annulla6" onclick="rimuovi(id, 'rimuovi6')">Annulla</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="container pb-5 mt-n2 mt-md-n3">
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                            <div class="container">
+                                <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                    <input type="radio" id="star5-1" name="rating1" value="5" /><label for="star5-1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star4-1" name="rating1" value="4" /><label for="star4-1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star3-1" name="rating1" value="3" /><label for="star3-1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star2-1" name="rating1" value="2" /><label for="star2-1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star1-1" name="rating1" value="1" /><label for="star1-1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Valuta:</b></i></span>
+                                </div>
+                                <div class="non-osservare">
+                                    <button type="button" class="btn btn-sm btn-outline-success mr-1">Conferma</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                            <div class="container">
+                                <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                    <input type="radio" id="star5-2" name="rating2" value="5" /><label for="star5-2" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star4-2" name="rating2" value="4" /><label for="star4-2" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star3-2" name="rating2" value="3" /><label for="star3-2" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star2-2" name="rating2" value="2" /><label for="star2-2" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star1-2" name="rating2" value="1" /><label for="star1-2" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Valuta:</b></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex flex-row row">
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg"
+                                                                                                             alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html"
+                                                                                                              target="_blank">Calvin Klein Jeans Keds</a></h3>
+                            <div class="font-size-sm" id="prodotto1"><span
+                                    class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span>
+                            </div>
+                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item-->
+                <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/ceciglia_rotta.jpg" alt="Product" id="foto1"></a>
+                        <div class="media-body pt-3">
+                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="#" target="_blank">Ceiglia Rotta</a></h3>
+                            <div class="font-size-sm stelline" id="tempoUsura1">
+                                <ul class="rating p-0">
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                                    </li>
+                                    <li class="ml-1">
+                                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="font-size-sm pb-3" id="prodotto1"><span class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
+                            <div class="container">
+                                <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                    <input type="radio" id="star5-3" name="rating3" value="5" /><label for="star5-3" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star4-3" name="rating3" value="4" /><label for="star4-3" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star3-3" name="rating3" value="3" /><label for="star3-3" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star2-3" name="rating3" value="2" /><label for="star2-3" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="star1-3" name="rating3" value="1" /><label for="star1-3" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Valuta:</b></i></span>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -219,10 +607,6 @@
 
 
 
-
-
-    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="pills-profile-tab">Ciao</div>
-    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="pills-contact-tab">come</div>
     <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="pills-contact-tab">va</div>
 </div>
 
@@ -288,7 +672,7 @@
 </footer>
 <!-- Footer -->
 
-<script src="js/jquery-3.3.1.slim.min.js"></script>
+<script src="js/jquery-3.5.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/regioneProvincia.js"></script>

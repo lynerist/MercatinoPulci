@@ -52,7 +52,143 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Accedi</a>
+
+
+
+
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLoginRegister">
+                    Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade show" id="modalLoginRegister" tabindex="-1" role="dialog" aria-modal="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+
+                                <!-- Pills -->
+                                <ul class="nav nav-justified container">
+                                    <li class="nav-item mr-1">
+                                        <a class="nav-link border border-warning border-rounded active show bg-warning" data-toggle="tab"
+                                           href="#modalLoginRegister-login" role="tab" aria-selected="true">Login</a>
+                                    </li>
+                                    <li class="nav-item pt-0">
+                                        <a class="nav-link border border-warning border-rounded bg-warning" data-toggle="tab"
+                                           href="#modalLoginRegister-register" role="tab" aria-selected="false">Register</a>
+                                    </li>
+                                </ul>
+                                <!-- Pills -->
+
+                                <!-- Content -->
+                                <div class="tab-content">
+
+                                    <!-- First panel -->
+                                    <div class="tab-pane fade in show active" id="modalLoginRegister-login" role="tabpanel">
+
+                                        <!-- Login form -->
+                                        <form id="formLoginRegister-login" class="container pt-2" action="" method="post">
+
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-envelope prefix"></i>
+                                                <input type="email" id="formLoginRegister-email" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-email">Your email</label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-lock prefix"></i>
+                                                <input type="password" id="formLoginRegiser-password" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegiser-password">Your
+                                                    password</label>
+                                            </div>
+
+                                            <div class="text-center mt-4 pt-3">
+                                                <button type="button" class="btn btn-outline-primary mr-1 mb-2 waves-effect waves-light">Forgot
+                                                    password?</button>
+                                                <button type="button" class="btn btn-primary mb-2">Login</button>
+                                            </div>
+
+                                        </form>
+                                        <!-- Login form -->
+
+                                    </div>
+                                    <!-- First panel -->
+
+                                    <!-- Second panel -->
+                                    <div class="tab-pane fade" id="modalLoginRegister-register" role="tabpanel">
+
+                                        <!-- Register form -->
+                                        <form id="formLoginRegister-register" class="container pt-2" action="" method="post">
+
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-user prefix"></i>
+                                                <input type="text" id="formLoginRegister-name" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-name">Your name</label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-pencil-alt prefix"></i>
+                                                <input type="text" id="formLoginRegister-username" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-username">Your
+                                                    username</label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-envelope prefix"></i>
+                                                <input type="email" id="formLoginRegister-email-example" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-email-example">Your
+                                                    email</label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-lock prefix"></i>
+                                                <input type="password" id="formLoginRegister-password-example" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password-example">Your
+                                                    password</label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-key prefix"></i>
+                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password-repeat">Repeat
+                                                    password</label>
+                                            </div>
+
+                                            <div class="form-check mt-4 mb-3 pl-0 text-left">
+                                                <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter"
+                                                       name="newsletter">
+                                                <label class="form-check-label small grey-text" for="formLoginRegister-newsletter">
+                                                    I agree to sign up for account notifications and newsletter
+                                                </label>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <p class="small grey-text mb-4">Lorem ipsum dolor sit amet <a target="_blank" href="#!">Privacy
+                                                    Policy</a>.</p>
+                                                <button type="button" class="btn btn-primary my-2">Sign up</button>
+                                            </div>
+
+                                        </form>
+                                        <!-- Register form -->
+
+                                    </div>
+                                    <!-- Second panel -->
+
+                                </div>
+                                <!-- Content -->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary waves-effect waves-light"
+                                        data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+
+
+
+
+
+
+
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Registrati</a>

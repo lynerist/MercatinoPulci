@@ -42,3 +42,16 @@ $regione4.on( 'change', function() {
 $provincia4.html( $options4.filter( '[value="' + this.value + '"]' ) );
 } ).trigger( 'change' );
 
+function accediRegistrati(id){
+    $("#modalLoginRegister").modal("show");
+    $("#" + id).click();
+}
+
+
+
+
+
+
+
+
+

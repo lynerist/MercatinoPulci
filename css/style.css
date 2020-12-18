@@ -379,8 +379,7 @@ button.blu:hover {
     }
 }
 
-ul.navbar-nav :nth-child(2),
-ul.navbar-nav :nth-child(3) {
+.pt-3px {
     padding-top: 3px;
 }
 
@@ -438,4 +437,19 @@ ul.navbar-nav :nth-child(3) {
 
 
 /*modal login/register*/
+
+.md-form{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+}
+
+.md-form .prefix{
+    font-size: 20px;
+   margin: auto 10px;
+}
+
+/*ul.navbar-nav :nth-child(2), ul.navbar-nav :nth-child(3) {*/
+/*    padding-top: 6px;*/
+/*}*/
 

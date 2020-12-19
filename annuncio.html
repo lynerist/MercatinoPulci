@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/products.css">
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet"  type="text/css" href="css/annuncio.css">
+	<link rel="stylesheet"  type="text/css" href="css/profile.css">
 </head>
 
 <body>
@@ -74,24 +75,24 @@
 			<div class="col-md-6 mb-4 box-info">
 				<div id="myAnnuncio" class="mb-5 container-fluid">
 					<!-- Button trigger modal -->
-					<button type="button" class="annuncio-edit-btn w-100" data-toggle="modal" data-target="#basicExampleModal">
+					<button type="button" class="annuncio-edit-btn w-100" data-toggle="modal" data-target="#modalModificaAnnuncio">
 						Modifica
 					</button>
 					<!-- Modal -->
-					<div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade modal-only" id="modalModificaAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog edit-annuncio" role="document">
 							<div class="modal-content">
 								<div class="modal-header arancio">
-									<h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
 								</div>
 								<div class="modal-body">
 									<div class="container rounded bg-white mt-5">
 										<div class="row">
 											<div class="col-md-4 border-right">
 												<div class="annuncio-img">
-													<img src="img/ceciglia_rotta.jpg" alt=""/>
+													<img src="img/placeholder_annuncio.png" alt=""/>
 													<div class="file btn btn-lg x btn-primary mt-0">
-														Cambia foto
+														Inserisci foto
 														<input type="file" name="file"/>
 													</div>
 												</div>
@@ -99,43 +100,107 @@
 											<div class="col-md-8">
 												<div class="p-3 py-5 no-padding-top form-width">
 													<div class="row mt-2">
-														<div class="col-md-6"><label>Codice Fiscale<input type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
-														<div class="col-md-6"><label>E-mail<input type="text" class="form-control form-custom" placeholder="E-mail" value=""></label></div>
+														<div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom" placeholder="Titolo" value=""></label></div>
+														<div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande" placeholder="Prezzo in €" value=""></label></div>
 													</div>
 													<div class="row mt-3">
-														<div class="col-md-6"><label>Nome<input type="text" class="form-control form-custom" placeholder="Nome" value=""></label></div>
-														<div class="col-md-6"><label>Regione<input type="text" class="form-control form-custom" placeholder="Regione" value=""></label></div>
+														<div class="col-md-6">
+															<label>
+																<select name="categoria" id="categoria" class="form-control">
+																	<option value="" disabled selected hidden>Categoria</option>
+																	<option value="elettrodomestici">Elettrodomestici</option>
+																	<option value="abbigliamento">Abbigliamento</option>
+																	<option value="fotoEVideo">FOto e video</option>
+																	<option value="hobby">Hobby</option>
+																</select>
+															</label>
+														</div>
+														<div class="col-md-6">
+															<label>
+																<select name="sottcategoria" id="sottocategoria" class="form-control">
+																	<option value="" disabled selected hidden>Sottocategoria</option>
+																</select>
+															</label>
+														</div>
 													</div>
 													<div class="row mt-3">
-														<div class="col-md-6"><label>Cognome<input type="text" class="form-control form-custom" placeholder="Cognome" value=""></label></div>
-														<div class="col-md-6"><label>Provincia<input type="text" class="form-control form-custom" placeholder="Provincia" value=""></label></div>
+														<div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Prodotto" value=""></label></div>
+														<div class="col-md-6">
+															<label>
+																<select name="visibilita" id="visibilita" class="form-control">
+																	<option value="" disabled selected hidden>Visibilità</option>
+																	<option value="pubblica">Pubblica</option>
+																	<option value="ristretta">Ristretta</option>
+																	<option value="privata">Privata</option>
+																</select>
+															</label>
+														</div>
 													</div>
 													<div class="row mt-3">
-														<div class="col-md-6"><label>Tipo Account<input type="text" class="form-control form-custom" placeholder="" value=""></label></div>
-														<div class="col-md-6"><label>Comune<input type="text" class="form-control form-custom" placeholder="Comune" value=""></label></div>
+														<div class="col-md-6">
+															<label>
+																<select name="statoUsura" id="statoUsura" class="form-control">
+																	<option value="" disabled selected hidden>Stato usura</option>
+																	<option value="nuovo">Nuovo</option>
+																	<option value="comeNuovo">Come nuovo</option>
+																	<option value="buono">Buono</option>
+																	<option value="medio">Medio</option>
+																	<option value="usurato">Usurato</option>
+																</select>
+															</label>
+														</div>
+														<div class="col-md-6"><label><input id="tempoUsura" type="text" class="form-control form-custom" placeholder="Tempo usura in mesi" value=""></label></div>
+														<div class="col-md-6"><label><input id="scadenzaGaranzia" type="text" class="form-control form-custom" placeholder="Scadenza garanzia" onfocus="(this.type='date')"></label></div>
 													</div>
 													<br>
 													<div class="mb-2">
-														<b>Change Password</b>
+														<b>Luogo di vendita</b>
 													</div>
 													<div class="row mt-3">
-														<div class="col-md-6">
-															<label>Current Password
-																<input class="form-control form-custom" type="password" placeholder="••••••">
+														<div class="md-form md-outline container-fluid">
+															<label>
+																<select name="regione" id="luogoVenditaRegione" class="form-control">
+																	<option value="" disabled selected hidden>Regione</option>
+																	<option value="Lombardia">Lombardia</option>
+																</select>
+															</label>
+															<label>
+																<select name="provincia" id="luogoVenditaProvincia" class="form-control">
+																	<option value="" disabled selected hidden>Provincia</option>
+																	<option value="Milano">Milano</option>
+																</select>
+															</label>
+															<label>
+																<select name="comune" id="luogoVenditaComune" class="form-control">
+																	<option value="" disabled selected hidden>Comune</option>
+																	<option value="Milano">Milano</option>
+																</select>
 															</label>
 														</div>
 													</div>
-													<div class="row mt-3">
-														<div class="col-md-6">
-															<label>New Password
-																<input class="form-control form-custom" type="password" placeholder="••••••">
-															</label>
-														</div>
+													<br>
+													<div class="mb-2">
+														<b>Area di visibilità</b>
 													</div>
 													<div class="row mt-3">
-														<div class="col-md-6">
-															<label>Confirm <span class="d-none d-xl-inline">Password</span>
-																<input class="form-control form-custom" type="password" placeholder="••••••">
+														<div class="md-form md-outline container-fluid">
+															<label>
+																<select name="regione" id="annuncio-regione" class="form-control">
+																	<option value="" disabled selected hidden>Regione</option>
+																	<option value="Lombardia">Lombardia</option>
+																</select>
+															</label>
+															<label>
+																<select name="provincia" id="annuncio-provincia" class="form-control">
+																	<option value="" disabled selected hidden>Provincia</option>
+																	<option value="Milano">Milano</option>
+																</select>
+															</label>
+															<label>
+																<select name="comune" id="annuncio-comune" class="form-control">
+																	<option value="" disabled selected hidden>Comune</option>
+																	<option value="Milano">Milano</option>
+																</select>
 															</label>
 														</div>
 													</div>
@@ -144,9 +209,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary btn-outline-danger" data-dismiss="modal">Annulla</button>
-									<button type="button" class="btn btn-primary btn-outline-success">Salva modifiche</button>
+								<div class="modal-footer flex-row d-flex">
+									<button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Elimina annuncio</button>
+									<button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
+									<button type="button" class="btn btn-primary btn-outline-success">Salva</button>
 								</div>
 							</div>
 						</div>

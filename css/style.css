@@ -449,7 +449,8 @@ button.blu:hover {
    margin: auto 10px;
 }
 
-/*ul.navbar-nav :nth-child(2), ul.navbar-nav :nth-child(3) {*/
-/*    padding-top: 6px;*/
-/*}*/
-
+.testo-grande input::after{
+    padding: 5px;
+    font-size: 15px;
+    content: "€";
+}

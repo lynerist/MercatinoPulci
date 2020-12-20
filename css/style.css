@@ -454,3 +454,11 @@ button.blu:hover {
     font-size: 15px;
     content: "€";
 }
+
+.altezza-minima{
+    min-height: 575px;
+}
+
+.altezza-massima{
+    max-height: 350px;
+}

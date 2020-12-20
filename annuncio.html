@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet"  type="text/css" href="css/annuncio.css">
 	<link rel="stylesheet"  type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 </head>
 
 <body>
@@ -64,8 +65,7 @@
 		</div>
 	</nav>
 
-	<h1 class="title-watched container">Annunci osservati da pino che deve decidere quale prodotto comprare a natale da
-		associare al cane che vuole vendere</h1>
+	<h1 class="title-watched container">Chitarra Lidl</h1>
 
 	<div class="container dark-grey-text mt-4 drop-shadow mb-5"> <!--personalizzare il colore dell'ombra in base allo stato annuncio con php-->
 		<div class="row">
@@ -235,11 +235,37 @@
 				<div class="luogo">Lombardia, Brescia, Brescia</div>
 				<div class="lead">$100</div>
 				<div class="lead mb-3">Prodotto</div>
-				<div class="font-weight-bold mb-3">Nuovo/Usato</div>
+				<div class="font-weight-bold mb-3">Nuovo</div>
 				<div class="mb-5">Ottime condizioni</div>
-				<div class="font-italic mt-5">osservato da 59 persone</div>
-				<div class="mt-3">Venduto da: <a class="link-profile" href="profile.html" target="_blank">Nome Cognome</a></div>
-				<button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-dismiss="modal" >Compra</button>
+				<div class="font-italic mt-5">osservato da 9 persone</div>
+				<div class="mt-3">Venduto da: <a class="link-profile" href="profile.html" target="_blank">Elena Crosten</a></div>
+				<button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>
+                <div class="modal fade" id="modalconfermaAcquisto">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Richiesta di acquisto</h3>
+                            </div>
+                            <div class="modal-body text-left">
+                                <h5>Come vuoi effettuare il pagamento?</h5>
+                                <form action="" class="myform">
+                                    <div class="radiobtn">
+                                        <input type="radio" class="" id="diPersona" name="metodoPagamento" value="0">
+                                        <label for="diPersona" class="form-check-label"><i class="fas fa-coins"></i> Di persona</label>
+                                    </div>
+                                    <div class="radiobtn">
+                                        <input type="radio" class="" id="cartaDiCredito" name="metodoPagamento" value="1">
+                                        <label for="cartaDiCredito" class="form-check-label"><i class="fas fa-credit-card"></i> Carta di credito</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
+                                <a href="richiestaDiAcquisto.html" class="btn btn-success">Invia</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				<button type="button" class="destra btn btn-secondary btn-outline-primary btn-sm mt-5" data-dismiss="modal" id="osserva" onclick="rimuovi(id, 'annulla')">Osserva</button>
 				<button type="button" class="destra btn btn-secondary btn-outline-warning btn-sm annulla mt-5" data-dismiss="modal" id="annulla" onclick="rimuovi(id, 'osserva')">Annulla</button>
 				<!--TODO Personalizzare i bottoni in base statoAnnuncio con php-->
@@ -251,11 +277,11 @@
 		</div>
 		<div class="row info-post">
 			<div class="col-md-4 mb-5">
-				<div class="lead">Categoria</div>
-				<div>Sottocategoria</div>
+				<div class="lead">Hobby</div>
+				<div>altro</div>
 			</div>
 			<div class="col-md-4 mb-5">
-				<div><i>In garanzia fino al 5/5/70</i></div>
+				<div><i>In garanzia fino al 5/5/22</i></div>
 			</div>
 			<div class="col-md-4 mb-5">
 				<div class="lead">Scade fra 3 giorni</div>

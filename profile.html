@@ -63,24 +63,24 @@
 </nav>
 
 
-<h1 class="title-watched container">Profillo</h1>
+<h1 class="title-watched container">Profilo</h1>
 
 <div class="container emp-profile drop-shadow">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="img/ceciglia_rotta.jpg" alt=""/>
+                    <img src="img/venditore1.jpg" alt=""/>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="profile-head">
+                <div class="profile-head mt-2">
                     <h5>
-                        Rossi Cecilia
+                        Edoardo Perego
                     </h5>
                     <div id="myProfile">
                         <!-- Button trigger modal -->
-                        <button type="button" class="profile-edit-btn" data-toggle="modal" data-target="#basicExampleModal">
+                        <button type="button" class="profile-edit-btn w-25" data-toggle="modal" data-target="#basicExampleModal">
                             Modifica
                         </button>
                         <!-- Modal -->
@@ -95,7 +95,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 border-right">
                                                     <div class="profile-img">
-                                                        <img src="img/placeholder_profilo.png" alt=""/>
+                                                        <img src="img/venditore1.jpg" alt=""/>
                                                         <div class="file btn btn-lg x btn-primary mt-0">
                                                             Cambia foto
                                                             <input type="file" name="file"/>
@@ -105,42 +105,69 @@
                                                 <div class="col-md-8">
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
-                                                            <div class="col-md-6"><label>Codice Fiscale<input type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
-                                                            <div class="col-md-6"><label>E-mail<input type="text" class="form-control form-custom" placeholder="E-mail" value=""></label></div>
+                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
+                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="E-mail" value=""></label></div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label>Nome<input type="text" class="form-control form-custom" placeholder="Nome" value=""></label></div>
-                                                            <div class="col-md-6"><label>Regione<input type="text" class="form-control form-custom" placeholder="Regione" value=""></label></div>
+                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Nome" value=""></label></div>
+                                                            <div class="col-md-6">
+                                                                <label>
+                                                                    <select name="modificaRegione" id="modificaRegione" class="form-control">
+                                                                        <option value="" disabled selected hidden>Regione</option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label>Cognome<input type="text" class="form-control form-custom" placeholder="Cognome" value=""></label></div>
-                                                            <div class="col-md-6"><label>Provincia<input type="text" class="form-control form-custom" placeholder="Provincia" value=""></label></div>
+                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Cognome" value=""></label></div>
+                                                            <div class="col-md-6">
+                                                                <label>
+                                                                    <select name="Provincia" id="modificaProvincia" class="form-control">
+                                                                        <option value="" disabled selected hidden>Provincia</option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label>Tipo Account<input type="text" class="form-control form-custom" placeholder="" value=""></label></div>
-                                                            <div class="col-md-6"><label>Comune<input type="text" class="form-control form-custom" placeholder="Comune" value=""></label></div>
+                                                            <div class="col-md-6">
+                                                                <label>
+                                                                    <select name="tipoAccount" id="tipoAccount" class="form-control">
+                                                                        <option value="" disabled selected hidden>Tipo account</option>
+                                                                        <option value="pubblica">Acquirente</option>
+                                                                        <option value="ristretta">Venditore</option>
+                                                                        <option value="privata">Acquirente e venditore</option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>
+                                                                    <select name="Comune" id="modificaComune" class="form-control">
+                                                                        <option value="" disabled selected hidden>Comune</option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                         <br>
                                                         <div class="mb-2">
-                                                            <b>Change Password</b>
+                                                            <b>Cambia Password</b>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
-                                                                <label>Current Password
+                                                                <label>Password Corrente
                                                                     <input class="form-control form-custom" type="password" placeholder="••••••">
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
-                                                                <label>New Password
+                                                                <label>Nuova Password
                                                                     <input class="form-control form-custom" type="password" placeholder="••••••">
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
-                                                                <label>Confirm <span class="d-none d-xl-inline">Password</span>
+                                                                <label>Ripeti <span class="d-none d-xl-inline">Password</span>
                                                                     <input class="form-control form-custom" type="password" placeholder="••••••">
                                                                 </label>
                                                             </div>
@@ -151,16 +178,32 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer flex-row d-flex">
-                                        <button type="button" class="btn btn-secondary btn-danger " data-dismiss="modal">Elimina Profilo</button>
+                                        <a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaProfilo">Elimina profilo</a>
                                         <button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
                                         <button type="button" class="btn btn-primary btn-outline-success">Salva</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="modalEliminaProfilo">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3>Sei sicuro?</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
+                                        <a href="profilo_eliminato.html " class="btn btn-danger">Conferma</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <h6>
-                        Acquirente e Babao
+                        Acquirente e venditore
                     </h6>
                     <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
                     <ul class="rating p-0">
@@ -180,7 +223,7 @@
                             <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
                         </li>
                         <li class="ml-1">
-                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(18 recensioni)</label>
                         </li>
                     </ul>
                     <p class="profile-rating">PUNTEGGIO VENDITORE</p>
@@ -201,7 +244,7 @@
                             <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
                         </li>
                         <li class="ml-1">
-                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(542 reviews)</label>
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(10 recensioni)</label>
                         </li>
                     </ul>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -219,8 +262,9 @@
             <div class="col-md-4">
                 <div class="profile-work profile-work-hiding">
                     <p class="profile-title">DATI PERSONALI</p>
-                    <p>ceciglia.rossi@babao.opla</p>
-                    <p>Montisola</p>
+                    <p>edoardo.perego@mail.com</p>
+                    <p>Merate</p>
+                    <p>Lecco, Lombardia</p>
                     <p class="profile-title">STATISTICHE</p>
                     <p>Annunci venduti: 20</p>
                     <p>Annunci acquistati: 11</p>
@@ -237,10 +281,10 @@
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
                                             <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
+                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
                                                 <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€125.00</div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€100.00</div>
                                             </div>
                                         </div>
                                     </div>
@@ -249,10 +293,10 @@
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
                                             <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto2"></a>
                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                                                <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                                                <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo2">€125.00</div>
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Album di figurine rare</a></h3>
+                                                <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Album</div>
+                                                <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Usato</b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo2">€75.00</div>
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +305,7 @@
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
                                             <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto3"></a>
                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans</a></h3>
                                                 <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
                                                 <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
                                                 <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
@@ -313,12 +357,12 @@
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto4"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/gaming_pc.jpg" alt="Product" id="foto4"></a>
                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Calvin Klein Jeans Keds</a></h3>
-                                                <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                                                <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo4">€125.00</div>
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Computer portatile da gaming</a></h3>
+                                                <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Computer</div>
+                                                <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Usato</b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo4">€325.00</div>
                                             </div>
                                         </div>
                                     </div>
@@ -365,8 +409,9 @@
             <div class="col-md-4 hidden-block">
                 <div class="profile-work">
                     <p class="profile-title">DATI PERSONALI</p>
-                    <p>ceciglia.rossi@babao.opla</p>
-                    <p>Montisola</p>
+                    <p>edoardo.perego@mail.com</p>
+                    <p>Merate</p>
+                    <p>Lecco, Lombardia</p>
                     <p class="profile-title">STATISTICHE</p>
                     <p>Annunci venduti: 20</p>
                     <p>Annunci acquistati: 11</p>
@@ -430,5 +475,6 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/navbar.js"></script>
+<script src="js/style.js"></script>
 </body>
 </html>

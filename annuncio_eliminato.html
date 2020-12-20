@@ -1,0 +1,140 @@
+<html lang="en">
+
+<head>
+    <title>bee-market</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/products.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet"  type="text/css" href="css/annuncio.css">
+    <link rel="stylesheet"  type="text/css" href="css/profile.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><img src="img/bee.svg" class="icon-bee"
+                                                       alt="bee"><span>Be</span><span>e-Market</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="form-inline my-2 my-lg-0 nav-form">
+                <label>
+                    <select class="form-control form-custom white-inputs" name="regione" id="regione">
+                        <option value="0">Tutta Italia</option>
+                        <option value="1">Lombardia</option>
+                        <option value="2">Sardegna</option>
+                    </select>
+                </label>
+                <label>
+                    <select class="form-control form-custom white-inputs" name="provincia" id="provincia">
+                        <option value="0">Ogni provincia</option>
+                        <option value="1">Ogni provincia</option>
+                        <option value="1">Lecco</option>
+                        <option value="2">Ogni provincia</option>
+                        <option value="2">Olbia</option>
+                    </select>
+                </label>
+                <div class="nav-newline"></div>
+                <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search"
+                       placeholder="Cerca" aria-label="Search">
+                <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
+            </form>
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="watched.html">
+                        <img src="img/binocolo.svg" class="nav-icon" alt="Annunci osservati">
+                        <p class="nav-icon-text nav-link">Annunci osservati</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accedi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrati</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container drop-shadow mt-5 mb-5 text-center pt-2">
+
+        <h1>Il tuo annuncio è stato eliminato!</h1>
+        <img src="img/bee_thumbs_up.png" class="h-75 mb-3 img-fluid" alt="">
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-5 mt-md-0 mt-3 footer-content">
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Come vendere</h5>
+                    <p>Per vendere un prodotto è necessario essere iscritti alla piattaforma.
+                        <br>Dopo aver effettuato il login, tramite il bottone posizionato nella <a class="link-footer"
+                                                                                                   href="index.html">home</a>.
+                        <br>Lì verranno chiesti i dati e fornite le spiegazioni necessarie.</p>
+
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3 footer-left">
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Chi siamo | Contattaci</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="link-footer" href="https://github.com/lynerist" target="_blank">Leonardo
+                                Albani</a> | <a class="link-footer"
+                                                href="mailto:leonardo.albani@studenti.unimi.it">leonardo.albani@studenti.unimi.it</a>
+                        </li>
+                        <li>
+                            <a class="link-footer" href="https://github.com/FilippoUslenghi" target="_blank">Filippo
+                                Uslenghi</a> | <a class="link-footer"
+                                                  href="mailto:filippo.uslenghi@studenti.unimi.it">filippo.uslenghi@studenti.unimi.it</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-4 mb-md-0 mb-3">
+                    <!-- Links -->
+                    <h5 class="text-uppercase">Cookies</h5>
+
+                    <p>Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti. Utilizziamo
+                        solo cookie tecnici. Proseguendo nella navigazione si accetta l’uso dei cookie.</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+        <!-- Footer Links -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright | Designed by: Leonardo Albani e Filippo
+            Uslenghi |
+            <a class="link-footer"> All rights reserved</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/bottoni.js"></script>
+</body>
+
+</html>

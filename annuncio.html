@@ -90,7 +90,7 @@
 										<div class="row">
 											<div class="col-md-4 border-right">
 												<div class="annuncio-img">
-													<img src="img/placeholder_annuncio.png" alt=""/>
+													<img src="img/image_not_found.png" alt=""/>
 													<div class="file btn btn-lg x btn-primary mt-0">
 														Inserisci foto
 														<input type="file" name="file"/>
@@ -110,7 +110,7 @@
 																	<option value="" disabled selected hidden>Categoria</option>
 																	<option value="elettrodomestici">Elettrodomestici</option>
 																	<option value="abbigliamento">Abbigliamento</option>
-																	<option value="fotoEVideo">FOto e video</option>
+																	<option value="fotoEVideo">Foto e video</option>
 																	<option value="hobby">Hobby</option>
 																</select>
 															</label>
@@ -210,9 +210,22 @@
 									</div>
 								</div>
 								<div class="modal-footer flex-row d-flex">
-									<button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Elimina annuncio</button>
+									<a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaAnnuncio">Elimina annuncio</a>
 									<button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
 									<button type="button" class="btn btn-primary btn-outline-success">Salva</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="modalEliminaAnnuncio">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3>Sei sicuro?</h3>
+								</div>
+								<div class="modal-footer">
+									<a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
+									<a href="annuncio_eliminato.html " class="btn btn-danger">Conferma</a>
 								</div>
 							</div>
 						</div>
@@ -250,7 +263,7 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- Footer -->
 	<footer class="page-footer font-small blue pt-4">
 		<!-- Footer Links -->
 		<div class="container-fluid text-center text-md-left">
@@ -313,6 +326,7 @@
 	<script src="js/bootstrap.bundle.js"></script>
 	<script src="js/navbar.js"></script>
 	<script src="js/bottoni.js"></script>
+	<script src="js/style.js"></script>
 </body>
 
 </html>

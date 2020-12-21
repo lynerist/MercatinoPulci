@@ -16,8 +16,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html"><img src="img/bee.svg" class="icon-bee"
-                                                   alt="bee"><span>Be</span><span>e-Market</span></a>
+    <a class="navbar-brand" href="index.html"><img src="img/bee.svg" class="icon-bee" alt="bee"><span>Be</span><span>e-Market</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,9 +41,8 @@
                 </select>
             </label>
             <div class="nav-newline"></div>
-            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search"
-                   placeholder="Cerca" aria-label="Search">
-            <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
+            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search">
+            <a href="risultati.html" class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</a>
         </form>
 
         <ul class="navbar-nav mr-auto">
@@ -54,11 +52,154 @@
                     <p class="nav-icon-text nav-link">Annunci osservati</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Accedi</a>
+            <li class="nav-item pt-3px">
+                <a class="nav-link pt" href="#0" onclick="accediRegistrati('tabAccedi')">Accedi</a>
+                <!-- Modal -->
+                <div class="modal fade show" id="modalLoginRegister" tabindex="-1" role="dialog" aria-modal="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+
+                                <!-- Pills -->
+                                <ul class="nav nav-justified container">
+                                    <li class="nav-item mr-1">
+                                        <a id="tabAccedi" class="nav-link border border-warning border-rounded bg-warning" data-toggle="tab"
+                                           href="#modalLoginRegister-login" role="tab" aria-selected="true">Accedi</a>
+                                    </li>
+                                    <li class="nav-item pt-0">
+                                        <a id="tabRegistrati" class="nav-link border border-warning border-rounded bg-warning" data-toggle="tab"
+                                           href="#modalLoginRegister-register" role="tab" aria-selected="false">Registrati</a>
+                                    </li>
+                                </ul>
+                                <!-- Pills -->
+
+                                <!-- Content -->
+                                <div class="tab-content">
+
+                                    <!-- First panel -->
+                                    <div class="tab-pane fade in show active" id="modalLoginRegister-login" role="tabpanel">
+
+                                        <!-- Login form -->
+                                        <form id="formLoginRegister-login" class="container pt-2" action="" method="post">
+
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-envelope prefix"></i>
+                                                <input type="email" id="formLoginRegister-email" class="form-control" placeholder="E-mail">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-email"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-lock prefix"></i>
+                                                <input type="password" id="formLoginRegiser-password" class="form-control" placeholder="Password">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegiser-password"></label>
+                                            </div>
+
+                                            <div class="text-center mt-4 pt-3">
+                                                <button type="button" class="btn btn-warning mb-2">Accedi</button>
+                                            </div>
+
+                                        </form>
+                                        <!-- Login form -->
+
+                                    </div>
+                                    <!-- First panel -->
+
+                                    <!-- Second panel -->
+                                    <div class="tab-pane fade" id="modalLoginRegister-register" role="tabpanel">
+
+                                        <!-- Register form -->
+                                        <form id="formLoginRegister-register" class="container pt-2" action="" method="post">
+
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-user prefix"></i>
+                                                <input type="text" id="formLoginRegister-name" class="form-control" placeholder="Nome">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-name"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-user-tie    prefix"></i>
+                                                <input type="text" id="formLoginRegister-surname" class="form-control" placeholder="Cognome">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-surname"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-id-card prefix"></i>
+                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control" placeholder="Codice Fiscale">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-codiceFiscale"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-map-marked-alt prefix"></i>
+                                                <label>
+                                                    <select name="regione" id="register-regione" class="form-control">
+                                                        <option value="" disabled selected hidden>Regione</option>
+                                                        <option value="Lombardia">Lombardia</option>
+                                                    </select>
+                                                </label>
+                                                <label>
+                                                    <select name="provincia" id="register-provincia" class="form-control">
+                                                        <option value="" disabled selected hidden>Provincia</option>
+                                                        <option value="Milano">Milano</option>
+                                                    </select>
+                                                </label>
+                                                <label>
+                                                    <select name="comune" id="register-comune" class="form-control">
+                                                        <option value="" disabled selected hidden>Comune</option>
+                                                        <option value="Milano">Milano</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-envelope prefix"></i>
+                                                <input type="email" id="formLoginRegister-email-example" class="form-control" placeholder="E-mail">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-email-example"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-lock prefix"></i>
+                                                <input type="password" id="formLoginRegister-password-example" class="form-control" placeholder="Password">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password-example"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-key prefix"></i>
+                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control" placeholder="Repeat Password">
+                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password-repeat"></label>
+                                            </div>
+                                            <div class="md-form md-outline">
+                                                <i class="fas fa-user-tag prefix"></i>
+                                                <select name="tipoAccount" id="tipoAccount" class="form-control">
+                                                    <option value="" disabled selected hidden>Tipologia</option>
+                                                    <option value="acquirente">Acquirente</option>
+                                                    <option value="venditore">Venditore</option>
+                                                    <option value="venditoreAcquirente">Acquirente e venditore</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-check mt-4 mb-3 pl-0 text-left d-inline">
+                                                <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter"
+                                                       name="newsletter">
+                                                <label class="form-check-label small grey-text" for="formLoginRegister-newsletter">
+                                                    Confermo la mia iscrizione alla newsletter
+                                                </label>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-warning my-2">Registrati</button>
+                                            </div>
+
+                                        </form>
+                                        <!-- Register form -->
+                                    </div>
+                                    <!-- Second panel -->
+                                </div>
+                                <!-- Content -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-warning waves-effect waves-light"
+                                        data-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Registrati</a>
+            <li class="nav-item pt-3px">
+                <a class="nav-link pt" href="#0" onclick="accediRegistrati('tabRegistrati')">Registrati</a>
             </li>
         </ul>
     </div>

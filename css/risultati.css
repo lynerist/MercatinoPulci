@@ -469,3 +469,7 @@ body{
 .obs-icon:last-child{
     display: none;
 }
+
+.product-list > div.col-lg-4{
+    align-self: flex-end;
+}

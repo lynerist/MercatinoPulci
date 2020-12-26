@@ -1,10 +1,9 @@
 function visualizza(id) {
-    let sel = document.getElementById(id);
-    if (sel.value === "nuovo"){
-        document.getElementById("labelScadenzaGaranzia").classList.remove('garanzia');
-        document.getElementById("labelTempoUsura").classList.add('tempoUsura');
+    if ($('#' + id).val() === "nuovo"){
+        $('#labelScadenzaGaranzia').show();
+        $('#labelTempoUsura').hide();
     }else{
-        document.getElementById("labelTempoUsura").classList.remove('tempoUsura');
-        document.getElementById("labelScadenzaGaranzia").classList.add('garanzia');
+        $('#labelTempoUsura').show();
+        $('#labelScadenzaGaranzia').hide();
     }
 }

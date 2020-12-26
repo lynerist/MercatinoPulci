@@ -163,12 +163,14 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tag prefix"></i>
-                                                <select name="tipoAccount" id="tipoAccount" class="form-control">
-                                                    <option value="" disabled selected hidden>Tipologia</option>
-                                                    <option value="acquirente">Acquirente</option>
-                                                    <option value="venditore">Venditore</option>
-                                                    <option value="venditoreAcquirente">Acquirente e venditore</option>
-                                                </select>
+                                                <label>
+                                                    <select name="tipoAccount" id="tipoAccount" class="form-control">
+                                                        <option value="" disabled selected hidden>Tipologia</option>
+                                                        <option value="acquirente">Acquirente</option>
+                                                        <option value="venditore">Venditore</option>
+                                                        <option value="venditoreAcquirente">Acquirente e venditore</option>
+                                                    </select>
+                                                </label>
                                             </div>
 
                                             <div class="form-check mt-4 mb-3 pl-0 text-left d-inline">
@@ -273,7 +275,7 @@
                                     <div class="row mt-3">
                                         <div class="col-md-6">
                                             <label>
-                                                <select name="statoUsura" id="statoUsura" class="form-control">
+                                                <select name="statoUsura" id="statoUsura" class="form-control" onchange="visualizza(id)">
                                                     <option value="" disabled selected hidden>Stato usura</option>
                                                     <option value="nuovo">Nuovo</option>
                                                     <option value="comeNuovo">Come nuovo</option>
@@ -283,8 +285,14 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <div class="col-md-6"><label><input id="tempoUsura" type="text" class="form-control form-custom" placeholder="Tempo usura in mesi" value=""></label></div>
-                                        <div class="col-md-6"><label><input id="scadenzaGaranzia" type="text" class="form-control form-custom" placeholder="Scadenza garanzia" onfocus="(this.type='date')"></label></div>
+                                        <div class="col-md-6">
+                                            <label id="labelTempoUsura" class="tempoUsura">
+                                                <input id="tempoUsura" type="text" class="form-control form-custom" placeholder="Tempo usura in mesi" value="">
+                                            </label>
+                                            <label id="labelScadenzaGaranzia" class="garanzia">
+                                                <input id="scadenzaGaranzia" type="text" class="form-control form-custom" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
+                                            </label>
+                                        </div>
                                     </div>
                                     <br>
                                     <div class="mb-2">
@@ -804,5 +812,6 @@
 <script src="js/carosello.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/owl.carousel.js"></script>
+<script src="js/nuovoAnnuncio.js"></script>
 </body>
 </html>

@@ -73,7 +73,8 @@ body {
 }
 
 .nav-icon {
-    max-width: 25px;
+    width: 25px;
+    margin-left: 10px;
 }
 
 .nav-form {
@@ -461,4 +462,16 @@ button.blu:hover {
 
 .altezza-massima{
     max-height: 350px;
+}
+
+.w-bin{
+    width: 30px;
+}
+
+.garanzia{
+    display: none;
+}
+
+.tempoUsura{
+    display: none;
 }

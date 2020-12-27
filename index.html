@@ -108,39 +108,39 @@
                                     <div class="tab-pane fade" id="modalLoginRegister-register" role="tabpanel">
 
                                         <!-- Register form -->
-                                        <form id="formLoginRegister-register" class="container pt-2" action="" method="post">
+                                        <form id="formLoginRegister-register" class="container pt-2 needs-validation" action="" method="post" novalidate>
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user prefix"></i>
-                                                <input type="text" id="formLoginRegister-name" class="form-control" placeholder="Nome">
+                                                <input type="text" id="formLoginRegister-name" class="form-control" placeholder="Nome" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-name"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tie    prefix"></i>
-                                                <input type="text" id="formLoginRegister-surname" class="form-control" placeholder="Cognome">
+                                                <input type="text" id="formLoginRegister-surname" class="form-control" placeholder="Cognome" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-surname"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-id-card prefix"></i>
-                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control" placeholder="Codice Fiscale">
+                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control" placeholder="Codice Fiscale" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-codiceFiscale"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-map-marked-alt prefix"></i>
                                                 <label>
-                                                    <select name="regione" id="register-regione" class="form-control">
+                                                    <select name="regione" id="register-regione" class="form-control" required>
                                                         <option value="" disabled selected hidden>Regione</option>
                                                         <option value="Lombardia">Lombardia</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="provincia" id="register-provincia" class="form-control">
+                                                    <select name="provincia" id="register-provincia" class="form-control" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="comune" id="register-comune" class="form-control">
+                                                    <select name="comune" id="register-comune" class="form-control" required>
                                                         <option value="" disabled selected hidden>Comune</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
@@ -148,23 +148,23 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email-example" class="form-control" placeholder="E-mail">
+                                                <input type="email" id="formLoginRegister-email-example" class="form-control" placeholder="E-mail" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email-example"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="formLoginRegister-password-example" class="form-control" placeholder="Password">
+                                                <input type="password" id="formLoginRegister-password-example" class="form-control" placeholder="Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password-example"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-key prefix"></i>
-                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control" placeholder="Repeat Password">
+                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control" placeholder="Repeat Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password-repeat"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tag prefix"></i>
                                                 <label>
-                                                    <select name="tipoAccount" id="tipoAccount" class="form-control">
+                                                    <select name="tipoAccount" id="tipoAccount" class="form-control" required>
                                                         <option value="" disabled selected hidden>Tipologia</option>
                                                         <option value="acquirente">Acquirente</option>
                                                         <option value="venditore">Venditore</option>
@@ -182,7 +182,7 @@
                                             </div>
 
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-warning my-2">Registrati</button>
+                                                <button type="submit" class="btn btn-warning my-2">Registrati</button>
                                             </div>
 
                                         </form>
@@ -238,7 +238,7 @@
                                 <div class="col-md-8">
                                     <div class="p-3 py-5 no-padding-top form-width">
                                         <div class="row mt-2">
-                                            <div class="col-md-6"><label for="validationCustom01"><input id="titolo" type="text" class="form-control form-custom" placeholder="Titolo" value="" required></label></div>
+                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom" placeholder="Titolo" value="" required></label></div>
                                             <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande" placeholder="Prezzo in €" value="" required></label></div>
                                         </div>
                                         <div class="row mt-3">

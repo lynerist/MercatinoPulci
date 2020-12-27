@@ -81,21 +81,21 @@
                                     <div class="tab-pane fade in show active" id="modalLoginRegister-login" role="tabpanel">
 
                                         <!-- Login form -->
-                                        <form id="formLoginRegister-login" class="container pt-2" action="" method="post">
+                                        <form id="formLoginRegister-login" class="container pt-2 needs-validation" method="post" novalidate>
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email" class="form-control" placeholder="E-mail">
+                                                <input type="email" id="formLoginRegister-email" class="form-control" placeholder="E-mail" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="formLoginRegiser-password" class="form-control" placeholder="Password">
+                                                <input type="password" id="formLoginRegiser-password" class="form-control" placeholder="Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegiser-password"></label>
                                             </div>
 
                                             <div class="text-center mt-4 pt-3">
-                                                <button type="button" class="btn btn-warning mb-2">Accedi</button>
+                                                <button type="submit" class="btn btn-warning mb-2" >Accedi</button>
                                             </div>
 
                                         </form>
@@ -218,7 +218,7 @@
     <div class="modal fade modal-only" id="modalNuovoAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog edit-profile" role="document">
             <div class="modal-content">
-                <form class="needs-validation" novalidate>
+                <form id="nuovoAnnuncio" class="needs-validation" novalidate>
                     <div class="modal-header arancio">
                         <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
                     </div>
@@ -819,35 +819,7 @@
 <script src="js/navbar.js"></script>
 <script src="js/owl.carousel.js"></script>
 <script src="js/nuovoAnnuncio.js"></script>
-
-<script>
-    function openmylink(){
-        window.open("/annuncio.html");
-    }
-</script>
-
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }else{
-                openmylink()
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-</script>
+<script src="js/controlloInput.js"></script>
 
 </body>
 </html>

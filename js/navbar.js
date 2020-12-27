@@ -46,12 +46,3 @@ function accediRegistrati(id){
     $("#modalLoginRegister").modal("show");
     $("#" + id).click();
 }
-
-
-
-
-
-
-
-
-

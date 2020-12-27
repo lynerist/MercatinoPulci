@@ -471,3 +471,7 @@ button.blu:hover {
 .display-none{
     display: none;
 }
+
+.altezza-fissa{
+    max-height: 600px;
+}

@@ -218,143 +218,149 @@
     <div class="modal fade modal-only" id="modalNuovoAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog edit-profile" role="document">
             <div class="modal-content">
-                <div class="modal-header arancio">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="container rounded bg-white mt-5">
-                        <div class="row">
-                            <div class="col-md-4 border-right">
-                                <div class="profile-img">
-                                    <img src="img/image_not_found.png" alt=""/>
-                                    <div class="file btn btn-lg x btn-primary mt-0">
-                                        Inserisci foto
-                                        <input type="file" name="file" class="w-100 h-100"/>
+                <form class="needs-validation" novalidate>
+                    <div class="modal-header arancio">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container rounded bg-white mt-5">
+                            <div class="row">
+
+                                <div class="col-md-4 border-right">
+                                    <div class="profile-img">
+                                        <img src="img/image_not_found.png" alt=""/>
+                                        <div class="file btn btn-lg x btn-primary mt-0">
+                                            Inserisci foto
+                                            <input type="file" name="file" class="w-100 h-100"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="p-3 py-5 no-padding-top form-width">
-                                    <div class="row mt-2">
-                                        <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom" placeholder="Titolo" value=""></label></div>
-                                        <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande" placeholder="Prezzo in €" value=""></label></div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6">
-                                            <label>
-                                                <select name="categoria" id="categoria" class="form-control">
-                                                    <option value="" disabled selected hidden>Categoria</option>
-                                                    <option value="elettrodomestici">Elettrodomestici</option>
-                                                    <option value="abbigliamento">Abbigliamento</option>
-                                                    <option value="fotoEVideo">Foto e video</option>
-                                                    <option value="hobby">Hobby</option>
-                                                </select>
-                                            </label>
+                                <div class="col-md-8">
+                                    <div class="p-3 py-5 no-padding-top form-width">
+                                        <div class="row mt-2">
+                                            <div class="col-md-6"><label for="validationCustom01"><input id="titolo" type="text" class="form-control form-custom" placeholder="Titolo" value="" required></label></div>
+                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande" placeholder="Prezzo in €" value="" required></label></div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label>
-                                                <select name="sottcategoria" id="sottocategoria" class="form-control">
-                                                    <option value="" disabled selected hidden>Sottocategoria</option>
-                                                </select>
-                                            </label>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <label>
+                                                    <select name="categoria" id="categoria" class="form-control" required>
+                                                        <option value="" disabled selected hidden>Categoria</option>
+                                                        <option value="elettrodomestici">Elettrodomestici</option>
+                                                        <option value="abbigliamento">Abbigliamento</option>
+                                                        <option value="fotoEVideo">Foto e video</option>
+                                                        <option value="hobby">Hobby</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>
+                                                    <select name="sottcategoria" id="sottocategoria" class="form-control" required>
+                                                        <option value="" disabled selected hidden>Sottocategoria</option>
+                                                        <option value="altro">Altro</option>
+                                                    </select>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Prodotto" value=""></label></div>
-                                        <div class="col-md-6">
-                                            <label>
-                                                <select name="visibilita" id="visibilita" class="form-control">
-                                                    <option value="" disabled selected hidden>Visibilità</option>
-                                                    <option value="pubblica">Pubblica</option>
-                                                    <option value="ristretta">Ristretta</option>
-                                                    <option value="privata">Privata</option>
-                                                </select>
-                                            </label>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Prodotto" value="" required></label></div>
+                                            <div class="col-md-6">
+                                                <label>
+                                                    <select name="visibilita" id="visibilita" class="form-control" required>
+                                                        <option value="" disabled selected hidden>Visibilità</option>
+                                                        <option value="pubblica">Pubblica</option>
+                                                        <option value="ristretta">Ristretta</option>
+                                                        <option value="privata">Privata</option>
+                                                    </select>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6">
-                                            <label>
-                                                <select name="statoUsura" id="statoUsura" class="form-control" onchange="visualizza(id)">
-                                                    <option value="" disabled selected hidden>Stato usura</option>
-                                                    <option value="nuovo">Nuovo</option>
-                                                    <option value="comeNuovo">Come nuovo</option>
-                                                    <option value="buono">Buono</option>
-                                                    <option value="medio">Medio</option>
-                                                    <option value="usurato">Usurato</option>
-                                                </select>
-                                            </label>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <label>
+                                                    <select name="statoUsura" id="statoUsura" class="form-control" onchange="visualizza(id)" required>
+                                                        <option value="" disabled selected hidden>Stato usura</option>
+                                                        <option value="nuovo">Nuovo</option>
+                                                        <option value="comeNuovo">Come nuovo</option>
+                                                        <option value="buono">Buono</option>
+                                                        <option value="medio">Medio</option>
+                                                        <option value="usurato">Usurato</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label id="labelTempoUsura" class="display-none">
+                                                    <input id="tempoUsura" type="text" class="form-control form-custom" placeholder="Tempo usura in mesi" value="">
+                                                </label>
+                                                <label id="labelScadenzaGaranzia" class="display-none">
+                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label id="labelTempoUsura" class="display-none">
-                                                <input id="tempoUsura" type="text" class="form-control form-custom" placeholder="Tempo usura in mesi" value="">
-                                            </label>
-                                            <label id="labelScadenzaGaranzia" class="display-none">
-                                                <input id="scadenzaGaranzia" type="text" class="form-control form-custom" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
-                                            </label>
+                                        <br>
+                                        <div class="mb-2">
+                                            <b>Luogo di vendita</b>
                                         </div>
-                                    </div>
-                                    <br>
-                                    <div class="mb-2">
-                                        <b>Luogo di vendita</b>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="md-form md-outline container-fluid">
-                                            <label>
-                                                <select name="regione" id="luogoVenditaRegione" class="form-control">
-                                                    <option value="" disabled selected hidden>Regione</option>
-                                                    <option value="Lombardia">Lombardia</option>
-                                                </select>
-                                            </label>
-                                            <label>
-                                                <select name="provincia" id="luogoVenditaProvincia" class="form-control">
-                                                    <option value="" disabled selected hidden>Provincia</option>
-                                                    <option value="Milano">Milano</option>
-                                                </select>
-                                            </label>
-                                            <label>
-                                                <select name="comune" id="luogoVenditaComune" class="form-control">
-                                                    <option value="" disabled selected hidden>Comune</option>
-                                                    <option value="Milano">Milano</option>
-                                                </select>
-                                            </label>
+                                        <div class="row mt-3">
+                                            <div class="md-form md-outline container-fluid">
+                                                <label>
+                                                    <select name="regione" id="luogoVenditaRegione" class="form-control" required>
+                                                        <option value="" disabled selected hidden>Regione</option>
+                                                        <option value="Lombardia">Lombardia</option>
+                                                    </select>
+                                                </label>
+                                                <label>
+                                                    <select name="provincia" id="luogoVenditaProvincia" class="form-control" required>
+                                                        <option value="" disabled selected hidden>Provincia</option>
+                                                        <option value="Milano">Milano</option>
+                                                    </select>
+                                                </label>
+                                                <label>
+                                                    <select name="comune" id="luogoVenditaComune" class="form-control" required>
+                                                        <option value="" disabled selected hidden>Comune</option>
+                                                        <option value="Milano">Milano</option>
+                                                    </select>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <br>
-                                    <div class="mb-2">
-                                        <b>Area di visibilità</b>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="md-form md-outline container-fluid">
-                                            <label>
-                                                <select name="regione" id="annuncio-regione" class="form-control">
-                                                    <option value="" disabled selected hidden>Regione</option>
-                                                    <option value="Lombardia">Lombardia</option>
-                                                </select>
-                                            </label>
-                                            <label>
-                                                <select name="provincia" id="annuncio-provincia" class="form-control">
-                                                    <option value="" disabled selected hidden>Provincia</option>
-                                                    <option value="Milano">Milano</option>
-                                                </select>
-                                            </label>
-                                            <label>
-                                                <select name="comune" id="annuncio-comune" class="form-control">
-                                                    <option value="" disabled selected hidden>Comune</option>
-                                                    <option value="Milano">Milano</option>
-                                                </select>
-                                            </label>
+                                        <br>
+                                        <div class="mb-2">
+                                            <b>Area di visibilità</b>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="md-form md-outline container-fluid">
+                                                <label>
+                                                    <select name="regione" id="annuncio-regione" class="form-control">
+                                                        <option value="" disabled selected hidden>Regione</option>
+                                                        <option value="Lombardia">Lombardia</option>
+                                                    </select>
+                                                </label>
+                                                <label>
+                                                    <select name="provincia" id="annuncio-provincia" class="form-control">
+                                                        <option value="" disabled selected hidden>Provincia</option>
+                                                        <option value="Milano">Milano</option>
+                                                    </select>
+                                                </label>
+                                                <label>
+                                                    <select name="comune" id="annuncio-comune" class="form-control">
+                                                        <option value="" disabled selected hidden>Comune</option>
+                                                        <option value="Milano">Milano</option>
+                                                    </select>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-outline-danger" data-dismiss="modal">Annulla</button>
-                    <a href="annuncio.html" class="btn btn-primary btn-outline-success">Pubblica</a>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-outline-danger" data-dismiss="modal">Annulla</button>
+                        <!-- <a href="annuncio.html" class="btn btn-primary btn-outline-success">Pubblica</a> -->
+                        <button class="btn btn-primary btn-outline-success" type="submit">Pubblica</button>
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -813,5 +819,35 @@
 <script src="js/navbar.js"></script>
 <script src="js/owl.carousel.js"></script>
 <script src="js/nuovoAnnuncio.js"></script>
+
+<script>
+    function openmylink(){
+        window.open("/annuncio.html");
+    }
+</script>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }else{
+                openmylink()
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
+
 </body>
 </html>

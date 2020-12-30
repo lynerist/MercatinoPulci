@@ -74,27 +74,27 @@
 <h1 class="title-watched container">Profilo</h1>
 
 <div class="container emp-profile drop-shadow">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="img/venditore1.jpg" alt=""/>
-                </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <img src="img/venditore1.jpg" alt=""/>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head mt-2">
-                    <h5>
-                        Edoardo Perego
-                    </h5>
-                    <div id="myProfile">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="profile-edit-btn w-25" data-toggle="modal" data-target="#basicExampleModal">
-                            Modifica
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog edit-profile" role="document">
-                                <div class="modal-content">
+        </div>
+        <div class="col-md-6">
+            <div class="profile-head mt-2">
+                <h5>
+                    Edoardo Perego
+                </h5>
+                <div id="myProfile">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="profile-edit-btn w-25" data-toggle="modal" data-target="#basicExampleModal">
+                        Modifica
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog edit-profile" role="document">
+                            <div class="modal-content">
+                                <form id="modificaProfilo" action="">
                                     <div class="modal-header arancio">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
                                     </div>
@@ -188,245 +188,245 @@
                                     <div class="modal-footer flex-row d-flex">
                                         <a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaProfilo">Elimina profilo</a>
                                         <button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
-                                        <button type="button" class="btn btn-primary btn-outline-success">Salva</button>
+                                        <button type="submit" class="btn btn-primary btn-outline-success">Salva</button>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modalEliminaProfilo">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Sei sicuro?</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
+                                    <a href="profilo_eliminato.html " class="btn btn-danger">Conferma</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="modalEliminaProfilo">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3>Sei sicuro?</h3>
+                    </div>
+                </div>
+                <h6>
+                    Acquirente e venditore
+                </h6>
+                <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
+                <ul class="rating p-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li class="ml-1">
+                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(3 recensioni)</label>
+                    </li>
+                </ul>
+                <p class="profile-rating">PUNTEGGIO VENDITORE</p>
+                <ul class="rating p-0">
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                    </li>
+                    <li class="ml-1">
+                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(1 recensioni)</label>
+                    </li>
+                </ul>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Annunci acquistati</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Annunci venduti</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="profile-work profile-work-hiding">
+                <p class="profile-title">DATI PERSONALI</p>
+                <p>edoardo.perego@mail.com</p>
+                <p>Merate</p>
+                <p>Lecco, Lombardia</p>
+                <p class="profile-title">STATISTICHE</p>
+                <p>Annunci acquistati: 3</p>
+                <p>Annunci venduti: 1</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="container pb-5 mt-n2 mt-md-n3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Item-->
+                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
+                                        <div class="media-body pt-3">
+                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
+                                            <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
+                                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
+                                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€100.00</div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
+                                </div>
+                                <!-- Item-->
+                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto2"></a>
+                                        <div class="media-body pt-3">
+                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Album di figurine rare</a></h3>
+                                            <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Album</div>
+                                            <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Usato</b></span></div>
+                                            <div class="font-size-lg text-primary pt-2" id="prezzo2">€75.00</div>
+                                        </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                        <a href="profilo_eliminato.html " class="btn btn-danger">Conferma</a>
+                                </div>
+                                <!-- Item-->
+                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto3"></a>
+                                        <div class="media-body pt-3">
+                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans</a></h3>
+                                            <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                                            <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
+                                            <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h6>
-                        Acquirente e venditore
-                    </h6>
-                    <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
-                    <ul class="rating p-0">
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li class="ml-1">
-                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(3 recensioni)</label>
-                        </li>
-                    </ul>
-                    <p class="profile-rating">PUNTEGGIO VENDITORE</p>
-                    <ul class="rating p-0">
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li class="ml-1">
-                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(1 recensioni)</label>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Annunci acquistati</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Annunci venduti</a>
-                        </li>
-                    </ul>
+                    <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <i class="fas fa-angle-left"></i>
+                                    <span class="sr-only">Pagina precedente</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><span class="page-link">...</span></li>
+                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">24</a></li>
+                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#" aria-current="page">26</a>
+                            </li>
+                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
+                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">28</a></li>
+                            <li class="page-item"><span class="page-link">...</span></li>
+                            <li class="page-item"><a class="page-link" href="#">50</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <span class="sr-only">Pagina successiva</span>
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="form-group page-box">
+                            <label for="jumpToPageAnnunciAcquistati">
+                                <span aria-hidden="true"></span>
+                                <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="3">
+                                Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="container pb-5 mt-n2 mt-md-n3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Item-->
+                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/gaming_pc.jpg" alt="Product" id="foto4"></a>
+                                        <div class="media-body pt-3">
+                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Computer portatile da gaming</a></h3>
+                                            <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Computer</div>
+                                            <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Usato</b></span></div>
+                                            <div class="font-size-lg text-primary pt-2" id="prezzo4">€325.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <i class="fas fa-angle-left"></i>
+                                    <span class="sr-only">Pagina precedente</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><span class="page-link">...</span></li>
+                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">7</a></li>
+                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">8</a></li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#" aria-current="page">9</a>
+                            </li>
+                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">10</a></li>
+                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">11</a></li>
+                            <li class="page-item"><span class="page-link">...</span></li>
+                            <li class="page-item"><a class="page-link" href="#">50</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">
+                                    <span class="sr-only">Pagina successiva</span>
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="form-group page-box">
+                            <label for="jumpToPageAnnunciVenduti">
+                                <span aria-hidden="true"></span>
+                                <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
+                                Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
+                            </label>
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work profile-work-hiding">
-                    <p class="profile-title">DATI PERSONALI</p>
-                    <p>edoardo.perego@mail.com</p>
-                    <p>Merate</p>
-                    <p>Lecco, Lombardia</p>
-                    <p class="profile-title">STATISTICHE</p>
-                    <p>Annunci acquistati: 3</p>
-                    <p>Annunci venduti: 1</p>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="container pb-5 mt-n2 mt-md-n3">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
-                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
-                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€100.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto2"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Album di figurine rare</a></h3>
-                                                <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Album</div>
-                                                <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Usato</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo2">€75.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto3"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans</a></h3>
-                                                <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                                                <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-angle-left"></i>
-                                        <span class="sr-only">Pagina precedente</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">24</a></li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#" aria-current="page">26</a>
-                                </li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">28</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item"><a class="page-link" href="#">50</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <span class="sr-only">Pagina successiva</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="form-group page-box">
-                                <label for="jumpToPageAnnunciAcquistati">
-                                    <span aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="3">
-                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                                </label>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="container pb-5 mt-n2 mt-md-n3">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/gaming_pc.jpg" alt="Product" id="foto4"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Computer portatile da gaming</a></h3>
-                                                <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Computer</div>
-                                                <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Usato</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo4">€325.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-angle-left"></i>
-                                        <span class="sr-only">Pagina precedente</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">7</a></li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">8</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#" aria-current="page">9</a>
-                                </li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">10</a></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">11</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item"><a class="page-link" href="#">50</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <span class="sr-only">Pagina successiva</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="form-group page-box">
-                                <label for="jumpToPageAnnunciVenduti">
-                                    <span aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
-                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                                </label>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 hidden-block">
-                <div class="profile-work">
-                    <p class="profile-title">DATI PERSONALI</p>
-                    <p>edoardo.perego@mail.com</p>
-                    <p>Merate</p>
-                    <p>Lecco, Lombardia</p>
-                    <p class="profile-title">STATISTICHE</p>
-                    <p>Annunci venduti: 20</p>
-                    <p>Annunci acquistati: 11</p>
-                </div>
+        <div class="col-md-4 hidden-block">
+            <div class="profile-work">
+                <p class="profile-title">DATI PERSONALI</p>
+                <p>edoardo.perego@mail.com</p>
+                <p>Merate</p>
+                <p>Lecco, Lombardia</p>
+                <p class="profile-title">STATISTICHE</p>
+                <p>Annunci venduti: 20</p>
+                <p>Annunci acquistati: 11</p>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <footer class="page-footer font-small blue pt-4">
@@ -484,5 +484,7 @@
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/style.js"></script>
+<script src="js/controlloInput.js"></script>
+<script>prova('modificaProfilo')</script>
 </body>
 </html>

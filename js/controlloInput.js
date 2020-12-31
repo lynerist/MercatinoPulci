@@ -40,3 +40,10 @@ function controllaCodiceFiscale(codice){
 function controllaEmail(email){
     return /\S+@\S+.\S+/.test(email);
 }
+
+function controllaTesto(testo){
+    return testo != "";
+}
+function controllaPrezzo(prezzo){
+    return /^[1-9][0-9]{0,3}(?:(.|,)[0-9]{0,2})?$/.test(prezzo)
+}

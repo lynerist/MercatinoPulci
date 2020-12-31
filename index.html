@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-id-card prefix"></i>
-                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control" placeholder="Codice Fiscale" required>
+                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control" placeholder="Codice Fiscale" required oninput="colora(id,controllaCodiceFiscale(value))">
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-codiceFiscale"></label>
                                             </div>
                                             <div class="md-form md-outline">
@@ -150,7 +150,7 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email-example" class="form-control" placeholder="E-mail" required>
+                                                <input type="email" id="formLoginRegister-email-example" class="form-control" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email-example"></label>
                                             </div>
                                             <div class="md-form md-outline">
@@ -820,7 +820,7 @@
 <script src="js/navbar.js"></script>
 <script src="js/owl.carousel.js"></script>
 <script src="js/nuovoAnnuncio.js"></script>
-<!--<script src="js/controlloInput.js"></script>-->
+<script src="js/controlloInput.js"></script>
 
 </body>
 </html>

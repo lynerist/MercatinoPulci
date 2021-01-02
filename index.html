@@ -151,18 +151,20 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email-example" class="form-control formLoginRegister-register" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
+                                                <input type="email" id="emailRegistrazione" class="form-control formLoginRegister-register" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email-example"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="formLoginRegister-password-example" class="form-control formLoginRegister-register" placeholder="Password" required>
+                                                <input type="password" id="passwordRegistrazione" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password-example"></label>
+                                                <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-key prefix"></i>
-                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control formLoginRegister-register" placeholder="Repeat Password" required>
+                                                <input type="password" id="passwordRipetizioneRegistrazione" class="form-control formLoginRegister-register" placeholder="Repeat Password" oninput="colora(id,controllaRipetizionePassword('passwordRegistrazione',value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password-repeat"></label>
+                                                <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tag prefix"></i>

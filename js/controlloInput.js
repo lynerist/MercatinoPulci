@@ -40,6 +40,14 @@ function controllaEmail(email){
     return /\S+@\S+.\S+/.test(email);
 }
 
+function controllaPassword(password){
+    return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password);
+}
+
+function controllaRipetizionePassword(idpassword, ripetizione){
+    return document.getElementById(idpassword).value === ripetizione;
+}
+
 function controllaTesto(testo){
     return testo !== "";
 }

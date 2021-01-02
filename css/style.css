@@ -475,3 +475,13 @@ button.blu:hover {
 .altezza-fissa{
     max-height: 600px;
 }
+
+.piu > i{
+    padding: 10px;
+    display: inline;
+    float: right;
+}
+
+#containerAreaVisibilita{
+    display: none;
+}

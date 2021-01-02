@@ -170,7 +170,8 @@ ul.rating {
     padding-top: 0 !important;
 }
 
-.form-width > div > div > label {
+.form-width > div > div > label,
+.form-width > div > div > div > label {
     width: 90%;
 }
 

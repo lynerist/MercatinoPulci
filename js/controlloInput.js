@@ -1,20 +1,19 @@
+function visualizza(id) {
+    if ($('#' + id).val() === "nuovo"){
+        $('#labelScadenzaGaranzia').show();
+        $('#labelTempoUsura').hide();
+    }else{
+        $('#labelTempoUsura').show();
+        $('#labelScadenzaGaranzia').hide();
+    }
+}
+
 function apriNuovoAnnuncio() {
     window.open("/annuncio.html");
 }
 
-function controllaSubmit(id) {
-    let myform = document.getElementById(id);
-
-    myform.addEventListener('submit', function (event) {
-        if (!controllaForm(id)){
-            event.preventDefault();
-            event.stopPropagation();
-        }
-    }, false);
-}
-
 function controllaForm(id){
-    for (let input of document.getElementById(id).children){
+    for (let input of document.getElementsByClassName(id)){
         if (input.classList.contains("is-invalid")){
             return false
         }
@@ -42,8 +41,32 @@ function controllaEmail(email){
 }
 
 function controllaTesto(testo){
-    return testo != "";
+    return testo !== "";
 }
+
 function controllaPrezzo(prezzo){
-    return /^[1-9][0-9]{0,3}(?:(.|,)[0-9]{0,2})?$/.test(prezzo)
+    return /^[1-9][0-9]{0,3}((.|,)[0-9]{1,2})?$/.test(prezzo)
+}
+
+function controllaTempoUsura(idTempoUsura, idStatoUsura){
+    let tempoUsura = document.getElementById(idTempoUsura).value;
+    if (document.getElementById(idStatoUsura).value !== 'nuovo'){
+        return /^[1-9][0-9]{0,2}$/.test(tempoUsura)
+    }
+    return true
+}
+
+var countAreaVisibilita = 1;
+function aggiungiAreaVisibilita(id){
+    let nodo = '<div class="row"><div class="md-form md-outline container-fluid mt-0"><label><select name="regione" id="visibilita-regione_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Regione</option><option value="Lombardia">Lombardia</option></select></label><label><select name="provincia" id="visibilita-provincia_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Provincia</option><option value="Milano">Milano</option></select></label><label><select name="comune" id="visibilita-comune_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Comune</option><option value="Milano">Milano</option></select></label></div></div>'
+    document.getElementById("piu").previousElementSibling.outerHTML += nodo
+    countAreaVisibilita++
+}
+
+function visualizzaAreaVisibilita(visibilita, idAreavisibilita){
+    if (visibilita === 'ristretta'){
+        document.getElementById(idAreavisibilita).style.display = 'block'
+    }else{
+        document.getElementById(idAreavisibilita).style.display = 'none'
+    }
 }

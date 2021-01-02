@@ -44,8 +44,9 @@
                 </select>
             </label>
             <div class="nav-newline"></div>
-            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search">
-            <a href="risultati.html" class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</a>
+            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search" required>
+<!--            TODO rimandare alla pagina "risultati.html" da funzione di backend-->
+            <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
         </form>
 
         <ul class="navbar-nav mr-auto">
@@ -83,16 +84,16 @@
                                     <div class="tab-pane fade in show active" id="modalLoginRegister-login" role="tabpanel">
 
                                         <!-- Login form -->
-                                        <form id="formLoginRegister-login" class="container pt-2 needs-validation" method="post" novalidate>
+                                        <form id="formLoginRegister-login" class="container pt-2 needs-validation" method="post" onsubmit="return controllaForm(id)">
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email" class="form-control" placeholder="E-mail" required>
+                                                <input type="email" id="formLoginRegister-email" class="form-control formLoginRegister-login" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="formLoginRegister-password" class="form-control" placeholder="Password" required>
+                                                <input type="password" id="formLoginRegister-password" class="form-control formLoginRegister-login" placeholder="Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password"></label>
                                             </div>
 
@@ -110,39 +111,39 @@
                                     <div class="tab-pane fade" id="modalLoginRegister-register" role="tabpanel">
 
                                         <!-- Register form -->
-                                        <form id="formLoginRegister-register" class="container pt-2 needs-validation" action="" method="post" novalidate>
+                                        <form id="formLoginRegister-register" class="container pt-2 needs-validation" action="" method="post" onsubmit="return controllaForm(id)">
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user prefix"></i>
-                                                <input type="text" id="formLoginRegister-name" class="form-control" placeholder="Nome" required>
+                                                <input type="text" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTesto(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-name"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tie    prefix"></i>
-                                                <input type="text" id="formLoginRegister-surname" class="form-control" placeholder="Cognome" required>
+                                                <input type="text" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTesto(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-surname"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-id-card prefix"></i>
-                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control" placeholder="Codice Fiscale" required oninput="colora(id,controllaCodiceFiscale(value))">
+                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control formLoginRegister-register" placeholder="Codice Fiscale" required oninput="colora(id,controllaCodiceFiscale(value))">
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-codiceFiscale"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-map-marked-alt prefix"></i>
                                                 <label>
-                                                    <select name="regione" id="register-regione" class="form-control" required>
+                                                    <select name="regione" id="register-regione" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Regione</option>
                                                         <option value="Lombardia">Lombardia</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="provincia" id="register-provincia" class="form-control" required>
+                                                    <select name="provincia" id="register-provincia" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="comune" id="register-comune" class="form-control" required>
+                                                    <select name="comune" id="register-comune" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Comune</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
@@ -150,23 +151,23 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email-example" class="form-control" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
+                                                <input type="email" id="formLoginRegister-email-example" class="form-control formLoginRegister-register" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email-example"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="formLoginRegister-password-example" class="form-control" placeholder="Password" required>
+                                                <input type="password" id="formLoginRegister-password-example" class="form-control formLoginRegister-register" placeholder="Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password-example"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-key prefix"></i>
-                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control" placeholder="Repeat Password" required>
+                                                <input type="password" id="formLoginRegister-password-repeat" class="form-control formLoginRegister-register" placeholder="Repeat Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password-repeat"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tag prefix"></i>
                                                 <label>
-                                                    <select name="tipoAccount" id="tipoAccount" class="form-control" required>
+                                                    <select name="tipoAccount" id="tipoAccount" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Tipologia</option>
                                                         <option value="acquirente">Acquirente</option>
                                                         <option value="venditore">Venditore</option>
@@ -220,14 +221,13 @@
     <div class="modal fade modal-only" id="modalNuovoAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog edit-profile" role="document">
             <div class="modal-content">
-                <form id="nuovoAnnuncio">
+                <form id="nuovoAnnuncio" onsubmit="return controllaForm(id)">
                     <div class="modal-header arancio">
                         <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
                     </div>
                     <div class="modal-body">
                         <div class="container rounded bg-white mt-5">
                             <div class="row">
-
                                 <div class="col-md-4 border-right">
                                     <div class="profile-img">
                                         <img src="img/image_not_found.png" alt=""/>
@@ -240,13 +240,13 @@
                                 <div class="col-md-8">
                                     <div class="p-3 py-5 no-padding-top form-width">
                                         <div class="row mt-2">
-                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom" placeholder="Titolo" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
-                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande" placeholder="Prezzo in €" value="" oninput="colora(id,controllaPrezzo(value))" required></label></div>
+                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Titolo" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande nuovoAnnuncio" placeholder="Prezzo in €" value=""  oninput="colora(id,controllaPrezzo(value))" required></label></div>
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="categoria" id="categoria" class="form-control" required>
+                                                    <select name="categoria" id="categoria" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Categoria</option>
                                                         <option value="elettrodomestici">Elettrodomestici</option>
                                                         <option value="abbigliamento">Abbigliamento</option>
@@ -257,7 +257,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="sottcategoria" id="sottocategoria" class="form-control" required>
+                                                    <select name="sottcategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Sottocategoria</option>
                                                         <option value="altro">Altro</option>
                                                     </select>
@@ -265,10 +265,10 @@
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom" placeholder="Prodotto" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Prodotto" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="visibilita" id="visibilita" class="form-control" required>
+                                                    <select name="visibilita" id="visibilita" class="form-control nuovoAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
                                                         <option value="" disabled selected hidden>Visibilità</option>
                                                         <option value="pubblica">Pubblica</option>
                                                         <option value="ristretta">Ristretta</option>
@@ -280,7 +280,7 @@
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="statoUsura" id="statoUsura" class="form-control" onchange="visualizza(id)" required>
+                                                    <select name="statoUsura" id="statoUsura" class="form-control nuovoAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
                                                         <option value="" disabled selected hidden>Stato usura</option>
                                                         <option value="nuovo">Nuovo</option>
                                                         <option value="comeNuovo">Come nuovo</option>
@@ -292,10 +292,10 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label id="labelTempoUsura" class="display-none">
-                                                    <input id="tempoUsura" type="text" class="form-control form-custom" placeholder="Tempo usura in mesi" value="">
+                                                    <input id="tempoUsura" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Tempo usura in mesi" value="" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                 </label>
                                                 <label id="labelScadenzaGaranzia" class="display-none">
-                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
+                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
                                                 </label>
                                             </div>
                                         </div>
@@ -306,19 +306,19 @@
                                         <div class="row mt-3">
                                             <div class="md-form md-outline container-fluid">
                                                 <label>
-                                                    <select name="regione" id="luogoVenditaRegione" class="form-control" required>
+                                                    <select name="regione" id="luogoVenditaRegione" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Regione</option>
                                                         <option value="Lombardia">Lombardia</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="provincia" id="luogoVenditaProvincia" class="form-control" required>
+                                                    <select name="provincia" id="luogoVenditaProvincia" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="comune" id="luogoVenditaComune" class="form-control" required>
+                                                    <select name="comune" id="luogoVenditaComune" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Comune</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
@@ -326,29 +326,34 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="mb-2">
-                                            <b>Area di visibilità</b>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="md-form md-outline container-fluid">
-                                                <label>
-                                                    <select name="regione" id="annuncio-regione" class="form-control">
-                                                        <option value="" disabled selected hidden>Regione</option>
-                                                        <option value="Lombardia">Lombardia</option>
-                                                    </select>
-                                                </label>
-                                                <label>
-                                                    <select name="provincia" id="annuncio-provincia" class="form-control">
-                                                        <option value="" disabled selected hidden>Provincia</option>
-                                                        <option value="Milano">Milano</option>
-                                                    </select>
-                                                </label>
-                                                <label>
-                                                    <select name="comune" id="annuncio-comune" class="form-control">
-                                                        <option value="" disabled selected hidden>Comune</option>
-                                                        <option value="Milano">Milano</option>
-                                                    </select>
-                                                </label>
+                                        <div id="containerAreaVisibilita">
+                                            <div class="mb-2">
+                                                <b>Area di visibilità</b>
+                                            </div>
+                                            <div class="row">
+                                                <div class="md-form md-outline container-fluid">
+                                                    <label>
+                                                        <select name="regione" id="visibilita-regione_0" class="form-control">
+                                                            <option value="" disabled selected hidden>Regione</option>
+                                                            <option value="Lombardia">Lombardia</option>
+                                                        </select>
+                                                    </label>
+                                                    <label>
+                                                        <select name="provincia" id="visibilita-provincia_0" class="form-control">
+                                                            <option value="" disabled selected hidden>Provincia</option>
+                                                            <option value="Milano">Milano</option>
+                                                        </select>
+                                                    </label>
+                                                    <label>
+                                                        <select name="comune" id="visibilita-comune_0" class="form-control">
+                                                            <option value="" disabled selected hidden>Comune</option>
+                                                            <option value="Milano">Milano</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div id="piu" class="piu" onclick="aggiungiAreaVisibilita(id)">
+                                                <i class="fas fa-plus btn btn-outline-warning"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -358,7 +363,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-outline-danger" data-dismiss="modal">Annulla</button>
-                        <!-- <a href="annuncio.html" class="btn btn-primary btn-outline-success">Pubblica</a> -->
                         <button class="btn btn-primary btn-outline-success" type="submit">Pubblica</button>
                     </div>
                 </form>
@@ -819,7 +823,6 @@
 <script src="js/carosello.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/owl.carousel.js"></script>
-<script src="js/nuovoAnnuncio.js"></script>
 <script src="js/controlloInput.js"></script>
 
 </body>

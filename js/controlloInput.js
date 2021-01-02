@@ -78,3 +78,7 @@ function visualizzaAreaVisibilita(visibilita, idAreavisibilita){
         document.getElementById(idAreavisibilita).style.display = 'none'
     }
 }
+
+function controllaValutazione(id){
+    return !(document.getElementById(id).ratingS.value === '' || document.getElementById(id).ratingP.value === '')
+}

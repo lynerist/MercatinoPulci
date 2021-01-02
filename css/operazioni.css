@@ -68,3 +68,11 @@ ul.rating {
         display: grid;
     }
 }
+
+.is-invalid > div > div > .text-danger {
+    display: block;
+}
+
+form > div > div > .text-danger {
+    display: none;
+}

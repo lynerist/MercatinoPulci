@@ -94,7 +94,7 @@
                     <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog edit-profile" role="document">
                             <div class="modal-content">
-                                <form id="modificaProfilo" action="">
+                                <form id="modificaProfilo" action="" onsubmit="return controllaForm(id)">
                                     <div class="modal-header arancio">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
                                     </div>
@@ -113,25 +113,27 @@
                                                 <div class="col-md-8">
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
-                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
-                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="E-mail" value=""></label></div>
+                                                            <div class="col-md-6"><label><input id="modificaCodiceFiscale" name="modificaCodiceFiscale" type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
+                                                            <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="" oninput="colora(id, controllaEmail(value))" required></label></div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Nome" value=""></label></div>
+                                                            <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="modificaRegione" id="modificaRegione" class="form-control">
+                                                                    <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
                                                                         <option value="" disabled selected hidden>Regione</option>
+                                                                        <option value="lombardia">Lombardia</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input type="text" class="form-control form-custom" placeholder="Cognome" value=""></label></div>
+                                                            <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="Provincia" id="modificaProvincia" class="form-control">
+                                                                    <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>
                                                                         <option value="" disabled selected hidden>Provincia</option>
+                                                                        <option value="milano">Milano</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -139,7 +141,7 @@
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="tipoAccount" id="tipoAccount" class="form-control">
+                                                                    <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo" required>
                                                                         <option value="" disabled selected hidden>Tipo account</option>
                                                                         <option value="pubblica">Acquirente</option>
                                                                         <option value="ristretta">Venditore</option>
@@ -149,8 +151,9 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="Comune" id="modificaComune" class="form-control">
+                                                                    <select name="modificaComune" id="modificaComune" class="form-control modificaProfilo" required>
                                                                         <option value="" disabled selected hidden>Comune</option>
+                                                                        <option value="milano">Milano</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -161,22 +164,26 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
-                                                                <label>Password Corrente
-                                                                    <input class="form-control form-custom" type="password" placeholder="••••••">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-md-6">
                                                                 <label>Nuova Password
-                                                                    <input class="form-control form-custom" type="password" placeholder="••••••">
+                                                                    <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
                                                                 </label>
+                                                                <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>Ripeti <span class="d-none d-xl-inline">Password</span>
-                                                                    <input class="form-control form-custom" type="password" placeholder="••••••">
+                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
+                                                                </label>
+                                                                <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-2 mt-5">
+                                                            <b>Password Corrente</b>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="w-100">
+                                                                <label>
+<!--                                                                 TODO controllo password con php-->
+                                                                    <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -485,6 +492,5 @@
 <script src="js/navbar.js"></script>
 <script src="js/style.js"></script>
 <script src="js/controlloInput.js"></script>
-<script>controllaSubmit('modificaProfilo')</script>
 </body>
 </html>

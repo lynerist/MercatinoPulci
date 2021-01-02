@@ -352,39 +352,44 @@
                                         class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
                             </div>
                         </div>
-                        <div class="media-body pt-3 mt-3">
-                            <div class="starrating risingstar d-flex flex-row-reverse">
-                                <div class="ml-auto">
-                                    <button type="button" class="btn btn-sm btn-outline-success mr-1">Conferma</button>
+                        <form id="valutazioneVenditore_1" action="">
+                            <div class="media-body pt-3 mt-3">
+                                <div class="starrating risingstar d-flex flex-row-reverse">
+                                    <div class="ml-auto">
+                                        <button type="submit" class="btn btn-sm btn-outline-success mr-1" onclick="colora('valutazioneVenditore_1', controllaValutazione('valutazioneVenditore_1'))">Conferma</button>
+                                    </div>
+                                    <input type="radio" id="serieta5-v1" name="ratingS" value="5" required/><label
+                                        for="serieta5-v1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta4-v1" name="ratingS" value="4" required/><label
+                                        for="serieta4-v1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta3-v1" name="ratingS" value="3" required/><label
+                                        for="serieta3-v1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta2-v1" name="ratingS" value="2" required/><label
+                                        for="serieta2-v1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta1-v1" name="ratingS" value="1" required/><label
+                                        for="serieta1-v1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Serietà:&nbsp; &nbsp; &nbsp;</b></i></span>
                                 </div>
-                                <input type="radio" id="serieta5-v1" name="rating-s" value="5" /><label
-                                    for="serieta5-v1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta4-v1" name="rating-s" value="4" /><label
-                                    for="serieta4-v1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta3-v1" name="rating-s" value="3" /><label
-                                    for="serieta3-v1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta2-v1" name="rating-s" value="2" /><label
-                                    for="serieta2-v1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta1-v1" name="rating-s" value="1" /><label
-                                    for="serieta1-v1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
-                                <span class="mr-3"><i><b>Serietà:&nbsp; &nbsp; &nbsp;</b></i></span>
                             </div>
-                        </div>
-                        <div class="media-body">
-                            <div class="starrating risingstar d-flex flex-row-reverse justify-content-end">
-                                <input type="radio" id="puntalita5-v1" name="rating-p" value="5" /><label
-                                    for="puntalita5-v1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita4-v1" name="rating-p" value="4" /><label
-                                    for="puntalita4-v1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita3-v1" name="rating-p" value="3" /><label
-                                    for="puntalita3-v1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita2-v1" name="rating-p" value="2" /><label
-                                    for="puntalita2-v1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita1-v1" name="rating-p" value="1" /><label
-                                    for="puntalita1-v1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
-                                <span class="mr-3"><i><b>Puntualità:</b></i></span>
+                            <div class="media-body">
+                                <div class="starrating risingstar d-flex flex-row-reverse justify-content-end">
+                                    <div class="ml-auto text-danger mt-2">
+                                        Servono entrambe le valutazioni
+                                    </div>
+                                    <input type="radio" id="puntalita5-v1" name="ratingP" value="5" required/><label
+                                        for="puntalita5-v1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita4-v1" name="ratingP" value="4" required/><label
+                                        for="puntalita4-v1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita3-v1" name="ratingP" value="3" required/><label
+                                        for="puntalita3-v1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita2-v1" name="ratingP" value="2" required/><label
+                                        for="puntalita2-v1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita1-v1" name="ratingP" value="1" required/><label
+                                        for="puntalita1-v1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Puntualità:</b></i></span>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -449,39 +454,44 @@
                                         class="text-muted mr-2">Pagamento:</span>Di persona</div>
                             </div>
                         </div>
-                        <div class="media-body pt-3 mt-3">
-                            <div class="starrating risingstar d-flex flex-row-reverse">
-                                <div class="ml-auto">
-                                    <button type="button" class="btn btn-sm btn-outline-success mr-1">Conferma</button>
+                        <form id="valutazioneVenditore_2" action="">
+                            <div class="media-body pt-3 mt-3">
+                                <div class="starrating risingstar d-flex flex-row-reverse">
+                                    <div class="ml-auto">
+                                        <button type="submit" class="btn btn-sm btn-outline-success mr-1" onclick="colora('valutazioneVenditore_2', controllaValutazione('valutazioneVenditore_2'))">Conferma</button>
+                                    </div>
+                                    <input type="radio" id="serieta5-a1" name="ratingS" value="5" required/><label
+                                        for="serieta5-a1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta4-a1" name="ratingS" value="4" required/><label
+                                        for="serieta4-a1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta3-a1" name="ratingS" value="3" required/><label
+                                        for="serieta3-a1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta2-a1" name="ratingS" value="2" required/><label
+                                        for="serieta2-a1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta1-a1" name="ratingS" value="1" required/><label
+                                        for="serieta1-a1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Serietà:&nbsp; &nbsp; &nbsp;</b></i></span>
                                 </div>
-                                <input type="radio" id="serieta5-a1" name="rating-s" value="5" /><label
-                                    for="serieta5-a1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta4-a1" name="rating-s" value="4" /><label
-                                    for="serieta4-a1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta3-a1" name="rating-s" value="3" /><label
-                                    for="serieta3-a1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta2-a1" name="rating-s" value="2" /><label
-                                    for="serieta2-a1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta1-a1" name="rating-s" value="1" /><label
-                                    for="serieta1-a1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
-                                <span class="mr-3"><i><b>Serietà:&nbsp; &nbsp; &nbsp;</b></i></span>
                             </div>
-                        </div>
-                        <div class="media-body">
-                            <div class="starrating risingstar d-flex flex-row-reverse justify-content-end">
-                                <input type="radio" id="puntalita5-a1" name="rating-p" value="5" /><label
-                                    for="puntalita5-a1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita4-a1" name="rating-p" value="4" /><label
-                                    for="puntalita4-a1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita3-a1" name="rating-p" value="3" /><label
-                                    for="puntalita3-a1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita2-a1" name="rating-p" value="2" /><label
-                                    for="puntalita2-a1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita1-a1" name="rating-p" value="1" /><label
-                                    for="puntalita1-a1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
-                                <span class="mr-3"><i><b>Puntualità:</b></i></span>
+                            <div class="media-body">
+                                <div class="starrating risingstar d-flex flex-row-reverse justify-content-end">
+                                    <div class="ml-auto text-danger mt-2">
+                                        Servono entrambe le valutazioni
+                                    </div>
+                                    <input type="radio" id="puntalita5-a1" name="ratingP" value="5" required/><label
+                                        for="puntalita5-a1" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita4-a1" name="ratingP" value="4" required/><label
+                                        for="puntalita4-a1" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita3-a1" name="ratingP" value="3" required/><label
+                                        for="puntalita3-a1" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita2-a1" name="ratingP" value="2" required/><label
+                                        for="puntalita2-a1" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita1-a1" name="ratingP" value="1" required/><label
+                                        for="puntalita1-a1" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Puntualità:</b></i></span>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-12 d-flex flex-row row">
@@ -538,39 +548,44 @@
                                         class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
                             </div>
                         </div>
-                        <div class="media-body pt-3 mt-3">
-                            <div class="starrating risingstar d-flex flex-row-reverse">
-                                <div class="ml-auto">
-                                    <button type="button" class="btn btn-sm btn-outline-success mr-1">Conferma</button>
+                        <form id="valutazioneVenditore_3" action="">
+                            <div class="media-body pt-3 mt-3">
+                                <div class="starrating risingstar d-flex flex-row-reverse">
+                                    <div class="ml-auto">
+                                        <button type="submit" class="btn btn-sm btn-outline-success mr-1" onclick="colora('valutazioneVenditore_3', controllaValutazione('valutazioneVenditore_3'))">Conferma</button>
+                                    </div>
+                                    <input type="radio" id="serieta5-a2" name="ratingS" value="5" required/><label
+                                        for="serieta5-a2" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta4-a2" name="ratingS" value="4" required/><label
+                                        for="serieta4-a2" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta3-a2" name="ratingS" value="3" required/><label
+                                        for="serieta3-a2" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta2-a2" name="ratingS" value="2" required/><label
+                                        for="serieta2-a2" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="serieta1-a2" name="ratingS" value="1" required/><label
+                                        for="serieta1-a2" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Serietà:&nbsp; &nbsp; &nbsp;</b></i></span>
                                 </div>
-                                <input type="radio" id="serieta5-a2" name="rating-s" value="5" /><label
-                                    for="serieta5-a2" title="5 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta4-a2" name="rating-s" value="4" /><label
-                                    for="serieta4-a2" title="4 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta3-a2" name="rating-s" value="3" /><label
-                                    for="serieta3-a2" title="3 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta2-a2" name="rating-s" value="2" /><label
-                                    for="serieta2-a2" title="2 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="serieta1-a2" name="rating-s" value="1" /><label
-                                    for="serieta1-a2" title="1 star"><i class="fas fa-star fa-sm"></i></label>
-                                <span class="mr-3"><i><b>Serietà:&nbsp; &nbsp; &nbsp;</b></i></span>
                             </div>
-                        </div>
-                        <div class="media-body">
-                            <div class="starrating risingstar d-flex flex-row-reverse justify-content-end">
-                                <input type="radio" id="puntalita5-a2" name="rating-p" value="5" /><label
-                                    for="puntalita5-a2" title="5 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita4-a2" name="rating-p" value="4" /><label
-                                    for="puntalita4-a2" title="4 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita3-a2" name="rating-p" value="3" /><label
-                                    for="puntalita3-a2" title="3 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita2-a2" name="rating-p" value="2" /><label
-                                    for="puntalita2-a2" title="2 star"><i class="fas fa-star fa-sm"></i></label>
-                                <input type="radio" id="puntalita1-a2" name="rating-p" value="1" /><label
-                                    for="puntalita1-a2" title="1 star"><i class="fas fa-star fa-sm"></i></label>
-                                <span class="mr-3"><i><b>Puntualità:</b></i></span>
+                            <div class="media-body">
+                                <div class="starrating risingstar d-flex flex-row-reverse justify-content-end">
+                                    <div class="ml-auto text-danger mt-2">
+                                        Servono entrambe le valutazioni
+                                    </div>
+                                    <input type="radio" id="puntalita5-a2" name="ratingP" value="5" required/><label
+                                        for="puntalita5-a2" title="5 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita4-a2" name="ratingP" value="4" required/><label
+                                        for="puntalita4-a2" title="4 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita3-a2" name="ratingP" value="3" required/><label
+                                        for="puntalita3-a2" title="3 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita2-a2" name="ratingP" value="2" required/><label
+                                        for="puntalita2-a2" title="2 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <input type="radio" id="puntalita1-a2" name="ratingP" value="1" required/><label
+                                        for="puntalita1-a2" title="1 star"><i class="fas fa-star fa-sm"></i></label>
+                                    <span class="mr-3"><i><b>Puntualità:</b></i></span>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -651,6 +666,7 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/controlloInput.js"></script>
 </body>
 
 </html>

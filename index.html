@@ -151,19 +151,19 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="emailRegistrazione" class="form-control formLoginRegister-register" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
-                                                <label data-error="wrong" data-success="right" for="formLoginRegister-email-example"></label>
+                                                <input type="email" id="emailRegistrazione" name="emailRegistrazione" class="form-control formLoginRegister-register" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
+                                                <label data-error="wrong" data-success="right" for="emailRegistrazione"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="passwordRegistrazione" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
-                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password-example"></label>
+                                                <input type="password" id="passwordRegistrazione" name="passwordRegistrazione" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
+                                                <label data-error="wrong" data-success="right" for="passwordRegistrazione"></label>
                                                 <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-key prefix"></i>
-                                                <input type="password" id="passwordRipetizioneRegistrazione" class="form-control formLoginRegister-register" placeholder="Repeat Password" oninput="colora(id,controllaRipetizionePassword('passwordRegistrazione',value))" required>
-                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password-repeat"></label>
+                                                <input type="password" id="passwordRipetizioneRegistrazione" name="passwordRipetizioneRegistrazione" class="form-control formLoginRegister-register" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('passwordRegistrazione',value))" required>
+                                                <label data-error="wrong" data-success="right" for="passwordRipetizioneRegistrazione"></label>
                                                 <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                             </div>
                                             <div class="md-form md-outline">
@@ -308,19 +308,19 @@
                                         <div class="row mt-3">
                                             <div class="md-form md-outline container-fluid">
                                                 <label>
-                                                    <select name="regione" id="luogoVenditaRegione" class="form-control nuovoAnnuncio" required>
+                                                    <select name="luogoVenditaRegione" id="luogoVenditaRegione" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Regione</option>
                                                         <option value="Lombardia">Lombardia</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="provincia" id="luogoVenditaProvincia" class="form-control nuovoAnnuncio" required>
+                                                    <select name="luogoVenditaProvincia" id="luogoVenditaProvincia" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="comune" id="luogoVenditaComune" class="form-control nuovoAnnuncio" required>
+                                                    <select name="luogoVenditaComune" id="luogoVenditaComune" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Comune</option>
                                                         <option value="Milano">Milano</option>
                                                     </select>
@@ -335,19 +335,19 @@
                                             <div class="row">
                                                 <div class="md-form md-outline container-fluid">
                                                     <label>
-                                                        <select name="regione" id="visibilita-regione_0" class="form-control">
+                                                        <select name="visibilita-regione_0" id="visibilita-regione_0" class="form-control">
                                                             <option value="" disabled selected hidden>Regione</option>
                                                             <option value="Lombardia">Lombardia</option>
                                                         </select>
                                                     </label>
                                                     <label>
-                                                        <select name="provincia" id="visibilita-provincia_0" class="form-control">
+                                                        <select name="visibilita-provincia_0" id="visibilita-provincia_0" class="form-control">
                                                             <option value="" disabled selected hidden>Provincia</option>
                                                             <option value="Milano">Milano</option>
                                                         </select>
                                                     </label>
                                                     <label>
-                                                        <select name="comune" id="visibilita-comune_0" class="form-control">
+                                                        <select name="visibilita-comune_0" id="visibilita-comune_0" class="form-control">
                                                             <option value="" disabled selected hidden>Comune</option>
                                                             <option value="Milano">Milano</option>
                                                         </select>

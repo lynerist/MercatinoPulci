@@ -2,5 +2,6 @@
 session_start();
 if (true){
     $_SESSION["isLogged"] = true;
-    header("Location: ../index.php");
+    $_SESSION["codiceFiscale"] = 'SLNFPP98S28F205V';
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 }

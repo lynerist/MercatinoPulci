@@ -5,10 +5,11 @@ session_start();
 //url = ?cf=U0xORlBQOThTMjhGMjA1Vg==
 //codiceFiscale criptato -> U0xORlBQOThTMjhGMjA1Vg==
 $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
-
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
 }
+
+$utente["tipoAccount"] = "venditoreAcquirente";
 
 ?>
 
@@ -178,57 +179,85 @@ if (!$utente['codiceFiscale']){
                 <?php } ?>
 
                 <h6>
-                    Acquirente e venditore
+
+                    <?php
+                    if ($utente["tipoAccount"] == "venditoreAcquirente"){
+                        echo 'Acquirente e venditore';
+                    }elseif ($utente["tipoAccount"] == "venditore"){
+                        echo 'Venditore';
+                    }else{
+                        echo 'Acquirente';
+                    }
+                    ?>
+
                 </h6>
-                <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
-                <ul class="rating p-0">
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li class="ml-1">
-                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(3 recensioni)</label>
-                    </li>
-                </ul>
-                <p class="profile-rating">PUNTEGGIO VENDITORE</p>
-                <ul class="rating p-0">
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li>
-                        <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
-                    </li>
-                    <li class="ml-1">
-                        <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(1 recensioni)</label>
-                    </li>
-                </ul>
+
+                <?php
+                if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
+                    <ul class="rating p-0">
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li class="ml-1">
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(3 recensioni)</label>
+                        </li>
+                    </ul>
+                <?php } ?>
+
+                <?php
+                if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <p class="profile-rating">PUNTEGGIO VENDITORE:</p>
+                    <ul class="rating p-0">
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
+                        </li>
+                        <li class="ml-1">
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(1 recensioni)</label>
+                        </li>
+                    </ul>
+                <?php } ?>
+
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Annunci acquistati</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Annunci venduti</a>
-                    </li>
+
+                    <?php
+                    if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#annunciAcquistati" role="tab" aria-controls="annunciAcquistati" aria-selected="true">Annunci acquistati</a>
+                        </li>
+                    <?php } ?>
+
+                    <?php
+                    if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($utente["tipoAccount"] == "venditore") echo "active" ?>" id="profile-tab" data-toggle="tab" href="#annunciVenduti" role="tab" aria-controls="annunciVenduti" aria-selected="false">Annunci venduti</a>
+                        </li>
+                    <?php } ?>
+
                 </ul>
             </div>
         </div>
@@ -241,144 +270,162 @@ if (!$utente['codiceFiscale']){
                 <p>Merate</p>
                 <p>Lecco, Lombardia</p>
                 <p class="profile-title">STATISTICHE</p>
+
+                <?php
+                if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                 <p>Annunci acquistati: 3</p>
-                <p>Annunci venduti: 1</p>
+                <?php } ?>
+
+                <?php
+                if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <p>Annunci venduti: 1</p>
+                <?php } ?>
+
             </div>
         </div>
         <div class="col-md-8">
-            <div class="tab-content profile-tab" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="container pb-5 mt-n2 mt-md-n3">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- Item-->
-                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
-                                        <div class="media-body pt-3">
-                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
-                                            <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
-                                            <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                            <div class="font-size-lg text-primary pt-2" id="prezzo1">€100.00</div>
+            <div id="myTabContent" class="tab-content profile-tab">
+
+                <?php
+                if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <div id="annunciAcquistati" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="container pb-5 mt-n2 mt-md-n3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Item-->
+                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                        <div class="media d-block d-sm-flex text-center text-sm-left">
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
+                                            <div class="media-body pt-3">
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
+                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
+                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€100.00</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Item-->
-                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto2"></a>
-                                        <div class="media-body pt-3">
-                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Album di figurine rare</a></h3>
-                                            <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Album</div>
-                                            <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Usato</b></span></div>
-                                            <div class="font-size-lg text-primary pt-2" id="prezzo2">€75.00</div>
+                                    <!-- Item-->
+                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                        <div class="media d-block d-sm-flex text-center text-sm-left">
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto2"></a>
+                                            <div class="media-body pt-3">
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Album di figurine rare</a></h3>
+                                                <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Album</div>
+                                                <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Usato</b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo2">€75.00</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Item-->
-                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto3"></a>
-                                        <div class="media-body pt-3">
-                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans</a></h3>
-                                            <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                                            <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                            <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fas fa-angle-left"></i>
-                                    <span class="sr-only">Pagina precedente</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><span class="page-link">...</span></li>
-                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">24</a></li>
-                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#" aria-current="page">26</a>
-                            </li>
-                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
-                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">28</a></li>
-                            <li class="page-item"><span class="page-link">...</span></li>
-                            <li class="page-item"><a class="page-link" href="#">50</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <span class="sr-only">Pagina successiva</span>
-                                    <i class="fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="form-group page-box">
-                            <label for="jumpToPageAnnunciAcquistati">
-                                <span aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="3">
-                                Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                            </label>
-                        </div>
-                    </nav>
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="container pb-5 mt-n2 mt-md-n3">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- Item-->
-                                <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                    <div class="media d-block d-sm-flex text-center text-sm-left">
-                                        <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/gaming_pc.jpg" alt="Product" id="foto4"></a>
-                                        <div class="media-body pt-3">
-                                            <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Computer portatile da gaming</a></h3>
-                                            <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Computer</div>
-                                            <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Usato</b></span></div>
-                                            <div class="font-size-lg text-primary pt-2" id="prezzo4">€325.00</div>
+                                    <!-- Item-->
+                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                        <div class="media d-block d-sm-flex text-center text-sm-left">
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto3"></a>
+                                            <div class="media-body pt-3">
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans</a></h3>
+                                                <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
+                                                <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-angle-left"></i>
+                                        <span class="sr-only">Pagina precedente</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><span class="page-link">...</span></li>
+                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">24</a></li>
+                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#" aria-current="page">26</a>
+                                </li>
+                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
+                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">28</a></li>
+                                <li class="page-item"><span class="page-link">...</span></li>
+                                <li class="page-item"><a class="page-link" href="#">50</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <span class="sr-only">Pagina successiva</span>
+                                        <i class="fas fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="form-group page-box">
+                                <label for="jumpToPageAnnunciAcquistati">
+                                    <span aria-hidden="true"></span>
+                                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="3">
+                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
+                                </label>
+                            </div>
+                        </nav>
                     </div>
-                    <nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fas fa-angle-left"></i>
-                                    <span class="sr-only">Pagina precedente</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><span class="page-link">...</span></li>
-                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">7</a></li>
-                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">8</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#" aria-current="page">9</a>
-                            </li>
-                            <li class="page-item sparisci"><a class="page-link sparisci" href="#">10</a></li>
-                            <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">11</a></li>
-                            <li class="page-item"><span class="page-link">...</span></li>
-                            <li class="page-item"><a class="page-link" href="#">50</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <span class="sr-only">Pagina successiva</span>
-                                    <i class="fas fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="form-group page-box">
-                            <label for="jumpToPageAnnunciVenduti">
-                                <span aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
-                                Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                            </label>
+                <?php } ?>
+
+                <?php
+                if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <div id="annunciVenduti" class="tab-pane fade <?php if ($utente["tipoAccount"] == "venditore") echo "show active" ?>" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="container pb-5 mt-n2 mt-md-n3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Item-->
+                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                                        <div class="media d-block d-sm-flex text-center text-sm-left">
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/gaming_pc.jpg" alt="Product" id="foto4"></a>
+                                            <div class="media-body pt-3">
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Computer portatile da gaming</a></h3>
+                                                <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Computer</div>
+                                                <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Usato</b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo4">€325.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </nav>
-                </div>
+                        <nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <i class="fas fa-angle-left"></i>
+                                        <span class="sr-only">Pagina precedente</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><span class="page-link">...</span></li>
+                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">7</a></li>
+                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">8</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#" aria-current="page">9</a>
+                                </li>
+                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">10</a></li>
+                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">11</a></li>
+                                <li class="page-item"><span class="page-link">...</span></li>
+                                <li class="page-item"><a class="page-link" href="#">50</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">
+                                        <span class="sr-only">Pagina successiva</span>
+                                        <i class="fas fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="form-group page-box">
+                                <label for="jumpToPageAnnunciVenduti">
+                                    <span aria-hidden="true"></span>
+                                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
+                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
+                                </label>
+                            </div>
+                        </nav>
+                    </div>
+                <?php } ?>
+
             </div>
         </div>
         <div class="col-md-4 hidden-block">
@@ -388,8 +435,17 @@ if (!$utente['codiceFiscale']){
                 <p>Merate</p>
                 <p>Lecco, Lombardia</p>
                 <p class="profile-title">STATISTICHE</p>
-                <p>Annunci venduti: 20</p>
-                <p>Annunci acquistati: 11</p>
+
+                <?php
+                if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <p>Annunci acquistati: 3</p>
+                <?php } ?>
+
+                <?php
+                if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
+                    <p>Annunci venduti: 1</p>
+                <?php } ?>
+
             </div>
         </div>
     </div>

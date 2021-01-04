@@ -1,3 +1,4 @@
+<!--TODO distinzione in base ad 'acquirente', 'venditore', 'venditore e acquirente'-->
 <?php
 session_start();
 

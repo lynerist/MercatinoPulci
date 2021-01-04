@@ -1,6 +1,9 @@
 <?php
 session_start();
-$utente["codiceFiscale"] = base64_decode($_GET["codiceFiscale"], true);
+
+//url = ?cf=U0xORlBQOThTMjhGMjA1Vg==
+//codiceFiscale criptato -> U0xORlBQOThTMjhGMjA1Vg==
+$utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
@@ -15,7 +18,6 @@ if (!$utente['codiceFiscale']){
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet" type="text/css" href="css/profile.css">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/watched.css">
 </head>
 
@@ -38,8 +40,8 @@ if (!$utente['codiceFiscale']){
                     Edoardo Perego
                 </h5>
 
-                <?php if (isset($_SESSION["codiceFiscale"]) && $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){
-                    echo '<div id="myProfile">
+                <?php if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){ ?>
+                    <div id="myProfile">
                     <!-- Button trigger modal -->
                     <button type="button" class="profile-edit-btn w-25" data-toggle="modal" data-target="#basicExampleModal">
                         Modifica
@@ -51,8 +53,8 @@ if (!$utente['codiceFiscale']){
                                 <form id="modificaProfilo" action="" onsubmit="return controllaForm(id)">
                                     <div class="modal-header arancio">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
-                                    </div>';
-                    echo '<div class="modal-body">
+                                    </div>
+                                    <div class="modal-body">
                                         <div class="container rounded bg-white mt-5">
                                             <div class="row">
                                                 <div class="col-md-4 border-right">
@@ -119,13 +121,13 @@ if (!$utente['codiceFiscale']){
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>Nuova Password
-                                                                    <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value) || value === \'\'); colora(\'ripetiNuovaPassword\',controllaRipetizionePassword(\'ripetiNuovaPassword\',value))">
+                                                                    <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
                                                                 </label>
                                                                 <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label>Ripeti <span class="d-none d-xl-inline">Password</span>
-                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id,controllaRipetizionePassword(\'nuovaPassword\',value))">
+                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
                                                                 </label>
                                                                 <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                                             </div>
@@ -136,7 +138,7 @@ if (!$utente['codiceFiscale']){
                                                         <div class="row mt-3">
                                                             <div class="w-100">
                                                                 <label>
-                                                                    <!--                                                                 TODO controllo password con php-->
+<!--                                                                 TODO controllo password con php-->
                                                                     <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
                                                                 </label>
                                                             </div>
@@ -145,8 +147,8 @@ if (!$utente['codiceFiscale']){
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>';
-                    echo ' <div class="modal-footer flex-row d-flex">
+                                    </div>
+                                    <div class="modal-footer flex-row d-flex">
                                         <a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaProfilo">Elimina profilo</a>
                                         <button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
                                         <button type="submit" class="btn btn-primary btn-outline-success">Salva</button>
@@ -171,9 +173,8 @@ if (!$utente['codiceFiscale']){
                             </div>
                         </div>
                     </div>
-                </div>';
-                }
-                ?>
+                </div>
+                <?php } ?>
 
                 <h6>
                     Acquirente e venditore
@@ -393,55 +394,7 @@ if (!$utente['codiceFiscale']){
     </div>
 </div>
 
-<footer class="page-footer font-small blue pt-4">
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-        <!-- Grid row -->
-        <div class="row">
-            <!-- Grid column -->
-            <div class="col-md-5 mt-md-0 mt-3 footer-content">
-                <!-- Content -->
-                <h5 class="text-uppercase">Come vendere</h5>
-                <p>Per vendere un prodotto è necessario essere iscritti alla piattaforma.
-                    <br>Dopo aver effettuato il login, tramite il bottone posizionato nella <a class="link-footer" href="index.html">home</a>.
-                    <br>Lì verranno chiesti i dati e fornite le spiegazioni necessarie.</p>
-
-            </div>
-            <!-- Grid column -->
-            <hr class="clearfix w-100 d-md-none pb-3">
-            <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3 footer-left">
-                <!-- Links -->
-                <h5 class="text-uppercase">Chi siamo | Contattaci</h5>
-
-                <ul class="list-unstyled">
-                    <li>
-                        <a class="link-footer" href="https://github.com/lynerist" target="_blank">Leonardo Albani</a> | <a class="link-footer" href="mailto:leonardo.albani@studenti.unimi.it">leonardo.albani@studenti.unimi.it</a>
-                    </li>
-                    <li>
-                        <a class="link-footer" href="https://github.com/FilippoUslenghi" target="_blank">Filippo Uslenghi</a> | <a class="link-footer" href="mailto:filippo.uslenghi@studenti.unimi.it">filippo.uslenghi@studenti.unimi.it</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-md-4 mb-md-0 mb-3">
-                <!-- Links -->
-                <h5 class="text-uppercase">Cookies</h5>
-
-                <p>Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti. Utilizziamo solo cookie tecnici. Proseguendo nella navigazione si accetta l’uso dei cookie.</p>
-            </div>
-            <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-    </div>
-    <!-- Footer Links -->
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright | Designed by: Leonardo Albani e Filippo Uslenghi |
-        <a class="link-footer"> All rights reserved</a>
-    </div>
-    <!-- Copyright -->
-</footer>
+<?php include_once "common/footer.php"?>
 
 <script src="js/jquery-3.5.1.min.js"></script>
 <script src="js/bootstrap.js"></script>

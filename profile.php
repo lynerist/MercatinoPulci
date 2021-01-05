@@ -43,138 +43,138 @@ $utente["tipoAccount"] = "venditoreAcquirente";
 
                 <?php if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){ ?>
                     <div id="myProfile">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="profile-edit-btn w-25" data-toggle="modal" data-target="#basicExampleModal">
-                        Modifica
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog edit-profile" role="document">
-                            <div class="modal-content">
-                                <form id="modificaProfilo" action="" onsubmit="return controllaForm(id)">
-                                    <div class="modal-header arancio">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container rounded bg-white mt-5">
-                                            <div class="row">
-                                                <div class="col-md-4 border-right">
-                                                    <div class="profile-img">
-                                                        <img src="img/venditore1.jpg" alt=""/>
-                                                        <div class="file btn btn-lg x btn-primary mt-0">
-                                                            Cambia foto
-                                                            <input type="file" name="file" class="w-100 h-100"/>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="profile-edit-btn w-25" data-toggle="modal" data-target="#basicExampleModal">
+                            Modifica
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog edit-profile" role="document">
+                                <div class="modal-content">
+                                    <form id="modificaProfilo" action="" onsubmit="return controllaForm(id)">
+                                        <div class="modal-header arancio">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container rounded bg-white mt-5">
+                                                <div class="row">
+                                                    <div class="col-md-4 border-right">
+                                                        <div class="profile-img">
+                                                            <img src="img/venditore1.jpg" alt=""/>
+                                                            <div class="file btn btn-lg x btn-primary mt-0">
+                                                                Cambia foto
+                                                                <input type="file" name="file" class="w-100 h-100"/>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="p-3 py-5 no-padding-top form-width">
-                                                        <div class="row mt-2">
-                                                            <div class="col-md-6"><label><input id="modificaCodiceFiscale" name="modificaCodiceFiscale" type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
-                                                            <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="" oninput="colora(id, controllaEmail(value))" required></label></div>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
-                                                            <div class="col-md-6">
-                                                                <label>
-                                                                    <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
-                                                                        <option value="" disabled selected hidden>Regione</option>
-                                                                        <option value="lombardia">Lombardia</option>
-                                                                    </select>
-                                                                </label>
+                                                    <div class="col-md-8">
+                                                        <div class="p-3 py-5 no-padding-top form-width">
+                                                            <div class="row mt-2">
+                                                                <div class="col-md-6"><label><input id="modificaCodiceFiscale" name="modificaCodiceFiscale" type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="" oninput="colora(id, controllaEmail(value))" required></label></div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
-                                                            <div class="col-md-6">
-                                                                <label>
-                                                                    <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>
-                                                                        <option value="" disabled selected hidden>Provincia</option>
-                                                                        <option value="milano">Milano</option>
-                                                                    </select>
-                                                                </label>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
+                                                                <div class="col-md-6">
+                                                                    <label>
+                                                                        <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
+                                                                            <option value="" disabled selected hidden>Regione</option>
+                                                                            <option value="lombardia">Lombardia</option>
+                                                                        </select>
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-md-6">
-                                                                <label>
-                                                                    <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo" required>
-                                                                        <option value="" disabled selected hidden>Tipo account</option>
-                                                                        <option value="pubblica">Acquirente</option>
-                                                                        <option value="ristretta">Venditore</option>
-                                                                        <option value="privata">Acquirente e venditore</option>
-                                                                    </select>
-                                                                </label>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
+                                                                <div class="col-md-6">
+                                                                    <label>
+                                                                        <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>
+                                                                            <option value="" disabled selected hidden>Provincia</option>
+                                                                            <option value="milano">Milano</option>
+                                                                        </select>
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <label>
-                                                                    <select name="modificaComune" id="modificaComune" class="form-control modificaProfilo" required>
-                                                                        <option value="" disabled selected hidden>Comune</option>
-                                                                        <option value="milano">Milano</option>
-                                                                    </select>
-                                                                </label>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-6">
+                                                                    <label>
+                                                                        <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo" required>
+                                                                            <option value="" disabled selected hidden>Tipo account</option>
+                                                                            <option value="pubblica">Acquirente</option>
+                                                                            <option value="ristretta">Venditore</option>
+                                                                            <option value="privata">Acquirente e venditore</option>
+                                                                        </select>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>
+                                                                        <select name="modificaComune" id="modificaComune" class="form-control modificaProfilo" required>
+                                                                            <option value="" disabled selected hidden>Comune</option>
+                                                                            <option value="milano">Milano</option>
+                                                                        </select>
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="mb-2">
-                                                            <b>Cambia Password</b>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col-md-6">
-                                                                <label>Nuova Password
-                                                                    <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
-                                                                </label>
-                                                                <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
+                                                            <br>
+                                                            <div class="mb-2">
+                                                                <b>Cambia Password</b>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <label>Ripeti <span class="d-none d-xl-inline">Password</span>
-                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
-                                                                </label>
-                                                                <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-6">
+                                                                    <label>Nuova Password
+                                                                        <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
+                                                                    </label>
+                                                                    <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Ripeti <span class="d-none d-xl-inline">Password</span>
+                                                                        <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
+                                                                    </label>
+                                                                    <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="mb-2 mt-5">
-                                                            <b>Password Corrente</b>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="w-100">
-                                                                <label>
-<!--                                                                 TODO controllo password con php-->
-                                                                    <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
-                                                                </label>
+                                                            <div class="mb-2 mt-5">
+                                                                <b>Password Corrente</b>
+                                                            </div>
+                                                            <div class="row mt-3">
+                                                                <div class="w-100">
+                                                                    <label>
+<!--                                                                    TODO controllo password con php-->
+                                                                        <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
+                                                                    </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer flex-row d-flex">
-                                        <a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaProfilo">Elimina profilo</a>
-                                        <button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
-                                        <button type="submit" class="btn btn-primary btn-outline-success">Salva</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="modalEliminaProfilo">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3>Sei sicuro?</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                    <a href="profilo_eliminato.html " class="btn btn-danger">Conferma</a>
+                                        <div class="modal-footer flex-row d-flex">
+                                            <a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaProfilo">Elimina profilo</a>
+                                            <button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
+                                            <button type="submit" class="btn btn-primary btn-outline-success">Salva</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="modalEliminaProfilo">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3>Sei sicuro?</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
+                                        <a href="profilo_eliminato.html " class="btn btn-danger">Conferma</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 <?php } ?>
 
                 <h6>
@@ -280,6 +280,13 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                     <p>Annunci venduti: 1</p>
                 <?php } ?>
 
+                <?php
+                if (isset($_SESSION["isLogged"]) and $_SESSION["isLogged"]){ ?>
+                    <form id="formLogout" action="backend/logout_exe.php">
+                        <button id="logout" type="submit" class="btn btn-outline-danger btn-sm mt-4">Disconnetti</button>
+                    </form>
+                <?php } ?>
+
             </div>
         </div>
         <div class="col-md-8">
@@ -294,7 +301,7 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.php?dop=MjAyMS0wMS0wMSAwMDowMDowMA==&v=U0xORlBQOThTMjhGMjA1Vg==" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
                                                 <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
                                                 <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
@@ -452,11 +459,8 @@ $utente["tipoAccount"] = "venditoreAcquirente";
 
 <?php include_once "common/footer.php"?>
 
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap.bundle.js"></script>
-<script src="js/navbar.js"></script>
+<?php include_once "common/common_script.php"; ?>
+
 <script src="js/style.js"></script>
-<script src="js/controlloInput.js"></script>
 </body>
 </html>

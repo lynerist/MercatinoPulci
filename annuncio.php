@@ -5,7 +5,7 @@ session_start();
 $annuncio["dataOraPubblicazione"] = base64_decode($_GET["dop"], true);
 //v criptato -> v=U0xORlBQOThTMjhGMjA1Vg==
 $annuncio["venditore"] = base64_decode($_GET["v"], true);
-
+$annuncio["venditore"] = "asd";
 if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])){
     header("location: 404.php");
 }
@@ -223,7 +223,7 @@ $annuncio["statoAnnuncio"] = "inVendita";
             <div class="mt-3">Venduto da: <a class="link-profile" href="profile.html" target="_blank">Elena Crosten</a></div>
 
             <?php
-            if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"]){ ?>
+            if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore'){ ?>
                 <button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>
                 <div class="modal fade" id="modalconfermaAcquisto">
                     <div class="modal-dialog">
@@ -254,7 +254,7 @@ $annuncio["statoAnnuncio"] = "inVendita";
             <?php } ?>
 
             <?php
-            if (!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] ){
+            if (!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore'){
                 echo '<button type="button" class="destra btn btn-secondary btn-outline-primary btn-sm mt-5" data-dismiss="modal" id="osserva" onclick="rimuovi(id, \'annulla\')">Osserva</button>';
                 echo '<button type="button" class="destra btn btn-secondary btn-outline-warning btn-sm annulla mt-5" data-dismiss="modal" id="annulla" onclick="rimuovi(id, \'osserva\')">Annulla</button>';
             }
@@ -281,17 +281,12 @@ $annuncio["statoAnnuncio"] = "inVendita";
     </div>
 </div>
 
-<?php
-    include_once "common/footer.php"
-?>
+<?php include_once "common/footer.php"; ?>
 
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap.bundle.js"></script>
-<script src="js/navbar.js"></script>
+<?php include_once "common/common_script.php"; ?>
+
 <script src="js/bottoni.js"></script>
 <script src="js/style.js"></script>
-<script src="js/controlloInput.js"></script>
 </body>
 
 </html>

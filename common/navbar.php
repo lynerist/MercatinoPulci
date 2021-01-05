@@ -7,16 +7,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <form class="form-inline my-2 my-lg-0 nav-form">
+        <form id="fromCercaAnnuncio" method="get" action="risultati.php" class="form-inline my-2 my-lg-0 nav-form">
             <label>
-                <select class="form-control form-custom white-inputs" name="regione" id="regione">
+                <select id="regione" name="regione" class="form-control form-custom white-inputs">
                     <option value="0">Tutta Italia</option>
                     <option value="1">Lombardia</option>
                     <option value="2">Sardegna</option>
                 </select>
             </label>
             <label>
-                <select class="form-control form-custom white-inputs" name="provincia" id="provincia">
+                <select id="provincia" name="provincia" class="form-control form-custom white-inputs">
                     <option value="0">Ogni provincia</option>
                     <option value="1">Ogni provincia</option>
                     <option value="1">Lecco</option>
@@ -25,42 +25,45 @@
                 </select>
             </label>
             <div class="nav-newline"></div>
-            <input class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search" required>
-            <!--            TODO rimandare alla pagina "risultati.html" da funzione di backend-->
+            <input id="testoRicerca" name="testoRicerca" class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search" required>
             <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
         </form>
 <?php
-        if (isset($_SESSION["isLogged"]) && $_SESSION["isLogged"]){
-            echo '<ul class="navbar-nav mr-auto">
+        if (isset($_SESSION["isLogged"]) && $_SESSION["isLogged"]){ ?>
+        <ul class="navbar-nav mr-auto">
+
+            <?php if ($_SESSION["tipoAccount"] != "venditore"){ ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="watched.php">
+                        <img src="img/binocolo.svg" class="nav-icon w-bin" alt="Annunci osservati">
+                        <p class="nav-icon-text nav-link">Annunci osservati</p>
+                    </a>
+                </li>
+            <?php } ?>
+
             <li class="nav-item active">
-                <a class="nav-link" href="watched.html">
-                    <img src="img/binocolo.svg" class="nav-icon w-bin" alt="Annunci osservati">
-                    <p class="nav-icon-text nav-link">Annunci osservati</p>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="operazioni.html">
+                <a class="nav-link" href="operazioni.php">
                     <img src="img/operazioni.svg" class="nav-icon" alt="Operazioni">
                     <p class="nav-icon-text nav-link">Operazioni</p>
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="profile.html">
+                <a class="nav-link" href="profile.php?cf=U0xORlBQOThTMjhGMjA1Vg==">
                     <img src="img/user-solid.svg" class="nav-icon" alt="Profilo">
                     <p class="nav-icon-text nav-link">Profilo</p>
                 </a>
             </li>
-        </ul>';
-        }else{
-            echo '<ul class="navbar-nav mr-auto">
+        </ul>
+        <?php }else{ ?>
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="watched.html">
+                <a class="nav-link" href="watched.php">
                     <img src="img/binocolo.svg" class="nav-icon" alt="Annunci osservati">
                     <p class="nav-icon-text nav-link">Annunci osservati</p>
                 </a>
             </li>
             <li class="nav-item pt-3px">
-                <a class="nav-link pt" href="#0" onclick="accediRegistrati(\'tabAccedi\')">Accedi</a>
+                <a class="nav-link pt" href="#0" onclick="accediRegistrati('tabAccedi')">Accedi</a>
                 <!-- Modal -->
                 <div class="modal fade show" id="modalLoginRegister" tabindex="-1" role="dialog" aria-modal="true">
                     <div class="modal-dialog" role="document">
@@ -107,8 +110,7 @@
                                         <!-- Login form -->
 
                                     </div>
-                                    <!-- First panel -->';
-            echo '
+                                    <!-- First panel -->
                                     <!-- Second panel -->
                                     <div class="tab-pane fade" id="modalLoginRegister-register" role="tabpanel">
 
@@ -158,13 +160,13 @@
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="passwordRegistrazione" name="passwordRegistrazione" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora(\'passwordRipetizioneRegistrazione\',controllaRipetizionePassword(\'passwordRipetizioneRegistrazione\',value))" required>
+                                                <input type="password" id="passwordRegistrazione" name="passwordRegistrazione" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
                                                 <label data-error="wrong" data-success="right" for="passwordRegistrazione"></label>
                                                 <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-key prefix"></i>
-                                                <input type="password" id="passwordRipetizioneRegistrazione" name="passwordRipetizioneRegistrazione" class="form-control formLoginRegister-register" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword(\'passwordRegistrazione\',value))" required>
+                                                <input type="password" id="passwordRipetizioneRegistrazione" name="passwordRipetizioneRegistrazione" class="form-control formLoginRegister-register" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('passwordRegistrazione',value))" required>
                                                 <label data-error="wrong" data-success="right" for="passwordRipetizioneRegistrazione"></label>
                                                 <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                             </div>
@@ -209,10 +211,9 @@
                 <!-- Modal -->
             </li>
             <li class="nav-item pt-3px">
-                <a class="nav-link pt" href="#0" onclick="accediRegistrati(\'tabRegistrati\')">Registrati</a>
+                <a class="nav-link pt" href="#0" onclick="accediRegistrati('tabRegistrati')">Registrati</a>
             </li>
-        </ul>';
-        }
-?>
+        </ul>
+        <?php } ?>
     </div>
 </nav>

@@ -1,8 +1,11 @@
+<?php
+require_once "common/session.php"
+?>
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
-    <title>bee-market</title>
+    <title>Richiesta di acquisto effettuata</title>
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet"  type="text/css" href="css/annuncio.css">

@@ -6,6 +6,7 @@ require_once "common/session.php";
 <html lang="it">
 
 <head>
+    <title>404 Not found</title>
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">

@@ -17,6 +17,8 @@ $annuncio["statoAnnuncio"] = "inVendita";
 <html lang="it">
 
 <head>
+<!--    TODO titolo pagina parametrico-->
+    <title>Titolo annuncio</title>
     <?php include_once "common/common_header.php"?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet"  type="text/css" href="css/annuncio.css">

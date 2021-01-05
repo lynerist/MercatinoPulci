@@ -4,14 +4,13 @@ if(isset($_GET['status']) && $_GET['status'] == 'eliminato'){
     session_start();
     session_destroy();
     header('Location:profilo_eliminato.php');
-    exit;
 }
 ?>
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
-    <title>bee-market</title>
+    <title>Profilo eliminato</title>
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet"  type="text/css" href="css/annuncio.css">

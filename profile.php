@@ -16,6 +16,17 @@ $utente["tipoAccount"] = "venditoreAcquirente";
 <html lang="it">
 
 <head>
+
+    <title>
+        <?php
+        if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){
+            echo 'Il mio profilo';
+        }else{
+//            TODO titolo pagina parametrico
+            echo 'Nome profilo';
+        }
+        ?>
+    </title>
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet" type="text/css" href="css/profile.css">

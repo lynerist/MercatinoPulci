@@ -5,7 +5,7 @@ require_once "common/session.php";
 <html lang="it">
 
 <head>
-    <title>bee-market</title>
+    <title>Annuncio eliminato</title>
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet"  type="text/css" href="css/annuncio.css">

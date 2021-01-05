@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "common/session.php";
 //url = ?dop=MjAyMS0wMS0wMSAwMDowMDowMA==&v=U0xORlBQOThTMjhGMjA1Vg==
 //dop criptato -> dop=MjAyMS0wMS0wMSAwMDowMDowMA==
 $annuncio["dataOraPubblicazione"] = base64_decode($_GET["dop"], true);

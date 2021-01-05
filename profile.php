@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "common/session.php";
 
 //url = ?cf=U0xORlBQOThTMjhGMjA1Vg==
 //codiceFiscale criptato -> U0xORlBQOThTMjhGMjA1Vg==

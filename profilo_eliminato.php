@@ -1,3 +1,7 @@
+<?php
+require_once "common/session.php";
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="it">
 

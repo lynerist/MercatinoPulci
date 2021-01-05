@@ -1,3 +1,6 @@
+<?php
+require_once "common/session.php";
+?>
 <!DOCTYPE html>
 <html lang="it">
 

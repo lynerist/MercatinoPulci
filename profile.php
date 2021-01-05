@@ -169,7 +169,7 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                                     </div>
                                     <div class="modal-footer">
                                         <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                        <a href="profilo_eliminato.html " class="btn btn-danger">Conferma</a>
+                                        <a href="profilo_eliminato.php?status=eliminato" class="btn btn-danger">Conferma</a>
                                     </div>
                                 </div>
                             </div>

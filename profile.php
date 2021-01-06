@@ -2,14 +2,34 @@
 require_once "common/session.php";
 
 //url = ?cf=U0xORlBQOThTMjhGMjA1Vg==
-//codiceFiscale criptato -> U0xORlBQOThTMjhGMjA1Vg==
 $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
 }
 
+$utente["nome"] = "Edoardo";
+$utente["cognome"] = "Perego";
+$utente["email"] = "edoardo.perego@mail.com";
 $utente["tipoAccount"] = "venditoreAcquirente";
+$utente["punteggioAcquirente"] = "4.4";
+$utente["nRecensioniAcquirente"] = "3";
+$utente["punteggioVenditore"] = "2.8";
+$utente["nRecensioniVenditore"] = "1";
+$utente["comune"] = "Merate";
+$utente["provincia"] = "Lecco";
+$utente["regione"] = "Lombardia";
+$utente["nAnnunciAcquistati"] = "3";
+$utente["nAnnunciVenduti"] = "1";
+$utente["fotoProfilo"] = "venditore1.jpg";
 
+
+$annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
+$annuncio["venditore"] = "SLNFPP98S28F205V";
+$annuncio["titolo"] = "Chitarra Lidl";
+$annuncio["prodotto"] = "Chitarra";
+$annuncio["statoUsura"] = "Nuovo";
+$annuncio["prezzo"] = "100.00";
+$annuncio["fotoAnnuncio"] = "lidl.jpeg";
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +69,9 @@ $utente["tipoAccount"] = "venditoreAcquirente";
         <div class="col-md-6">
             <div class="profile-head mt-2">
                 <h5>
-                    Edoardo Perego
+                    <?php
+                    echo $utente["nome"] . " " . $utente["cognome"]
+                    ?>
                 </h5>
 
                 <?php if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){ ?>
@@ -71,7 +93,7 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                                                 <div class="row">
                                                     <div class="col-md-4 border-right">
                                                         <div class="profile-img">
-                                                            <img src="img/venditore1.jpg" alt=""/>
+                                                            <img src="img/<?php echo $utente['fotoProfilo'] ?>" alt=""/>
                                                             <div class="file btn btn-lg x btn-primary mt-0">
                                                                 Cambia foto
                                                                 <input type="file" name="file" class="w-100 h-100"/>
@@ -81,11 +103,11 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                                                     <div class="col-md-8">
                                                         <div class="p-3 py-5 no-padding-top form-width">
                                                             <div class="row mt-2">
-                                                                <div class="col-md-6"><label><input id="modificaCodiceFiscale" name="modificaCodiceFiscale" type="text" class="form-control form-custom" placeholder="Codice fiscale" value="" readonly></label></div>
-                                                                <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="" oninput="colora(id, controllaEmail(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaCodiceFiscale" name="modificaCodiceFiscale" type="text" class="form-control form-custom" placeholder="Codice fiscale" value="<?php echo $utente['codiceFiscale'] ?>" readonly></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="<?php echo $utente['email'] ?>" oninput="colora(id, controllaEmail(value))" required></label></div>
                                                             </div>
                                                             <div class="row mt-3">
-                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo $utente['nome'] ?>" oninput="colora(id, controllaTesto(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
@@ -96,7 +118,7 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                                                                 </div>
                                                             </div>
                                                             <div class="row mt-3">
-                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="" oninput="colora(id, controllaTesto(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="<?php echo $utente['cognome'] ?>" oninput="colora(id, controllaTesto(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>
@@ -222,7 +244,9 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                             <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
                         </li>
                         <li class="ml-1">
-                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(3 recensioni)</label>
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">
+                                (<?php echo $utente["nRecensioniAcquirente"] ?> recensioni)
+                            </label>
                         </li>
                     </ul>
                 <?php } ?>
@@ -247,7 +271,9 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                             <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
                         </li>
                         <li class="ml-1">
-                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">(1 recensioni)</label>
+                            <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">
+                                (<?php echo $utente["nRecensioniVenditore"] ?> recensioni)
+                            </label>
                         </li>
                     </ul>
                 <?php } ?>
@@ -276,19 +302,19 @@ $utente["tipoAccount"] = "venditoreAcquirente";
         <div class="col-md-4">
             <div class="profile-work profile-work-hiding">
                 <p class="profile-title">DATI PERSONALI</p>
-                <p>edoardo.perego@mail.com</p>
-                <p>Merate</p>
-                <p>Lecco, Lombardia</p>
+                <p> <?php echo $utente["email"] ?> </p>
+                <p> <?php echo $utente["comune"] ?> </p>
+                <p> <?php echo $utente["provincia"] . ", " . $utente["regione"] ?> </p>
                 <p class="profile-title">STATISTICHE</p>
 
                 <?php
                 if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
-                <p>Annunci acquistati: 3</p>
+                <p>Annunci acquistati: <?php echo $utente["nAnnunciAcquistati"] ?></p>
                 <?php } ?>
 
                 <?php
                 if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
-                    <p>Annunci venduti: 1</p>
+                    <p>Annunci venduti: <?php echo $utente["nAnnunciVenduti"] ?></p>
                 <?php } ?>
 
                 <?php
@@ -309,39 +335,16 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                         <div class="container pb-5 mt-n2 mt-md-n3">
                             <div class="row">
                                 <div class="col-md-12">
+<!--                                    TODO ciclo generazione annunci-->
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.php?dop=MjAyMS0wMS0wMSAwMDowMDowMA==&v=U0xORlBQOThTMjhGMjA1Vg==" target="_blank"><img src="img/lidl.jpeg" alt="Product" id="foto1"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php echo $annuncio['fotoAnnuncio'] ?>" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="annuncio.html" target="_blank">Chitarra Lidl</a></h3>
-                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>Chitarra</div>
-                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€100.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto2"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo2"><a href="#" target="_blank">Album di figurine rare</a></h3>
-                                                <div class="font-size-sm" id="prodotto2"><span class="text-muted mr-2">Prodotto:</span>Album</div>
-                                                <div class="font-size-sm" id="tempoUsura2"><span class="text-muted mr-2"><b>Usato</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo2">€75.00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/image_not_found.png" alt="Product" id="foto3"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo3"><a href="#" target="_blank">Calvin Klein Jeans</a></h3>
-                                                <div class="font-size-sm" id="prodotto3"><span class="text-muted mr-2">Prodotto:</span>Pantaloni</div>
-                                                <div class="font-size-sm" id="tempoUsura3"><span class="text-muted mr-2"><b>Nuovo</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo3">€125.00</div>
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
+                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
+                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b><?php echo $annuncio["statoUsura"] ?></b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€<?php echo $annuncio["prezzo"] ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -391,15 +394,16 @@ $utente["tipoAccount"] = "venditoreAcquirente";
                         <div class="container pb-5 mt-n2 mt-md-n3">
                             <div class="row">
                                 <div class="col-md-12">
+<!--                                    TODO ciclo generazione annunci-->
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="#" target="_blank"><img src="img/gaming_pc.jpg" alt="Product" id="foto4"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php echo $annuncio['fotoAnnuncio'] ?>" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo4"><a href="#" target="_blank">Computer portatile da gaming</a></h3>
-                                                <div class="font-size-sm" id="prodotto4"><span class="text-muted mr-2">Prodotto:</span>Computer</div>
-                                                <div class="font-size-sm" id="tempoUsura4"><span class="text-muted mr-2"><b>Usato</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo4">€325.00</div>
+                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
+                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
+                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b><?php echo $annuncio["statoUsura"] ?></b></span></div>
+                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€<?php echo $annuncio["prezzo"] ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -448,19 +452,19 @@ $utente["tipoAccount"] = "venditoreAcquirente";
         <div class="col-md-4 hidden-block">
             <div class="profile-work">
                 <p class="profile-title">DATI PERSONALI</p>
-                <p>edoardo.perego@mail.com</p>
-                <p>Merate</p>
-                <p>Lecco, Lombardia</p>
+                <p> <?php echo $utente["email"] ?> </p>
+                <p> <?php echo $utente["comune"] ?> </p>
+                <p> <?php echo $utente["provincia"] . ", " . $utente["regione"] ?> </p>
                 <p class="profile-title">STATISTICHE</p>
 
                 <?php
                 if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
-                    <p>Annunci acquistati: 3</p>
+                    <p>Annunci acquistati: <?php echo $utente["nAnnunciAcquistati"] ?></p>
                 <?php } ?>
 
                 <?php
                 if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
-                    <p>Annunci venduti: 1</p>
+                    <p>Annunci venduti: <?php echo $utente["nAnnunciVenduti"] ?></p>
                 <?php } ?>
 
             </div>

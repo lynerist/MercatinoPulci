@@ -6,3 +6,4 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<?php include_once "common/funzioni.php" ?>

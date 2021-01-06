@@ -6,7 +6,7 @@ $annuncio["dataOraPubblicazione"] = base64_decode($_GET["dop"], true);
 //v criptato -> v=U0xORlBQOThTMjhGMjA1Vg==
 $annuncio["venditore"] = base64_decode($_GET["v"], true);
 $annuncio["venditore"] = "asd";
-if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])){
+if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])) {
     header("location: 404.php");
 }
 

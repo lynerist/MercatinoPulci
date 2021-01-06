@@ -49,7 +49,7 @@ function controllaRipetizionePassword(idpassword, ripetizione){
 }
 
 function controllaTesto(testo){
-    return testo !== "";
+    return /^([^0-9]*)$/.test(testo);
 }
 
 function controllaPrezzo(prezzo){

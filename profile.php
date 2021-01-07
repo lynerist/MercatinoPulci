@@ -108,7 +108,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                                 <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="<?php echo $utente['email'] ?>" oninput="colora(id, controllaEmail(value))" required></label></div>
                                                             </div>
                                                             <div class="row mt-3">
-                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo $utente['nome'] ?>" oninput="colora(id, controllaTesto(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo $utente['nome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
@@ -119,7 +119,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                                 </div>
                                                             </div>
                                                             <div class="row mt-3">
-                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="<?php echo $utente['cognome'] ?>" oninput="colora(id, controllaTesto(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="<?php echo $utente['cognome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>

@@ -118,12 +118,12 @@
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user prefix"></i>
-                                                <input type="text" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTesto(value))" required>
+                                                <input type="text" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-name"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tie    prefix"></i>
-                                                <input type="text" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTesto(value))" required>
+                                                <input type="text" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-surname"></label>
                                             </div>
                                             <div class="md-form md-outline">

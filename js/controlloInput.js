@@ -49,6 +49,10 @@ function controllaRipetizionePassword(idpassword, ripetizione){
 }
 
 function controllaTesto(testo){
+    return testo != "";
+}
+
+function controllaTestoAnagrafico(testo){
     return /^([^0-9]*)$/.test(testo);
 }
 

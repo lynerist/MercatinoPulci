@@ -10,15 +10,35 @@ if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])) {
     header("location: 404.php");
 }
 
+$annuncio["dataOraPubblicazione"] = "2021-01-07 00:00:00";
+$annuncio["venditore"] = "SLNFPP98S28F205V";
+$annuncio["nomeVenditore"] = "Elena";
+$annuncio["cognomeVenditore"] = "Crosta";
+$annuncio["titolo"] = "Chitarra Lidl";
 $annuncio["statoAnnuncio"] = "inVendita";
+$annuncio["prodotto"] = "Chitarra";
+$annuncio["categoria"] = "Hobby";
+$annuncio["sottoCategoria"] = "Altro";
+$annuncio["tempoUsura"] = intval("1");
+$annuncio["statoUsura"] = "Buono";
+$annuncio["prezzo"] = "100.00";
+$annuncio["comune"] = "Brescia";
+$annuncio["provincia"] = "Brescia";
+$annuncio["regione"] = "Lombardia";
+$annuncio["scadenzaGaranzia"] = "2022-05-31";
+$annuncio["nOsservatori"] = "9";
+$annuncio["fotoAnnuncio"] = "lidl.jpeg";
+if ($annuncio["statoAnnuncio"] == "inVendita") {
+    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
-<!--    TODO titolo pagina parametrico-->
-    <title>Titolo annuncio</title>
+    <title><?php echo $annuncio["titolo"] ?></title>
     <?php include_once "common/common_header.php"?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet"  type="text/css" href="css/annuncio.css">
@@ -28,16 +48,16 @@ $annuncio["statoAnnuncio"] = "inVendita";
 <body>
 <?php include_once "common/navbar.php"?>
 
-<h1 class="title-watched container">Chitarra Lidl</h1>
+<h1 class="title-watched container"><?php echo $annuncio["titolo"] ?></h1>
 
-<div class="container dark-grey-text mt-4 drop-shadow mb-5"> <!--personalizzare il colore dell'ombra in base allo stato annuncio con php-->
+<div class="container dark-grey-text mt-4 drop-shadow <?php if ($annuncio["statoAnnuncio"] == "eliminato") echo "ombra-eliminato"; elseif ($annuncio["statoAnnuncio"] == "venduto") echo "ombra-venduto"; ?> mb-5">
     <div class="row">
         <div class="col-md-5">
-            <img src="img/lidl.jpeg" class="img-fluid img-thumbnail rounded mt-3 mx-auto" alt="immagine annuncio">
+            <img src="<?php echo "fotoAnnuncio/" . $annuncio["fotoAnnuncio"] ?>" class="img-fluid img-thumbnail rounded mt-3 mx-auto" alt="immagine annuncio">
         </div>
         <div class="col-md-6 mb-4 box-info">
 
-            <?php if (isset($_SESSION['codiceFiscale']) and $_SESSION['codiceFiscale'] == $annuncio['venditore']){ ?>
+            <?php if (isset($_SESSION['codiceFiscale']) and $_SESSION['codiceFiscale'] == $annuncio['venditore'] and ($annuncio["statoAnnuncio"] == "inVendita")){ ?>
                 <div id="myAnnuncio" class="mb-5 container-fluid">
                     <!-- Button trigger modal -->
                     <button type="button" class="annuncio-edit-btn w-100" data-toggle="modal" data-target="#modalModificaAnnuncio">
@@ -66,8 +86,8 @@ $annuncio["statoAnnuncio"] = "inVendita";
                                                 <div class="col-md-8">
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
-                                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
-                                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value=""  oninput="colora(id,controllaPrezzo(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="<?php echo $annuncio['titolo'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value="<?php echo $annuncio['prezzo'] ?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
@@ -91,7 +111,7 @@ $annuncio["statoAnnuncio"] = "inVendita";
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Prodotto" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Prodotto" value="<?php echo $annuncio['prodotto'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
                                                             <div class="col-md-6">
                                                                 <label>
                                                                     <select name="visibilita" id="visibilita" class="form-control modificaAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
@@ -216,14 +236,15 @@ $annuncio["statoAnnuncio"] = "inVendita";
             <?php } ?>
 
             <br>
-            <div class="luogo">Lombardia, Brescia, Brescia</div>
-            <div class="lead">$100</div>
-            <div class="lead mb-3">Prodotto</div>
-            <div class="font-weight-bold mb-3">Nuovo</div>
-            <div class="mb-5">Ottime condizioni</div>
-            <div class="font-italic mt-5">osservato da 9 persone</div>
-            <div class="mt-3">Venduto da: <a class="link-profile" href="profile.html" target="_blank">Elena Crosten</a></div>
-
+            <div class="luogo"><?php echo $annuncio["regione"] . ", " . $annuncio["provincia"] . ", " . $annuncio["comune"] ?></div>
+            <div class="lead">€ <?php echo $annuncio["prezzo"] ?></div>
+            <div class="lead mb-3"><?php echo $annuncio["prodotto"] ?></div>
+            <div class="font-weight-bold mb-3"><?php if ($annuncio["tempoUsura"] == 0) echo "Nuovo"; else echo "Usato" ?></div>
+            <div class="mb-5"><?php echo $annuncio["statoUsura"] ?></div>
+            <?php if ($annuncio["statoAnnuncio"] == "inVendita"){ ?>
+                <div class="font-italic mt-5">Osservato da <?php if ($annuncio["nOsservatori"] == "1") echo "una persona"; else echo $annuncio["nOsservatori"] . " persone" ?></div>
+            <?php } ?>
+            <div class="mt-3">Venduto da: <a class="link-profile" href="<?php echo urlCriptato($annuncio['venditore'], '') ?>" target="_blank"><?php echo $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] ?></a></div>
             <?php
             if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore'){ ?>
                 <button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>
@@ -270,15 +291,34 @@ $annuncio["statoAnnuncio"] = "inVendita";
     </div>
     <div class="row info-post">
         <div class="col-md-4 mb-5">
-            <div class="lead">Hobby</div>
-            <div>altro</div>
+            <div class="lead"><?php echo $annuncio["categoria"]; ?></div>
+            <div><?php echo $annuncio["sottoCategoria"]; ?></div>
         </div>
         <div class="col-md-4 mb-5">
-            <div><i>In garanzia fino al 5/5/22</i></div>
+            <div>
+                <i>
+                    <?php
+                    if ($annuncio["statoAnnuncio"] == "inVendita" and $annuncio["tempoUsura"] == 0){
+                        if ($annuncio["scadenzaGaranzia"]){
+                            echo 'In garanzia fino al ' . date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"]));
+                        }else{
+                            echo "Nessuna garanzia";
+                        }
+                    }elseif ($annuncio["tempoUsura"] > 0){
+                        echo "Usato per: " . $annuncio["tempoUsura"]; echo array(" mese", " mesi")[$annuncio["tempoUsura"] > 1];
+                    }
+                    ?>
+                </i>
+            </div>
         </div>
         <div class="col-md-4 mb-5">
-            <div class="lead">Scade fra 3 giorni</div>
-            <div>Pubblicato il: 10/6/2020 ore 15:28</div>
+            <div class="lead">
+                <?php
+                if ($annuncio["statoAnnuncio"] == "inVendita") echo "Scade fra " . $annuncio["scadenza"] . " giorni";
+                else echo ucfirst($annuncio["statoAnnuncio"]);
+                ?>
+            </div>
+            <div>Pubblicato il: <?php echo date('d/m/Y', strtotime($annuncio["dataOraPubblicazione"])); ?></div>
         </div>
     </div>
 </div>

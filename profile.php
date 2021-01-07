@@ -11,9 +11,9 @@ $utente["nome"] = "Edoardo";
 $utente["cognome"] = "Perego";
 $utente["email"] = "edoardo.perego@mail.com";
 $utente["tipoAccount"] = "venditoreAcquirente";
-$utente["punteggioAcquirente"] = "4.4";
+$utente["punteggioAcquirente"] = arrotondaValutazione("4.4");
 $utente["nRecensioniAcquirente"] = "3";
-$utente["punteggioVenditore"] = "2.8";
+$utente["punteggioVenditore"] = arrotondaValutazione("2.8");
 $utente["nRecensioniVenditore"] = "1";
 $utente["comune"] = "Merate";
 $utente["provincia"] = "Lecco";
@@ -27,7 +27,8 @@ $annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
 $annuncio["venditore"] = "SLNFPP98S28F205V";
 $annuncio["titolo"] = "Chitarra Lidl";
 $annuncio["prodotto"] = "Chitarra";
-$annuncio["statoUsura"] = "Nuovo";
+$annuncio["tempoUsura"] = "0";
+$annuncio["statoUsura"] = array("Usato", "Nuovo")["0" == $annuncio["tempoUsura"]];
 $annuncio["prezzo"] = "100.00";
 $annuncio["fotoAnnuncio"] = "lidl.jpeg";
 ?>
@@ -154,14 +155,14 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                             </div>
                                                             <div class="row mt-3">
                                                                 <div class="col-md-6">
-                                                                    <label>Nuova Password
-                                                                        <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
+                                                                    <label>
+                                                                        <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="Nuova Password" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
                                                                     </label>
                                                                     <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label>Ripeti <span class="d-none d-xl-inline">Password</span>
-                                                                        <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="••••••" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
+                                                                    <label>
+                                                                        <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
                                                                     </label>
                                                                     <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                                                 </div>
@@ -197,13 +198,16 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                     <div class="modal-header">
                                         <h3>Sei sicuro?</h3>
                                     </div>
-                                    <div class="modal-body">
-                                        <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                        <a href="profilo_eliminato.php?status=eliminato" class="btn btn-danger">Conferma</a>
-                                    </div>
+                                    <form id="eliminaProfilo" action="backend/eliminaProfilo_exe.php" onsubmit="return controllaForm(id)">
+                                        <div class="modal-body">
+                                            <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
+                                            <input id="passwordEliminaProfilo" name="passwordEliminaProfilo" class="form-control form-custom eliminaProfilo" type="password" placeholder="Immetti la tua password" oninput="colora(id, controllaPassword(value))" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</button>
+                                            <button type="submit" class="btn btn-danger">Conferma</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -228,21 +232,20 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                 if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                     <p class="profile-rating">PUNTEGGIO ACQUIRENTE:</p>
                     <ul class="rating p-0">
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
-                        </li>
+
+                        <?php
+                        for ($i = 0; $i < 5; $i++) {
+
+                            if ($utente['punteggioAcquirente'] - $i >= 1){
+                                echo '<li><i class="fas fa-star fa-sm text-primary orange-color"></i></li>';
+                            }elseif ($utente['punteggioAcquirente'] - $i == 0.5) {
+                                echo '<li><i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i></li>';
+                            }else{
+                                echo '<li><i class="far fa-star fa-sm text-primary orange-color"></i></li>';
+                            }
+
+                        }?>
+
                         <li class="ml-1">
                             <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">
                                 (<?php echo $utente["nRecensioniAcquirente"] ?> recensioni)
@@ -255,21 +258,20 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                 if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                     <p class="profile-rating">PUNTEGGIO VENDITORE:</p>
                     <ul class="rating p-0">
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star fa-sm text-primary orange-color"></i>
-                        </li>
-                        <li>
-                            <i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i>
-                        </li>
+
+                        <?php
+                        for ($i = 0; $i < 5; $i++) {
+
+                            if ($utente['punteggioVenditore'] - $i >= 1){
+                                echo '<li><i class="fas fa-star fa-sm text-primary orange-color"></i></li>';
+                            }elseif ($utente['punteggioVenditore'] - $i == 0.5) {
+                                echo '<li><i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i></li>';
+                            }else{
+                                echo '<li><i class="far fa-star fa-sm text-primary orange-color"></i></li>';
+                            }
+
+                        }?>
+
                         <li class="ml-1">
                             <label class="material-tooltip-main card-link orange-color" data-toggle="tooltip" data-placement="top" title="Read reviews">
                                 (<?php echo $utente["nRecensioniVenditore"] ?> recensioni)

@@ -95,7 +95,13 @@
     text-decoration: none;
 }
 
+.ombra-venduto{
+    box-shadow: 0 1px 5px #ffd206 !important;
+}
 
+.ombra-eliminato{
+    box-shadow: 0 1px 5px red !important;
+}
 
 /*radio button*/
 .myform {

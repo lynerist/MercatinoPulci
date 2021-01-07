@@ -42,7 +42,7 @@
 
             <li class="nav-item active">
                 <a class="nav-link" href="operazioni.php">
-                    <img src="img/operazioni.svg" class="nav-icon" alt="Operazioni">
+                    <img id="iconaOperazioni" src="img/operazioni.svg" class="nav-icon" alt="Operazioni">
                     <p class="nav-icon-text nav-link">Operazioni</p>
                 </a>
             </li>

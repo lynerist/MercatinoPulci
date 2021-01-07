@@ -18,7 +18,6 @@ body {
 .navbar-brand > span {
     font-weight: 700;
     font-size: xx-large;
-
 }
 
 .navbar-brand > span:nth-child(2) {
@@ -484,4 +483,8 @@ button.blu:hover {
 
 #containerAreaVisibilita{
     display: none;
+}
+
+#iconaOperazioni{
+    height: 27px;
 }

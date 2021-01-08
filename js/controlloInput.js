@@ -86,3 +86,8 @@ function visualizzaAreaVisibilita(visibilita, idAreavisibilita){
 function controllaValutazione(id){
     return !(document.getElementById(id).ratingS.value === '' || document.getElementById(id).ratingP.value === '')
 }
+
+function loadFile(event) {
+    let image = document.getElementById('fotoInput');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};

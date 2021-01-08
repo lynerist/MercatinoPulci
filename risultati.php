@@ -18,7 +18,7 @@ require_once "common/session.php"
 <div class="container list-container col-lg-10 pt-3">
     <div class="row">
         <div class="col-lg-3">
-            <form action="" class="myform">
+            <form action="" class="myform max-width-100">
                 <section class="panel">
                     <header class="card-header">Category</header>
                     <div class="card-body">
@@ -206,20 +206,18 @@ require_once "common/session.php"
                 <section class="panel">
                     <header class="card-header">Condizione</header>
                     <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label class="w-100">
-                                    <select class="form-control form-custom hasCustomSelects">
-                                        <option value="0">Qualsiasi</option>
-                                        <option value="1">Nuovo</option>
-                                        <option value="2">Come nuovo</option>
-                                        <option value="3">Buono</option>
-                                        <option value="4">Medio</option>
-                                        <option value="5">Usurato</option>
-                                    </select>
-                                </label>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label class="w-100">
+                                <select class="form-control form-custom hasCustomSelects">
+                                    <option value="0">Qualsiasi</option>
+                                    <option value="1">Nuovo</option>
+                                    <option value="2">Come nuovo</option>
+                                    <option value="3">Buono</option>
+                                    <option value="4">Medio</option>
+                                    <option value="5">Usurato</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                 </section>
                 <section class="panel p-3">

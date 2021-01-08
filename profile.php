@@ -6,7 +6,6 @@ $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
 }
-
 $utente["nome"] = "Edoardo";
 $utente["cognome"] = "Perego";
 $utente["email"] = "edoardo.perego@mail.com";
@@ -27,8 +26,8 @@ $annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
 $annuncio["venditore"] = "SLNFPP98S28F205V";
 $annuncio["titolo"] = "Chitarra Lidl";
 $annuncio["prodotto"] = "Chitarra";
-$annuncio["tempoUsura"] = "0";
-$annuncio["statoUsura"] = array("Usato", "Nuovo")["0" == $annuncio["tempoUsura"]];
+$annuncio["tempoUsura"] = intval("0");
+$annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];
 $annuncio["prezzo"] = "100.00";
 $annuncio["fotoAnnuncio"] = "lidl.jpeg";
 ?>
@@ -37,14 +36,13 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
 <html lang="it">
 
 <head>
-
     <title>
         <?php
         if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){
             echo 'Il mio profilo';
         }else{
-//            TODO titolo pagina parametrico
-            echo 'Nome profilo';
+//            TODO titolo pagina con query
+            echo $utente["nome"] . " " . $utente["cognome"];
         }
         ?>
     </title>
@@ -94,10 +92,11 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                 <div class="row">
                                                     <div class="col-md-4 border-right">
                                                         <div class="profile-img">
-                                                            <img src="img/<?php echo $utente['fotoProfilo'] ?>" alt=""/>
+<!--                                                            TODO gestire valore null di foto profilo-->
+                                                            <img id="fotoInput" src="<?php if (!is_null($utente['fotoProfilo'])) echo 'img/' . $utente['fotoProfilo']; else echo 'img/image_profile_not_found.png'; ?>" alt=""/>
                                                             <div class="file btn btn-lg x btn-primary mt-0">
                                                                 Cambia foto
-                                                                <input type="file" name="file" class="w-100 h-100"/>
+                                                                <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)"  accept="image/png, image/jpeg, image/jpg"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -173,7 +172,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                             <div class="row mt-3">
                                                                 <div class="w-100">
                                                                     <label>
-<!--                                                                    TODO controllo password con php-->
+<!--                        TODO controllo password con php-->
                                                                         <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
                                                                     </label>
                                                                 </div>

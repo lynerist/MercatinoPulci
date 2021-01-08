@@ -17,10 +17,11 @@ $annuncio["cognomeVenditore"] = "Crosta";
 $annuncio["titolo"] = "Chitarra Lidl";
 $annuncio["statoAnnuncio"] = "inVendita";
 $annuncio["prodotto"] = "Chitarra";
+$annuncio["visibilita"] = "pubblica";
 $annuncio["categoria"] = "Hobby";
 $annuncio["sottoCategoria"] = "Altro";
 $annuncio["tempoUsura"] = intval("1");
-$annuncio["statoUsura"] = "Buono";
+$annuncio["statoUsura"] = "comeNuovo";
 $annuncio["prezzo"] = "100.00";
 $annuncio["comune"] = "Brescia";
 $annuncio["provincia"] = "Brescia";
@@ -76,10 +77,11 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                             <div class="row">
                                                 <div class="col-md-4 border-right">
                                                     <div class="annuncio-img">
-                                                        <img src="img/image_not_found.png" alt=""/>
+<!--                                                        TODO gestire valore null fotoAnnuncio-->
+                                                        <img id="fotoInput" src="<?php if (!is_null($annuncio['fotoAnnuncio'])) echo 'img/' . $annuncio['fotoAnnuncio']; else echo 'img/image_not_found.png'; ?>" alt="""/>
                                                         <div class="file btn btn-lg x btn-primary mt-0">
                                                             Cambia foto
-                                                            <input type="file" name="file" class="w-100 h-100"/>
+                                                            <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,7 +89,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
                                                             <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="<?php echo $annuncio['titolo'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
-                                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value="<?php echo $annuncio['prezzo'] ?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="prezzo" type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value="<?php echo $annuncio['prezzo'] ?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
@@ -116,9 +118,9 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                                                 <label>
                                                                     <select name="visibilita" id="visibilita" class="form-control modificaAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
                                                                         <option value="" disabled selected hidden>Visibilità</option>
-                                                                        <option value="pubblica">Pubblica</option>
-                                                                        <option value="ristretta">Ristretta</option>
-                                                                        <option value="privata">Privata</option>
+                                                                        <option value="pubblica" <?php if ($annuncio["visibilita"] == "pubblica") echo "selected"; ?>>Pubblica</option>
+                                                                        <option value="ristretta" <?php if ($annuncio["visibilita"] == "ristretta") echo "selected"; ?>>Ristretta</option>
+                                                                        <option value="privata" <?php if ($annuncio["visibilita"] == "privata") echo "selected"; ?>>Privata</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -128,20 +130,21 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                                                 <label>
                                                                     <select name="statoUsura" id="statoUsura" class="form-control modificaAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
                                                                         <option value="" disabled selected hidden>Stato usura</option>
-                                                                        <option value="nuovo">Nuovo</option>
-                                                                        <option value="comeNuovo">Come nuovo</option>
-                                                                        <option value="buono">Buono</option>
-                                                                        <option value="medio">Medio</option>
-                                                                        <option value="usurato">Usurato</option>
+                                                                        <option value="nuovo" <?php if ($annuncio["tempoUsura"] == 0) echo "selected"; ?>>Nuovo</option>
+                                                                        <option value="comeNuovo" <?php if ($annuncio["statoUsura"] == "comeNuovo") echo "selected"; ?>>Come nuovo</option>
+                                                                        <option value="buono" <?php if ($annuncio["statoUsura"] == "buono") echo "selected"; ?>>Buono</option>
+                                                                        <option value="medio" <?php if ($annuncio["statoUsura"] == "medio") echo "selected"; ?>>Medio</option>
+                                                                        <option value="usurato" <?php if ($annuncio["statoUsura"] == "usurato") echo "selected"; ?>>Usurato</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label id="labelTempoUsura" class="display-none">
-                                                                    <input id="tempoUsura" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Tempo usura in mesi" value="" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
+                                                                    <input id="tempoUsura" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo $annuncio['tempoUsura'] ?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                                 </label>
                                                                 <label id="labelScadenzaGaranzia" class="display-none">
-                                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
+                                                                    <!-- TODO gestire valore null di scadenza garanzia -->
+                                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])); ?>" onfocus="(this.type='date')">
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -225,7 +228,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                 <div class="modal-footer">
                                     <form>
                                         <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                        <!--TODO rimandare alla pagina di "annuncio_eliminato.html" tramite funzione di backend-->
+                                        <!--TODO rimandare alla pagina di "annuncio_eliminato.php" tramite funzione di backend-->
                                         <button  type="submit" class="btn btn-danger">Conferma</button>
                                     </form>
                                 </div>
@@ -246,7 +249,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
             <?php } ?>
             <div class="mt-3">Venduto da: <a class="link-profile" href="<?php echo urlCriptato($annuncio['venditore'], '') ?>" target="_blank"><?php echo $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] ?></a></div>
             <?php
-            if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore'){ ?>
+            if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){ ?>
                 <button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>
                 <div class="modal fade" id="modalconfermaAcquisto">
                     <div class="modal-dialog">
@@ -269,7 +272,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                             </div>
                             <div class="modal-footer">
                                 <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                <a href="richiestaDiAcquisto.html" class="btn btn-success">Invia</a>
+                                <a href="richiestaDiAcquisto.php" class="btn btn-success">Invia</a>
                             </div>
                         </div>
                     </div>
@@ -277,7 +280,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
             <?php } ?>
 
             <?php
-            if (!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore'){
+            if (!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){
                 echo '<button type="button" class="destra btn btn-secondary btn-outline-primary btn-sm mt-5" data-dismiss="modal" id="osserva" onclick="rimuovi(id, \'annulla\')">Osserva</button>';
                 echo '<button type="button" class="destra btn btn-secondary btn-outline-warning btn-sm annulla mt-5" data-dismiss="modal" id="annulla" onclick="rimuovi(id, \'osserva\')">Annulla</button>';
             }
@@ -329,6 +332,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
 
 <script src="js/bottoni.js"></script>
 <script src="js/style.js"></script>
+<script>visualizza('statoUsura')</script>
 </body>
 
 </html>

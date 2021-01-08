@@ -574,3 +574,7 @@ body{
 .sottocategoria{
     padding: 7px !important;
 }
+
+.max-width-100{
+ max-width: 100% !important;
+}

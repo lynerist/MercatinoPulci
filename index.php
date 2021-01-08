@@ -1,5 +1,23 @@
 <?php
 require_once "common/session.php";
+
+$utente["codiceFiscale"] = "SLNFPP98S28F205V";
+$utente["nome"] = "Edoardo";
+$utente["cognome"] = "Perego";
+$utente["fotoProfilo"] = "venditore1.jpg";
+
+
+$annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
+$annuncio["venditore"] = "SLNFPP98S28F205V";
+$annuncio["titolo"] = "Chitarra Lidl";
+$annuncio["prezzo"] = "100.00";
+$annuncio["fotoAnnuncio"] = "lidl.jpeg";
+$annuncio["statoAnnuncio"] = "inVendita";
+$annuncio["tempoUsura"] = intval("0");
+if ($annuncio["statoAnnuncio"] == "inVendita") {
+    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
+}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -18,11 +36,11 @@ require_once "common/session.php";
 
 
 <div class="banner jumbotron jumbotron-fluid">
-    <h1 class="display-4">Benvenuto!</h1>
+    <?php if (isset($_SESSION["nome"]) and $_SESSION["nome"]) echo '<h1 class="display-4">Ciao ' . $_SESSION["nome"] . '!</h1>'; else echo '<h1 class="display-4">Benvenuto!</h1>' ?>
     <h1 class="lead">Vuoi vendere qualcosa? Posta un nuovo annuncio e scopri chi vorrebbe comprare!</h1>
 
 
-    <a class="banner-button" href="#modalNuovoAnnuncio" data-toggle="modal">Nuovo Annuncio</a>
+    <a class="banner-button" href="<?php echo array('#modalLoginRegister', '#modalNuovoAnnuncio')[isset($_SESSION['isLogged'])]; ?>" data-toggle="modal">Nuovo Annuncio</a>
     <div class="modal fade modal-only" id="modalNuovoAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog edit-profile" role="document">
             <div class="modal-content">
@@ -409,68 +427,15 @@ require_once "common/session.php";
                         <div class="owl-carousel owl-theme bbb_viewed_slider">
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="annuncio.html" class="bbb_viewed_image"><img
-                                            src="img/annuncio4.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_price">€80</div>
-                                        <div class="bbb_viewed_name"><a href="annuncio.html">Ramponi da ghiaccio</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="annuncio.html" class="bbb_viewed_image"><img
-                                            src="img/annuncio3.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_price">€40</div>
-                                        <div class="bbb_viewed_name"><a href="annuncio.html">Manuele di PHP e mysql</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="annuncio.html" class="bbb_viewed_image"><img
-                                            src="img/annuncio5.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_price">€50</div>
-                                        <div class="bbb_viewed_name"><a href="annuncio.html">Marranzano antico</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="annuncio.html" class="bbb_viewed_image"><img
-                                            src="img/annuncio2.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_price">€1379</div>
-                                        <div class="bbb_viewed_name"><a href="annuncio.html">Bottiglia rara di Champagne</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="annuncio.html" class="bbb_viewed_image"><img
-                                            src="img/annuncio1.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_price">€225</div>
-                                        <div class="bbb_viewed_name"><a href="annuncio.html">Cuffie da gaming</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="annuncio.html" class="bbb_viewed_image"><img
-                                            src="img/lidl.jpeg"
-                                            alt="">
+                                    <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" class="bbb_viewed_image">
+                                        <img src="<?php echo 'img/' . $annuncio['fotoAnnuncio'];?>" alt="">
                                     </a>
+                                    <?php if ($annuncio["tempoUsura"] == 0) echo '<ul class="item_marks"><li class="item_mark item_discount">Usato</li></ul>'?>
                                     <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_price">€100</div>
-                                        <div class="bbb_viewed_name"><a href="annuncio.html">Chitarra Lidl</a></div>
+                                        <div class="bbb_viewed_price">€<?php echo $annuncio["prezzo"];?></div>
+                                        <div class="bbb_viewed_name">
+                                            <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>"><?php echo $annuncio["titolo"];?></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -482,82 +447,33 @@ require_once "common/session.php";
     </div>
 </div>
 
-
-
 <div class="bbb_viewed">
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="bbb_main_container drop-shadow">
                     <div class="bbb_viewed_title_container">
-                        <h3 class="bbb_viewed_title">Venditori <span>TOP</span></h3>
+                        <h3 class="bbb_viewed_title">Venditori TOP</h3>
                         <div class="bbb_viewed_nav_container">
-                            <div class="bbb_viewed_nav bbb_viewed_prev_v"><img src="img/chevron-left-solid.svg"
-                                                                               alt="sinistra"></div>
-                            <div class="bbb_viewed_nav bbb_viewed_next_v"><img src="img/chevron-right-solid.svg"
-                                                                               alt="destra"></div>
+                            <div class="bbb_viewed_nav bbb_viewed_prev_v">
+                                <img src="img/chevron-left-solid.svg" alt="sinistra">
+                            </div>
+                            <div class="bbb_viewed_nav bbb_viewed_next_v">
+                                <img src="img/chevron-right-solid.svg" alt="destra">
+                            </div>
                         </div>
                     </div>
                     <div class="bbb_viewed_slider_container">
                         <div class="owl-carousel owl-theme bbb_viewed_slider_v">
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="profile.html" class="bbb_viewed_image"><img
-                                            src="img/venditore5.png"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_name"><a href="profile.html">Davide Ziaki</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="profile.html" class="bbb_viewed_image"><img
-                                            src="img/venditore4.png"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_name"><a href="profile.html">Giulia Vincenti</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="profile.html" class="bbb_viewed_image"><img
-                                            src="img/venditore6.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_name"><a href="profile.html">Cecilia Fusorari</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="profile.html" class="bbb_viewed_image"><img
-                                            src="img/venditore2.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_name"><a href="profile.html">Elena Crosten</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div href="annuncio.html" class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="profile.html" class="bbb_viewed_image"><img
-                                            src="img/venditore1.jpg"
-                                            alt=""></a>
-                                    <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_name"><a href="profile.html">Edoardo Perego</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-item">
-                                <div class="bbb_viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                    <a href="profile.html" class="bbb_viewed_image"><img
-                                            src="img/venditore3.jpg"
-                                            alt="">
+                                    <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>" class="bbb_viewed_image">
+                                        <img src="<?php echo 'img/' . $utente['fotoProfilo'];?>" alt="">
                                     </a>
                                     <div class="bbb_viewed_content text-center">
-                                        <div class="bbb_viewed_name"><a href="profile.html">Vincenzo Rossi</a></div>
+                                        <div class="bbb_viewed_name">
+                                            <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>"><?php echo $utente['nome'] . $utente['cognome'];?></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

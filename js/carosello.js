@@ -6,9 +6,9 @@ $(document).ready(function () {
 
         viewedSlider.owlCarousel(
             {
-                loop: true,
+                loop: false,
                 margin: 30,
-                autoplay: true,
+                autoplay: false,
                 autoplayTimeout: 6000,
                 nav: false,
                 dots: false,
@@ -45,9 +45,9 @@ $(document).ready(function () {
 
         viewedSliderV.owlCarousel(
             {
-                loop: true,
+                loop: false,
                 margin: 30,
-                autoplay: true,
+                autoplay: false,
                 autoplayTimeout: 6000,
                 nav: false,
                 dots: false,

@@ -452,6 +452,11 @@ body{
     margin-top: 7px;
 }
 
+.obs-icon-clicked{
+    width: 30px !important;
+    margin-top: 7px;
+}
+
 .adtocart:hover > .obs-icon{
     width: 35px !important;
     margin-top: 5px;

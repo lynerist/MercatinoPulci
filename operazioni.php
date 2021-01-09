@@ -1,13 +1,34 @@
 <?php
-require_once  "common/session.php"
+require_once  "common/session.php";
+
+$utente["nome"] = "Edoardo";
+$utente["cognome"] = "Perego";
+$utente["punteggioAcquirente"] = arrotondaValutazione("4.4");
+$utente["nRecensioniAcquirente"] = "3";
+$utente["punteggioVenditore"] = arrotondaValutazione("2.8");
+$utente["nRecensioniVenditore"] = "1";
+$utente["fotoProfilo"] = "venditore1.jpg";
+
+$annuncio["dataOraPubblicazione"] = "2021-01-07 00:00:00";
+$annuncio["venditore"] = "SLNFPP98S28F205V";
+$annuncio["nomeVenditore"] = "Elena";
+$annuncio["cognomeVenditore"] = "Crosta";
+$annuncio["titolo"] = "Chitarra Lidl";
+$annuncio["statoAnnuncio"] = "inVendita";
+$annuncio["prodotto"] = "Chitarra";
+$annuncio["tempoUsura"] = intval("1");
+$annuncio["prezzo"] = "100.00";
+$annuncio["fotoAnnuncio"] = "lidl.jpeg";
+if ($annuncio["statoAnnuncio"] == "inVendita") {
+    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
-
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <title>Operazioni</title>
     <?php include_once "common/common_header.php" ?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
@@ -59,22 +80,28 @@ require_once  "common/session.php"
                         <h2 class="container">Diventa venditore per pubblicare i tuoi annunci!</h2>
                     </div>
                 </div>
-            <?php }else{ ?>
+            <?php }else{
+
+                for ($i = 0; $i<3; $i++){
+
+                }
+
+                ?>
                 <div class="col-md-12 d-flex flex-row row">
                     <!-- Item-->
                     <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra" id="1">
                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                            <a class="cart-item-thumb mx-auto mr-sm-4" href="annuncio.html" target="_blank"><img
-                                    src="img/annuncio1.jpg" alt="Product" id="foto1"></a>
+                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" target="_blank">
+                            <img src="<?php echo 'img/' . $annuncio['fotoAnnuncio'];?>" alt="Product"></a>
                             <div class="media-body pt-3">
-                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a
-                                        href="annuncio.html" target="_blank">Cuffie da gaming</a></h3>
-                                <div class="font-size-sm" id="prodotto1"><span
-                                        class="text-muted mr-2">Prodotto:</span>Cuffie</div>
-                                <div class="font-size-sm" id="tempoUsura1"><span
-                                        class="text-muted mr-2"><b>Nuovo</b></span>
+                                <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a
+                                        href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione'])?>" target="_blank"><?php echo $annuncio['titolo'];?></a></h3>
+                                <div class="font-size-sm"><span
+                                        class="text-muted mr-2">Prodotto:</span><?php echo $annuncio['prodotto'];?></div>
+                                <div class="font-size-sm">
+                                    <span class="text-muted mr-2"><b><?php echo $annuncio['tempoUsura'] == 0?'Nuovo':'Usato';?></b></span>
                                 </div>
-                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€225.00</div>
+                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€<?php echo $annuncio['prezzo'];?></div>
                             </div>
                         </div>
                     </div>
@@ -112,9 +139,11 @@ require_once  "common/session.php"
                                 </div>
                                 <div class="font-size-sm pb-3 text-newline" id="prodotto1"><span
                                         class="text-muted mr-2">Pagamento:</span>Carta di credito</div>
-                                <div class="non-osservare d-flex">
-                                    <button type="button" class="btn btn-sm btn-outline-success mr-1">Approva</button>
-                                </div>
+                                <form action="" method="get" >
+                                    <div class="non-osservare d-flex">
+                                        <button type="submit" class="btn btn-sm btn-outline-success mr-1">Approva</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

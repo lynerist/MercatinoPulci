@@ -22,6 +22,7 @@ $annuncio["categoria"] = "Hobby";
 $annuncio["sottoCategoria"] = "Altro";
 $annuncio["tempoUsura"] = intval("1");
 $annuncio["statoUsura"] = "comeNuovo";
+if ($annuncio["statoUsura"] == "comeNuovo") $annuncio["statoUsura"] = "Come nuovo";
 $annuncio["prezzo"] = "100.00";
 $annuncio["comune"] = "Brescia";
 $annuncio["provincia"] = "Brescia";
@@ -54,7 +55,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
 <div class="container dark-grey-text mt-4 drop-shadow <?php if ($annuncio["statoAnnuncio"] == "eliminato") echo "ombra-eliminato"; elseif ($annuncio["statoAnnuncio"] == "venduto") echo "ombra-venduto"; ?> mb-5">
     <div class="row">
         <div class="col-md-5">
-            <img src="<?php echo "fotoAnnuncio/" . $annuncio["fotoAnnuncio"] ?>" class="img-fluid img-thumbnail rounded mt-3 mx-auto" alt="immagine annuncio">
+            <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" class="img-fluid img-thumbnail rounded mt-3 mx-auto" alt="immagine annuncio">
         </div>
         <div class="col-md-6 mb-4 box-info">
 
@@ -78,7 +79,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                                 <div class="col-md-4 border-right">
                                                     <div class="annuncio-img">
 <!--                                                        TODO gestire valore null fotoAnnuncio-->
-                                                        <img id="fotoInput" src="<?php if (!is_null($annuncio['fotoAnnuncio'])) echo 'img/' . $annuncio['fotoAnnuncio']; else echo 'img/image_not_found.png'; ?>" alt="""/>
+                                                        <img id="fotoInput" src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="""/>
                                                         <div class="file btn btn-lg x btn-primary mt-0">
                                                             Cambia foto
                                                             <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>

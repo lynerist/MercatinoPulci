@@ -62,7 +62,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
-                <img src="img/venditore1.jpg" alt=""/>
+                <img src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt=""/>
             </div>
         </div>
         <div class="col-md-6">
@@ -93,7 +93,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                     <div class="col-md-4 border-right">
                                                         <div class="profile-img">
 <!--                                                            TODO gestire valore null di foto profilo-->
-                                                            <img id="fotoInput" src="<?php if (!is_null($utente['fotoProfilo'])) echo 'img/' . $utente['fotoProfilo']; else echo 'img/image_profile_not_found.png'; ?>" alt=""/>
+                                                            <img id="fotoInput" src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt=""/>
                                                             <div class="file btn btn-lg x btn-primary mt-0">
                                                                 Cambia foto
                                                                 <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)"  accept="image/png, image/jpeg, image/jpg"/>
@@ -340,7 +340,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php echo $annuncio['fotoAnnuncio'] ?>" alt="Product" id="foto1"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
                                                 <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
                                                 <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
@@ -399,7 +399,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php echo $annuncio['fotoAnnuncio'] ?>" alt="Product" id="foto1"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
                                                 <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
                                                 <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>

@@ -76,3 +76,7 @@ ul.rating {
 form > div > div > .text-danger {
     display: none;
 }
+
+.bordo-zero{
+    border-radius: 0 !important;
+}

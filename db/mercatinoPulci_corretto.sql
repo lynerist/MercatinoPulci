@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `mercatinopulci`
 --
-CREATE DATABASE IF NOT EXISTS `mercatinoPulci_corretto` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `mercatinoPulci_corretto`;
+CREATE DATABASE IF NOT EXISTS `mercatinopulci` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `mercatinopulci`;
 
 -- --------------------------------------------------------
 
@@ -176,7 +176,7 @@ CREATE TABLE `utente` (
   `nome` varchar(20) NOT NULL,
   `cognome` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `immagine` varchar(30) DEFAULT NULL,
   `comune` varchar(35) NOT NULL,
   `provincia` varchar(22) NOT NULL,

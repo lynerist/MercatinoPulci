@@ -91,12 +91,12 @@
                                         <form id="formLoginRegister-login" class="container pt-2 needs-validation" method="post" action="backend/login_exe.php" onsubmit="return controllaForm(id)">
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="formLoginRegister-email" class="form-control formLoginRegister-login" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
+                                                <input type="email" name="email" id="formLoginRegister-email" class="form-control formLoginRegister-login" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-email"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="formLoginRegister-password" class="form-control formLoginRegister-login" placeholder="Password" required>
+                                                <input type="password" name="password" id="formLoginRegister-password" class="form-control formLoginRegister-login" placeholder="Password" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-password"></label>
                                             </div>
 

@@ -7,14 +7,17 @@ $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
 }
-$utente = trovaUtente($cid, $utente["codiceFiscale"]);
-$utente["punteggioAcquirente"] = arrotondaValutazione("4.4");
-$utente["nRecensioniAcquirente"] = "3";
-$utente["punteggioVenditore"] = arrotondaValutazione("2.8");
-$utente["nRecensioniVenditore"] = "1";
+
+$utente = trovaUtente_sql($cid, $utente["codiceFiscale"]);
+
+$valutazioni = valutazioni_sql($cid, $utente["codiceFiscale"]);
+$utente["punteggioAcquirente"] = arrotondaValutazione($valutazioni["mediaAcquirente"]);
+$utente["nRecensioniAcquirente"] = $valutazioni["nValutazioniAcquirente"];
+$utente["punteggioVenditore"] = arrotondaValutazione($valutazioni["mediaVenditore"]);
+$utente["nRecensioniVenditore"] = $valutazioni["nValutazioniVenditore"];
+
 $utente["nAnnunciAcquistati"] = "3";
 $utente["nAnnunciVenduti"] = "1";
-print $utente["fotoProfilo"];
 
 
 $annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";

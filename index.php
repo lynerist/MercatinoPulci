@@ -1,7 +1,8 @@
 <?php
 require_once "common/session.php";
+include_once "common/connessioneDB.php";
 
-$utente["codiceFiscale"] = "SLNFPP98S28F205V";
+$utente["codiceFiscale"] = "CLMMTN00L51A794O";
 $utente["nome"] = "Edoardo";
 $utente["cognome"] = "Perego";
 $utente["fotoProfilo"] = "venditore1.jpg";
@@ -39,11 +40,11 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
     <?php if (isset($_SESSION["nome"]) and $_SESSION["nome"]) echo '<h1 class="display-4">Ciao ' . $_SESSION["nome"] . '!</h1>'; else echo '<h1 class="display-4">Benvenuto!</h1>' ?>
     <h1 class="lead">Vuoi vendere qualcosa? Posta un nuovo annuncio e scopri chi vorrebbe comprare!</h1>
 
-
     <a class="banner-button" href="<?php echo array('#modalLoginRegister', '#modalNuovoAnnuncio')[isset($_SESSION['isLogged'])]; ?>" data-toggle="modal">Nuovo Annuncio</a>
     <div class="modal fade modal-only" id="modalNuovoAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog edit-profile" role="document">
-            <div class="modal-content">
+            <?php if ($_SESSION["tipoAccount"] != "acquirente"){?>
+                <div class="modal-content">
                 <form id="nuovoAnnuncio" onsubmit="return controllaForm(id)">
                     <div class="modal-header arancio">
                         <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
@@ -53,10 +54,10 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                             <div class="row">
                                 <div class="col-md-4 border-right">
                                     <div class="profile-img">
-                                        <img src="img/image_not_found.png" alt=""/>
+                                        <img id="fotoInput" src="fotoAnnuncio/image_not_found.png" alt=""/>
                                         <div class="file btn btn-lg x btn-primary mt-0">
                                             Inserisci foto
-                                            <input type="file" name="file" class="w-100 h-100"/>
+                                            <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
                                         </div>
                                     </div>
                                 </div>
@@ -190,10 +191,18 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </div>
                 </form>
             </div>
+            <?php }else{ ?>
+                <div class="modal-content">
+                    <div class="w-100 p-lg-5">
+                        <div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
+                            <h2 class="container">Diventa venditore per pubblicare i tuoi annunci!</h2>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
-
 
 
 <div class="row modal-container col-md-12">
@@ -220,20 +229,21 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form my-2 my-lg-0 nav-form">
+                    <form class="form my-2 my-lg-0 nav-form" method="get" action="risultati.php?">
+                        <input name="sc" type="text" class="d-none" value="0">
                         <p>Cosa cerchi?</p>
-                        <input class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Frullatore, Smart Tv, Aspirapolvere" aria-label="Search">
+                        <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
+                               placeholder="Frullatore, Smart Tv, Aspirapolvere" aria-label="Search" required>
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
-                            <select class="form-control form-custom" name="regione1" id="regione1">
+                            <select class="form-control form-custom" name="regione" id="regione1">
                                 <option value="0">Tutta Italia</option>
                                 <option value="1">Lombardia</option>
                                 <option value="2">Sardegna</option>
                             </select>
                         </label>
                         <label class="popup">
-                            <select class="form-control form-custom" name="provincia1" id="provincia1">
+                            <select class="form-control form-custom" name="provincia" id="provincia1">
                                 <option value="0">Ogni provincia</option>
                                 <option value="1">Ogni provincia</option>
                                 <option value="1">Lecco</option>
@@ -272,20 +282,21 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form my-2 my-lg-0 nav-form">
+                    <form class="form my-2 my-lg-0 nav-form" method="get" action="risultati.php">
+                        <input name="sc" type="text" class="d-none" value="6">
                         <p>Cosa cerchi?</p>
-                        <input class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Reflex, Treppiede, Registratore" aria-label="Search">
+                        <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
+                               placeholder="Reflex, Treppiede, Registratore" aria-label="Search" required>
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
-                            <select class="form-control form-custom" name="regione2" id="regione2">
+                            <select class="form-control form-custom" name="regione" id="regione2">
                                 <option value="0">Tutta Italia</option>
                                 <option value="1">Lombardia</option>
                                 <option value="2">Sardegna</option>
                             </select>
                         </label>
                         <label class="popup">
-                            <select class="form-control form-custom" name="provincia2" id="provincia2">
+                            <select class="form-control form-custom" name="provincia" id="provincia2">
                                 <option value="0">Ogni provincia</option>
                                 <option value="1">Ogni provincia</option>
                                 <option value="1">Lecco</option>
@@ -324,20 +335,21 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form my-2 my-lg-0 nav-form">
+                    <form class="form my-2 my-lg-0 nav-form" method="get" action="risultati.php">
+                        <input name="sc" type="text" class="d-none" value="12">
                         <p>Cosa cerchi?</p>
-                        <input class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Sciarpa, Scarpe, Borsa" aria-label="Search">
+                        <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
+                               placeholder="Sciarpa, Scarpe, Borsa" aria-label="Search" required>
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
-                            <select class="form-control form-custom" name="regione3" id="regione3">
+                            <select class="form-control form-custom" name="regione" id="regione3">
                                 <option value="0">Tutta Italia</option>
                                 <option value="1">Lombardia</option>
                                 <option value="2">Sardegna</option>
                             </select>
                         </label>
                         <label class="popup">
-                            <select class="form-control form-custom" name="provincia3" id="provincia3">
+                            <select class="form-control form-custom" name="provincia" id="provincia3">
                                 <option value="0">Ogni provincia</option>
                                 <option value="1">Ogni provincia</option>
                                 <option value="1">Lecco</option>
@@ -377,20 +389,21 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form my-2 my-lg-0 nav-form">
+                    <form class="form my-2 my-lg-0 nav-form" method="get" action="risultati.php">
+                        <input name="sc" type="text" class="d-none" value="18">
                         <p>Cosa cerchi?</p>
-                        <input class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Cuffie, Chitarra, Racchettoni" aria-label="Search">
+                        <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
+                               placeholder="Cuffie, Chitarra, Racchettoni" aria-label="Search" required>
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
-                            <select class="form-control form-custom" name="regione4" id="regione4">
+                            <select class="form-control form-custom" name="regione" id="regione4">
                                 <option value="0">Tutta Italia</option>
                                 <option value="1">Lombardia</option>
                                 <option value="2">Sardegna</option>
                             </select>
                         </label>
                         <label class="popup">
-                            <select class="form-control form-custom" name="provincia4" id="provincia4">
+                            <select class="form-control form-custom" name="provincia" id="provincia4">
                                 <option value="0">Ogni provincia</option>
                                 <option value="1">Ogni provincia</option>
                                 <option value="1">Lecco</option>
@@ -428,7 +441,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                     <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" class="bbb_viewed_image">
-                                        <img src="<?php echo 'img/' . $annuncio['fotoAnnuncio'];?>" alt="">
+                                        <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="">
                                     </a>
                                     <?php if ($annuncio["tempoUsura"] == 0) echo '<ul class="item_marks"><li class="item_mark item_discount">Usato</li></ul>'?>
                                     <div class="bbb_viewed_content text-center">
@@ -468,11 +481,11 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                     <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>" class="bbb_viewed_image">
-                                        <img src="<?php echo 'img/' . $utente['fotoProfilo'];?>" alt="">
+                                        <img src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt="">
                                     </a>
                                     <div class="bbb_viewed_content text-center">
                                         <div class="bbb_viewed_name">
-                                            <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>"><?php echo $utente['nome'] . $utente['cognome'];?></a>
+                                            <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>"><?php echo $utente['nome'] . ' ' . $utente['cognome'];?></a>
                                         </div>
                                     </div>
                                 </div>

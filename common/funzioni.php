@@ -26,3 +26,7 @@ function calcolaScadenza($dop, $v, $tempoUsura): int{
     }
     return $giorniScadenza;
 }
+
+function inserisciFoto($foto){
+    echo is_null($foto)?"image_not_found.png":$foto;
+}

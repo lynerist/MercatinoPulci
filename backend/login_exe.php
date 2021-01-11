@@ -1,10 +1,23 @@
 <!--TODO variabile di sessione RESIDENZA per annunci con visibilità ristretta-->
 <?php
-session_start();
-if (true){
+require_once "../common/session.php";
+include_once "../common/connessioneDB.php";
+include_once "../common/query.php";
+
+$email = mysqli_real_escape_string($cid, $_POST["email"]);
+$password = md5($_POST["password"]);
+
+$login = "SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email';";
+$res = $cid -> query($login);
+$utente = $res -> fetch_assoc();
+if ($res->num_rows==0 || $res->num_rows>1){
+    header("location: " . $_SERVER["HTTP_REFERER"] . (parse_url($_SERVER["HTTP_REFERER"], PHP_URL_QUERY) ? '&' : '?') . "dberr=eml");
+}elseif ($utente["password"] != $password){
+    header("location: " . $_SERVER["HTTP_REFERER"] . (parse_url($_SERVER["HTTP_REFERER"], PHP_URL_QUERY) ? '&' : '?') . "dberr=pwd&eml=" . $email);
+}else{
     $_SESSION["isLogged"] = true;
-    $_SESSION["codiceFiscale"] = 'SLNFPP98S28F205V';
-    $_SESSION["tipoAccount"] = 'venditoreAcquirente';
-    $_SESSION["nome"] = 'Filippo';
+    $_SESSION["codiceFiscale"] = $utente["codiceFiscale"];
+    $_SESSION["tipoAccount"] = $utente["tipoAccount"];
+    $_SESSION["nome"] = $utente["nome"];
     header("Location: " . $_SERVER["HTTP_REFERER"]);
 }

@@ -34,7 +34,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
         <div class="col-lg-3">
             <form action="backend/filtra_exe.php" method="get" class="myform max-width-100">
                 <section class="panel">
-                    <header class="card-header">Category</header>
+                    <header class="card-header">Categoria</header>
                     <div class="card-body">
                         <ul class="nav prod-cat">
                             <li class="row nav-item">
@@ -205,10 +205,10 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </div>
                 </section>
                 <section class="panel">
-                    <header class="card-header">Logarithmic Price Range</header>
+                    <header class="card-header">Prezzo massimo</header>
                     <!-- Section: Price version 2 -->
                     <section class="mb-4">
-                        <h6 class="font-weight-bold mb-3 mt-2">Price</h6>
+                        <h6 class="font-weight-bold mb-3 mt-2">Prezzo</h6>
                         <div class="d-flex justify-content-center my-4">
                             <div class="w-75">
                                 <label><input type="range" class="custom-range table-warning" id="customRange11" name="prezzo" min="0" max="1000" value="<?php if (isset($_GET['p'])) echo $_GET['p'];?>"></label>
@@ -268,7 +268,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                         <section class="panel">
                             <div class="pro-img-box">
                                 <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" target="_blank">
-                                    <img src="<?php echo 'img/' . $annuncio["fotoAnnuncio"] ?>" alt="" class="altezza-massima">
+                                    <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="" class="altezza-massima">
                                 </a>
                                 <?php
                                 if ((!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] != "venditore") and !$annuncio["isWatched"]) {

@@ -39,7 +39,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
         $token = '<div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="' . $i . '">
             <div class="media d-block d-sm-flex text-center text-sm-left">
                 <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">
-                    <img src="' . 'img/' . $annuncio['fotoAnnuncio'] . '" alt="Product" id="foto' . $i . '">
+                    <img src="fotoAnnuncio/' . (is_null($annuncio['fotoAnnuncio'])?'image_not_found.png':$annuncio['fotoAnnuncio']) . '" alt="Product" id="foto' . $i . '">
                 </a>
                 <div class="media-body pt-3">
                     <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo' . $i . '">

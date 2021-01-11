@@ -22,6 +22,7 @@ $annuncio["categoria"] = "Hobby";
 $annuncio["sottoCategoria"] = "Altro";
 $annuncio["tempoUsura"] = intval("1");
 $annuncio["statoUsura"] = "comeNuovo";
+if ($annuncio["statoUsura"] == "comeNuovo") $annuncio["statoUsura"] = "Come nuovo";
 $annuncio["prezzo"] = "100.00";
 $annuncio["comune"] = "Brescia";
 $annuncio["provincia"] = "Brescia";
@@ -29,6 +30,7 @@ $annuncio["regione"] = "Lombardia";
 $annuncio["scadenzaGaranzia"] = "2022-05-31";
 $annuncio["nOsservatori"] = "9";
 $annuncio["fotoAnnuncio"] = "lidl.jpeg";
+$annuncio["venditoreEliminato"] = 0;
 if ($annuncio["statoAnnuncio"] == "inVendita") {
     $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
     if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
@@ -54,7 +56,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
 <div class="container dark-grey-text mt-4 drop-shadow <?php if ($annuncio["statoAnnuncio"] == "eliminato") echo "ombra-eliminato"; elseif ($annuncio["statoAnnuncio"] == "venduto") echo "ombra-venduto"; ?> mb-5">
     <div class="row">
         <div class="col-md-5">
-            <img src="<?php echo "fotoAnnuncio/" . $annuncio["fotoAnnuncio"] ?>" class="img-fluid img-thumbnail rounded mt-3 mx-auto" alt="immagine annuncio">
+            <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" class="img-fluid img-thumbnail rounded mt-3 mx-auto" alt="immagine annuncio">
         </div>
         <div class="col-md-6 mb-4 box-info">
 
@@ -78,7 +80,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                                 <div class="col-md-4 border-right">
                                                     <div class="annuncio-img">
 <!--                                                        TODO gestire valore null fotoAnnuncio-->
-                                                        <img id="fotoInput" src="<?php if (!is_null($annuncio['fotoAnnuncio'])) echo 'img/' . $annuncio['fotoAnnuncio']; else echo 'img/image_not_found.png'; ?>" alt="""/>
+                                                        <img id="fotoInput" src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="""/>
                                                         <div class="file btn btn-lg x btn-primary mt-0">
                                                             Cambia foto
                                                             <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
@@ -247,7 +249,12 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
             <?php if ($annuncio["statoAnnuncio"] == "inVendita"){ ?>
                 <div class="font-italic mt-5">Osservato da <?php if ($annuncio["nOsservatori"] == "1") echo "una persona"; else echo $annuncio["nOsservatori"] . " persone" ?></div>
             <?php } ?>
-            <div class="mt-3">Venduto da: <a class="link-profile" href="<?php echo urlCriptato($annuncio['venditore'], '') ?>" target="_blank"><?php echo $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] ?></a></div>
+
+            <?php
+            if (!$annuncio["venditoreEliminato"]) echo '<div class="mt-3">Venduto da: <a class="link-profile" href="' . urlCriptato($annuncio['venditore'], '') . '" target="_blank">' . $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] . '</a></div>';
+            else echo '<div class="mt-3">Venduto da: <b>Utente eliminato</b></div>';
+            ?>
+
             <?php
             if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){ ?>
                 <button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>

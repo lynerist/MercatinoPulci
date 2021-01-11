@@ -1,25 +1,23 @@
 <?php
 require_once "common/session.php";
+include_once "common/connessioneDB.php";
+include_once "common/query.php";
 
-//url = ?cf=U0xORlBQOThTMjhGMjA1Vg==
 $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
 }
-$utente["nome"] = "Edoardo";
-$utente["cognome"] = "Perego";
-$utente["email"] = "edoardo.perego@mail.com";
-$utente["tipoAccount"] = "venditoreAcquirente";
-$utente["punteggioAcquirente"] = arrotondaValutazione("4.4");
-$utente["nRecensioniAcquirente"] = "3";
-$utente["punteggioVenditore"] = arrotondaValutazione("2.8");
-$utente["nRecensioniVenditore"] = "1";
-$utente["comune"] = "Merate";
-$utente["provincia"] = "Lecco";
-$utente["regione"] = "Lombardia";
+
+$utente = trovaUtente_sql($cid, $utente["codiceFiscale"]);
+
+$valutazioni = valutazioni_sql($cid, $utente["codiceFiscale"]);
+$utente["punteggioAcquirente"] = arrotondaValutazione($valutazioni["mediaAcquirente"]);
+$utente["nRecensioniAcquirente"] = $valutazioni["nValutazioniAcquirente"];
+$utente["punteggioVenditore"] = arrotondaValutazione($valutazioni["mediaVenditore"]);
+$utente["nRecensioniVenditore"] = $valutazioni["nValutazioniVenditore"];
+
 $utente["nAnnunciAcquistati"] = "3";
 $utente["nAnnunciVenduti"] = "1";
-$utente["fotoProfilo"] = "venditore1.jpg";
 
 
 $annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
@@ -62,7 +60,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
-                <img src="img/venditore1.jpg" alt=""/>
+                <img src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt=""/>
             </div>
         </div>
         <div class="col-md-6">
@@ -93,7 +91,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                                     <div class="col-md-4 border-right">
                                                         <div class="profile-img">
 <!--                                                            TODO gestire valore null di foto profilo-->
-                                                            <img id="fotoInput" src="<?php if (!is_null($utente['fotoProfilo'])) echo 'img/' . $utente['fotoProfilo']; else echo 'img/image_profile_not_found.png'; ?>" alt=""/>
+                                                            <img id="fotoInput" src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt=""/>
                                                             <div class="file btn btn-lg x btn-primary mt-0">
                                                                 Cambia foto
                                                                 <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)"  accept="image/png, image/jpeg, image/jpg"/>
@@ -340,7 +338,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php echo $annuncio['fotoAnnuncio'] ?>" alt="Product" id="foto1"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
                                                 <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
                                                 <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
@@ -399,7 +397,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php echo $annuncio['fotoAnnuncio'] ?>" alt="Product" id="foto1"></a>
+                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
                                             <div class="media-body pt-3">
                                                 <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
                                                 <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>

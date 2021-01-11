@@ -30,6 +30,7 @@ $annuncio["regione"] = "Lombardia";
 $annuncio["scadenzaGaranzia"] = "2022-05-31";
 $annuncio["nOsservatori"] = "9";
 $annuncio["fotoAnnuncio"] = "lidl.jpeg";
+$annuncio["venditoreEliminato"] = 0;
 if ($annuncio["statoAnnuncio"] == "inVendita") {
     $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
     if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
@@ -248,7 +249,12 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
             <?php if ($annuncio["statoAnnuncio"] == "inVendita"){ ?>
                 <div class="font-italic mt-5">Osservato da <?php if ($annuncio["nOsservatori"] == "1") echo "una persona"; else echo $annuncio["nOsservatori"] . " persone" ?></div>
             <?php } ?>
-            <div class="mt-3">Venduto da: <a class="link-profile" href="<?php echo urlCriptato($annuncio['venditore'], '') ?>" target="_blank"><?php echo $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] ?></a></div>
+
+            <?php
+            if (!$annuncio["venditoreEliminato"]) echo '<div class="mt-3">Venduto da: <a class="link-profile" href="' . urlCriptato($annuncio['venditore'], '') . '" target="_blank">' . $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] . '</a></div>';
+            else echo '<div class="mt-3">Venduto da: <b>Utente eliminato</b></div>';
+            ?>
+
             <?php
             if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){ ?>
                 <button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>

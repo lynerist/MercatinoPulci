@@ -38,7 +38,6 @@
                     </a>
                 </li>
             <?php } ?>
-
             <li class="nav-item active">
                 <a class="nav-link" href="operazioni.php">
                     <img id="iconaOperazioni" src="img/operazioni.svg" class="nav-icon" alt="Operazioni">
@@ -46,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="profile.php?cf=U0xORlBQOThTMjhGMjA1Vg==">
+                <a class="nav-link" href="<?php echo urlCriptato($_SESSION['codiceFiscale'], '');?>">
                     <img src="img/user-solid.svg" class="nav-icon" alt="Profilo">
                     <p class="nav-icon-text nav-link">Profilo</p>
                 </a>
@@ -61,7 +60,7 @@
                 </a>
             </li>
             <li class="nav-item pt-3px">
-                <a class="nav-link pt" href="#0" onclick="accediRegistrati('tabAccedi')">Accedi</a>
+                <a class="nav-link pt" onclick="accediRegistrati('tabAccedi')">Accedi</a>
                 <!-- Modal -->
                 <div class="modal fade show" id="modalLoginRegister" tabindex="-1" role="dialog" aria-modal="true">
                     <div class="modal-dialog" role="document">
@@ -91,13 +90,13 @@
                                         <form id="formLoginRegister-login" class="container pt-2 needs-validation" method="post" action="backend/login_exe.php" onsubmit="return controllaForm(id)">
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" name="email" id="formLoginRegister-email" class="form-control formLoginRegister-login" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
-                                                <label data-error="wrong" data-success="right" for="formLoginRegister-email"></label>
+                                                <input type="email" name="email" id="formLoginRegister-email" class="form-control formLoginRegister-login <?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'eml')?'is-invalid':'');?>" placeholder="E-mail" value="<?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'pwd')?$_GET['eml']:'');?>" oninput="colora(id,controllaEmail(value))" required>
+                                                <label data-error="wrong" data-success="right" class="<?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'eml')?'invalid-feedback ml-1':'');?>" for="formLoginRegister-email"><?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'eml')?'E-mail sconosciuta':'');?></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" name="password" id="formLoginRegister-password" class="form-control formLoginRegister-login" placeholder="Password" required>
-                                                <label data-error="wrong" data-success="right" for="formLoginRegister-password"></label>
+                                                <input type="password" name="password" id="formLoginRegister-password" class="form-control formLoginRegister-login <?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'pwd')?'is-invalid':'');?>" placeholder="Password" oninput="colora(id, controllaPassword(value))" required>
+                                                <label data-error="wrong" class="<?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'pwd')?'invalid-feedback ml-1':'');?>" data-success="right" for="formLoginRegister-password"><?php echo ((isset($_GET['dberr']) and $_GET['dberr'] == 'pwd')?'Password errata':'');?></label>
                                             </div>
 
                                             <div class="text-center mt-4 pt-3">

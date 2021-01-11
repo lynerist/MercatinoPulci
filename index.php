@@ -2,7 +2,7 @@
 require_once "common/session.php";
 include_once "common/connessioneDB.php";
 
-$utente["codiceFiscale"] = "SLNFPP98S28F205V";
+$utente["codiceFiscale"] = "CLMMTN00L51A794O";
 $utente["nome"] = "Edoardo";
 $utente["cognome"] = "Perego";
 $utente["fotoProfilo"] = "venditore1.jpg";
@@ -40,11 +40,11 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
     <?php if (isset($_SESSION["nome"]) and $_SESSION["nome"]) echo '<h1 class="display-4">Ciao ' . $_SESSION["nome"] . '!</h1>'; else echo '<h1 class="display-4">Benvenuto!</h1>' ?>
     <h1 class="lead">Vuoi vendere qualcosa? Posta un nuovo annuncio e scopri chi vorrebbe comprare!</h1>
 
-<!--TODO gestire "nuovo annuncio" in caso di utente solo acquirente-->
     <a class="banner-button" href="<?php echo array('#modalLoginRegister', '#modalNuovoAnnuncio')[isset($_SESSION['isLogged'])]; ?>" data-toggle="modal">Nuovo Annuncio</a>
     <div class="modal fade modal-only" id="modalNuovoAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog edit-profile" role="document">
-            <div class="modal-content">
+            <?php if ($_SESSION["tipoAccount"] != "acquirente"){?>
+                <div class="modal-content">
                 <form id="nuovoAnnuncio" onsubmit="return controllaForm(id)">
                     <div class="modal-header arancio">
                         <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
@@ -191,10 +191,18 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </div>
                 </form>
             </div>
+            <?php }else{ ?>
+                <div class="modal-content">
+                    <div class="w-100 p-lg-5">
+                        <div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
+                            <h2 class="container">Diventa venditore per pubblicare i tuoi annunci!</h2>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
-
 
 
 <div class="row modal-container col-md-12">

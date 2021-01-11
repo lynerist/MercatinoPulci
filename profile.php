@@ -1,25 +1,20 @@
 <?php
 require_once "common/session.php";
+include_once "common/connessioneDB.php";
+include_once "common/query.php";
 
-//url = ?cf=U0xORlBQOThTMjhGMjA1Vg==
 $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 if (!$utente['codiceFiscale']){
     header("location: 404.php");
 }
-$utente["nome"] = "Edoardo";
-$utente["cognome"] = "Perego";
-$utente["email"] = "edoardo.perego@mail.com";
-$utente["tipoAccount"] = "venditoreAcquirente";
+$utente = trovaUtente($cid, $utente["codiceFiscale"]);
 $utente["punteggioAcquirente"] = arrotondaValutazione("4.4");
 $utente["nRecensioniAcquirente"] = "3";
 $utente["punteggioVenditore"] = arrotondaValutazione("2.8");
 $utente["nRecensioniVenditore"] = "1";
-$utente["comune"] = "Merate";
-$utente["provincia"] = "Lecco";
-$utente["regione"] = "Lombardia";
 $utente["nAnnunciAcquistati"] = "3";
 $utente["nAnnunciVenduti"] = "1";
-$utente["fotoProfilo"] = "venditore1.jpg";
+print $utente["fotoProfilo"];
 
 
 $annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";

@@ -5,4 +5,6 @@ $password = '';
 $db = 'mercatinopulci';
 $cid = new mysqli($hostname,$username,$password,$db);
 
-if($cid->connect_errno) die('Errore connessione (' . $cid->connect_errno . ')' . $cid->connect_error);
+if($cid->connect_errno){
+  header("location: erroreConnessione.php");
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 12, 2021 alle 00:56
+-- Creato il: Gen 12, 2021 alle 21:42
 -- Versione del server: 10.4.17-MariaDB
 -- Versione PHP: 8.0.0
 
@@ -39,7 +39,9 @@ CREATE TABLE `acquista` (
 --
 
 INSERT INTO `acquista` (`dataOraPubblicazione`, `venditore`, `acquirente`, `valutazioneSuAcquirente`) VALUES
-('2021-01-11 21:58:27', 'CCLPNA83E41G713I', 'FCUFTA90P25D560I', 4);
+('2021-01-11 21:58:27', 'PNACCL83E41G713I', 'FCUFTA90P25D560I', 4),
+('2021-01-11 22:03:23', 'PNACCL83E41G713I', 'RGNGNN97R13L736H', 2),
+('2021-01-12 20:28:22', 'PNACCL83E41G713I', 'SFGLNE12B69A288U', 5);
 
 --
 -- Trigger `acquista`

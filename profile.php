@@ -16,9 +16,10 @@ $utente["nRecensioniAcquirente"] = $valutazioni["nValutazioniAcquirente"];
 $utente["punteggioVenditore"] = arrotondaValutazione($valutazioni["mediaVenditore"]);
 $utente["nRecensioniVenditore"] = $valutazioni["nValutazioniVenditore"];
 
-$utente["nAnnunciAcquistati"] = "3";
-$utente["nAnnunciVenduti"] = "1";
-
+$utente["annunciAcquistati"] = trovaAnnunciAcquistati_sql($cid, $utente["codiceFiscale"]);
+$utente["annunciVenduti"] = trovaAnnunciVenduti_sql($cid, $utente["codiceFiscale"]);
+$utente["nAnnunciAcquistati"] = $utente["annunciAcquistati"] -> num_rows;
+$utente["nAnnunciVenduti"] = $utente["annunciVenduti"] -> num_rows;
 
 $annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
 $annuncio["venditore"] = "SLNFPP98S28F205V";
@@ -335,11 +336,14 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                             <div class="row">
                                 <div class="col-md-12">
 <!--                                    TODO ciclo generazione annunci-->
+                                    <?php while($annuncio = $utente["annunciAcquistati"] -> fetch_assoc()){
+                                            $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];?>
+<!--                                            TODO scrivere "non hai ancora comprato nessun annuncio"-->
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
-                                            <div class="media-body pt-3">
+                                                <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
+                                             <div class="media-body pt-3">
                                                 <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
                                                 <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
                                                 <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b><?php echo $annuncio["statoUsura"] ?></b></span></div>
@@ -347,6 +351,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -394,6 +399,9 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                             <div class="row">
                                 <div class="col-md-12">
 <!--                                    TODO ciclo generazione annunci-->
+                                    <?php while($annuncio = $utente["annunciVenduti"] -> fetch_assoc()){
+                                    $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];?>
+<!--                                        TODO scrivere "non hai ancora venduto nessun annuncio"-->
                                     <!-- Item-->
                                     <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                         <div class="media d-block d-sm-flex text-center text-sm-left">
@@ -406,6 +414,7 @@ $annuncio["fotoAnnuncio"] = "lidl.jpeg";
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

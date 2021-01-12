@@ -2,7 +2,7 @@
 require_once "common/session.php";
 include_once "common/connessioneDB.php";
 
-$utente["codiceFiscale"] = "CLMMTN00L51A794O";
+$utente["codiceFiscale"] = "CCLPNA83E41G713I";
 $utente["nome"] = "Edoardo";
 $utente["cognome"] = "Perego";
 $utente["fotoProfilo"] = "venditore1.jpg";

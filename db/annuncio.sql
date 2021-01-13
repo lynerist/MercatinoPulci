@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 12, 2021 alle 21:42
+-- Creato il: Gen 13, 2021 alle 20:47
 -- Versione del server: 10.4.17-MariaDB
 -- Versione PHP: 8.0.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `annuncio` (
   `titolo` varchar(150) NOT NULL,
   `prodotto` varchar(30) NOT NULL,
   `categoria` set('elettrodomestici','fotoEVideo','abbigliamento','hobby') NOT NULL,
-  `sottoCategoria` set('aspirapolveri','caffettiere','tostapane','frullatori','macchineFotografiche','accessori','telecamere','microfoni','vestiti','borse','scarpe','accessori','giocattoli','filmEDVD','musica','libriERiviste','altro') NOT NULL,
+  `sottoCategoria` set('aspirapolveri','caffettiere','tostapane','frullatori','macchineFotografiche','accessori','telecamere','microfoni','vestiti','borse','scarpe','giocattoli','filmEDVD','musica','libriERiviste','altro') NOT NULL,
   `prezzo` float UNSIGNED NOT NULL,
   `statoUsura` set('comeNuovo','buono','medio','usurato') DEFAULT NULL,
   `tempoUsura` smallint(5) UNSIGNED NOT NULL,
@@ -65,7 +65,15 @@ INSERT INTO `annuncio` (`dataOraPubblicazione`, `venditore`, `statoAnnuncio`, `t
 ('2021-01-12 20:28:22', 'PNACCL83E41G713I', 'venduto', 'Nel Vuoto di Alex Honnold', 'libro', 'hobby', 'libriERiviste', 20, 'comeNuovo', 2, NULL, '7403a1d0d5e8afdb7244a7c6ad17419d.jpg', NULL, 'pubblica', 'Pistoia', 'Pistoia'),
 ('2021-01-12 20:32:55', 'RSSVNC97R06B157T', 'inVendita', 'Collezione Divina commedia tre volumi, Dante Alighieri', 'libri', 'hobby', 'libriERiviste', 50, NULL, 0, NULL, '0f3c618628d7557a354290c5c5452f43.jpg', NULL, 'pubblica', 'Roncadelle', 'Brescia'),
 ('2021-01-12 20:35:57', 'SLMBRN92B16D205T', 'inVendita', 'Buoni o cattivi cd di Vasco Rossi', 'cd', 'hobby', 'musica', 15, 'buono', 36, NULL, '7e9e7e880b70be408bce70a64975fc2b.jpg', NULL, 'pubblica', 'Barolo', 'Cuneo'),
-('2021-01-12 20:39:44', 'PNZGNR67L16C351I', 'inVendita', 'Chitarra edizione limitata LIDL', 'chitarra', 'hobby', 'musica', 120, 'comeNuovo', 47, NULL, '2eb6996544fefa16dd5075bb1cfcc30e.jpg', NULL, 'pubblica', 'Palermo', 'Palermo');
+('2021-01-12 20:39:44', 'PNZGNR67L16C351I', 'inVendita', 'Chitarra edizione limitata LIDL', 'chitarra', 'hobby', 'musica', 120, 'comeNuovo', 47, NULL, '2eb6996544fefa16dd5075bb1cfcc30e.jpeg', NULL, 'pubblica', 'Palermo', 'Palermo'),
+('2021-01-13 13:19:09', 'RSSCTR96D57A401O', 'inVendita', 'Chitarra gipsy', 'chitarra', 'hobby', 'musica', 250, 'buono', 132, NULL, 'e5835e5976fbade6b32818976bf7f056.jpg', NULL, 'pubblica', 'Agosta', 'Roma'),
+('2021-01-13 13:23:28', 'CRVLRT87R11C559Q', 'inVendita', 'Trattore vissuto', 'trattore', 'hobby', 'altro', 2900, 'usurato', 300, NULL, '61c40902b92878d2b8172689506bf0f4.jpeg', NULL, 'pubblica', 'Imperia', 'Imperia'),
+('2021-01-13 13:28:51', 'SLMBRN92B16D205T', 'inVendita', 'Picca d\'alpinismo della petzl', 'picca', 'hobby', 'altro', 100, 'comeNuovo', 1, NULL, '3267de5c0053888e06cd954861de2f7a.jpeg', NULL, 'pubblica', 'Cuneo', 'Cuneo'),
+('2021-01-13 18:38:20', 'PRGDRD99M23F133R', 'inVendita', 'Frontale vissuta ad incandescenza funzionante', 'torcia frontale', 'abbigliamento', 'altro', 25, 'buono', 327, NULL, 'fc8b03cc0c447c5524b620599396029a.jpg', NULL, 'pubblica', 'Calco', 'Lecco'),
+('2021-01-13 18:43:28', 'LHRMRG99A41E801X', 'inVendita', 'Tazza Oracle con fondo in sughero', 'tazza', 'hobby', 'altro', 30, 'comeNuovo', 2, NULL, 'd0163a9aed80448f90890febd127bcae.jpeg', NULL, 'pubblica', 'Magenta', 'Milano'),
+('2021-01-13 18:44:14', 'LHRMRG99A41E801X', 'venduto', 'Tazza Cars 2', 'tazza', 'hobby', 'altro', 20, 'comeNuovo', 3, NULL, '2380658485a1ed98f77fa8c70e1c8335.jpeg', NULL, 'pubblica', 'Magenta', 'Milano'),
+('2021-01-13 18:47:12', 'PRCRRT83H11A014Q', 'inVendita', 'Pantaloni Ande da montagna pesanti nuovi', 'pantaloni', 'abbigliamento', 'vestiti', 75, NULL, 0, NULL, '3479a61fde90826cea3cdd668b4c47c9.jpg', NULL, 'pubblica', 'Acate', 'Ragusa'),
+('2021-01-13 18:48:03', 'PRCRRT83H11A014Q', 'inVendita', 'Pantaloni Ande da montagna blu  nuovi', 'pantaloni', 'abbigliamento', 'vestiti', 70, NULL, 0, NULL, '1cb76f7770abac455d5284e0aaf25118.jpg', NULL, 'pubblica', 'Acate', 'Ragusa');
 
 --
 -- Indici per le tabelle scaricate

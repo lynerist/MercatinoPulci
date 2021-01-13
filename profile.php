@@ -21,15 +21,6 @@ $utente["annunciVenduti"] = trovaAnnunciVenduti_sql($cid, $utente["codiceFiscale
 $utente["nAnnunciAcquistati"] = $utente["annunciAcquistati"] -> num_rows;
 $utente["nAnnunciVenduti"] = $utente["annunciVenduti"] -> num_rows;
 $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
-
-$annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
-$annuncio["venditore"] = "SLNFPP98S28F205V";
-$annuncio["titolo"] = "Chitarra Lidl";
-$annuncio["prodotto"] = "Chitarra";
-$annuncio["tempoUsura"] = intval("0");
-$annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];
-$annuncio["prezzo"] = "100.00";
-$annuncio["fotoAnnuncio"] = "lidl.jpeg";
 ?>
 
 <!DOCTYPE html>

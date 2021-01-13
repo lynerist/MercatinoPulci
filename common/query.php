@@ -133,3 +133,32 @@ function contaOsservatori_sql($cid, $dop, $v){
     }
     return ($res -> num_rows);
 }
+
+function annunciTop_sql($cid){
+    $res = $cid->query("select dataOraPubblicazione, venditore, titolo, prezzo, tempoUsura, foto as fotoAnnuncio, count(acquirente) as nOsservatori, statoAnnuncio
+from annuncio natural left outer join osserva as o
+where statoAnnuncio = 'inVendita'
+group by venditore, dataOraPubblicazione
+order by nOsservatori desc,(select avg(an.valutazioneSuVenditore) from annuncio as an where an.venditore = an.venditore) desc
+limit 12");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    return $res;
+}
+
+function venditoriTop_sql($cid){
+    $res = $cid->query("select codiceFiscale, nome, cognome, immagine as fotoProfilo, avg(valutazioneSuVenditore), count(*)
+from utente join annuncio a on utente.codiceFiscale = a.venditore
+where statoAnnuncio = 'venduto' and eliminato <> 0 and (dataOraPubblicazione between subdate(curdate(), interval 1 month ) and now())
+group by codiceFiscale
+having avg(valutazioneSuVenditore) >= 2.5
+order by count(*) desc , avg(valutazioneSuVenditore) desc
+limit 12");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    return $res;
+}

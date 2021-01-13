@@ -1,24 +1,14 @@
 <?php
 require_once "common/session.php";
 include_once "common/connessioneDB.php";
+include_once "common/funzioni.php";
+include_once "common/query.php";
 
 $utente["codiceFiscale"] = "PNACCL83E41G713I";
 $utente["nome"] = "Edoardo";
 $utente["cognome"] = "Perego";
 $utente["fotoProfilo"] = "venditore1.jpg";
 
-
-$annuncio["dataOraPubblicazione"] = "2021-01-01 00:00:00";
-$annuncio["venditore"] = "SLNFPP98S28F205V";
-$annuncio["titolo"] = "Chitarra Lidl";
-$annuncio["prezzo"] = "100.00";
-$annuncio["fotoAnnuncio"] = "lidl.jpeg";
-$annuncio["statoAnnuncio"] = "inVendita";
-$annuncio["tempoUsura"] = intval("0");
-if ($annuncio["statoAnnuncio"] == "inVendita") {
-    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
-    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
-}
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -37,7 +27,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
 
 
 <div class="banner jumbotron jumbotron-fluid">
-    <?php if (isset($_SESSION["nome"]) and $_SESSION["nome"]) echo '<h1 class="display-4">Ciao ' . $_SESSION["nome"] . '!</h1>'; else echo '<h1 class="display-4">Benvenuto!</h1>' ?>
+    <?php if (isset($_SESSION["nome"]) and $_SESSION["nome"]) echo '<h1 class="display-4 ciao">Ciao ' . $_SESSION["nome"] . '!</h1>'; else echo '<h1 class="display-4">Benvenuto!</h1>' ?>
     <h1 class="lead">Vuoi vendere qualcosa? Posta un nuovo annuncio e scopri chi vorrebbe comprare!</h1>
 
     <a class="banner-button" href="<?php echo array('#modalLoginRegister', '#modalNuovoAnnuncio')[isset($_SESSION['isLogged'])]; ?>" data-toggle="modal">Nuovo Annuncio</a>
@@ -430,20 +420,30 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     <div class="bbb_viewed_title_container">
                         <h3 class="bbb_viewed_title">Annunci più <span>osservati</span></h3>
                         <div class="bbb_viewed_nav_container">
-                            <div class="bbb_viewed_nav bbb_viewed_prev"><img src="img/chevron-left-solid.svg"
-                                                                             alt="sinistra"></div>
-                            <div class="bbb_viewed_nav bbb_viewed_next"><img src="img/chevron-right-solid.svg"
-                                                                             alt="destra"></div>
+                            <div class="bbb_viewed_nav bbb_viewed_prev">
+                                <img src="img/chevron-left-solid.svg" alt="sinistra">
+                            </div>
+                            <div class="bbb_viewed_nav bbb_viewed_next">
+                                <img src="img/chevron-right-solid.svg" alt="destra">
+                            </div>
                         </div>
                     </div>
                     <div class="bbb_viewed_slider_container">
                         <div class="owl-carousel owl-theme bbb_viewed_slider">
+                            <?php
+                            $annunciTop = annunciTop_sql($cid);
+                            $i = 1;
+                            while ($annuncio = $annunciTop -> fetch_assoc()){
+                                $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                                if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
+                            ?>
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                    <i class="d-none numerino"><?php echo $i;?>°</i>
                                     <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" class="bbb_viewed_image">
-                                        <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="">
+                                        <img class="m-auto" src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="">
                                     </a>
-                                    <?php if ($annuncio["tempoUsura"] == 0) echo '<ul class="item_marks"><li class="item_mark item_discount">Usato</li></ul>'?>
+                                    <?php if ($annuncio["tempoUsura"] > 0) echo '<ul class="item_marks"><li class="item_mark item_discount">Usato</li></ul>'?>
                                     <div class="bbb_viewed_content text-center">
                                         <div class="bbb_viewed_price">€<?php echo $annuncio["prezzo"];?></div>
                                         <div class="bbb_viewed_name">
@@ -452,6 +452,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                     </div>
                                 </div>
                             </div>
+                            <?php $i++; } ?>
                         </div>
                     </div>
                 </div>
@@ -478,8 +479,14 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </div>
                     <div class="bbb_viewed_slider_container">
                         <div class="owl-carousel owl-theme bbb_viewed_slider_v">
+                            <?php
+                            $venditori = venditoriTop_sql($cid);
+                            $i = 1;
+                            while ($utente = $venditori -> fetch_assoc()){
+                            ?>
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                    <i class="d-none numerino"><?php echo $i;?>°</i>
                                     <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>" class="bbb_viewed_image">
                                         <img src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt="">
                                     </a>
@@ -490,6 +497,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                     </div>
                                 </div>
                             </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

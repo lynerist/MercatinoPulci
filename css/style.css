@@ -332,6 +332,14 @@ button.blu:hover {
         width: 100%;
     }
 
+    .ciao{
+        font-size: 40px;
+    }
+
+    .numerino{
+        display: block !important;
+    }
+
     .modal-menu {
         min-width: 250px;
     }

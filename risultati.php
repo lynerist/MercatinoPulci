@@ -1,20 +1,9 @@
 <?php
 require_once "common/session.php";
+include_once "common/connessioneDB.php";
+include_once "common/query.php";
 
-$annuncio["dataOraPubblicazione"] = "2021-01-07 00:00:00";
-$annuncio["venditore"] = "SLNFPP98S28F205V";
-$annuncio["titolo"] = "Chitarra Lidl";
-$annuncio["statoAnnuncio"] = "inVendita";
-$annuncio["tempoUsura"] = intval("1");
-$annuncio["prezzo"] = "100.00";
-$annuncio["provincia"] = "Brescia";
-$annuncio["regione"] = "Lombardia";
-$annuncio["fotoAnnuncio"] = "lidl.jpeg";
-$annuncio["isWatched"] = 0;
-if ($annuncio["statoAnnuncio"] == "inVendita") {
-    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
-    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
-}
+$risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -260,10 +249,24 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                 </div>
             </section>
             <div class="row product-list">
-<!--            TODO generazione automatica degli annunci-->
-<!--            ciclo for che simula foreach row-->
                 <?php
-                for ($i=0; $i<9; $i++){?>
+                if ($risultati->num_rows==0){
+                    echo '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
+                                <h2 class="container">Nessun risultato</h2>
+                          </div>';
+                }
+                $i = 0;
+                while ($annuncio = $risultati -> fetch_assoc()){
+                    if ($annuncio["statoAnnuncio"] == "inVendita") {
+                        $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                        if ($annuncio["scadenza"] < 1) continue;
+                    }
+                    if (isset($_SESSION["tipoAccount"])) {
+                        $annuncio["isWatched"] = isWatched_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $_SESSION["codiceFiscale"]);
+                    }else{
+                        $annuncio["isWatched"] = 0;
+                    }
+                    ?>
                     <div class="col-lg-4">
                         <section class="panel">
                             <div class="pro-img-box">
@@ -295,7 +298,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                             </div>
                         </section>
                     </div>
-                <?php } ?>
+                <?php $i++; } ?>
             </div>
         </div>
     </div>

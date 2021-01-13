@@ -1,41 +1,16 @@
 <?php
 require_once "common/session.php";
-//url = ?dop=MjAyMS0wMS0wMSAwMDowMDowMA==&v=U0xORlBQOThTMjhGMjA1Vg==
-//dop criptato -> dop=MjAyMS0wMS0wMSAwMDowMDowMA==
+include_once "common/connessioneDB.php";
+include_once "common/query.php";
+
 $annuncio["dataOraPubblicazione"] = base64_decode($_GET["dop"], true);
-//v criptato -> v=U0xORlBQOThTMjhGMjA1Vg==
 $annuncio["venditore"] = base64_decode($_GET["v"], true);
-$annuncio["venditore"] = "asd";
 if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])) {
     header("location: 404.php");
 }
 
-$annuncio["dataOraPubblicazione"] = "2021-01-07 00:00:00";
-$annuncio["venditore"] = "SLNFPP98S28F205V";
-$annuncio["nomeVenditore"] = "Elena";
-$annuncio["cognomeVenditore"] = "Crosta";
-$annuncio["titolo"] = "Chitarra Lidl";
-$annuncio["statoAnnuncio"] = "inVendita";
-$annuncio["prodotto"] = "Chitarra";
-$annuncio["visibilita"] = "pubblica";
-$annuncio["categoria"] = "Hobby";
-$annuncio["sottoCategoria"] = "Altro";
-$annuncio["tempoUsura"] = intval("1");
-$annuncio["statoUsura"] = "comeNuovo";
-if ($annuncio["statoUsura"] == "comeNuovo") $annuncio["statoUsura"] = "Come nuovo";
-$annuncio["prezzo"] = "100.00";
-$annuncio["comune"] = "Brescia";
-$annuncio["provincia"] = "Brescia";
-$annuncio["regione"] = "Lombardia";
-$annuncio["scadenzaGaranzia"] = "2022-05-31";
-$annuncio["nOsservatori"] = "9";
-$annuncio["fotoAnnuncio"] = "lidl.jpeg";
-$annuncio["venditoreEliminato"] = 0;
-if ($annuncio["statoAnnuncio"] == "inVendita") {
-    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
-    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
-}
-
+$annuncio = trovaAnnuncio_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
+$annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
 ?>
 <!DOCTYPE html>
 <html lang="it">

@@ -431,7 +431,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                     <div class="bbb_viewed_slider_container">
                         <div class="owl-carousel owl-theme bbb_viewed_slider">
                             <?php
-                            $annunciTop = annunciTop_sql($cid);
+                            $annunciTop = annunciTop_sql($cid, isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
                             $i = 1;
                             while ($annuncio = $annunciTop -> fetch_assoc()){
                                 $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);

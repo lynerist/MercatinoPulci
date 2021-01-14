@@ -151,10 +151,10 @@ function contaOsservatori_sql($cid, $dop, $v){
     return ($res -> num_rows);
 }
 
-function annunciTop_sql($cid){
+function annunciTop_sql($cid, $cfSessione){
     $res = $cid->query("select dataOraPubblicazione, venditore, titolo, prezzo, tempoUsura, foto as fotoAnnuncio, count(acquirente) as nOsservatori, statoAnnuncio
 from annuncio natural left outer join osserva as o
-where statoAnnuncio = 'inVendita'
+where statoAnnuncio = 'inVendita' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ")
 group by venditore, dataOraPubblicazione
 order by nOsservatori desc,(select avg(an.valutazioneSuVenditore) from annuncio as an where an.venditore = an.venditore) desc
 limit 12");

@@ -4,32 +4,6 @@ include_once "common/funzioni.php";
 include_once "common/connessioneDB.php";
 include_once "common/query.php";
 
-$utente["codiceFiscale"] = "SLNFPP98S28F205V";
-$utente["nome"] = "Edoardo";
-$utente["cognome"] = "Perego";
-$utente["punteggioAcquirente"] = arrotondaValutazione("4.4");
-$utente["nRecensioniAcquirente"] = "3";
-$utente["punteggioVenditore"] = arrotondaValutazione("2.8");
-$utente["nRecensioniVenditore"] = "1";
-$utente["metodoDiPagamento"] = 0;
-$utente["pagamento"] = $utente["metodoDiPagamento"]?"Carta di credito":"Contanti";
-$utente["fotoProfilo"] = "venditore1.jpg";
-
-$annuncio["dataOraPubblicazione"] = "2021-01-07 00:00:00";
-$annuncio["venditore"] = "SLNFPP98S28F205V";
-$annuncio["nomeVenditore"] = "Elena";
-$annuncio["cognomeVenditore"] = "Crosta";
-$annuncio["titolo"] = "Chitarra Lidl";
-$annuncio["statoAnnuncio"] = "inVendita";
-$annuncio["prodotto"] = "Chitarra";
-$annuncio["tempoUsura"] = intval("1");
-$annuncio["prezzo"] = "100.00";
-$annuncio["fotoAnnuncio"] = "lidl.jpeg";
-if ($annuncio["statoAnnuncio"] == "inVendita") {
-    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
-    if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -128,7 +102,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                 </a>
                                 <div class="media-body pt-3">
                                     <h3 class="product-card-title font-weight-semibold border-0 pb-0">
-                                        <a href="<?php echo urlCriptato($annuncio['codiceFiscale'], '');?>" target="_blank"><?php echo $annuncio['nome'] . ' ' . $annuncio['cognome'];?></a>
+                                        <a href="<?php echo urlCriptato($annuncio['acquirente'], '');?>" target="_blank"><?php echo $annuncio['nome'] . ' ' . $annuncio['cognome'];?></a>
                                     </h3>
                                     <div class="font-size-sm stelline">
                                         <ul class="rating p-0">
@@ -152,7 +126,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                         </ul>
                                     </div>
                                     <div class="font-size-sm pb-3 text-newline">
-                                        <span class="text-muted mr-2">Pagamento:</span><?php echo $annuncio['pagamento'];?>
+                                        <span class="text-muted mr-2">Pagamento:</span><?php echo $annuncio['pagamento']?'Carta di credito':'Contanti';?>
                                     </div>
                                     <form action="" method="get">
                                         <div class="non-osservare d-flex">
@@ -247,7 +221,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                         </ul>
                                     </div>
                                     <div class="font-size-sm pb-3 text-newline">
-                                        <span class="text-muted mr-2">Pagamento:</span><?php echo $utente['pagamento'];?>
+                                        <span class="text-muted mr-2">Pagamento:</span><?php echo $annuncio['pagamento']?'Carta di credito':'Contanti';?>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,8 @@
 <?php
-require_once  "common/session.php";
+require_once "common/session.php";
+include_once "common/funzioni.php";
+include_once "common/connessioneDB.php";
+include_once "common/query.php";
 
 $utente["codiceFiscale"] = "SLNFPP98S28F205V";
 $utente["nome"] = "Edoardo";
@@ -74,19 +77,32 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
 <div class="tab-content container drop-shadow altezza-minima" id="pills-tabContent">
 
     <div class="tab-pane fade <?php if (isset($_SESSION["tipoAccount"]) and $_SESSION["tipoAccount"] != "acquirente") echo "active show"?> " id="tab-1" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class="container pb-5 mt-n2 mt-md-n3">
+        <div class="container pb-5 mt-n2 mt-md-n3 pt-4">
 
             <?php
+            $daApprovare = trovaDaApprovare_sql($cid, $_SESSION["codiceFiscale"]);
             if (!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] == "acquirente"){ ?>
                 <div class="w-100 p-lg-5">
                     <div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
                         <h2 class="container">Diventa venditore per pubblicare i tuoi annunci!</h2>
                     </div>
                 </div>
+            <?php }elseif ($daApprovare -> num_rows == 0){ ?>
+                <div class="w-100 p-lg-5">
+                    <div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
+                        <h2 class="container">Nessuna richiesta di acquisto da approvare</h2>
+                    </div>
+                </div>
             <?php }else{
 
-                for ($j=0; $j<3; $j++){?>
-
+                while ($annuncio = $daApprovare -> fetch_assoc()){
+                    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                    if ($annuncio["scadenza"] < 1) {
+                        $annuncio["statoAnnuncio"] = "eliminato";
+                        continue;
+                    }
+                    $valutazioni = valutazioni_sql($cid, $annuncio["acquirente"]);
+                    ?>
                     <div class="col-md-12 d-flex flex-row row">
                         <!-- Item-->
                         <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra">
@@ -108,21 +124,21 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                         <!-- Item-->
                         <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
                             <div class="media d-block d-sm-flex text-center text-sm-left">
-                                <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>" target="_blank">
-                                    <img src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt="Profilo">
+                                <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['acquirente'], '');?>" target="_blank">
+                                    <img src="fotoProfilo/<?php inserisciFoto($annuncio['fotoProfilo']);?>" alt="Profilo">
                                 </a>
                                 <div class="media-body pt-3">
                                     <h3 class="product-card-title font-weight-semibold border-0 pb-0">
-                                        <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>" target="_blank"><?php echo $utente['nome'] . ' ' . $utente['cognome'];?></a>
+                                        <a href="<?php echo urlCriptato($annuncio['codiceFiscale'], '');?>" target="_blank"><?php echo $annuncio['nome'] . ' ' . $annuncio['cognome'];?></a>
                                     </h3>
                                     <div class="font-size-sm stelline">
                                         <ul class="rating p-0">
                                             <?php
                                             for ($i = 0; $i < 5; $i++) {
 
-                                                if ($utente['punteggioAcquirente'] - $i >= 1){
+                                                if ($valutazioni['mediaAcquirente'] - $i >= 1){
                                                     echo '<li><i class="fas fa-star fa-sm text-primary orange-color"></i></li>';
-                                                }elseif ($utente['punteggioAcquirente'] - $i == 0.5) {
+                                                }elseif ($valutazioni['mediaAcquirente'] - $i == 0.5) {
                                                     echo '<li><i class="fas fa-star-half-alt fa-sm text-primary orange-color"></i></li>';
                                                 }else{
                                                     echo '<li><i class="far fa-star fa-sm text-primary orange-color"></i></li>';
@@ -132,14 +148,14 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                                             <li class="ml-1">
                                                 <label class="material-tooltip-main card-link orange-color"
                                                        data-toggle="tooltip" data-placement="top"
-                                                       title="Read reviews">(<?php echo $utente['nRecensioniAcquirente'];?>)</label>
+                                                       title="Read reviews">(<?php echo $valutazioni['nValutazioniAcquirente'];?>)</label>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="font-size-sm pb-3 text-newline">
-                                        <span class="text-muted mr-2">Pagamento:</span><?php echo $utente['pagamento'];?>
+                                        <span class="text-muted mr-2">Pagamento:</span><?php echo $annuncio['pagamento'];?>
                                     </div>
-                                    <form action="" method="get" >
+                                    <form action="" method="get">
                                         <div class="non-osservare d-flex">
                                             <button type="submit" class="btn btn-sm btn-outline-success mr-1">Approva</button>
                                         </div>
@@ -156,7 +172,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
     </div>
 
     <div class="tab-pane fade <?php if (isset($_SESSION["tipoAccount"]) and $_SESSION["tipoAccount"] == "acquirente") echo "active show"?>" id="tab-2" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <div class="container pb-5 mt-n2 mt-md-n3">
+        <div class="container pb-5 mt-n2 mt-md-n3 pt-4">
 
             <?php
             if (!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] == "venditore"){ ?>
@@ -231,7 +247,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
     </div>
 
     <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <div class="container pb-5 mt-n2 mt-md-n3">
+        <div class="container pb-5 mt-n2 mt-md-n3 pt-4">
 
             <?php
             if (!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] == "acquirente"){ ?>
@@ -347,7 +363,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
     </div>
 
     <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <div class="container pb-5 mt-n2 mt-md-n3">
+        <div class="container pb-5 mt-n2 mt-md-n3 pt-4">
 
             <?php
             if (!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] == "venditore"){?>
@@ -357,9 +373,7 @@ if ($annuncio["statoAnnuncio"] == "inVendita") {
                     </div>
                 </div>
             <?php }else{
-
                 for ($j=0; $j<2; $j++){?>
-
                     <div class="col-md-12 d-flex flex-row row">
                     <!-- Item-->
                     <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra">

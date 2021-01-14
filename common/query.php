@@ -105,6 +105,23 @@ function trovaRisultati_sql($cid, $parametri, $cfSessione){
                     $matchTesto .= "annuncio.titolo LIKE '%$parola%' OR annuncio.prodotto LIKE '%$parola%' OR ";
                 }
                 $filtri .= "and (" . substr($matchTesto, 0, -3) . ") ";
+                break;
+            case "sc":
+                $categorie = indiciCategorie();
+                $filtri .= ($parametro % 6 == 0)?"and annuncio.categoria='$categorie[$parametro]' ":"and annuncio.categoria='" . $categorie[floor($parametro/6)*6] . "' and annuncio.sottocategoria='$categorie[$parametro]' ";
+                break;
+            case "p":
+                $scale = (log(3000)-log(1)) / (1000);
+                $prezzo = ceil(exp(log(1) + $scale*(intval($parametro))));
+                $filtri .= "and annuncio.prezzo<='$prezzo' ";
+                break;
+            case "c":
+                if ($parametro == '1'){
+                    $filtri .= "and annuncio.tempoUsura=0 ";
+                }elseif (intval($parametro) > 1){
+                    $filtri .= "and annuncio.statoUsura='" . array("comeNuovo", "buono", "medio", "usurato")[$parametro-2] . "' ";
+                }
+                break;
         }
     }
 
@@ -156,6 +173,30 @@ group by codiceFiscale
 having avg(valutazioneSuVenditore) >= 2.5
 order by count(*) desc , avg(valutazioneSuVenditore) desc
 limit 12");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    return $res;
+}
+
+function trovaDaApprovare_sql($cid, $sessioneCf){
+    $res = $cid->query("select a.dataOraPubblicazione, a.venditore, a.foto as fotoAnnuncio, titolo, prodotto, tempoUsura, prezzo, immagine as fotoProfilo, codiceFiscale as acquirente, nome, cognome, richiestaDiAcquisto as pagamento
+from osserva join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore join utente u on u.codiceFiscale = osserva.acquirente
+where richiestaDiAcquisto is not null and a.venditore = '$sessioneCf'
+order by a.dataOraPubblicazione");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    return $res;
+}
+
+function trovaVersoAcquirente_sql($cid, $sessioneCf){
+    $res = $cid->query("select a.dataOraPubblicazione, a.venditore, a.foto as fotoAnnuncio, titolo, prodotto, tempoUsura, prezzo, immagine as fotoProfilo, codiceFiscale as acquirente, nome, cognome
+from acquista join annuncio a on a.dataOraPubblicazione = acquista.dataOraPubblicazione and a.venditore = acquista.venditore join utente u on u.codiceFiscale = acquista.acquirente
+where acquista.valutazioneSuAcquirente is null and a.venditore = '$sessioneCf'
+order by a.dataOraPubblicazione");
     if ($res == null) {
         header("location: erroreConnessione.php");
         exit;

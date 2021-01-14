@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 13, 2021 alle 20:47
+-- Creato il: Gen 14, 2021 alle 22:42
 -- Versione del server: 10.4.17-MariaDB
 -- Versione PHP: 8.0.0
 
@@ -42,7 +42,10 @@ INSERT INTO `acquista` (`dataOraPubblicazione`, `venditore`, `acquirente`, `valu
 ('2021-01-11 21:58:27', 'PNACCL83E41G713I', 'FCUFTA90P25D560I', 4),
 ('2021-01-11 22:03:23', 'PNACCL83E41G713I', 'RGNGNN97R13L736H', 2),
 ('2021-01-12 20:28:22', 'PNACCL83E41G713I', 'SFGLNE12B69A288U', 5),
-('2021-01-13 18:44:14', 'LHRMRG99A41E801X', 'RSNLND85R12A652Y', 5);
+('2021-01-13 18:44:14', 'LHRMRG99A41E801X', 'RSNLND85R12A652Y', 5),
+('2021-01-14 20:55:19', 'DNTLCU63A01C803H', 'PNZGNR67L16C351I', 4),
+('2021-01-14 21:09:13', 'CLMMTN00L51A794O', 'FCUFTA90P25D560I', 3),
+('2021-01-14 21:31:50', 'RSSCTR96D57A401O', 'SFGLNE12B69A288U', 2);
 
 --
 -- Trigger `acquista`

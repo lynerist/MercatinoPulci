@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 13, 2021 alle 20:47
+-- Creato il: Gen 14, 2021 alle 22:42
 -- Versione del server: 10.4.17-MariaDB
 -- Versione PHP: 8.0.0
 
@@ -73,7 +73,16 @@ INSERT INTO `annuncio` (`dataOraPubblicazione`, `venditore`, `statoAnnuncio`, `t
 ('2021-01-13 18:43:28', 'LHRMRG99A41E801X', 'inVendita', 'Tazza Oracle con fondo in sughero', 'tazza', 'hobby', 'altro', 30, 'comeNuovo', 2, NULL, 'd0163a9aed80448f90890febd127bcae.jpeg', NULL, 'pubblica', 'Magenta', 'Milano'),
 ('2021-01-13 18:44:14', 'LHRMRG99A41E801X', 'venduto', 'Tazza Cars 2', 'tazza', 'hobby', 'altro', 20, 'comeNuovo', 3, NULL, '2380658485a1ed98f77fa8c70e1c8335.jpeg', NULL, 'pubblica', 'Magenta', 'Milano'),
 ('2021-01-13 18:47:12', 'PRCRRT83H11A014Q', 'inVendita', 'Pantaloni Ande da montagna pesanti nuovi', 'pantaloni', 'abbigliamento', 'vestiti', 75, NULL, 0, NULL, '3479a61fde90826cea3cdd668b4c47c9.jpg', NULL, 'pubblica', 'Acate', 'Ragusa'),
-('2021-01-13 18:48:03', 'PRCRRT83H11A014Q', 'inVendita', 'Pantaloni Ande da montagna blu  nuovi', 'pantaloni', 'abbigliamento', 'vestiti', 70, NULL, 0, NULL, '1cb76f7770abac455d5284e0aaf25118.jpg', NULL, 'pubblica', 'Acate', 'Ragusa');
+('2021-01-13 18:48:03', 'PRCRRT83H11A014Q', 'inVendita', 'Pantaloni Ande da montagna blu  nuovi', 'pantaloni', 'abbigliamento', 'vestiti', 70, NULL, 0, NULL, '1cb76f7770abac455d5284e0aaf25118.jpg', NULL, 'pubblica', 'Acate', 'Ragusa'),
+('2021-01-14 20:55:19', 'DNTLCU63A01C803H', 'venduto', 'Gibson Les Paul originale', 'chitarra', 'hobby', 'musica', 1500, 'comeNuovo', 240, NULL, 'c6d807828ce13eba15bd39579052ab43.jpg', NULL, 'pubblica', 'Torino', 'Torino'),
+('2021-01-14 21:01:33', 'DNTLCU63A01C803H', 'inVendita', 'Doppio pedale IRON COBRA per batteria', 'doppio pedale', 'hobby', 'musica', 150, 'comeNuovo', 120, NULL, '797fabcd96cd67fc0e7ef0d48238a219.jpg', NULL, 'pubblica', 'Torino', 'Torino'),
+('2021-01-14 21:09:13', 'CLMMTN00L51A794O', 'venduto', 'Scarpette d\'arrampicata nuove del 38 (numero sbagliato)', 'scarpe d\'arrampicata', 'abbigliamento', 'scarpe', 40, NULL, 0, NULL, '5a84e3abf95be50cc78863a17aa5455c.jpeg', NULL, 'pubblica', 'Bergamo', 'Bergamo'),
+('2021-01-14 21:12:47', 'LHRMRG99A41E801X', 'inVendita', 'Lampada in bambu', 'lampada', 'hobby', 'altro', 35, 'comeNuovo', 1, NULL, 'ca261f032b576987786693610dc0d15c.jpg', NULL, 'pubblica', 'Magenta', 'Milano'),
+('2021-01-14 21:18:03', 'CSTNAI91R69G113A', 'inVendita', 'Slackline per equilibrismo mai usata', 'slackline', 'hobby', 'altro', 30, NULL, 0, NULL, 'd4c0d23922a8be5336fef0300c5ad7e9.jpeg', NULL, 'pubblica', 'Olbia', 'Sassari'),
+('2021-01-14 21:21:14', 'LLLSCN71R18A271O', 'inVendita', 'Ventilatore usato', 'ventilatore', 'elettrodomestici', 'altro', 40, 'comeNuovo', 24, NULL, '3828541a7371cd5daf32da836b17fe01.jpg', NULL, 'pubblica', 'Ancona', 'Ancona'),
+('2021-01-14 21:25:26', 'PRCRRT83H11A014Q', 'inVendita', 'Secchiello d\'arrampicata per alpinismo', 'discensore', 'hobby', 'altro', 20, NULL, 0, NULL, 'ce5b8b3fc73d702ef27f485fdafedbcf.jpeg', NULL, 'pubblica', 'Barolo', 'Cuneo'),
+('2021-01-14 21:29:25', 'PNZGNR67L16C351I', 'inVendita', 'scarpe antinfortunistiche nuove', 'scarpe antinfortunistiche', 'abbigliamento', 'scarpe', 40, NULL, 0, NULL, '08c9bcd85ec9c0bdbdf65b0472b8c2e4.jpeg', NULL, '', 'Palermo', 'Palermo'),
+('2021-01-14 21:31:50', 'RSSCTR96D57A401O', 'venduto', 'palla da baseball pericolosa, pesante', 'palla da baseball', 'hobby', 'altro', 10, 'buono', 2, NULL, '077da4e9a8c50e427bbb2f628be4b7fa.jpg', NULL, 'pubblica', 'Roma', 'Roma');
 
 --
 -- Indici per le tabelle scaricate

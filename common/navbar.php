@@ -23,7 +23,7 @@
                 </select>
             </label>
             <div class="nav-newline"></div>
-            <input id="testoRicerca" name="testoRicerca" class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search" required>
+            <input id="testoRicerca" name="testoRicerca" class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search" value="<?php echo isset($_GET['testoRicerca'])?$_GET['testoRicerca']:'';?>">
             <button class="btn btn-outline-success btn-custom my-2 my-sm-0" type="submit">Cerca</button>
         </form>
 <?php

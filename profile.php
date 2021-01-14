@@ -55,7 +55,7 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
                 <img src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt=""/>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="profile-head mt-2">
                 <h5>
                     <?php
@@ -471,7 +471,13 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
                                                 </div>';
                                     }
                                     while($annuncio = $utente["annunciInVendita"] -> fetch_assoc()){
-                                        $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];?>
+                                        $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];
+                                            $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                                            if ($annuncio["scadenza"] < 1){
+                                                $annuncio["statoAnnuncio"] = "eliminato";
+                                                continue;
+                                            }
+                                        ?>
                                         <!-- Item-->
                                         <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                                             <div class="media d-block d-sm-flex text-center text-sm-left">

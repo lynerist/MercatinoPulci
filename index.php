@@ -435,7 +435,10 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                             $i = 1;
                             while ($annuncio = $annunciTop -> fetch_assoc()){
                                 $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
-                                if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
+                                if ($annuncio["scadenza"] < 1) {
+                                    $annuncio["statoAnnuncio"] = "eliminato";
+                                    continue;
+                                }
                             ?>
                             <div class="owl-item">
                                 <div class="bbb_viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">

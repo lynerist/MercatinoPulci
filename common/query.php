@@ -181,9 +181,49 @@ limit 12");
 }
 
 function trovaDaApprovare_sql($cid, $sessioneCf){
-    $res = $cid->query("select a.dataOraPubblicazione, a.venditore, a.foto as fotoAnnuncio, titolo, prodotto, tempoUsura, prezzo, immagine as fotoProfilo, codiceFiscale as acquirente, nome, cognome, richiestaDiAcquisto as pagamento
-from osserva join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore join utente u on u.codiceFiscale = osserva.acquirente
-where richiestaDiAcquisto is not null and a.venditore = '$sessioneCf'
+    $res = $cid->query("select a.dataOraPubblicazione,
+       a.venditore,
+       a.foto              as fotoAnnuncio,
+       titolo,
+       prodotto,
+       tempoUsura,
+       prezzo,
+       immagine            as fotoProfilo,
+       codiceFiscale       as acquirente,
+       nome,
+       cognome,
+       richiestaDiAcquisto as pagamento
+from osserva
+         join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore
+         join utente u on u.codiceFiscale = osserva.acquirente
+where richiestaDiAcquisto is not null
+  and a.venditore = '$sessioneCf'
+order by a.dataOraPubblicazione");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    return $res;
+}
+
+function trovaEffettuate_sql($cid, $sessioneCf){
+    $res = $cid->query("select a.dataOraPubblicazione,
+       a.venditore,
+       a.foto              as fotoAnnuncio,
+       titolo,
+       prodotto,
+       tempoUsura,
+       prezzo,
+       immagine            as fotoProfilo,
+       codiceFiscale       as venditore,
+       nome,
+       cognome,
+       richiestaDiAcquisto as pagamento
+from osserva
+         join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore
+         join utente u on u.codiceFiscale = osserva.venditore
+where richiestaDiAcquisto is not null
+  and osserva.acquirente = '$sessioneCf'
 order by a.dataOraPubblicazione");
     if ($res == null) {
         header("location: erroreConnessione.php");
@@ -193,9 +233,47 @@ order by a.dataOraPubblicazione");
 }
 
 function trovaVersoAcquirente_sql($cid, $sessioneCf){
-    $res = $cid->query("select a.dataOraPubblicazione, a.venditore, a.foto as fotoAnnuncio, titolo, prodotto, tempoUsura, prezzo, immagine as fotoProfilo, codiceFiscale as acquirente, nome, cognome
-from acquista join annuncio a on a.dataOraPubblicazione = acquista.dataOraPubblicazione and a.venditore = acquista.venditore join utente u on u.codiceFiscale = acquista.acquirente
-where acquista.valutazioneSuAcquirente is null and a.venditore = '$sessioneCf'
+    $res = $cid->query("select a.dataOraPubblicazione,
+       a.venditore,
+       a.foto        as fotoAnnuncio,
+       titolo,
+       prodotto,
+       tempoUsura,
+       prezzo,
+       immagine      as fotoProfilo,
+       codiceFiscale as acquirente,
+       nome,
+       cognome
+from acquista
+         join annuncio a on a.dataOraPubblicazione = acquista.dataOraPubblicazione and a.venditore = acquista.venditore
+         join utente u on u.codiceFiscale = acquista.acquirente
+where acquista.valutazioneSuAcquirente is null
+  and a.venditore = '$sessioneCf'
+order by a.dataOraPubblicazione");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    return $res;
+}
+
+function trovaVersoVenditore_sql($cid, $sessioneCf){
+    $res = $cid->query("select a.dataOraPubblicazione,
+       a.venditore,
+       a.foto        as fotoAnnuncio,
+       titolo,
+       prodotto,
+       tempoUsura,
+       prezzo,
+       immagine      as fotoProfilo,
+       codiceFiscale as acquirente,
+       nome,
+       cognome
+from acquista
+         join annuncio a on a.dataOraPubblicazione = acquista.dataOraPubblicazione and a.venditore = acquista.venditore
+         join utente u on u.codiceFiscale = acquista.venditore
+where a.valutazioneSuVenditore is null
+  and acquista.acquirente = '$sessioneCf'
 order by a.dataOraPubblicazione");
     if ($res == null) {
         header("location: erroreConnessione.php");

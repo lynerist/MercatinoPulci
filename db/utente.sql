@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 13, 2021 alle 22:31
+-- Creato il: Gen 15, 2021 alle 21:19
 -- Versione del server: 10.4.17-MariaDB
 -- Versione PHP: 8.0.0
 
@@ -45,12 +45,13 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`codiceFiscale`, `tipoAccount`, `nome`, `cognome`, `email`, `password`, `immagine`, `comune`, `provincia`, `eliminato`) VALUES
+('BCCGRT89R52E617T', 'venditoreAcquirente', 'Greta', 'Beccalli', 'liutprandadicastello@email.com', 'eb61513aa98c5de1250595eaf80c6a99', 'ca75311172cd48693acb63a1153b8a4b.jpg', 'Lissone', 'Monza e della Brianza', '0'),
 ('CLMMTN00L51A794O', 'venditoreAcquirente', 'Martina', 'Colombo', 'potamartinacolombo@email.com', 'ba6efe28dfc9ec81c9ae38751bdef637', '9e6120cda9b1dc30c459aeee3d09b7c0.jpg', 'Bergamo', 'Bergamo', '0'),
 ('CRVLRT87R11C559Q', 'venditoreAcquirente', 'Alberto', 'Corvo', 'corvoneroalberto@email.com', '3e972d1be74160bcb7ab4dc1a19eaed3', NULL, 'Cervo', 'Imperia', '0'),
 ('CSTNAI91R69G113A', 'venditoreAcquirente', 'Ania', 'Costruisce', 'costruisceania@email.com', '61476dd3b4a98abc90c79023dfe380b2', 'c3cf38582c3ca41e00f67278e55ddb92.jpg', 'Olbia', 'Sassari', '0'),
 ('DNTLCU63A01C803H', 'venditoreAcquirente', 'Lucio', 'Diamante', 'lucionelcielo@email.com', '7bff0a782ba0641a81fc13fd6870499c', '359e1e24bfa6fda7a9e97df13e4f9a07.jpg', 'Coazze', 'Torino', '0'),
 ('FCUFTA90P25D560I', 'acquirente', 'Fatuo', 'Fuoco', 'fuocofatuoloso@email.com', '4befa042be9c06b84211386ce7c9da1d', '27a3ada01615e679c9302c4df5e82464.jpg', 'Fiamignano', 'Rieti', '0'),
-('FGLLSS77M06B396Y', 'acquirente', 'Alessandro', 'Fumagalli', 'alefumagalli@email.com', '6f0f4d469eaead0ac18da3a460f263b6', '1f0d1d7cc58a5daefeb397e502909df3.jpg', 'Abbadia Lariana', 'Lecco', '0'),
+('FGLLSS77M06B396Y', 'acquirente', 'Alessandro', 'Fumagalli', 'alefumagalli@email.com', '0424aa258d66a46aa5a057a674fa5864', '1f0d1d7cc58a5daefeb397e502909df3.jpg', 'Abbadia Lariana', 'Lecco', '0'),
 ('LHRMRG99A41E801X', 'venditore', 'Margherita', 'Alighieri', 'ladivinamargherita@email.com', 'dd2d77800385e5ab955700f70ca8a1f9', 'eaaac75badd4895d4780a4e1c03c4fa6.jpg', 'Magenta', 'Milano', '0'),
 ('LLLSCN71R18A271O', 'venditoreAcquirente', 'Ascanio', 'Lavello', 'lavelloascanio@email.com', 'f9b7caa5979bc44418e24c05a3b9e2f2', 'e7c0afedd513d5df7a2b63f7afe89b48.png', 'Barbara', 'Ancona', '0'),
 ('PNACCL83E41G713I', 'venditoreAcquirente', 'Cecilia', 'Pane', 'oplascecilia@email.com', '0a14bbb183ebe2f24fb6521ed792bb66', 'bedef9e41694d23726d253bdd7575c2a.jpg', 'Buggiano', 'Pistoia', '0'),
@@ -62,6 +63,7 @@ INSERT INTO `utente` (`codiceFiscale`, `tipoAccount`, `nome`, `cognome`, `email`
 ('RSSCTR96D57A401O', 'venditoreAcquirente', 'Caterina', 'Rossa', 'catethewitch@email.com', '22c43c7b7f00f2b5310d1e4a0762c7f5', '51370722064725cca325d7c1ecf55b44.jpg', 'Ariccia', 'Roma', '0'),
 ('RSSVNC97R06B157T', 'venditore', 'Vincenzo', 'Rossi', 'vincenzo_rossi@email.com', '7fa1adabb7e37b7726b32e44602a0ab6', 'e5ddb5e2032e8f447427b95ddb053589.jpg', 'Brescia', 'Brescia', '0'),
 ('SFGLNE12B69A288U', 'acquirente', 'Elena', 'Sfogo', 'elenasfogo12@email.com', 'e890f806dfd189052ca7b39ac29da142', '64505fdd43e19ca0bfb8cb5c9681ae1d.png', 'Anfo', 'Brescia', '0'),
+('SLGDRA97A41E801X', 'venditore', 'Dario', 'Salga', 'dario.salga12@email.com', 'a77441312f6182e1bfc6bba38581d88d', NULL, 'Abbasanta', 'Oristano', '1'),
 ('SLMBRN92B16D205T', 'venditoreAcquirente', 'Bruno', 'Salmone', 'brunosalmone@email.com', 'cd436232402079ff109da2dcfa69bffb', '938a99d2220016ae8fcd84556e41703f.jpg', 'Barolo', 'Cuneo', '0');
 
 --

@@ -92,12 +92,13 @@ function trovaAnnuncio_sql($cid, $dop, $v, $cfSessione){
 function trovaRisultati_sql($cid, $parametri, $cfSessione){
     $filtri = "";
     foreach ($parametri as $key => $parametro){
+        $parametro = mysqli_real_escape_string($cid, $parametro);
         switch ($key){
             case "regione":
                 $filtri .= ($parametro != '0')?"and a.regione='$parametro' ":"";
                 break;
             case "provincia":
-                $filtri .= ($parametro != '0')?"and a.provincia='$parametro' ":"";
+                $filtri .= ($parametro != "0")?"and a.provincia='$parametro' ":"";
                 break;
             case "testoRicerca":
                 $matchTesto = "";

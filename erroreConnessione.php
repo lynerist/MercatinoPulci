@@ -23,7 +23,7 @@ require_once "common/session.php";
     </button>
 </nav>
 
-<div class="container drop-shadow mt-5 mb-5 text-center pt-2">
+<div class="container drop-shadow mt-5 mb-5 p-5 text-center pt-2">
     <img src="img/errore_connessione.png" class="altezza-fissa mb-3 img-fluid" alt="">
 </div>
 

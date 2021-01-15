@@ -6,14 +6,15 @@ $db = 'mercatinopulci';
 $cid = new mysqli($hostname,$username,$password,$db);
 
 if($cid->connect_errno){
-    header("location: ../erroreConnessione.php");
+    $risultato["errore"] = true;
+    echo json_encode($risultato);
     exit;
 }
 
 $sql = "SELECT DISTINCT regione FROM areageografica order by regione";
 
 $res = $cid->query($sql);
-if ($res != null) {
+if ($res == null) {
     $risultato["errore"] = true;
 }
 

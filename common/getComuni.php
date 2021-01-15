@@ -11,20 +11,20 @@ if($cid->connect_errno){
     exit;
 }
 
-$regione= mysqli_real_escape_string($cid, $_GET["regione"]);
-$sql = "SELECT DISTINCT provincia FROM areageografica WHERE regione = '$regione'";
+$provincia= mysqli_real_escape_string($cid, $_GET["provincia"]);
+$sql = "SELECT DISTINCT comune FROM areageografica WHERE provincia = '$provincia'";
 
 $res = $cid->query($sql);
 if ($res == null) {
     $risultato["errore"] = true;
 }
 
-$prov= array();
+$comuni= array();
 while($row=$res->fetch_row())
 {
-    $prov[]=$row[0];
+    $comuni[]=$row[0];
 }
-$risultato["contenuto"]=$prov;
+$risultato["contenuto"]=$comuni;
 
 
 echo json_encode($risultato);

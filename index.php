@@ -122,7 +122,6 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                                 <label>
                                                     <select name="luogoVenditaRegione" id="luogoVenditaRegione" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Regione</option>
-                                                        <option value="Lombardia">Lombardia</option>
                                                     </select>
                                                 </label>
                                                 <label>
@@ -407,7 +406,6 @@ $utente["fotoProfilo"] = "venditore1.jpg";
             </div>
         </div>
     </div>
-
 </div>
 
 

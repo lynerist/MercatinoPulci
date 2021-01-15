@@ -7,19 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form id="fromCercaAnnuncio" method="get" action="risultati.php" class="form-inline my-2 my-lg-0 nav-form">
             <label>
-                <select id="regione" name="regione" class="form-control form-custom white-inputs">
+                <select id="navRegione" name="regione" class="form-control form-custom white-inputs">
                     <option value="0">Tutta Italia</option>
-                    <option value="1">Lombardia</option>
-                    <option value="2">Sardegna</option>
                 </select>
             </label>
             <label>
-                <select id="provincia" name="provincia" class="form-control form-custom white-inputs">
+                <select id="navProvincia" name="provincia" class="form-control form-custom white-inputs">
                     <option value="0">Ogni provincia</option>
-                    <option value="1">Ogni provincia</option>
-                    <option value="1">Lecco</option>
-                    <option value="2">Ogni provincia</option>
-                    <option value="2">Olbia</option>
                 </select>
             </label>
             <div class="nav-newline"></div>

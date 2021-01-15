@@ -313,7 +313,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
 <?php include_once "common/common_script.php"; ?>
 
 <script src="js/bottoni.js"></script>
-<script src="js/style.js"></script>
+<script src="js/modal.js"></script>
 <script>visualizza('statoUsura')</script>
 </body>
 

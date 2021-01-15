@@ -1,48 +1,76 @@
-let $regione = $( '#regione' ),
-$provincia = $( '#provincia' ),
-$options = $provincia.find( 'option' );
-
-$regione.on( 'change', function() {
-$provincia.html( $options.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
-
-
-let $regione1 = $( '#regione1' ),
-$provincia1 = $( '#provincia1' ),
-$options1 = $provincia1.find( 'option' );
-
-$regione1.on( 'change', function() {
-$provincia1.html( $options1.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
-
-
-let $regione2 = $( '#regione2' ),
-$provincia2 = $( '#provincia2' ),
-$options2 = $provincia2.find( 'option' );
-
-$regione2.on( 'change', function() {
-$provincia2.html( $options2.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
-
-
-let $regione3 = $( '#regione3' ),
-$provincia3 = $( '#provincia3' ),
-$options3 = $provincia3.find( 'option' );
-
-$regione3.on( 'change', function() {
-$provincia3.html( $options3.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
-
-
-let $regione4 = $( '#regione4' ),
-$provincia4 = $( '#provincia4' ),
-$options4 = $provincia4.find( 'option' );
-
-$regione4.on( 'change', function() {
-$provincia4.html( $options4.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
-
-function accediRegistrati(id){
+function accediRegistrati(id) {
     $("#modalLoginRegister").modal("show");
     $("#" + id).click();
 }
+
+function AjaxRequest() {
+    let request;
+    try {
+        request = new XMLHttpRequest()
+    } catch (e1) {
+        try {
+            request = new ActiveXObject("Msxml2.XMLHTTP")
+        } catch (e2) {
+            try {
+                request = new ActiveXObject("Microsoft.XMLHTTP")
+            } catch (e3) {
+                request = false
+            }
+        }
+    }
+    return request
+}
+
+function popolaRegioni(id) {
+    let xttp = new AjaxRequest();
+    xttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let risposta = JSON.parse(this.response);
+            if (risposta.errore){
+                window.location.replace("erroreConnessione.php");
+            }
+            let regioni = risposta.contenuto;
+            let select = document.getElementById(id);
+            for (let i = 0; i < regioni.length; i++) {
+                let regione = document.createElement('option');
+                regione.setAttribute("value", regioni[i]);
+                regione.innerText = regioni[i];
+                select.appendChild(regione);
+            }
+        }
+    };
+    xttp.open("GET", "common/getRegioni.php", true);
+    xttp.send();
+}
+
+function popolaProvince(idR, idP) {
+    let regioneSelect = document.getElementById(idR);
+    let regioneSelezionata = regioneSelect.options[regioneSelect.selectedIndex].value;
+
+    if (regioneSelezionata !== 0) {
+        let xttp = new AjaxRequest();
+        xttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let risposta = JSON.parse(this.response);
+
+                let province = risposta.contenuto;
+                let select = document.getElementById(idP);
+                select.innerHTML = "";
+                for (let i = 0; i < province.length; i++) {
+                    let provincia = document.createElement('option');
+                    provincia.setAttribute("value", province[i]);
+                    provincia.innerText = province[i];
+                    select.appendChild(provincia);
+                }
+            }
+        };
+        xttp.open("GET", "common/getProvincia.php?regione=" + regioneSelezionata, true);
+        xttp.send();
+    }
+}
+
+window.addEventListener('DOMContentLoaded', function (){popolaRegioni('navRegione')});
+document.getElementById('navRegione').addEventListener('change', function () {popolaProvince('navRegione', 'navProvincia')});
+window.addEventListener('DOMContentLoaded', function (){popolaRegioni('luogoVenditaRegione')});
+document.getElementById('luogoVenditaRegione').addEventListener('change', function () {popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia')});
+

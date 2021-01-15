@@ -560,6 +560,6 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
 
 <?php include_once "common/common_script.php"; ?>
 
-<script src="js/style.js"></script>
+<script src="js/modal.js"></script>
 </body>
 </html>

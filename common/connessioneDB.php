@@ -7,4 +7,5 @@ $cid = new mysqli($hostname,$username,$password,$db);
 
 if($cid->connect_errno){
   header("location: erroreConnessione.php");
+  exit;
 }

@@ -24,7 +24,10 @@ function calcolaScadenza($dop, $v, $tempoUsura): int{
     if ($giorniScadenza <= 0){
 //    TODO elimina questo annuncio tramite query
     }
-    return $giorniScadenza;
+    // TODO TOGLIERE    
+    //return $giorniScadenza;
+    return 1;
+
 }
 
 function inserisciFoto($foto){

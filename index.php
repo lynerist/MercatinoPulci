@@ -219,7 +219,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <input name="sc" type="text" class="d-none" value="0">
                         <p>Cosa cerchi?</p>
                         <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Frullatore, Smart Tv, Aspirapolvere" aria-label="Search" required>
+                               placeholder="Frullatore, Smart Tv, Aspirapolvere" aria-label="Search">
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione1">
@@ -272,7 +272,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <input name="sc" type="text" class="d-none" value="6">
                         <p>Cosa cerchi?</p>
                         <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Reflex, Treppiede, Registratore" aria-label="Search" required>
+                               placeholder="Reflex, Treppiede, Registratore" aria-label="Search">
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione2">
@@ -325,7 +325,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <input name="sc" type="text" class="d-none" value="12">
                         <p>Cosa cerchi?</p>
                         <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Sciarpa, Scarpe, Borsa" aria-label="Search" required>
+                               placeholder="Sciarpa, Scarpe, Borsa" aria-label="Search">
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione3">
@@ -379,7 +379,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <input name="sc" type="text" class="d-none" value="18">
                         <p>Cosa cerchi?</p>
                         <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
-                               placeholder="Cuffie, Chitarra, Racchettoni" aria-label="Search" required>
+                               placeholder="Cuffie, Chitarra, Racchettoni" aria-label="Search">
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione4">

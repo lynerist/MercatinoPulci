@@ -60,18 +60,18 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="categoria" id="categoria" class="form-control nuovoAnnuncio" onchange="sottoCategoria('sottocategoria ', selectedIndex)" required>
+                                                    <select name="categoria" id="categoria" class="form-control nuovoAnnuncio" onchange="sottoCategoria('sottocategoria', selectedIndex)" required>
                                                         <option value="" disabled selected hidden>Categoria</option>
                                                         <option value="elettrodomestici">Elettrodomestici</option>
-                                                        <option value="abbigliamento">Abbigliamento</option>
                                                         <option value="fotoEVideo">Foto e video</option>
+                                                        <option value="abbigliamento">Abbigliamento</option>
                                                         <option value="hobby">Hobby</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="sottocategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
+                                                    <select name="sottcategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Sottocategoria</option>
                                                     </select>
                                                 </label>

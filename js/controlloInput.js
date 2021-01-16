@@ -92,9 +92,21 @@ function loadFile(event){
     image.src = URL.createObjectURL(event.target.files[0]);
 }
 
-function sottoCategoria(id, categoria){
-    switch (categoria){
-        case "1":
-            document.getElementById(id).innerHTML='<option value=\"\" disabled selected hidden>Sottocategoria</option>\n" + "<option value=\"aspirapolveri\">Aspirapolveri</option>\n" + "<option value=\"caffettiere\">Caffettiere</option>\n" + "<option value=\"tostapane\">Tostapane</option>\n" + "<option value=\"frullatori\">Frullatori</option>\n" + "<option value=\"altro\">Altro</option>';
+function sottoCategoria(id, indexCategoria){
+    console.log(id);
+    console.log(indexCategoria);
+    switch (indexCategoria){
+        case 1:
+            document.getElementById(id).innerHTML = '<option value="" disabled selected hidden>Sottocategoria</option>\n" + "<option value="aspirapolveri">Aspirapolveri</option>\n" + "<option value="caffettiere">Caffettiere</option>\n" + "<option value="tostapane">Tostapane</option>\n" + "<option value="frullatori">Frullatori</option>\n" + "<option value="altro">Altro</option>"';
+            break;
+        case 2:
+            document.getElementById(id).innerHTML = '<option value="" disabled selected hidden>Sottocategoria</option>\n' + '<option value="macchineFotografiche">Macchine fotografiche</option>\n' + '<option value="accessori">Accessori</option>\n' + '<option value="telecamere">Telecamere</option>\n' + '<option value="microfoni">Microfoni</option>\n' + '<option value="altro">Altro</option>';
+            break;
+        case 3:
+            document.getElementById(id).innerHTML = '<option value="" disabled selected hidden>Sottocategoria</option>\n' + '<option value="vestiti">Vestiti</option>\n' + '<option value="borse">Borse</option>\n' + '<option value="scarpe">Scarpe</option>\n' + '<option value="accessori">Accessori</option>\n' + '<option value="altro">Altro</option>';
+            break;
+        case 4:
+            document.getElementById(id).innerHTML = '<option value="" disabled selected hidden>Sottocategoria</option>\n' + '<option value="giocattoli">Giocattoli</option>\n' + '<option value="filmEDVD">Film e DVD</option>\n' + '<option value="musica">Musica</option>\n' + '<option value="libriERiviste">Libri e riviste</option>\n' + '<option value="altro">Altro</option>';
+            break;
     }
 }

@@ -30,6 +30,7 @@ function popolaRegioni(id) {
             if (risposta.errore){
                 window.location.replace("erroreConnessione.php");
             }
+
             let regioni = risposta.contenuto;
             let select = document.getElementById(id);
             for (let i = 0; i < regioni.length; i++) {
@@ -44,7 +45,7 @@ function popolaRegioni(id) {
     xttp.send();
 }
 
-function popolaProvince(idR, idP, opzionale) {
+function popolaProvince(idR, idP, idC, opzionale) {
     let regioneSelect = document.getElementById(idR);
     let regioneSelezionata = regioneSelect.options[regioneSelect.selectedIndex].value;
 
@@ -70,7 +71,7 @@ function popolaProvince(idR, idP, opzionale) {
                     provincia.innerText = province[i];
                     select.appendChild(provincia);
                 }
-                select.selectedIndex = "0";
+                popolaComuni(idP, idC)
             }
         };
         xttp.open("GET", "common/getProvince.php?regione=" + regioneSelezionata, true);
@@ -112,5 +113,5 @@ window.addEventListener('DOMContentLoaded', function (){popolaRegioni('navRegion
 document.getElementById('navRegione').addEventListener('change', function () {popolaProvince('navRegione', 'navProvincia', true)});
 
 window.addEventListener('DOMContentLoaded', function (){popolaRegioni('luogoVenditaRegione')});
-document.getElementById('luogoVenditaRegione').addEventListener('change', function () {popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia'); popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')});
+document.getElementById('luogoVenditaRegione').addEventListener('change', function () {popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')});
 document.getElementById('luogoVenditaProvincia').addEventListener('change', function () {popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')});

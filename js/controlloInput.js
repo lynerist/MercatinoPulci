@@ -87,7 +87,14 @@ function controllaValutazione(id){
     return !(document.getElementById(id).ratingS.value === '' || document.getElementById(id).ratingP.value === '')
 }
 
-function loadFile(event) {
+function loadFile(event){
     let image = document.getElementById('fotoInput');
     image.src = URL.createObjectURL(event.target.files[0]);
-};
+}
+
+function sottoCategoria(id, categoria){
+    switch (categoria){
+        case "1":
+            document.getElementById(id).innerHTML='<option value=\"\" disabled selected hidden>Sottocategoria</option>\n" + "<option value=\"aspirapolveri\">Aspirapolveri</option>\n" + "<option value=\"caffettiere\">Caffettiere</option>\n" + "<option value=\"tostapane\">Tostapane</option>\n" + "<option value=\"frullatori\">Frullatori</option>\n" + "<option value=\"altro\">Altro</option>';
+    }
+}

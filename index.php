@@ -60,7 +60,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="categoria" id="categoria" class="form-control nuovoAnnuncio" required>
+                                                    <select name="categoria" id="categoria" class="form-control nuovoAnnuncio" onchange="sottoCategoria('sottocategoria ', selectedIndex)" required>
                                                         <option value="" disabled selected hidden>Categoria</option>
                                                         <option value="elettrodomestici">Elettrodomestici</option>
                                                         <option value="abbigliamento">Abbigliamento</option>
@@ -71,9 +71,8 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                             </div>
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="sottcategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
+                                                    <select name="sottocategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Sottocategoria</option>
-                                                        <option value="altro">Altro</option>
                                                     </select>
                                                 </label>
                                             </div>

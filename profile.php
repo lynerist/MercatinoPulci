@@ -101,7 +101,6 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
                                                                     <label>
                                                                         <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
                                                                             <option value="" disabled selected hidden>Regione</option>
-                                                                            <option value="lombardia">Lombardia</option>
                                                                         </select>
                                                                     </label>
                                                                 </div>
@@ -112,7 +111,6 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
                                                                     <label>
                                                                         <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>
                                                                             <option value="" disabled selected hidden>Provincia</option>
-                                                                            <option value="milano">Milano</option>
                                                                         </select>
                                                                     </label>
                                                                 </div>
@@ -132,7 +130,6 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
                                                                     <label>
                                                                         <select name="modificaComune" id="modificaComune" class="form-control modificaProfilo" required>
                                                                             <option value="" disabled selected hidden>Comune</option>
-                                                                            <option value="milano">Milano</option>
                                                                         </select>
                                                                     </label>
                                                                 </div>
@@ -561,5 +558,16 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
 <?php include_once "common/common_script.php"; ?>
 
 <script src="js/modal.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        popolaRegioni('modificaRegione')
+    });
+    document.getElementById('modificaRegione').addEventListener('change', function () {
+        popolaProvince('modificaRegione', 'modificaProvincia', 'modificaComune')
+    });
+    document.getElementById('modificaProvincia').addEventListener('change', function () {
+        popolaComuni('modificaProvincia', 'modificaComune')
+    });
+</script>
 </body>
 </html>

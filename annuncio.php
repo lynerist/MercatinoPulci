@@ -134,19 +134,16 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                                 <label>
                                                                     <select name="regione" id="luogoVenditaRegione" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Regione</option>
-                                                                        <option value="Lombardia">Lombardia</option>
                                                                     </select>
                                                                 </label>
                                                                 <label>
                                                                     <select name="provincia" id="luogoVenditaProvincia" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Provincia</option>
-                                                                        <option value="Milano">Milano</option>
                                                                     </select>
                                                                 </label>
                                                                 <label>
                                                                     <select name="comune" id="luogoVenditaComune" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Comune</option>
-                                                                        <option value="Milano">Milano</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -264,7 +261,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
             <?php
             if (!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){
                 echo '<button type="button" class="destra btn btn-secondary btn-outline-primary btn-sm mt-5" data-dismiss="modal" id="osserva" onclick="rimuovi(id, \'annulla\')">Osserva</button>';
-                echo '<button type="button" class="destra btn btn-secondary btn-outline-warning btn-sm annulla mt-5" data-dismiss="modal" id="annulla" onclick="rimuovi(id, \'osserva\')">Annulla</button>';
+                echo '<div class="destra text-primary pt-1 annulla mt-5" data-dismiss="modal" id="annulla">Osservato</div>';
             }
             ?>
 
@@ -315,6 +312,17 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
 <script src="js/bottoni.js"></script>
 <script src="js/modal.js"></script>
 <script>visualizza('statoUsura')</script>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        popolaRegioni('luogoVenditaRegione')
+    });
+    document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
+        popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')
+    });
+    document.getElementById('luogoVenditaProvincia').addEventListener('change', function () {
+        popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')
+    });
+</script>
 </body>
 
 </html>

@@ -8,12 +8,24 @@
         <form id="fromCercaAnnuncio" method="get" action="risultati.php" class="form-inline my-2 my-lg-0 nav-form">
             <label>
                 <select id="navRegione" name="regione" class="form-control form-custom white-inputs">
-                    <option value="0">Tutta Italia</option>
+                    <?php
+                    if (isset($_GET["regione"]) and $_GET["regione"] != "Tutta Italia"){
+                        echo '<option value="' . $_GET["regione"] . '">' . $_GET["regione"] . '</option>';
+                        echo '<option disabled></option>';
+                    }
+                    ?>
+                    <option value="Tutta Italia">Tutta Italia</option>
                 </select>
             </label>
             <label>
                 <select id="navProvincia" name="provincia" class="form-control form-custom white-inputs">
-                    <option value="0">Ogni provincia</option>
+                    <?php
+                    if (isset($_GET["provincia"]) and $_GET["provincia"] != "Ogni provincia"){
+                        echo '<option value="' . $_GET["provincia"] . '">' . $_GET["provincia"] . '</option>';
+                        echo '<option disabled></option>';
+                    }
+                    ?>
+                    <option value="Ogni provincia">Ogni provincia</option>
                 </select>
             </label>
             <div class="nav-newline"></div>
@@ -128,19 +140,16 @@
                                                 <label>
                                                     <select name="regione" id="register-regione" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Regione</option>
-                                                        <option value="Lombardia">Lombardia</option>
                                                     </select>
                                                 </label>
                                                 <label>
                                                     <select name="provincia" id="register-provincia" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
-                                                        <option value="Milano">Milano</option>
                                                     </select>
                                                 </label>
                                                 <label>
                                                     <select name="comune" id="register-comune" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Comune</option>
-                                                        <option value="Milano">Milano</option>
                                                     </select>
                                                 </label>
                                             </div>

@@ -145,19 +145,16 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                                     <label>
                                                         <select name="visibilita-regione_0" id="visibilita-regione_0" class="form-control">
                                                             <option value="" disabled selected hidden>Regione</option>
-                                                            <option value="Lombardia">Lombardia</option>
                                                         </select>
                                                     </label>
                                                     <label>
                                                         <select name="visibilita-provincia_0" id="visibilita-provincia_0" class="form-control">
                                                             <option value="" disabled selected hidden>Provincia</option>
-                                                            <option value="Milano">Milano</option>
                                                         </select>
                                                     </label>
                                                     <label>
                                                         <select name="visibilita-comune_0" id="visibilita-comune_0" class="form-control">
                                                             <option value="" disabled selected hidden>Comune</option>
-                                                            <option value="Milano">Milano</option>
                                                         </select>
                                                     </label>
                                                 </div>
@@ -216,25 +213,19 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                 </div>
                 <div class="modal-body">
                     <form class="form my-2 my-lg-0 nav-form" method="get" action="risultati.php?">
-                        <input name="sc" type="text" class="d-none" value="0">
+                        <input id="sc" name="sc" type="text" class="d-none" value="0">
                         <p>Cosa cerchi?</p>
                         <input name="testoRicerca" class="form-control form-custom mr-sm-2 popup" type="search"
                                placeholder="Frullatore, Smart Tv, Aspirapolvere" aria-label="Search">
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione1">
-                                <option value="0">Tutta Italia</option>
-                                <option value="1">Lombardia</option>
-                                <option value="2">Sardegna</option>
+                                <option value="Tutta Italia">Tutta Italia</option>
                             </select>
                         </label>
                         <label class="popup">
                             <select class="form-control form-custom" name="provincia" id="provincia1">
-                                <option value="0">Ogni provincia</option>
-                                <option value="1">Ogni provincia</option>
-                                <option value="1">Lecco</option>
-                                <option value="2">Ogni provincia</option>
-                                <option value="2">Olbia</option>
+                                <option value="Ogni provincia">Ogni provincia</option>
                             </select>
                         </label>
                         <button class="btn btn-outline-success btn-custom my-2 my-sm-0 popup giallo" type="submit">Cerca</button>
@@ -276,18 +267,12 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione2">
-                                <option value="0">Tutta Italia</option>
-                                <option value="1">Lombardia</option>
-                                <option value="2">Sardegna</option>
+                                <option value="Tutta Italia">Tutta Italia</option>
                             </select>
                         </label>
                         <label class="popup">
                             <select class="form-control form-custom" name="provincia" id="provincia2">
-                                <option value="0">Ogni provincia</option>
-                                <option value="1">Ogni provincia</option>
-                                <option value="1">Lecco</option>
-                                <option value="2">Ogni provincia</option>
-                                <option value="2">Olbia</option>
+                                <option value="Ogni provincia">Ogni provincia</option>
                             </select>
                         </label>
                         <button class="btn btn-outline-success btn-custom my-2 my-sm-0 popup verde" type="submit">Cerca</button>
@@ -329,18 +314,12 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione3">
-                                <option value="0">Tutta Italia</option>
-                                <option value="1">Lombardia</option>
-                                <option value="2">Sardegna</option>
+                                <option value="Tutta Italia">Tutta Italia</option>
                             </select>
                         </label>
                         <label class="popup">
                             <select class="form-control form-custom" name="provincia" id="provincia3">
-                                <option value="0">Ogni provincia</option>
-                                <option value="1">Ogni provincia</option>
-                                <option value="1">Lecco</option>
-                                <option value="2">Ogni provincia</option>
-                                <option value="2">Olbia</option>
+                                <option value="Ogni provincia">Ogni provincia</option>
                             </select>
                         </label>
                         <button class="btn btn-outline-success btn-custom my-2 my-sm-0 popup rosso" type="submit">Cerca</button>
@@ -383,18 +362,12 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                         <p>Dove lo cerchi?</p>
                         <label class="popup">
                             <select class="form-control form-custom" name="regione" id="regione4">
-                                <option value="0">Tutta Italia</option>
-                                <option value="1">Lombardia</option>
-                                <option value="2">Sardegna</option>
+                                <option value="Tutta Italia">Tutta Italia</option>
                             </select>
                         </label>
                         <label class="popup">
                             <select class="form-control form-custom" name="provincia" id="provincia4">
-                                <option value="0">Ogni provincia</option>
-                                <option value="1">Ogni provincia</option>
-                                <option value="1">Lecco</option>
-                                <option value="2">Ogni provincia</option>
-                                <option value="2">Olbia</option>
+                                <option value="Ogni provincia">Ogni provincia</option>
                             </select>
                         </label>
                         <button class="btn btn-outline-success btn-custom my-2 my-sm-0 popup blu" type="submit">Cerca</button>
@@ -510,6 +483,26 @@ $utente["fotoProfilo"] = "venditore1.jpg";
 <?php include_once "common/common_script.php"; ?>
 <script src="js/carosello.js"></script>
 <script src="js/owl.carousel.js"></script>
+<script>
+    for (let i=1; i<5; i++) {
+        window.addEventListener('DOMContentLoaded', function () {
+            popolaRegioni('regione' + i)
+        });
+        document.getElementById('regione' + i).addEventListener('change', function () {
+            popolaProvince('regione' + i, 'provincia' + i, '', true)
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        popolaRegioni('luogoVenditaRegione')
+    });
+    document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
+        popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')
+    });
+    document.getElementById('luogoVenditaProvincia').addEventListener('change', function () {
+        popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')
+    });
+</script>
 
 </body>
 </html>

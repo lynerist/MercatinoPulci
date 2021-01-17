@@ -95,10 +95,10 @@ function trovaRisultati_sql($cid, $parametri, $cfSessione){
         $parametro = mysqli_real_escape_string($cid, $parametro);
         switch ($key){
             case "regione":
-                $filtri .= ($parametro != '0')?"and a.regione='$parametro' ":"";
+                $filtri .= ($parametro != 'Tutta Italia')?"and a.regione='$parametro' ":"";
                 break;
             case "provincia":
-                $filtri .= ($parametro != "0")?"and a.provincia='$parametro' ":"";
+                $filtri .= ($parametro != "Ogni provincia")?"and a.provincia='$parametro' ":"";
                 break;
             case "testoRicerca":
                 $matchTesto = "";

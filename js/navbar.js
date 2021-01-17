@@ -45,7 +45,7 @@ function popolaRegioni(id) {
     xttp.send();
 }
 
-function popolaProvince(idR, idP, idC, opzionale) {
+function popolaProvince(idR, idP, idC, opzionale, nonSvuotare) {
     let regioneSelect = document.getElementById(idR);
     let regioneSelezionata = regioneSelect.options[regioneSelect.selectedIndex].value;
 
@@ -61,9 +61,12 @@ function popolaProvince(idR, idP, idC, opzionale) {
 
                 let province = risposta.contenuto;
                 let select = document.getElementById(idP);
-                select.innerHTML = "";
-                if (opzionale){
-                    select.innerHTML = "<option value=\"0\">Ogni provincia</option>";
+                if (!nonSvuotare){
+                    select.innerHTML = "";
+                }
+
+                if (opzionale && !nonSvuotare){
+                        select.innerHTML = "<option value=\"Ogni provincia\">Ogni provincia</option>";
                 }
                 for (let i = 0; i < province.length; i++) {
                     let provincia = document.createElement('option');
@@ -110,8 +113,14 @@ function popolaComuni(idP, idC) {
 }
 
 window.addEventListener('DOMContentLoaded', function (){popolaRegioni('navRegione')});
-document.getElementById('navRegione').addEventListener('change', function () {popolaProvince('navRegione', 'navProvincia', true)});
+document.getElementById('navRegione').addEventListener('change', function () {popolaProvince('navRegione', 'navProvincia', '', true)});
 
-window.addEventListener('DOMContentLoaded', function (){popolaRegioni('luogoVenditaRegione')});
-document.getElementById('luogoVenditaRegione').addEventListener('change', function () {popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')});
-document.getElementById('luogoVenditaProvincia').addEventListener('change', function () {popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')});
+window.addEventListener('DOMContentLoaded', function () {
+    popolaRegioni('register-regione')
+});
+document.getElementById('register-regione').addEventListener('change', function () {
+    popolaProvince('register-regione', 'register-provincia', 'register-comune')
+});
+document.getElementById('register-provincia').addEventListener('change', function () {
+    popolaComuni('register-provincia', 'register-comune')
+});

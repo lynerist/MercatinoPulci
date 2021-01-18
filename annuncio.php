@@ -16,7 +16,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
 <html lang="it">
 
 <head>
-    <title><?php echo $annuncio["titolo"] ?></title>
+    <title><?php echo utf8_encode($annuncio["titolo"]) ?></title>
     <?php include_once "common/common_header.php"?>
     <link rel="stylesheet" type="text/css" href="css/products.css">
     <link rel="stylesheet"  type="text/css" href="css/annuncio.css">
@@ -26,7 +26,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
 <body>
 <?php include_once "common/navbar.php"?>
 
-<h1 class="title-watched container"><?php echo $annuncio["titolo"] ?></h1>
+<h1 class="title-watched container"><?php echo utf8_encode($annuncio["titolo"]) ?></h1>
 
 <div class="container dark-grey-text mt-4 drop-shadow <?php if ($annuncio["statoAnnuncio"] == "eliminato") echo "ombra-eliminato"; elseif ($annuncio["statoAnnuncio"] == "venduto") echo "ombra-venduto"; ?> mb-5">
     <div class="row">
@@ -65,7 +65,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                 <div class="col-md-8">
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
-                                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="<?php echo $annuncio['titolo'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="<?php echo utf8_encode($annuncio['titolo']) ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
                                                             <div class="col-md-6"><label><input id="prezzo" type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value="<?php echo $annuncio['prezzo'] ?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
                                                         </div>
                                                         <div class="row mt-3">
@@ -90,7 +90,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Prodotto" value="<?php echo $annuncio['prodotto'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Prodotto" value="<?php echo utf8_encode($annuncio['prodotto']) ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
                                                             <div class="col-md-6">
                                                                 <label>
                                                                     <select name="visibilita" id="visibilita" class="form-control modificaAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
@@ -215,7 +215,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
             <br>
             <div class="luogo"><?php echo $annuncio["regione"] . ", " . $annuncio["provincia"] . ", " . $annuncio["comune"] ?></div>
             <div class="lead">€ <?php echo $annuncio["prezzo"] ?></div>
-            <div class="lead mb-3"><?php echo $annuncio["prodotto"] ?></div>
+            <div class="lead mb-3"><?php echo utf8_encode($annuncio["prodotto"]) ?></div>
             <div class="font-weight-bold mb-3"><?php if ($annuncio["tempoUsura"] == 0) echo "Nuovo"; else echo "Usato" ?></div>
             <div class="mb-5"><?php echo $annuncio["statoUsura"] ?></div>
             <?php if ($annuncio["statoAnnuncio"] == "inVendita"){ ?>

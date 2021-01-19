@@ -34,6 +34,10 @@ function inserisciFoto($foto){
     echo is_null($foto)?"image_not_found.png":$foto;
 }
 
+function inserisciFotoAjax($foto){
+    return is_null($foto)?"image_not_found.png":$foto;
+}
+
 function indiciCategorie(){
     return array('elettrodomestici', 'aspirapolveri', 'caffettiere', 'tostapane', 'frullatori', 'altro', 'fotoEVideo', 'macchineFotografiche', 'accessori', 'telecamere', 'microfoni', 'altro', 'abbigliamento', 'vestiti', 'borse', 'scarpe', 'accessori', 'altro', 'hobby', 'giocattoli', 'filmEDVD', 'musica', 'libriERiviste', 'altro');
 }

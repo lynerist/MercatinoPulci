@@ -17,9 +17,10 @@ if ($cid->connect_errno) {
 $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 $offset = isset($_GET["offset"])?$_GET["offset"]:'0';
 
-$utente["annunciVenduti"] = trovaAnnunciVenduti_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : '', $offset);
 
-if ($utente["annunciVenduti"] == null) {
+$utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : '', $offset);
+
+if ($utente["annunciInVendita"] == null) {
     $risultato["errore"] = true;
 }
 
@@ -27,32 +28,38 @@ $risultato["html"] = '<div class="container pb-5 mt-n2 mt-md-n3">
                             <div class="row">
                                 <div class="col-md-12">';
 
-$haVendite = ($utente["annunciVenduti"]->num_rows);
-if (!$haVendite) {
+$haAnnunciInVendita = ($utente["annunciInVendita"]->num_rows);
+if (!$haAnnunciInVendita) {
     $risultato["html"] .= '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
                                                 <h2 class="container">Ancora nessuna vendita</h2>
                                                 </div>';
 }
-
-while ($annuncio = $utente["annunciVenduti"]->fetch_assoc()) {
+while ($annuncio = $utente["annunciInVendita"]->fetch_assoc()) {
     $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];
+    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    if ($annuncio["scadenza"] < 1) {
+        $annuncio["statoAnnuncio"] = "eliminato";
+        continue;
+    }
+
     $risultato["html"] .= '<div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank"><img src="fotoAnnuncio/' . inserisciFotoAjax($annuncio['fotoAnnuncio']) . '" alt="Product" id="foto1"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">' . utf8_encode($annuncio["titolo"]) . '</a></h3>
-                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>' . utf8_encode($annuncio["prodotto"]) . '</div>
-                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>' . $annuncio["statoUsura"] . '</b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€' . $annuncio["prezzo"] . '</div>
+                                            <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank"><img src="fotoAnnuncio/' . inserisciFotoAjax($annuncio['fotoAnnuncio']) . '" alt="Product" id="foto1"></a>
+                                                <div class="media-body pt-3">
+                                                    <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">' . $annuncio["titolo"] . '</a></h3>
+                                                    <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>' . $annuncio["prodotto"] . '</div>
+                                                    <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>' . $annuncio["statoUsura"] . '</b></span></div>
+                                                    <div class="font-size-lg text-primary pt-2" id="prezzo1">€' . $annuncio["prezzo"] . '</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>';
+                                        </div>';
 }
+
 $risultato["html"] .= '</div>
                             </div>
                         </div>';
 
-if ($haVendite) {
+if ($haAnnunciInVendita) {
 
     /*'<nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
                             <ul class="pagination">
@@ -81,26 +88,24 @@ if ($haVendite) {
                                 </li>
                             </ul>
                             <div class="form-group page-box">
-                                <label for="jumpToPageAnnunciVenduti">
+                                <label for="jumpToPageAnnunciInVendita">
                                     <span aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
+                                    <input type="text" class="form-control" id="jumpToPageAnnunciInVendita" maxlength="3">
                                     Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
                                 </label>
                             </div>
-                        </nav>
-                    </div>';*/
-
+                        </nav>';*/
 
 
     $risultato["html"] .= '<nav class="pagination-wrapper pagination-box d-flex justify-content-between" aria-label="Esempio di navigazione con jump to page">
             <ul class="pagination">
             <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', 0)">
+                    <button class="page-link" onclick="popolaAnnunciInVendita(\'' . base64_encode($utente["codiceFiscale"]) . '\', 0)">
                         <i class="fas fa-angle-double-left"></i>   
                     </button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset-1)>=0?($offset-1):0) . ')">
+                    <button class="page-link" onclick="popolaAnnunciInVendita(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset-1)>=0?($offset-1):0) . ')">
                         <i class="fas fa-angle-left"></i>
                     </button>
                 </li>
@@ -108,24 +113,24 @@ if ($haVendite) {
                     <a class="page-link" href="#" aria-current="page">' . ($offset+1) . '</a>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=intval($haVendite/3)?($offset+1):0) . ')">
+                    <button class="page-link" onclick="popolaAnnunciInVendita(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=intval($haAnnunciInVendita/3)?($offset+1):0) . ')">
                         <i class="fas fa-angle-right"></i>
                     </button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . intval($haVendite/3) . ')">
+                    <button class="page-link" onclick="popolaAnnunciInVendita(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . intval($haAnnunciInVendita/3) . ')">
                         <i class="fas fa-angle-double-right"></i>   
                     </button>
                 </li>
             </ul>
             <div class="form-group page-box">
-                <label for="jumpToPageAnnunciVenduti">
-                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="2" placeholder="/' . (intval($haVendite/3) + 1) . '" onchange="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', Math.abs((value-1))<=' . intval($haVendite/3) . '?(value-1):' . intval($haVendite/3) . ')">
+                <label for="jumpToPageAnnunciInVendita">
+                    <input type="text" class="form-control" id="jumpToPageAnnunciInVendita" maxlength="2" placeholder="/' . (intval($haAnnunciInVendita/3) + 1) . '" onchange="popolaAnnunciInVendita(\'' . base64_encode($utente["codiceFiscale"]) . '\', Math.abs((value-1))<=' . intval($haAnnunciInVendita/3) . '?(value-1):' . intval($haAnnunciInVendita/3) . ')">
                     Vai a ...
                 </label>
             </div>
         </nav>';
-}
 
+}
 
 echo json_encode($risultato);

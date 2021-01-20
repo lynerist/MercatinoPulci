@@ -41,8 +41,10 @@ function valutazioni_sql($cid, $cf){
     return $valutazioni;
 }
 
-function trovaAnnunciAcquistati_sql($cid, $cf, $cfSessione){
-    $res = $cid -> query("select annuncio.venditore, annuncio.dataOraPubblicazione, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.acquirente = '$cf' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ");");
+function trovaAnnunciAcquistati_sql($cid, $cf, $cfSessione, $offset){
+    $limit = 3;
+    $offset = intval($offset)*$limit;
+    $res = $cid -> query("select annuncio.venditore, annuncio.dataOraPubblicazione, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.acquirente = '$cf' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ") LIMIT " . $limit . " OFFSET " . $offset);
     if ($res==null){
         header("location: erroreConnessione.php");
         exit;
@@ -50,8 +52,20 @@ function trovaAnnunciAcquistati_sql($cid, $cf, $cfSessione){
     return $res;
 }
 
-function trovaAnnunciVenduti_sql($cid, $cf, $cfSessione){
-    $res = $cid -> query("select annuncio.venditore, annuncio.dataOraPubblicazione, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.venditore = '$cf' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ");");
+function nAnnunciAcquistati_sql($cid, $cf){
+    $res = $cid -> query("select count(*) from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.acquirente = '$cf'");
+    if ($res==null){
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    $nAnnunci = $res -> fetch_row();
+    return $nAnnunci[0];
+}
+
+function trovaAnnunciVenduti_sql($cid, $cf, $cfSessione, $offset){
+    $limit = 3;
+    $offset = intval($offset)*$limit;
+    $res = $cid -> query("select annuncio.venditore, annuncio.dataOraPubblicazione, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.venditore = '$cf' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ") LIMIT " . $limit . " OFFSET " . $offset);
     if ($res==null){
         header("location: erroreConnessione.php");
         exit;
@@ -59,8 +73,20 @@ function trovaAnnunciVenduti_sql($cid, $cf, $cfSessione){
     return $res;
 }
 
-function trovaAnnunciInVendita_sql($cid, $cf, $cfSessione){
-    $res = $cid -> query("select annuncio.venditore, annuncio.dataOraPubblicazione, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio from annuncio where venditore = '$cf' and statoAnnuncio = 'inVendita' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ");");
+function nAnnunciVenduti_sql($cid, $cf){
+    $res = $cid -> query("select count(*) from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.venditore = '$cf'");
+    if ($res==null){
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    $nAnnunci = $res -> fetch_row();
+    return $nAnnunci[0];
+}
+
+function trovaAnnunciInVendita_sql($cid, $cf, $cfSessione, $offset){
+    $limit = 3;
+    $offset = intval($offset)*$limit;
+    $res = $cid -> query("select annuncio.venditore, annuncio.dataOraPubblicazione, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio from annuncio where venditore = '$cf' and statoAnnuncio = 'inVendita' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ") LIMIT " . $limit . " OFFSET " . $offset);
     if ($res==null){
         header("location: erroreConnessione.php");
         exit;
@@ -80,6 +106,10 @@ function trovaAnnuncio_sql($cid, $dop, $v, $cfSessione){
     }
     $annuncio = $res -> fetch_assoc();
     if ($annuncio["statoUsura"] == "comeNuovo") $annuncio["statoUsura"] = "Come nuovo";
+    if ($annuncio["categoria"] == "fotoEVideo") $annuncio["categoria"] = "Foto e video";
+    if ($annuncio["sottoCategoria"] == "macchineFotografiche") $annuncio["sottoCategoria"] = "Macchine fotografiche";
+    if ($annuncio["sottoCategoria"] == "filmEDVD") $annuncio["sottoCategoria"] = "Film e DVD";
+    if ($annuncio["sottoCategoria"] == "libriERiviste") $annuncio["sottoCategoria"] = "Libri e riviste";
     $annuncio["tempoUsura"] = intval($annuncio["tempoUsura"]);
     //controllo scadenza annuncio
     if ($annuncio["statoAnnuncio"] == "inVendita") {

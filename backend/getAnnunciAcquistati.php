@@ -15,7 +15,9 @@ if ($cid->connect_errno) {
 }
 
 $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
-$utente["annunciAcquistati"] = trovaAnnunciAcquistati_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : '');
+$offset = isset($_GET["offset"])?$_GET["offset"]:'0';
+
+$utente["annunciAcquistati"] = trovaAnnunciAcquistati_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : '', $offset);
 
 if ($utente["annunciAcquistati"] == null) {
     $risultato["errore"] = true;
@@ -25,7 +27,8 @@ $risultato["html"] = '<div class="container pb-5 mt-n2 mt-md-n3">
             <div class="row">
                 <div class="col-md-12">';
 
-if (!($utente["annunciAcquistati"]->num_rows)) {
+$haAcquisti = ($utente["annunciAcquistati"]->num_rows);
+if (!$haAcquisti) {
     $risultato["html"] .= '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
                                                 <h2 class="container">Ancora nessun acquisto</h2>
                                                 </div>';
@@ -49,41 +52,42 @@ while ($annuncio = $utente["annunciAcquistati"]->fetch_assoc()) {
 
 $risultato["html"] .= '</div>
             </div>
-        </div>
-        <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
+        </div>';
+
+if ($haAcquisti) {
+    $risultato["html"] .= '<nav class="pagination-wrapper pagination-box d-flex justify-content-between" aria-label="Esempio di navigazione con jump to page">
             <ul class="pagination">
+            <li class="page-item">
+                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', 0)">
+                        <i class="fas fa-angle-double-left"></i>   
+                    </button>
+                </li>
                 <li class="page-item">
-                    <a class="page-link" href="#">
+                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset-1)>=0?($offset-1):0) . ')">
                         <i class="fas fa-angle-left"></i>
-                        <span class="sr-only">Pagina precedente</span>
-                    </a>
+                    </button>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><span class="page-link">...</span></li>
-                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">24</a></li>
-                <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
                 <li class="page-item active">
-                    <a class="page-link" href="#" aria-current="page">26</a>
+                    <a class="page-link" href="#" aria-current="page">' . ($offset+1) . '</a>
                 </li>
-                <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
-                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">28</a></li>
-                <li class="page-item"><span class="page-link">...</span></li>
-                <li class="page-item"><a class="page-link" href="#">50</a></li>
                 <li class="page-item">
-                    <a class="page-link" href="#">
-                        <span class="sr-only">Pagina successiva</span>
+                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=intval($haAcquisti/3)?($offset+1):0) . ')">
                         <i class="fas fa-angle-right"></i>
-                    </a>
+                    </button>
+                </li>
+                <li class="page-item">
+                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . intval($haAcquisti/3) . ')">
+                        <i class="fas fa-angle-double-right"></i>   
+                    </button>
                 </li>
             </ul>
             <div class="form-group page-box">
                 <label for="jumpToPageAnnunciAcquistati">
-                    <span aria-hidden="true"></span>
-                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="3">
-                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
+                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="2" placeholder="/' . (intval($haAcquisti/3) + 1) . '" onchange="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', Math.abs((value-1))<=' . intval($haAcquisti/3) . '?(value-1):' . intval($haAcquisti/3) . ')">
+                    Vai a ...
                 </label>
             </div>
         </nav>';
-
+}
 
 echo json_encode($risultato);

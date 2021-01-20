@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 15, 2021 alle 21:19
+-- Creato il: Gen 20, 2021 alle 01:04
 -- Versione del server: 10.4.17-MariaDB
 -- Versione PHP: 8.0.0
 
@@ -61,7 +61,7 @@ INSERT INTO `annuncio` (`dataOraPubblicazione`, `venditore`, `statoAnnuncio`, `t
 ('2021-01-11 22:32:28', 'CRVLRT87R11C559Q', 'inVendita', 'Quadro su papiro', 'quadro', 'hobby', 'altro', 25, 'usurato', 83, NULL, '4b2b286a3765df26df8a0d79b92af80b.jpg', NULL, 'pubblica', 'Imperia', 'Imperia'),
 ('2021-01-11 22:44:33', 'CSTNAI91R69G113A', 'inVendita', 'DVD le crociate', 'DVD', 'hobby', 'filmEDVD', 10, 'comeNuovo', 18, NULL, '7a7a2d7c9ff429cc5f4d28e997b577fe.jpg', NULL, 'pubblica', 'Sassari', 'Sassari'),
 ('2021-01-11 23:14:21', 'RSSCTR96D57A401O', 'inVendita', 'carte per tarocchi', 'tarocchi', 'hobby', 'altro', 210, 'buono', 70, NULL, '0173532172f5a87af2ef207d6250bf42.jpg', NULL, 'pubblica', 'Roma', 'Roma'),
-('2021-01-12 20:27:47', 'PNACCL83E41G713I', 'inVendita', 'Clean code per imparare a programmare', 'libro', 'hobby', 'libriERiviste', 25, 'comeNuovo', 3, NULL, 'f65d500af1bb1da7c101c19255e1ea09.jpg', NULL, 'pubblica', 'Pistoia', 'Pistoia'),
+('2021-01-12 20:27:47', 'PNACCL83E41G713I', 'venduto', 'Clean code per imparare a programmare', 'libro', 'hobby', 'libriERiviste', 25, 'comeNuovo', 3, NULL, 'f65d500af1bb1da7c101c19255e1ea09.jpg', NULL, 'pubblica', 'Pistoia', 'Pistoia'),
 ('2021-01-12 20:28:22', 'PNACCL83E41G713I', 'venduto', 'Nel Vuoto di Alex Honnold', 'libro', 'hobby', 'libriERiviste', 20, 'comeNuovo', 2, NULL, '7403a1d0d5e8afdb7244a7c6ad17419d.jpg', 2, 'pubblica', 'Pistoia', 'Pistoia'),
 ('2021-01-12 20:32:55', 'RSSVNC97R06B157T', 'inVendita', 'Collezione Divina commedia tre volumi, Dante Alighieri', 'libri', 'hobby', 'libriERiviste', 50, NULL, 0, NULL, '0f3c618628d7557a354290c5c5452f43.jpg', NULL, 'pubblica', 'Roncadelle', 'Brescia'),
 ('2021-01-12 20:35:57', 'SLMBRN92B16D205T', 'inVendita', 'Buoni o cattivi cd di Vasco Rossi', 'cd', 'hobby', 'musica', 15, 'buono', 36, NULL, '7e9e7e880b70be408bce70a64975fc2b.jpg', NULL, 'pubblica', 'Barolo', 'Cuneo'),
@@ -89,7 +89,15 @@ INSERT INTO `annuncio` (`dataOraPubblicazione`, `venditore`, `statoAnnuncio`, `t
 ('2021-01-15 15:51:05', 'BCCGRT89R52E617T', 'inVendita', 'Borraccia per città colorata', 'borraccia', 'hobby', 'altro', 10, 'comeNuovo', 2, NULL, '5d366f903c853bd0f182136a1d9247c9.jpeg', NULL, 'pubblica', 'Lissone', 'Monza e della Brianza'),
 ('2021-01-15 15:52:59', 'BCCGRT89R52E617T', 'inVendita', 'Lapislazzuli', 'pietre e minerali', 'hobby', 'altro', 12, NULL, 0, NULL, 'd34dca85a2d3bfad611a3f37b9d620b7.jpg', NULL, 'pubblica', 'Lissone', 'Monza e della Brianza'),
 ('2021-01-15 15:56:31', 'RGNGNN97R13L736H', 'inVendita', 'telecamera frontale per sport mai aperta', 'telecamera frontale', 'fotoEVideo', 'altro', 25, NULL, 0, NULL, '2206ee489f7447be963cc7a5f8a785a0.jpg', NULL, 'pubblica', 'Venezia', 'Venezia'),
-('2021-01-15 15:58:27', 'PRCRRT83H11A014Q', 'inVendita', 'Guida alle falesie del bergamasco', 'libro', 'hobby', 'libriERiviste', 30, NULL, 0, NULL, 'ed72765553e568262ce56690c3326baf.jpeg', NULL, 'pubblica', 'Acate', 'Ragusa');
+('2021-01-15 15:58:27', 'PRCRRT83H11A014Q', 'inVendita', 'Guida alle falesie del bergamasco', 'libro', 'hobby', 'libriERiviste', 30, NULL, 0, NULL, 'ed72765553e568262ce56690c3326baf.jpeg', NULL, 'pubblica', 'Acate', 'Ragusa'),
+('2021-01-18 22:48:04', 'RSSVNC97R06B157T', 'inVendita', 'tazzina da caffè bella ', 'tazzina da caffé', 'hobby', 'altro', 5, 'comeNuovo', 2, NULL, NULL, NULL, 'pubblica', 'Brescia', 'Brescia'),
+('2021-01-19 23:30:08', 'RGNGNN97R13L736H', 'inVendita', 'Schiaccianoci in metallo', 'schiaccianoci', 'hobby', 'altro', 7, 'comeNuovo', 19, NULL, NULL, NULL, 'pubblica', 'Venezia', 'Venezia'),
+('2021-01-19 23:36:06', 'RGNGNN97R13L736H', 'inVendita', 'frullatore raramente usato multiuso', 'frullatore moderno', 'elettrodomestici', 'frullatori', 100, 'comeNuovo', 2, NULL, 'b9e31cb634542472b45e2db83d05965f.jpg', NULL, 'pubblica', 'Venezia', 'Venezia'),
+('2021-01-19 23:42:01', 'RGNGNN97R13L736H', 'inVendita', 'tostapane bialetti ', 'tostapane', 'elettrodomestici', 'tostapane', 15, 'comeNuovo', 5, NULL, 'fbb47e8784b471548bd10108c56e9290.jpg', NULL, 'pubblica', 'Venezia', 'Venezia'),
+('2021-01-19 23:44:33', 'PRCRRT83H11A014Q', 'inVendita', 'tostapane professionale', 'tostapane professionale', 'elettrodomestici', 'tostapane', 120, 'comeNuovo', 8, NULL, 'e2b8a242cd119bb4b3340063ba0be5b8.jpg', NULL, 'pubblica', 'Palermo', 'Palermo'),
+('2021-01-19 23:47:27', 'SLMBRN92B16D205T', 'inVendita', 'treppiedi per fotocamera', 'treppiedi', 'fotoEVideo', 'accessori', 15, 'comeNuovo', 1, NULL, NULL, NULL, 'pubblica', 'Cuneo', 'Cuneo'),
+('2021-01-19 23:55:08', 'PNACCL83E41G713I', 'venduto', 'Borsa Armani Jeans Color Bordeaux, Usata Pochissime Volte ', 'Borsa Armani', 'abbigliamento', 'borse', 100, 'comeNuovo', 3, NULL, 'a3a3f39155ca3d5917223333b571d766.jpg', NULL, 'pubblica', 'Pistoia', 'Pistoia'),
+('2021-01-20 00:03:20', 'BCCGRT89R52E617T', 'venduto', 'Microfono AKG C 2000 B da registrazione', 'microfono da registrazione', 'fotoEVideo', 'microfoni', 100, 'buono', 48, NULL, '76bb833fcfbaca16bab795d55d15a731.jpg', NULL, 'pubblica', 'Lissone', 'Monza e della Brianza');
 
 --
 -- Indici per le tabelle scaricate

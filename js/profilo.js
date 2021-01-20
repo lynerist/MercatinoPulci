@@ -54,3 +54,10 @@ function popolaAnnunciInVendita(cf, offset) {
     xttp.open("GET", "backend/getAnnunciInVendita.php?cf=" + cf + "&offset=" + offset, true);
     xttp.send();
 }
+
+function controllaVaia(pagina, maxPagina) {
+    console.log(pagina, maxPagina);
+    if (pagina > maxPagina) return maxPagina;
+    if (pagina > 0) return pagina;
+    return 1;
+}

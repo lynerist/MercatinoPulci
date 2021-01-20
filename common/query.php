@@ -62,6 +62,16 @@ function nAnnunciAcquistati_sql($cid, $cf){
     return $nAnnunci[0];
 }
 
+function nAnnunciAcquistatiVisibili_sql($cid, $cf, $cfSessione){
+    $res = $cid -> query("select count(*) from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.acquirente = '$cf' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ")");
+    if ($res==null){
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    $nAnnunci = $res -> fetch_row();
+    return $nAnnunci[0];
+}
+
 function trovaAnnunciVenduti_sql($cid, $cf, $cfSessione, $offset){
     $limit = 3;
     $offset = intval($offset)*$limit;
@@ -83,6 +93,16 @@ function nAnnunciVenduti_sql($cid, $cf){
     return $nAnnunci[0];
 }
 
+function nAnnunciVendutiVisibili_sql($cid, $cf, $cfSessione){
+    $res = $cid -> query("select count(*) from annuncio join acquista a on annuncio.dataOraPubblicazione = a.dataOraPubblicazione and annuncio.venditore = a.venditore where a.venditore = '$cf' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ")");
+    if ($res==null){
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    $nAnnunci = $res -> fetch_row();
+    return $nAnnunci[0];
+}
+
 function trovaAnnunciInVendita_sql($cid, $cf, $cfSessione, $offset){
     $limit = 3;
     $offset = intval($offset)*$limit;
@@ -92,6 +112,16 @@ function trovaAnnunciInVendita_sql($cid, $cf, $cfSessione, $offset){
         exit;
     }
     return $res;
+}
+
+function nAnnunciInVenditaVisibili_sql($cid, $cf, $cfSessione){
+    $res = $cid -> query("select count(*) from annuncio where venditore = '$cf' and statoAnnuncio = 'inVendita' and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ")");
+    if ($res==null){
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    $nAnnunci = $res -> fetch_row();
+    return $nAnnunci[0];
 }
 
 function trovaAnnuncio_sql($cid, $dop, $v, $cfSessione){

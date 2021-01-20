@@ -57,13 +57,13 @@ function controllaTestoAnagrafico(testo){
 }
 
 function controllaPrezzo(prezzo){
-    return /^[1-9][0-9]{0,3}((.|,)[0-9]{1,2})?$/.test(prezzo)
+    return /^[1-9][0-9]{0,3}((.|,)[0-9]{1,2})?$/.test(prezzo);
 }
 
 function controllaTempoUsura(idTempoUsura, idStatoUsura){
     let tempoUsura = document.getElementById(idTempoUsura).value;
     if (document.getElementById(idStatoUsura).value !== 'nuovo'){
-        return /^[1-9][0-9]{0,2}$/.test(tempoUsura)
+        return /^[1-9][0-9]{0,2}$/.test(tempoUsura);
     }
     return true
 }

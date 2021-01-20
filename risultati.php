@@ -230,21 +230,38 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
         </div>
         <div class="col-lg-9">
             <section class="panel two">
-                <div class="card-body pb-5">
-                    <nav aria-label="Page navigation example" class="float-right">
+                <div class="card-body pb-0">
+                    <nav class="pagination-wrapper pagination-box d-flex justify-content-between" aria-label="Esempio di navigazione con jump to page">
                         <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#0" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#0">1</a></li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#0">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#0">3</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#0">Next</a>
+                                <button class="page-link">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </button>
+                            </li>
+                            <li class="page-item">
+                                <button class="page-link">
+                                    <i class="fas fa-angle-left"></i>
+                                </button>
+                            </li>
+                            <li class="page-item active">
+                                <button class="page-link" href="#" aria-current="page">9</button>
+                            </li>
+                            <li class="page-item">
+                                <button class="page-link">
+                                    <i class="fas fa-angle-right"></i>
+                                </button>
+                            </li>
+                            <li class="page-item">
+                                <button class="page-link">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </button>
                             </li>
                         </ul>
+                        <div class="form-group page-box">
+                            <label for="jumpToPage">
+                                <input type="text" class="form-control restringi" id="jumpToPage" placeholder="/4" maxlength="2">
+                            </label>
+                        </div>
                     </nav>
                 </div>
             </section>

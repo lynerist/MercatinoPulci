@@ -18,7 +18,6 @@ $utente["codiceFiscale"] = base64_decode($_GET["cf"], true);
 $offset = isset($_GET["offset"])?$_GET["offset"]:'0';
 
 $utente["annunciVenduti"] = trovaAnnunciVenduti_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : '', $offset);
-
 if ($utente["annunciVenduti"] == null) {
     $risultato["errore"] = true;
 }
@@ -27,7 +26,8 @@ $risultato["html"] = '<div class="container pb-5 mt-n2 mt-md-n3">
                             <div class="row">
                                 <div class="col-md-12">';
 
-$haVendite = ($utente["annunciVenduti"]->num_rows);
+$haVendite = (nAnnunciVendutiVisibili_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : ''));
+$maxPagina = intval(($haVendite-1)/3);
 if (!$haVendite) {
     $risultato["html"] .= '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
                                                 <h2 class="container">Ancora nessuna vendita</h2>
@@ -105,22 +105,22 @@ if ($haVendite) {
                     </button>
                 </li>
                 <li class="page-item active">
-                    <a class="page-link" href="#" aria-current="page">' . ($offset+1) . '</a>
+                    <button class="page-link" aria-current="page">' . ($offset+1) . '</button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=intval($haVendite/3)?($offset+1):0) . ')">
+                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=$maxPagina?($offset+1):$maxPagina) . ')">
                         <i class="fas fa-angle-right"></i>
                     </button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . intval($haVendite/3) . ')">
+                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . $maxPagina . ')">
                         <i class="fas fa-angle-double-right"></i>   
                     </button>
                 </li>
             </ul>
             <div class="form-group page-box">
                 <label for="jumpToPageAnnunciVenduti">
-                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="2" placeholder="/' . (intval($haVendite/3) + 1) . '" onchange="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', Math.abs((value-1))<=' . intval($haVendite/3) . '?(value-1):' . intval($haVendite/3) . ')">
+                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="2" placeholder="/' . ($maxPagina + 1) . '" onchange="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', controllaVaia(value, ' . ($maxPagina+1) . ')-1)">
                     Vai a ...
                 </label>
             </div>

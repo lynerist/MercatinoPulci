@@ -27,7 +27,8 @@ $risultato["html"] = '<div class="container pb-5 mt-n2 mt-md-n3">
             <div class="row">
                 <div class="col-md-12">';
 
-$haAcquisti = ($utente["annunciAcquistati"]->num_rows);
+$haAcquisti = nAnnunciAcquistatiVisibili_sql($cid, $utente["codiceFiscale"], isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : '');
+$maxPagina = intval(($haAcquisti-1)/3);
 if (!$haAcquisti) {
     $risultato["html"] .= '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
                                                 <h2 class="container">Ancora nessun acquisto</h2>
@@ -68,22 +69,22 @@ if ($haAcquisti) {
                     </button>
                 </li>
                 <li class="page-item active">
-                    <a class="page-link" href="#" aria-current="page">' . ($offset+1) . '</a>
+                    <button class="page-link" aria-current="page">' . ($offset+1) . '</button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=intval($haAcquisti/3)?($offset+1):0) . ')">
+                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=$maxPagina?($offset+1):$maxPagina) . ')">
                         <i class="fas fa-angle-right"></i>
                     </button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . intval($haAcquisti/3) . ')">
+                    <button class="page-link" onclick="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . $maxPagina . ')">
                         <i class="fas fa-angle-double-right"></i>   
                     </button>
                 </li>
             </ul>
             <div class="form-group page-box">
                 <label for="jumpToPageAnnunciAcquistati">
-                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="2" placeholder="/' . (intval($haAcquisti/3) + 1) . '" onchange="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', Math.abs((value-1))<=' . intval($haAcquisti/3) . '?(value-1):' . intval($haAcquisti/3) . ')">
+                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="2" placeholder="/' . ($maxPagina + 1) . '" onchange="popolaAnnunciAcquistati(\'' . base64_encode($utente["codiceFiscale"]) . '\', controllaVaia(value, ' . ($maxPagina+1) . ')-1)">
                     Vai a ...
                 </label>
             </div>

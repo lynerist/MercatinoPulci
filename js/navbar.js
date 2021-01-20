@@ -112,8 +112,12 @@ function popolaComuni(idP, idC) {
     }
 }
 
-window.addEventListener('DOMContentLoaded', function (){popolaRegioni('navRegione')});
-document.getElementById('navRegione').addEventListener('change', function () {popolaProvince('navRegione', 'navProvincia', '', true)});
+window.addEventListener('DOMContentLoaded', function () {
+    popolaRegioni('navRegione')
+});
+document.getElementById('navRegione').addEventListener('change', function () {
+    popolaProvince('navRegione', 'navProvincia', '', true)
+});
 
 window.addEventListener('DOMContentLoaded', function () {
     popolaRegioni('register-regione')

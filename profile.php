@@ -327,132 +327,13 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
                 <?php
                 if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                     <div id="annunciAcquistati" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="container pb-5 mt-n2 mt-md-n3">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <?php if (!($utente["annunciAcquistati"] -> num_rows)){
-                                        echo '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
-                                                <h2 class="container">Ancora nessun acquisto</h2>
-                                                </div>';
-                                    }
-                                    while($annuncio = $utente["annunciAcquistati"] -> fetch_assoc()){
-                                            $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];?>
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
-                                             <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
-                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
-                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b><?php echo $annuncio["statoUsura"] ?></b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€<?php echo $annuncio["prezzo"] ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <nav class="pagination-wrapper pagination-box" aria-label="Esempio di navigazione con jump to page">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-angle-left"></i>
-                                        <span class="sr-only">Pagina precedente</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">24</a></li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">25</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#" aria-current="page">26</a>
-                                </li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">27</a></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">28</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item"><a class="page-link" href="#">50</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <span class="sr-only">Pagina successiva</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="form-group page-box">
-                                <label for="jumpToPageAnnunciAcquistati">
-                                    <span aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="jumpToPageAnnunciAcquistati" maxlength="3">
-                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                                </label>
-                            </div>
-                        </nav>
                     </div>
                 <?php } ?>
 
                 <?php
                 if ($utente["tipoAccount"] == "venditore" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                     <div id="annunciVenduti" class="tab-pane fade <?php if ($utente["tipoAccount"] == "venditore") echo "show active" ?>" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="container pb-5 mt-n2 mt-md-n3">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <?php if (!($utente["annunciVenduti"] -> num_rows)) {
-                                        echo '<div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
-                                                <h2 class="container">Ancora nessuna vendita</h2>
-                                                </div>';
-                                    }
-                                    while($annuncio = $utente["annunciVenduti"] -> fetch_assoc()){
-                                    $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];?>
-                                    <!-- Item-->
-                                    <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                                        <div class="media d-block d-sm-flex text-center text-sm-left">
-                                            <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product" id="foto1"></a>
-                                            <div class="media-body pt-3">
-                                                <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) ?>" target="_blank"><?php echo $annuncio["titolo"] ?></a></h3>
-                                                <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span><?php echo $annuncio["prodotto"] ?></div>
-                                                <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b><?php echo $annuncio["statoUsura"] ?></b></span></div>
-                                                <div class="font-size-lg text-primary pt-2" id="prezzo1">€<?php echo $annuncio["prezzo"] ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-angle-left"></i>
-                                        <span class="sr-only">Pagina precedente</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">7</a></li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">8</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#" aria-current="page">9</a>
-                                </li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">10</a></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">11</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item"><a class="page-link" href="#">50</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <span class="sr-only">Pagina successiva</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="form-group page-box">
-                                <label for="jumpToPageAnnunciVenduti">
-                                    <span aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
-                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                                </label>
-                            </div>
-                        </nav>
+
                     </div>
                 <?php } ?>
 
@@ -568,6 +449,11 @@ $utente["annunciInVendita"] = trovaAnnunciInVendita_sql($cid, $utente["codiceFis
     document.getElementById('modificaProvincia').addEventListener('change', function () {
         popolaComuni('modificaProvincia', 'modificaComune')
     });
+</script>
+<script src="js/profilo.js"></script>
+<script>
+    popolaAnnunciAcquistati('<?php echo base64_encode($utente["codiceFiscale"]);?>');
+    popolaAnnunciVenduti('<?php echo base64_encode($utente["codiceFiscale"]);?>');
 </script>
 </body>
 </html>

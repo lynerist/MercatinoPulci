@@ -31,7 +31,10 @@ $risultato["html"] = "";
 $item1 = "";
 $item2 = "";
 $i = 0;
+//TODO visualizzare "nessuno annuncio osservato"
 while ($annuncio = $res->fetch_assoc()) {
+    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    if ($annuncio["scadenza"] < 1) continue;
     $token = '<div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="' . $i . '">
             <div class="media d-block d-sm-flex text-center text-sm-left">
                 <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">
@@ -45,7 +48,7 @@ while ($annuncio = $res->fetch_assoc()) {
                     <div class="font-size-sm" id="tempoUsura' . $i . '"><span class="text-muted mr-2"><b>' . array("Usato", "Nuovo")[$annuncio["tempoUsura"] == 0] . '</b></span></div>
                     <div class="font-size-lg text-primary pt-2" id="prezzo1">€' . $annuncio['prezzo'] . '</div>
                     <div class="non-osservare">
-                        <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" id="rimuovi' . $i . '" onclick="rimuovi(id, \'annulla' . $i . '\')">Rimuovi</button>
+                        <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" onclick="'  . /*TODO cancellazione tupla dell'annuncio */'">Rimuovi</button>
                     </div>
                 </div>
             </div>

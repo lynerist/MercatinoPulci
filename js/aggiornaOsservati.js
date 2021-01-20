@@ -13,7 +13,7 @@ function aggiornaOsservati() {
             container.innerHTML = osservati;
         }
     };
+    setTimeout(aggiornaOsservati, 30000);
     xttp.open("GET", "backend/getOsservati.php", true);
     xttp.send();
-    setTimeout(aggiornaOsservati, 30000);
 }

@@ -3,7 +3,7 @@ require_once "common/session.php";
 include_once "common/connessioneDB.php";
 include_once "common/query.php";
 
-$risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
+$risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'', isset($_GET["pagina"])?$_GET["pagina"]:"1");
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -232,34 +232,42 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
             <section class="panel two">
                 <div class="card-body pb-0">
                     <nav class="pagination-wrapper pagination-box d-flex justify-content-between" aria-label="Esempio di navigazione con jump to page">
+                        <?php
+                        $maxPagina = intval((nRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'')-1)/9)+1;
+                        $link = "risultati.php?";
+                        foreach ($_GET as $key => $value) {
+                            if ($key == "pagina") continue;
+                            $link .= $key . "=" . $value . "&";
+                        }
+                        ?>
                         <ul class="pagination">
-                            <li class="page-item">
-                                <button class="page-link">
+                            <li class="page-item <?php echo (!isset($_GET["pagina"]) or $_GET["pagina"] == 1)?"disabled":"";?>">
+                                <a class="page-link" href="<?php echo $link . 'pagina=1';?>">
                                     <i class="fas fa-angle-double-left"></i>
-                                </button>
+                                </a>
                             </li>
-                            <li class="page-item">
-                                <button class="page-link">
+                            <li class="page-item <?php echo (!isset($_GET["pagina"]) or $_GET["pagina"] == 1)?'disabled':'';?>">
+                                <a class="page-link" href="<?php echo $link . 'pagina=' . ((isset($_GET["pagina"]) and $_GET["pagina"] > 1)?$_GET["pagina"]-1:"1");?>">
                                     <i class="fas fa-angle-left"></i>
-                                </button>
+                                </a>
                             </li>
                             <li class="page-item active">
-                                <button class="page-link" href="#" aria-current="page">9</button>
+                                <button class="page-link" aria-current="page"><?php echo isset($_GET["pagina"])?$_GET["pagina"]:"1";?></button>
                             </li>
-                            <li class="page-item">
-                                <button class="page-link">
+                            <li class="page-item <?php echo (isset($_GET["pagina"]) and $_GET["pagina"] == $maxPagina)?'disabled':'';?>">
+                                <a class="page-link" href="<?php echo $link . 'pagina=' . (isset($_GET["pagina"])?($_GET["pagina"] < $maxPagina?$_GET["pagina"]+1:$maxPagina):"2");?>">
                                     <i class="fas fa-angle-right"></i>
-                                </button>
+                                </a>
                             </li>
-                            <li class="page-item">
-                                <button class="page-link">
+                            <li class="page-item <?php echo (isset($_GET["pagina"]) and $_GET["pagina"] == $maxPagina)?'disabled':'';?>">
+                                <a class="page-link" href="<?php echo $link . 'pagina=' . $maxPagina;?>">
                                     <i class="fas fa-angle-double-right"></i>
-                                </button>
+                                </a>
                             </li>
                         </ul>
                         <div class="form-group page-box">
                             <label for="jumpToPage">
-                                <input type="text" class="form-control restringi" id="jumpToPage" placeholder="/4" maxlength="2">
+                                <input type="text" class="form-control restringi" id="jumpToPage" placeholder="/<?php echo $maxPagina;?>" maxlength="2" onchange="header('<?php echo $link;?>', value, '<?php echo $maxPagina;?>')">
                             </label>
                         </div>
                     </nav>
@@ -293,7 +301,7 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                                 <?php
                                 if ((!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] != "venditore") and !$annuncio["isWatched"]) {
 
-                                    echo '<a href="#0" class="adtocart" id="binocolo' . $i . '" onclick="checked(id)">
+                                    echo '<a href="#0" class="adtocart" id="binocolo' . $i . '" onclick="checked(id); osservaAnnuncioAjax(\'' . base64_encode($annuncio["venditore"]) . '\', \'' . base64_encode($annuncio["dataOraPubblicazione"]) . '\')">
                                         <img class="obs-icon" src="img/binocolo.svg" alt="">
                                         <img class="obs-icon" src="img/check.svg" alt="">
                                     </a>';

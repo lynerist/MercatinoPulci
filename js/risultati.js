@@ -13,7 +13,6 @@ function logslider(position) {
     return Math.ceil(Math.exp(minv + scale*(position-minp)));
 }
 
-
 $(document).ready(function() {
 
     const $valueSpan = $('.valueSpan2');
@@ -25,7 +24,6 @@ $(document).ready(function() {
     });
 });
 
-
 function checked(id){
     let annuncio = document.getElementById(id);
     let leo = annuncio.childNodes;
@@ -35,4 +33,8 @@ function checked(id){
     annuncio.style.cursor = "default";
 }
 
-
+function header(link, pagina, maxPagina){
+    pagina = controllaVaia(pagina, maxPagina);
+    link += "pagina=" + pagina;
+    window.open(link, "_self");
+}

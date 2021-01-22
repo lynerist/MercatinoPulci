@@ -149,7 +149,7 @@ function trovaAnnuncio_sql($cid, $dop, $v, $cfSessione){
     return $annuncio;
 }
 
-function trovaRisultati_sql($cid, $parametri, $cfSessione){
+function trovaRisultati_sql($cid, $parametri, $cfSessione, $offset){
     $filtri = "";
     foreach ($parametri as $key => $parametro){
         $parametro = mysqli_real_escape_string($cid, $parametro);
@@ -186,13 +186,62 @@ function trovaRisultati_sql($cid, $parametri, $cfSessione){
         }
     }
 
-    $res = $cid->query("select *, foto as fotoAnnuncio from annuncio join areageografica a on annuncio.comune = a.comune and annuncio.provincia = a.provincia where statoAnnuncio = 'inVendita' " . $filtri . " and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ");");
+    $limit = 9;
+    $offset = ($offset-1)*$limit;
+    $res = $cid->query("select *, foto as fotoAnnuncio from annuncio join areageografica a on annuncio.comune = a.comune and annuncio.provincia = a.provincia where statoAnnuncio = 'inVendita' " . $filtri . " and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ") LIMIT " . $limit . " OFFSET " . $offset);
     if ($res == null) {
         header("location: erroreConnessione.php");
         exit;
     }
     return $res;
 }
+
+function nRisultati_sql($cid, $parametri, $cfSessione){
+    $filtri = "";
+    foreach ($parametri as $key => $parametro){
+        $parametro = mysqli_real_escape_string($cid, $parametro);
+        switch ($key){
+            case "regione":
+                $filtri .= ($parametro != 'Tutta Italia')?"and a.regione='$parametro' ":"";
+                break;
+            case "provincia":
+                $filtri .= ($parametro != "Ogni provincia")?"and a.provincia='$parametro' ":"";
+                break;
+            case "testoRicerca":
+                $matchTesto = "";
+                foreach (explode(" ", $parametro) as &$parola){
+                    $matchTesto .= "annuncio.titolo LIKE '%$parola%' OR annuncio.prodotto LIKE '%$parola%' OR ";
+                }
+                $filtri .= "and (" . substr($matchTesto, 0, -3) . ") ";
+                break;
+            case "sc":
+                $categorie = indiciCategorie();
+                $filtri .= ($parametro % 6 == 0)?"and annuncio.categoria='$categorie[$parametro]' ":"and annuncio.categoria='" . $categorie[floor($parametro/6)*6] . "' and annuncio.sottocategoria='$categorie[$parametro]' ";
+                break;
+            case "p":
+                $scale = (log(3000)-log(1)) / (1000);
+                $prezzo = ceil(exp(log(1) + $scale*(intval($parametro))));
+                $filtri .= "and annuncio.prezzo<='$prezzo' ";
+                break;
+            case "c":
+                if ($parametro == '1'){
+                    $filtri .= "and annuncio.tempoUsura=0 ";
+                }elseif (intval($parametro) > 1){
+                    $filtri .= "and annuncio.statoUsura='" . array("comeNuovo", "buono", "medio", "usurato")[$parametro-2] . "' ";
+                }
+                break;
+        }
+    }
+
+    $res = $cid->query("select count(*) from annuncio join areageografica a on annuncio.comune = a.comune and annuncio.provincia = a.provincia where statoAnnuncio = 'inVendita' " . $filtri . " and (annuncio.dataOraPubblicazione, annuncio.venditore) in (" . controllaVisibilita($cfSessione) . ")");
+    if ($res == null) {
+        header("location: erroreConnessione.php");
+        exit;
+    }
+    $numero=$res->fetch_row();
+    return $numero[0];
+}
+
 
 function isWatched_sql($cid, $dop, $v, $cf){
     $res = $cid->query("select * from osserva where acquirente = '$cf' and dataOraPubblicazione = '$dop' and venditore = '$v';");

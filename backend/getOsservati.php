@@ -31,7 +31,14 @@ $risultato["html"] = "";
 $item1 = "";
 $item2 = "";
 $i = 0;
-//TODO visualizzare "nessuno annuncio osservato"
+
+if($res -> num_rows == 0){
+     $risultato["html"] .= '<div class="w-100 p-lg-5">
+                            <div class="alert alert-warning text-center p-lg-5 m-auto" role="alert">
+                                <h2 class="container">Nessun annuncio osservato</h2>
+                            </div>
+                          </div>';
+}
 while ($annuncio = $res->fetch_assoc()) {
     $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
     if ($annuncio["scadenza"] < 1) continue;

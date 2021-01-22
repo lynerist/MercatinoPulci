@@ -18,9 +18,23 @@ if (isset($_SESSION["codiceFiscale"])){
 from osserva
          join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore
 where osserva.acquirente = '" . $_SESSION['codiceFiscale'] . "' and richiestaDiAcquisto is null";
+}elseif (isset($_COOKIE["annunciOsservati"])){
+    $sql = "SELECT a.dataOraPubblicazione, a.venditore, a.titolo, a.prodotto, a.tempoUsura, a.prezzo, a.foto as fotoAnnuncio
+    FROM annuncio
+    WHERE ";
+    foreach (unserialize($_COOKIE["annunciOsservati"]) as $annuncio => $vero){
+        print_r(unserialize($annuncio));
+        $annuncio = unserialize($annuncio);
+        $v = $annuncio[0];
+        $dop = $annuncio[1];
+        $sql .= "a.dataOraPubblicazione = '$dop' AND a.venditore = '$v' OR ";
+    }
+    $sql = substr($sql, 0, -3);
 }else{
-
+    $sql = "";
 }
+
+// HERE TODO THERE IS A BUG
 
 $res = $cid->query($sql);
 if ($res == null) {

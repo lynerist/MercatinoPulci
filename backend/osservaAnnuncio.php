@@ -21,8 +21,10 @@ $utente["codiceFiscale"] = isset($_SESSION["isLogged"]) ? $_SESSION["codiceFisca
 if ($utente["codiceFiscale"] == ""){
     $osservati = array();
     if (isset($_COOKIE["annunciOsservati"])) $osservati = unserialize($_COOKIE["annunciOsservati"]);
-    $nuovoOsservato = serialize(array($_GET["dop"], $_GET["v"]));
+    $nuovoOsservato = serialize(array($annuncio["dataOraPubblicazione"],$annuncio["venditore"]));
     $osservati[$nuovoOsservato] = true;
 
-    setcookie("annunciOsservati", serialize($osservati));
+    setcookie("annunciOsservati", serialize($osservati), time() + (10 * 365 * 24 * 60 * 60));
 }
+
+

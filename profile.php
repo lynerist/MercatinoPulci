@@ -320,7 +320,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
         </div>
         <div class="col-md-8">
             <div id="myTabContent" class="tab-content profile-tab">
-
+<!--TODO aggiungere "disabled" a pagination-->
                 <?php
                 if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                     <div id="annunciAcquistati" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab"></div>

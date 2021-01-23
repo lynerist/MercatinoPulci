@@ -286,11 +286,7 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                         $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
                         if ($annuncio["scadenza"] < 1) continue;
                     }
-                    if (isset($_SESSION["tipoAccount"])) {
-                        $annuncio["isWatched"] = isWatched_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $_SESSION["codiceFiscale"]);
-                    }else{
-                        $annuncio["isWatched"] = 0;
-                    }
+                    $annuncio["isWatched"] = isWatched($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:"", isset($_COOKIE["annunciOsservati"])?$_COOKIE["annunciOsservati"]:"");
                     ?>
                     <div class="col-lg-4">
                         <section class="panel">
@@ -301,7 +297,7 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                                 <?php
                                 if ((!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] != "venditore") and !$annuncio["isWatched"]) {
 
-                                    echo '<a href="#0" class="adtocart" id="binocolo' . $i . '" onclick="checked(id); osservaAnnuncioAjax(\'' . base64_encode($annuncio["venditore"]) . '\', \'' . base64_encode($annuncio["dataOraPubblicazione"]) . '\')">
+                                    echo '<a href="#0" class="adtocart" id="binocolo' . $i . '" onclick="checked(id); osservaAnnuncioAjax(\'' . base64_encode($annuncio["dataOraPubblicazione"]) . '\', \'' . base64_encode($annuncio["venditore"]) . '\')">
                                         <img class="obs-icon" src="img/binocolo.svg" alt="">
                                         <img class="obs-icon" src="img/check.svg" alt="">
                                     </a>';

@@ -19,10 +19,10 @@ $annuncio["venditore"] = base64_decode($_GET["v"], true);
 $utente["codiceFiscale"] = isset($_SESSION["isLogged"]) ? $_SESSION["codiceFiscale"] : "";
 
 if ($utente["codiceFiscale"] == ""){
-    $osservati = array();
-    if (isset($_COOKIE["annunciOsservati"])) $osservati = unserialize($_COOKIE["annunciOsservati"]);
-    $nuovoOsservato = serialize(array($annuncio["dataOraPubblicazione"], $annuncio["venditore"]));
-    $osservati[$nuovoOsservato] = true;
-
+    $osservati = unserialize($_COOKIE["annunciOsservati"]);
+    $daRimuovere = serialize(array($annuncio["dataOraPubblicazione"], $annuncio["venditore"]));
+    unset($osservati["$daRimuovere"]);
     setcookie("annunciOsservati", serialize($osservati), time() + (10 * 365 * 24 * 60 * 60), "/mercatinopulci");
 }
+
+echo json_encode("");

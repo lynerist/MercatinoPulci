@@ -18,23 +18,21 @@ if (isset($_SESSION["codiceFiscale"])){
 from osserva
          join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore
 where osserva.acquirente = '" . $_SESSION['codiceFiscale'] . "' and richiestaDiAcquisto is null";
-}elseif (isset($_COOKIE["annunciOsservati"])){
-    $sql = "SELECT a.dataOraPubblicazione, a.venditore, a.titolo, a.prodotto, a.tempoUsura, a.prezzo, a.foto as fotoAnnuncio
+}elseif (isset($_COOKIE["annunciOsservati"]) and count(unserialize($_COOKIE["annunciOsservati"]))){
+    $sql = "SELECT dataOraPubblicazione, venditore, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio
     FROM annuncio
     WHERE ";
     foreach (unserialize($_COOKIE["annunciOsservati"]) as $annuncio => $vero){
-        print_r(unserialize($annuncio));
         $annuncio = unserialize($annuncio);
-        $v = $annuncio[0];
-        $dop = $annuncio[1];
-        $sql .= "a.dataOraPubblicazione = '$dop' AND a.venditore = '$v' OR ";
+        $dop = $annuncio[0];
+        $v = $annuncio[1];
+        $sql .= "dataOraPubblicazione = '$dop' AND venditore = '$v' OR ";
     }
     $sql = substr($sql, 0, -3);
 }else{
-    $sql = "";
+    $sql = "SELECT NULL LIMIT 0";
 }
 
-// HERE TODO THERE IS A BUG
 
 $res = $cid->query($sql);
 if ($res == null) {
@@ -69,7 +67,7 @@ while ($annuncio = $res->fetch_assoc()) {
                     <div class="font-size-sm" id="tempoUsura' . $i . '"><span class="text-muted mr-2"><b>' . array("Usato", "Nuovo")[$annuncio["tempoUsura"] == 0] . '</b></span></div>
                     <div class="font-size-lg text-primary pt-2" id="prezzo1">€' . $annuncio['prezzo'] . '</div>
                     <div class="non-osservare">
-                        <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" onclick="'  . /*TODO cancellazione tupla dell'annuncio */'">Rimuovi</button>
+                        <button type="button" class="btn btn-secondary btn-outline-danger btn-sm" data-dismiss="modal" onclick="smettiDiOsservareAjax(\'' . base64_encode($annuncio["dataOraPubblicazione"]) . '\', \'' . base64_encode($annuncio["venditore"]) . '\')">Rimuovi</button>
                     </div>
                 </div>
             </div>

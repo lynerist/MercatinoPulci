@@ -41,3 +41,13 @@ function inserisciFotoAjax($foto){
 function indiciCategorie(){
     return array('elettrodomestici', 'aspirapolveri', 'caffettiere', 'tostapane', 'frullatori', 'altro', 'fotoEVideo', 'macchineFotografiche', 'accessori', 'telecamere', 'microfoni', 'altro', 'abbigliamento', 'vestiti', 'borse', 'scarpe', 'accessori', 'altro', 'hobby', 'giocattoli', 'filmEDVD', 'musica', 'libriERiviste', 'altro');
 }
+
+function isWatched($cid, $dop, $v, $cfSessione, $cookie){
+    if ($cfSessione != ""){
+        return isWatched_sql($cid, $dop, $v, $cfSessione);
+    }
+    if ($cookie != ""){
+        return array_key_exists(serialize(array($dop, $v)), unserialize($cookie));
+    }
+    return false;
+}

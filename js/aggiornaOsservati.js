@@ -1,4 +1,4 @@
-function aggiornaOsservati() {
+function aggiornaOsservati(runOnes) {
     let xttp = new AjaxRequest();
     xttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -13,7 +13,7 @@ function aggiornaOsservati() {
             container.innerHTML = osservati;
         }
     };
-    setTimeout(aggiornaOsservati, 30000);
+    if (!runOnes) setTimeout(aggiornaOsservati, 30000);
     xttp.open("GET", "backend/getOsservati.php", true);
     xttp.send();
 }

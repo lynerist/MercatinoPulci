@@ -259,8 +259,8 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
             <?php } ?>
 
             <?php
-            if (!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){
-                echo '<button type="button" class="destra btn btn-secondary btn-outline-primary btn-sm mt-5" data-dismiss="modal" id="osserva" onclick="rimuovi(id, \'annulla\')">Osserva</button>';
+            if ((!isset($_SESSION["codiceFiscale"]) or $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore') and $annuncio["statoAnnuncio"] == "inVendita" and !isWatched($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:"", isset($_COOKIE["annunciOsservati"])?$_COOKIE["annunciOsservati"]:"")) {
+                echo '<button type="button" class="destra btn btn-secondary btn-outline-primary btn-sm mt-5" data-dismiss="modal" id="osserva" onclick="rimuovi(id, \'annulla\'); osservaAnnuncioAjax(\'' . base64_encode($annuncio["dataOraPubblicazione"]) . '\', \'' . base64_encode($annuncio["venditore"]) . '\')">Osserva</button>';
                 echo '<div class="destra text-primary pt-1 annulla mt-5" data-dismiss="modal" id="annulla">Osservato</div>';
             }
             ?>

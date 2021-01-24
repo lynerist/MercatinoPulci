@@ -95,12 +95,12 @@ if ($haVendite) {
     $risultato["html"] .= '<nav class="pagination-wrapper pagination-box d-flex justify-content-between" aria-label="Esempio di navigazione con jump to page">
             <ul class="pagination">
             <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', 0)">
+                    <button class="page-link '. ($offset==0?'text-secondary':'') . '" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', 0)" ' . ($offset==0?'disabled':'') . '>
                         <i class="fas fa-angle-double-left"></i>   
                     </button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset-1)>=0?($offset-1):0) . ')">
+                    <button class="page-link '. ($offset==0?'text-secondary':'') . '" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset-1)>=0?($offset-1):0) . ')" ' . ($offset==0?'disabled':'') . '>
                         <i class="fas fa-angle-left"></i>
                     </button>
                 </li>
@@ -108,12 +108,12 @@ if ($haVendite) {
                     <button class="page-link" aria-current="page">' . ($offset+1) . '</button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=$maxPagina?($offset+1):$maxPagina) . ')">
+                    <button class="page-link '. ($offset==$maxPagina?'text-secondary':'') . '" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . (($offset+1)<=$maxPagina?($offset+1):$maxPagina) . ')" ' . ($offset==$maxPagina?'disabled':'') . '>
                         <i class="fas fa-angle-right"></i>
                     </button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . $maxPagina . ')">
+                    <button class="page-link '. ($offset==$maxPagina?'text-secondary':'') . '" onclick="popolaAnnunciVenduti(\'' . base64_encode($utente["codiceFiscale"]) . '\', ' . $maxPagina . ')" ' . ($offset==$maxPagina?'disabled':'') . '>
                         <i class="fas fa-angle-double-right"></i>   
                     </button>
                 </li>

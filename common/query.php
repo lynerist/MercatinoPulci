@@ -242,7 +242,6 @@ function nRisultati_sql($cid, $parametri, $cfSessione){
     return $numero[0];
 }
 
-
 function isWatched_sql($cid, $dop, $v, $cf){
     $res = $cid->query("select * from osserva where acquirente = '$cf' and dataOraPubblicazione = '$dop' and venditore = '$v';");
     if ($res == null) {

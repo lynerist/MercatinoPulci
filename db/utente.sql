@@ -58,11 +58,11 @@ INSERT INTO `utente` (`codiceFiscale`, `tipoAccount`, `nome`, `cognome`, `email`
 ('PNZGNR67L16C351I', 'venditore', 'Gennaro', 'Panizzi', 'gennaro.panizzi67@email.com', '8140976ba0423981a11615a8ca632c20', '1bb489211537c29a87c119477552e29b.jpg', 'Alia', 'Palermo', '0'),
 ('PRCRRT83H11A014Q', 'venditoreAcquirente', 'Roberto', 'Porcino', 'boletusedulis@email.com', '0e701f335effa546f5647bb43a4728de', '8d3588cc748d1be3ab452c4979248274.jpg', 'Acate', 'Ragusa', '0'),
 ('PRGDRD99M23F133R', 'venditoreAcquirente', 'Edoardo', 'Perego', 'edoardoperego@email.com', 'd5deab4e83b267d48299d2d1a2ab52ba', '232452db447f279ae0215657f7c7b2ee.jpg', 'Merate', 'Lecco', '0'),
-('RGNGNN97R13L736H', 'acquirente', 'Giovanni', 'Ragno', 'spidygiovy@email.com', '0a519b71fdd2595ff1d89b024864d9f9', NULL, 'Venezia', 'Venezia', '0'),
+('RGNGNN97R13L736H', 'venditoreAcquirente', 'Giovanni', 'Ragno', 'spidygiovy@email.com', '0a519b71fdd2595ff1d89b024864d9f9', NULL, 'Venezia', 'Venezia', '0'),
 ('RSNLND85R12A652Y', 'acquirente', 'Alexander', 'Resinelli', 'alexanderresinelli@email.com', '25baad18cb1d4598ca717b9666976b99', NULL, 'Colico', 'Lecco', '0'),
 ('RSSCTR96D57A401O', 'venditoreAcquirente', 'Caterina', 'Rossa', 'catethewitch@email.com', '22c43c7b7f00f2b5310d1e4a0762c7f5', '51370722064725cca325d7c1ecf55b44.jpg', 'Ariccia', 'Roma', '0'),
 ('RSSVNC97R06B157T', 'venditore', 'Vincenzo', 'Rossi', 'vincenzo_rossi@email.com', '7fa1adabb7e37b7726b32e44602a0ab6', 'e5ddb5e2032e8f447427b95ddb053589.jpg', 'Brescia', 'Brescia', '0'),
-('SFGLNE12B69A288U', 'acquirente', 'Elena', 'Sfogo', 'elenasfogo12@email.com', 'e890f806dfd189052ca7b39ac29da142', '64505fdd43e19ca0bfb8cb5c9681ae1d.png', 'Anfo', 'Brescia', '0'),
+('SFGLNE12B69A288U', 'venditoreAcquirente', 'Elena', 'Sfogo', 'elenasfogo12@email.com', 'e890f806dfd189052ca7b39ac29da142', '64505fdd43e19ca0bfb8cb5c9681ae1d.png', 'Anfo', 'Brescia', '0'),
 ('SLGDRA97A41E801X', 'venditore', 'Dario', 'Salga', 'dario.salga12@email.com', 'a77441312f6182e1bfc6bba38581d88d', NULL, 'Abbasanta', 'Oristano', '1'),
 ('SLMBRN92B16D205T', 'venditoreAcquirente', 'Bruno', 'Salmone', 'brunosalmone@email.com', 'cd436232402079ff109da2dcfa69bffb', '938a99d2220016ae8fcd84556e41703f.jpg', 'Barolo', 'Cuneo', '0');
 

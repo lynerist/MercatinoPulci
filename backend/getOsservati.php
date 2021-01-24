@@ -14,11 +14,14 @@ if($cid->connect_errno){
 }
 
 if (isset($_SESSION["codiceFiscale"])){
+
     $sql = "SELECT a.dataOraPubblicazione, a.venditore, a.titolo, a.prodotto, a.tempoUsura, a.prezzo, a.foto as fotoAnnuncio
 from osserva
          join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore
 where osserva.acquirente = '" . $_SESSION['codiceFiscale'] . "' and richiestaDiAcquisto is null";
+
 }elseif (isset($_COOKIE["annunciOsservati"]) and count(unserialize($_COOKIE["annunciOsservati"]))){
+
     $sql = "SELECT dataOraPubblicazione, venditore, titolo, prodotto, tempoUsura, prezzo, foto as fotoAnnuncio
     FROM annuncio
     WHERE ";
@@ -29,6 +32,7 @@ where osserva.acquirente = '" . $_SESSION['codiceFiscale'] . "' and richiestaDiA
         $sql .= "dataOraPubblicazione = '$dop' AND venditore = '$v' OR ";
     }
     $sql = substr($sql, 0, -3);
+
 }else{
     $sql = "SELECT NULL LIMIT 0";
 }

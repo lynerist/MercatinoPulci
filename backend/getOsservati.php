@@ -57,6 +57,9 @@ if($res -> num_rows == 0){
 }
 while ($annuncio = $res->fetch_assoc()) {
     $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    $annuncio['titolo'] = utf8_encode($annuncio['titolo']);
+    $annuncio['prodotto'] = utf8_encode($annuncio['prodotto']);
+    
     if ($annuncio["scadenza"] < 1) continue;
     $token = '<div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="' . $i . '">
             <div class="media d-block d-sm-flex text-center text-sm-left">

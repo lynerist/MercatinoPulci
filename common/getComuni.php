@@ -22,7 +22,7 @@ if ($res == null) {
 $comuni= array();
 while($row=$res->fetch_row())
 {
-    $comuni[]=utf8_encode($row[0]);
+    $comuni[]=$row[0];
 }
 $risultato["contenuto"]=$comuni;
 

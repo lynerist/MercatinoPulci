@@ -102,7 +102,7 @@ CREATE TABLE `annuncio` (
 
 INSERT INTO `annuncio` (`dataOraPubblicazione`, `venditore`, `statoAnnuncio`, `titolo`, `prodotto`, `categoria`, `sottoCategoria`, `prezzo`, `statoUsura`, `tempoUsura`, `scadenzaGaranzia`, `foto`, `valutazioneSuVenditore`, `visibilita`, `comune`, `provincia`) VALUES
 ('2020-11-10 15:32:39', 'LBNLRD99A13F133X', 'inVendita', '1Kg di castagne fresche dalla Brianza.', 'castagne', 'hobby', 'altro', 15, NULL, 0, NULL, NULL, NULL, 'pubblica', 'Merate', 'Lecco'),
-('2020-11-10 15:33:29', 'KRSHLN93S53Z347A', 'inVendita', 'Disco in vinile autografato di Gé Korsten fine anni \'60.', 'Disco in vinile', 'hobby', 'musica', 75, 'comeNuovo', 612, NULL, NULL, NULL, 'pubblica', 'Milano', 'Milano'),
+('2020-11-10 15:33:29', 'KRSHLN93S53Z347A', 'inVendita', 'Disco in vinile autografato di Gé Korsten fine anni 60.', 'Disco in vinile', 'hobby', 'musica', 75, 'comeNuovo', 612, NULL, NULL, NULL, 'pubblica', 'Milano', 'Milano'),
 ('2020-11-10 23:35:24', 'LBNLRD99A13F133X', 'venduto', 'Ciabatte usate in buone condizioni', 'Ciabatte', 'abbigliamento', 'altro', 5.99, 'buono', 15, NULL, NULL, NULL, 'pubblica', 'Piombino', 'Livorno'),
 ('2020-11-11 14:24:38', 'SLNFPP98S28F205V', 'venduto', 'Vendo accappatoio usato in pessime condizioni', 'Accappatoio', 'abbigliamento', 'altro', 1.99, 'usurato', 35, NULL, NULL, NULL, 'pubblica', 'Brescia', 'Brescia'),
 ('2020-11-11 14:45:17', 'SLNFPP98S28F205V', 'inVendita', 'Vendo \'Apologia di Socrate\'', 'Video', 'hobby', 'libriERiviste', 25, NULL, 0, NULL, NULL, NULL, 'pubblica', 'Cabiate', 'Como'),

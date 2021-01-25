@@ -282,7 +282,7 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                 }
                 $i = 0;
                 while ($annuncio = $risultati -> fetch_assoc()){
-                    $annuncio['titolo'] = utf8_encode($annuncio['titolo']);
+                    $annuncio['titolo'] = $annuncio['titolo'];
 
                     if ($annuncio["statoAnnuncio"] == "inVendita") {
                         $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
@@ -314,7 +314,7 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                                 ?>
                             </div>
                             <div class="card-body text-center">
-                                <h4><a href="#0" class="pro-title"><?php echo $annuncio["titolo"] ?></a></h4>
+                                <h4><a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']); ?>" class="pro-title"><?php echo $annuncio["titolo"] ?></a></h4>
                                 <p class="price">€<?php echo $annuncio["prezzo"] ?></p>
                                 <b><?php echo array("Nuovo", "Usato")[$annuncio["tempoUsura"] > 0] ?></b>
                                 <i><?php echo $annuncio["provincia"] . ", " . $annuncio["regione"];?></i>

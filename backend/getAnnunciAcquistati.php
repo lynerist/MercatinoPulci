@@ -42,8 +42,8 @@ while ($annuncio = $utente["annunciAcquistati"]->fetch_assoc()) {
                             <div class="media d-block d-sm-flex text-center text-sm-left">
                                 <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank"><img src="fotoAnnuncio/' . inserisciFotoAjax($annuncio['fotoAnnuncio']) . '" alt="Product" id="foto1"></a>
                                 <div class="media-body pt-3">
-                                    <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">' . utf8_encode($annuncio["titolo"]) . '</a></h3>
-                                    <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>' . utf8_encode($annuncio["prodotto"]) . '</div>
+                                    <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo1"><a href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">' . $annuncio["titolo"] . '</a></h3>
+                                    <div class="font-size-sm" id="prodotto1"><span class="text-muted mr-2">Prodotto:</span>' . $annuncio["prodotto"] . '</div>
                                     <div class="font-size-sm" id="tempoUsura1"><span class="text-muted mr-2"><b>' . $annuncio["statoUsura"] . '</b></span></div>
                                     <div class="font-size-lg text-primary pt-2" id="prezzo1">€' . $annuncio["prezzo"] . '</div>
                                 </div>

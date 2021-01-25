@@ -418,7 +418,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                     <div class="bbb_viewed_content text-center">
                                         <div class="bbb_viewed_price">€<?php echo $annuncio["prezzo"];?></div>
                                         <div class="bbb_viewed_name">
-                                            <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>"><?php echo utf8_encode($annuncio["titolo"]);?></a>
+                                            <a href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>"><?php echo $annuncio["titolo"];?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -463,7 +463,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                     </a>
                                     <div class="bbb_viewed_content text-center">
                                         <div class="bbb_viewed_name">
-                                            <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>"><?php echo utf8_encode($utente['nome']) . ' ' . utf8_encode($utente['cognome']);?></a>
+                                            <a href="<?php echo urlCriptato($utente['codiceFiscale'], '');?>"><?php echo $utente['nome'] . ' ' . $utente['cognome'];?></a>
                                         </div>
                                     </div>
                                 </div>

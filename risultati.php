@@ -254,12 +254,12 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                             <li class="page-item active">
                                 <button class="page-link" aria-current="page"><?php echo isset($_GET["pagina"])?$_GET["pagina"]:"1";?></button>
                             </li>
-                            <li class="page-item <?php echo (isset($_GET["pagina"]) and $_GET["pagina"] == $maxPagina)?'disabled':'';?>">
+                            <li class="page-item <?php echo (isset($_GET["pagina"]) and $_GET["pagina"] == $maxPagina or $maxPagina == 1)?'disabled':'';?>">
                                 <a class="page-link" href="<?php echo $link . 'pagina=' . (isset($_GET["pagina"])?($_GET["pagina"] < $maxPagina?$_GET["pagina"]+1:$maxPagina):"2");?>">
                                     <i class="fas fa-angle-right"></i>
                                 </a>
                             </li>
-                            <li class="page-item <?php echo (isset($_GET["pagina"]) and $_GET["pagina"] == $maxPagina)?'disabled':'';?>">
+                            <li class="page-item <?php echo (isset($_GET["pagina"]) and $_GET["pagina"] == $maxPagina or $maxPagina == 1)?'disabled':'';?>">
                                 <a class="page-link" href="<?php echo $link . 'pagina=' . $maxPagina;?>">
                                     <i class="fas fa-angle-double-right"></i>
                                 </a>

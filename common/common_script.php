@@ -5,3 +5,5 @@
 <script src="js/controlloInput.js"></script>
 <script src="js/functions.js"></script>
 <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'pwd' or $_GET['dberr'] == 'eml'))?'<script>accediRegistrati(\'tabAccedi\')</script>':'');?>
+<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf' or $_GET['dberr'] == 'E'))?'<script>accediRegistrati(\'tabRegistrati\')</script>':'');?>
+

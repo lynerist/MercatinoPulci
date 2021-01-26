@@ -118,62 +118,62 @@
                                     <div class="tab-pane fade" id="modalLoginRegister-register" role="tabpanel">
 
                                         <!-- Register form -->
-                                        <form id="formLoginRegister-register" class="container pt-2 needs-validation" action="" method="post" onsubmit="return controllaForm(id)">
+                                        <form id="formLoginRegister-register" class="container pt-2 needs-validation" action="backend/registrati_exe.php" method="post" onsubmit="return controllaForm(id)">
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user prefix"></i>
-                                                <input type="text" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
+                                                <input type="text" name="regNome" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-name"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tie prefix"></i>
-                                                <input type="text" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
+                                                <input type="text" name="regCognome" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-surname"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-id-card prefix"></i>
-                                                <input type="text" id="formLoginRegister-codiceFiscale" class="form-control formLoginRegister-register" placeholder="Codice Fiscale" required oninput="colora(id,controllaCodiceFiscale(value))">
-                                                <label data-error="wrong" data-success="right" for="formLoginRegister-codiceFiscale"></label>
+                                                <input type="text" name="regCodiceFiscale" id="formLoginRegister-codiceFiscale" class="form-control formLoginRegister-register <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'is-invalid':'');?>" placeholder="Codice Fiscale" required oninput="colora(id,controllaCodiceFiscale(value))">
+                                                <label data-error="wrong" data-success="right" class="<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'invalid-feedback ml-1':'');?>" for="formLoginRegister-codiceFiscale"><?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'codice fiscale già in uso':'');?></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-map-marked-alt prefix"></i>
                                                 <label>
-                                                    <select name="regione" id="register-regione" class="form-control formLoginRegister-register" required>
+                                                    <select name="regRegione" id="register-regione" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Regione</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="provincia" id="register-provincia" class="form-control formLoginRegister-register" required>
+                                                    <select name="regProvincia" id="register-provincia" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="comune" id="register-comune" class="form-control formLoginRegister-register" required>
+                                                    <select name="regComune" id="register-comune" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Comune</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="emailRegistrazione" name="emailRegistrazione" class="form-control formLoginRegister-register" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
-                                                <label data-error="wrong" data-success="right" for="emailRegistrazione"></label>
+                                                <input type="email" id="emailRegistrazione" name="regEmail" class="form-control formLoginRegister-register <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'is-invalid':'');?>" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
+                                                <label data-error="wrong" data-success="right" class="<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'invalid-feedback ml-1':'');?>" for="emailRegistrazione"><?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'email già in uso':'');?></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-lock prefix"></i>
-                                                <input type="password" id="passwordRegistrazione" name="passwordRegistrazione" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
+                                                <input type="password" id="passwordRegistrazione" name="regPassword" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
                                                 <label data-error="wrong" data-success="right" for="passwordRegistrazione"></label>
                                                 <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-key prefix"></i>
-                                                <input type="password" id="passwordRipetizioneRegistrazione" name="passwordRipetizioneRegistrazione" class="form-control formLoginRegister-register" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('passwordRegistrazione',value))" required>
+                                                <input type="password" id="passwordRipetizioneRegistrazione" name="regPasswordRipetizione" class="form-control formLoginRegister-register" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('passwordRegistrazione',value))" required>
                                                 <label data-error="wrong" data-success="right" for="passwordRipetizioneRegistrazione"></label>
                                                 <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tag prefix"></i>
                                                 <label>
-                                                    <select name="tipoAccount" id="tipoAccount" class="form-control formLoginRegister-register" required>
+                                                    <select name="regTipoAccount" id="tipoAccount" class="form-control formLoginRegister-register" required>
                                                         <option value="" disabled selected hidden>Tipologia</option>
                                                         <option value="acquirente">Acquirente</option>
                                                         <option value="venditore">Venditore</option>
@@ -184,7 +184,7 @@
 
                                             <div class="form-check mt-4 mb-3 pl-0 text-left d-inline">
                                                 <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter"
-                                                       name="newsletter">
+                                                       name="regNewsletter">
                                                 <label class="form-check-label small grey-text" for="formLoginRegister-newsletter">
                                                     Confermo la mia iscrizione alla newsletter
                                                 </label>

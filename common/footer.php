@@ -42,7 +42,7 @@
     </div>
     <!-- Footer Links -->
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright | Designed by: Leonardo Albani e Filippo Uslenghi |
+    <div class="footer-copyright text-center py-3">© 2021 Copyright | Designed by: Leonardo Albani e Filippo Uslenghi |
         <a class="link-footer"> All rights reserved</a>
     </div>
     <!-- Copyright -->

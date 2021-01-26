@@ -1,4 +1,3 @@
-<!--TODO variabile di sessione RESIDENZA per annunci con visibilità ristretta-->
 <?php
 require_once "../common/session.php";
 include_once "../common/connessioneDB.php";

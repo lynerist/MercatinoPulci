@@ -16,7 +16,7 @@ $passwordRipetuta = md5($_POST["regPasswordRipetizione"]);
 $tipoAccount = $_POST["regTipoAccount"];
 $newsletter = isset($_POST["regNewsletter"]) and $_POST["regNewsletter"] == "on";
 
-$notUnique = "&nm=$nome&cg=$cognome&rg=$regione&pr=$provincia&cm=$comune&tp=$tipoAccount&ns=$newsletter";
+$notUnique = "&nm=$nome&cg=$cognome&rg=$regione&pr=$provincia&cm=$comune&tp=$tipoAccount&nw=$newsletter";
 
 $res = $cid -> query("SELECT count(*) FROM utente WHERE email = '$email';");
 $uniqueEmail = !($res -> num_rows);

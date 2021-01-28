@@ -122,40 +122,40 @@
 
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user prefix"></i>
-                                                <input type="text" name="regNome" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
+                                                <input type="text" name="regNome" id="formLoginRegister-name" class="form-control formLoginRegister-register" placeholder="Nome" oninput="colora(id,controllaTestoAnagrafico(value))" value="<?php echo (isset($_GET['nm'])?$_GET['nm']:'');?>"  required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-name"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tie prefix"></i>
-                                                <input type="text" name="regCognome" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTestoAnagrafico(value))" required>
+                                                <input type="text" name="regCognome" id="formLoginRegister-surname" class="form-control formLoginRegister-register" placeholder="Cognome" oninput="colora(id,controllaTestoAnagrafico(value))" value="<?php echo (isset($_GET['cg'])?$_GET['cg']:'');?>" required>
                                                 <label data-error="wrong" data-success="right" for="formLoginRegister-surname"></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-id-card prefix"></i>
-                                                <input type="text" name="regCodiceFiscale" id="formLoginRegister-codiceFiscale" class="form-control formLoginRegister-register <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'is-invalid':'');?>" placeholder="Codice Fiscale" required oninput="colora(id,controllaCodiceFiscale(value))">
+                                                <input type="text" name="regCodiceFiscale" id="formLoginRegister-codiceFiscale" class="form-control formLoginRegister-register <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'is-invalid':'');?>" placeholder="Codice Fiscale" oninput="colora(id,controllaCodiceFiscale(value))" value="<?php echo (isset($_GET['Cf'])?$_GET['Cf']:'');?>" require>
                                                 <label data-error="wrong" data-success="right" class="<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'invalid-feedback ml-1':'');?>" for="formLoginRegister-codiceFiscale"><?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf'))?'codice fiscale già in uso':'');?></label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-map-marked-alt prefix"></i>
                                                 <label>
-                                                    <select name="regRegione" id="register-regione" class="form-control formLoginRegister-register" required>
+                                                    <select name="regRegione" id="register-regione" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['rg'])?$_GET['rg']:'');?>" required>
                                                         <option value="" disabled selected hidden>Regione</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="regProvincia" id="register-provincia" class="form-control formLoginRegister-register" required>
+                                                    <select name="regProvincia" id="register-provincia" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['pr'])?$_GET['pr']:'');?>" required>
                                                         <option value="" disabled selected hidden>Provincia</option>
                                                     </select>
                                                 </label>
                                                 <label>
-                                                    <select name="regComune" id="register-comune" class="form-control formLoginRegister-register" required>
+                                                    <select name="regComune" id="register-comune" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['cm'])?$_GET['cm']:'');?>" required>
                                                         <option value="" disabled selected hidden>Comune</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-envelope prefix"></i>
-                                                <input type="email" id="emailRegistrazione" name="regEmail" class="form-control formLoginRegister-register <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'is-invalid':'');?>" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" required>
+                                                <input type="email" id="emailRegistrazione" name="regEmail" class="form-control formLoginRegister-register <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'is-invalid':'');?>" placeholder="E-mail" oninput="colora(id,controllaEmail(value))" value="<?php echo (isset($_GET['E'])?$_GET['E']:'');?>" required>
                                                 <label data-error="wrong" data-success="right" class="<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'invalid-feedback ml-1':'');?>" for="emailRegistrazione"><?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'E'))?'email già in uso':'');?></label>
                                             </div>
                                             <div class="md-form md-outline">
@@ -173,7 +173,7 @@
                                             <div class="md-form md-outline">
                                                 <i class="fas fa-user-tag prefix"></i>
                                                 <label>
-                                                    <select name="regTipoAccount" id="tipoAccount" class="form-control formLoginRegister-register" required>
+                                                    <select name="regTipoAccount" id="tipoAccount" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['ta'])?$_GET['ta']:'');?>" required>
                                                         <option value="" disabled selected hidden>Tipologia</option>
                                                         <option value="acquirente">Acquirente</option>
                                                         <option value="venditore">Venditore</option>
@@ -183,8 +183,7 @@
                                             </div>
 
                                             <div class="form-check mt-4 mb-3 pl-0 text-left d-inline">
-                                                <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter"
-                                                       name="regNewsletter">
+                                                <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter" name="regNewsletter" value="<?php echo (isset($_GET['nw'])?"on":'');?>">
                                                 <label class="form-check-label small grey-text" for="formLoginRegister-newsletter">
                                                     Confermo la mia iscrizione alla newsletter
                                                 </label>

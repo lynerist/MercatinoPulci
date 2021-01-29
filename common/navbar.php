@@ -190,7 +190,7 @@
                                 </div>
 
                                 <div class="form-check mt-4 mb-3 pl-0 text-left d-inline">
-                                    <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter" name="regNewsletter" value="<?php echo (isset($_GET['nw'])?"on":'');?>">
+                                    <input type="checkbox" class="form-check-input filled-in" id="formLoginRegister-newsletter" name="regNewsletter" <?php echo (isset($_GET['nw'])?"checked":'');?>>
                                     <label class="form-check-label small grey-text" for="formLoginRegister-newsletter">
                                         Confermo la mia iscrizione alla newsletter
                                     </label>

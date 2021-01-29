@@ -163,7 +163,6 @@ function trovaRisultati_sql($cid, $parametri, $cfSessione, $offset){
             case "testoRicerca":
                 $matchTesto = "";
                 foreach (explode(" ", $parametro) as &$parola){
-                    $parola = $parola;
                     $matchTesto .= "annuncio.titolo LIKE '%$parola%' OR annuncio.prodotto LIKE '%$parola%' OR ";
                 }
                 $filtri .= "and (" . substr($matchTesto, 0, -3) . ") ";

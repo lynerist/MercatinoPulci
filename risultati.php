@@ -282,8 +282,6 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                 }
                 $i = 0;
                 while ($annuncio = $risultati -> fetch_assoc()){
-                    $annuncio['titolo'] = $annuncio['titolo'];
-
                     if ($annuncio["statoAnnuncio"] == "inVendita") {
                         $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
                         if ($annuncio["scadenza"] < 1) continue;

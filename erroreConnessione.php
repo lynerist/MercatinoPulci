@@ -36,6 +36,3 @@ require_once "common/session.php";
 
 </body>
 </html>
-
-
-

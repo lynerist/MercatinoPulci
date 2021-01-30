@@ -96,9 +96,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                                 <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo $utente['nome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
-                                                                        <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required>
-                                                                            <option value="" disabled selected hidden>Regione</option>
-                                                                        </select>
+                                                                        <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required></select>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -106,9 +104,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                                 <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="<?php echo $utente['cognome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
-                                                                        <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required>
-                                                                            <option value="" disabled selected hidden>Provincia</option>
-                                                                        </select>
+                                                                        <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required></select>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -116,18 +112,15 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo" required>
-                                                                            <option value="" disabled selected hidden>Tipo account</option>
-                                                                            <option value="pubblica">Acquirente</option>
-                                                                            <option value="ristretta">Venditore</option>
-                                                                            <option value="privata">Acquirente e venditore</option>
+                                                                            <option value="acquirente"<?php echo $utente["tipoAccount"]=="acquirente"?"selected":"";?>>Acquirente</option>
+                                                                            <option value="venditore"<?php echo $utente["tipoAccount"]=="venditore"?"selected":"";?>>Venditore</option>
+                                                                            <option value="venditoreAcquirente"<?php echo $utente["tipoAccount"]=="venditoreAcquirente"?"selected":"";?>>Acquirente e venditore</option>
                                                                         </select>
                                                                     </label>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label>
-                                                                        <select name="modificaComune" id="modificaComune" class="form-control modificaProfilo" required>
-                                                                            <option value="" disabled selected hidden>Comune</option>
-                                                                        </select>
+                                                                        <select name="modificaComune" id="modificaComune" class="form-control modificaProfilo" required></select>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -361,14 +354,14 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
     </div>
 </div>
 
-<?php include_once "common/footer.php"?>
-
-<?php include_once "common/common_script.php"; ?>
+<?php include_once "common/footer.php";?>
+<?php include_once "common/common_script.php";?>
 
 <script src="js/modal.js"></script>
+<script src="js/profilo.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('modificaRegione')
+        popolaRegioni('modificaRegione', 'modificaProvincia', 'modificaComune', '<?php echo $utente["regione"];?>', '<?php echo $utente["provincia"];?>', '<?php echo $utente["comune"];?>')
     });
     document.getElementById('modificaRegione').addEventListener('change', function () {
         popolaProvince('modificaRegione', 'modificaProvincia', 'modificaComune')
@@ -376,9 +369,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
     document.getElementById('modificaProvincia').addEventListener('change', function () {
         popolaComuni('modificaProvincia', 'modificaComune')
     });
-</script>
-<script src="js/profilo.js"></script>
-<script>
+
     popolaAnnunciAcquistati('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciVenduti('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciInVendita('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);

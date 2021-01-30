@@ -21,7 +21,7 @@ function AjaxRequest() {
     return request
 }
 
-function popolaRegioni(id) {
+function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, comuneSelezionato) {
     let xttp = new AjaxRequest();
     xttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -36,16 +36,18 @@ function popolaRegioni(id) {
             for (let i = 0; i < regioni.length; i++) {
                 let regione = document.createElement('option');
                 regione.setAttribute("value", regioni[i]);
+                regione.selected = (regione.value === regioneSelezionata);
                 regione.innerText = regioni[i];
                 select.appendChild(regione);
             }
+            popolaProvince(id, idP, idC, null, null, provinciaSelezionata, comuneSelezionato)
         }
     };
     xttp.open("GET", "common/getRegioni.php", true);
     xttp.send();
 }
 
-function popolaProvince(idR, idP, idC, opzionale, nonSvuotare) {
+function popolaProvince(idR, idP, idC, opzionale, nonSvuotare, provinciaSelezionata, comuneSelezionato) {
     let regioneSelect = document.getElementById(idR);
     let regioneSelezionata = regioneSelect.options[regioneSelect.selectedIndex].value;
 
@@ -72,9 +74,10 @@ function popolaProvince(idR, idP, idC, opzionale, nonSvuotare) {
                     let provincia = document.createElement('option');
                     provincia.setAttribute("value", province[i]);
                     provincia.innerText = province[i];
+                    provincia.selected = (provincia.value === provinciaSelezionata);
                     select.appendChild(provincia);
                 }
-                popolaComuni(idP, idC)
+                popolaComuni(idP, idC, comuneSelezionato)
             }
         };
         xttp.open("GET", "common/getProvince.php?regione=" + regioneSelezionata, true);
@@ -82,7 +85,7 @@ function popolaProvince(idR, idP, idC, opzionale, nonSvuotare) {
     }
 }
 
-function popolaComuni(idP, idC) {
+function popolaComuni(idP, idC, comuneSelezionato) {
     let provinciaSelect = document.getElementById(idP);
     let provinciaSelezionata = provinciaSelect.options[provinciaSelect.selectedIndex].value;
 
@@ -103,6 +106,7 @@ function popolaComuni(idP, idC) {
                     let comune = document.createElement('option');
                     comune.setAttribute("value", comuni[i]);
                     comune.innerText = comuni[i];
+                    comune.selected = (comune.value === comuneSelezionato);
                     select.appendChild(comune);
                 }
             }

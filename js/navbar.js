@@ -21,7 +21,7 @@ function AjaxRequest() {
     return request
 }
 
-function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, comuneSelezionato) {
+function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, comuneSelezionato, opzionale) {
     let xttp = new AjaxRequest();
     xttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -33,6 +33,10 @@ function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, c
 
             let regioni = risposta.contenuto;
             let select = document.getElementById(id);
+
+            if (opzionale){
+                select.innerHTML = "<option value=\"Tutta Italia\">Tutta Italia</option>";
+            }
             for (let i = 0; i < regioni.length; i++) {
                 let regione = document.createElement('option');
                 regione.setAttribute("value", regioni[i]);
@@ -40,18 +44,18 @@ function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, c
                 regione.innerText = regioni[i];
                 select.appendChild(regione);
             }
-            popolaProvince(id, idP, idC, null, null, provinciaSelezionata, comuneSelezionato)
+            popolaProvince(id, idP, idC, opzionale, provinciaSelezionata, comuneSelezionato)
         }
     };
     xttp.open("GET", "common/getRegioni.php", true);
     xttp.send();
 }
 
-function popolaProvince(idR, idP, idC, opzionale, nonSvuotare, provinciaSelezionata, comuneSelezionato) {
+function popolaProvince(idR, idP, idC, opzionale, provinciaSelezionata, comuneSelezionato) {
     let regioneSelect = document.getElementById(idR);
     let regioneSelezionata = regioneSelect.options[regioneSelect.selectedIndex].value;
 
-    if (regioneSelezionata !== 0) {
+    if (regioneSelezionata !== "") {
         let xttp = new AjaxRequest();
         xttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
@@ -63,11 +67,9 @@ function popolaProvince(idR, idP, idC, opzionale, nonSvuotare, provinciaSelezion
 
                 let province = risposta.contenuto;
                 let select = document.getElementById(idP);
-                if (!nonSvuotare){
-                    select.innerHTML = "";
-                }
 
-                if (opzionale && !nonSvuotare){
+                select.innerHTML = "";
+                if (opzionale){
                         select.innerHTML = "<option value=\"Ogni provincia\">Ogni provincia</option>";
                 }
                 for (let i = 0; i < province.length; i++) {
@@ -77,7 +79,7 @@ function popolaProvince(idR, idP, idC, opzionale, nonSvuotare, provinciaSelezion
                     provincia.selected = (provincia.value === provinciaSelezionata);
                     select.appendChild(provincia);
                 }
-                popolaComuni(idP, idC, comuneSelezionato)
+                popolaComuni(idP, idC, comuneSelezionato);
             }
         };
         xttp.open("GET", "common/getProvince.php?regione=" + regioneSelezionata, true);
@@ -89,7 +91,7 @@ function popolaComuni(idP, idC, comuneSelezionato) {
     let provinciaSelect = document.getElementById(idP);
     let provinciaSelezionata = provinciaSelect.options[provinciaSelect.selectedIndex].value;
 
-    if (provinciaSelezionata !== 0) {
+    if (provinciaSelezionata !== "") {
         let xttp = new AjaxRequest();
         xttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
@@ -115,20 +117,3 @@ function popolaComuni(idP, idC, comuneSelezionato) {
         xttp.send();
     }
 }
-
-window.addEventListener('DOMContentLoaded', function () {
-    popolaRegioni('navRegione')
-});
-document.getElementById('navRegione').addEventListener('change', function () {
-    popolaProvince('navRegione', 'navProvincia', '', true)
-});
-
-window.addEventListener('DOMContentLoaded', function () {
-    popolaRegioni('register-regione')
-});
-document.getElementById('register-regione').addEventListener('change', function () {
-    popolaProvince('register-regione', 'register-provincia', 'register-comune')
-});
-document.getElementById('register-provincia').addEventListener('change', function () {
-    popolaComuni('register-provincia', 'register-comune')
-});

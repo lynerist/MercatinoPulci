@@ -326,9 +326,8 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
 </div>
 
 <?php include_once "common/footer.php";?>
-
 <?php include_once "common/common_script.php";?>
-<?php if (isset($_GET["regione"]) and $_GET["regione"] != "Tutta Italia") echo "<script>popolaProvince('navRegione', 'navProvincia', '', true, true)</script>";?>
+
 <script src="js/risultati.js"></script>
 </body>
 </html>

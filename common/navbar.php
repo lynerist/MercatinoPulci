@@ -7,26 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form id="fromCercaAnnuncio" method="get" action="risultati.php" class="form-inline my-2 my-lg-0 nav-form">
             <label>
-                <select id="navRegione" name="regione" class="form-control form-custom white-inputs">
-                    <?php
-                    if (isset($_GET["regione"]) and $_GET["regione"] != "Tutta Italia"){
-                        echo '<option value="' . $_GET["regione"] . '">' . $_GET["regione"] . '</option>';
-                        echo '<option disabled></option>';
-                    }
-                    ?>
-                    <option value="Tutta Italia">Tutta Italia</option>
-                </select>
+                <select id="navRegione" name="regione" class="form-control form-custom white-inputs"></select>
             </label>
             <label>
-                <select id="navProvincia" name="provincia" class="form-control form-custom white-inputs">
-                    <?php
-                    if (isset($_GET["provincia"]) and $_GET["provincia"] != "Ogni provincia"){
-                        echo '<option value="' . $_GET["provincia"] . '">' . $_GET["provincia"] . '</option>';
-                        echo '<option disabled></option>';
-                    }
-                    ?>
-                    <option value="Ogni provincia">Ogni provincia</option>
-                </select>
+                <select id="navProvincia" name="provincia" class="form-control form-custom white-inputs"></select>
             </label>
             <div class="nav-newline"></div>
             <input id="testoRicerca" name="testoRicerca" class="form-control form-custom mr-sm-2 white-inputs nav-search" type="search" placeholder="Cerca" aria-label="Search" value="<?php echo isset($_GET['testoRicerca'])?$_GET['testoRicerca']:'';?>">
@@ -145,17 +129,17 @@
                                 <div class="md-form md-outline">
                                     <i class="fas fa-map-marked-alt prefix"></i>
                                     <label>
-                                        <select name="regRegione" id="register-regione" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['rg'])?$_GET['rg']:'');?>" required>
+                                        <select name="regRegione" id="register-regione" class="form-control formLoginRegister-register" required>
                                             <option value="" disabled selected hidden>Regione</option>
                                         </select>
                                     </label>
                                     <label>
-                                        <select name="regProvincia" id="register-provincia" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['pr'])?$_GET['pr']:'');?>" required>
+                                        <select name="regProvincia" id="register-provincia" class="form-control formLoginRegister-register" required>
                                             <option value="" disabled selected hidden>Provincia</option>
                                         </select>
                                     </label>
                                     <label>
-                                        <select name="regComune" id="register-comune" class="form-control formLoginRegister-register" value="<?php echo (isset($_GET['cm'])?$_GET['cm']:'');?>" required>
+                                        <select name="regComune" id="register-comune" class="form-control formLoginRegister-register" required>
                                             <option value="" disabled selected hidden>Comune</option>
                                         </select>
                                     </label>

@@ -6,3 +6,23 @@
 <script src="js/functions.js"></script>
 <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'pwd' or $_GET['dberr'] == 'eml'))?'<script>accediRegistrati(\'tabAccedi\')</script>':'');?>
 <?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf' or $_GET['dberr'] == 'E'))?'<script>accediRegistrati(\'tabRegistrati\')</script>':'');?>
+<script>
+    //ricerca
+    window.addEventListener('DOMContentLoaded', function () {
+        popolaRegioni('navRegione', 'navProvincia', null, '<?php echo isset($_GET["regione"])?$_GET["regione"]:"";?>', '<?php echo isset($_GET["provincia"])?$_GET["provincia"]:"";?>', null, true)
+    });
+    document.getElementById('navRegione').addEventListener('change', function () {
+        popolaProvince('navRegione', 'navProvincia', null, true)
+    });
+
+    //registrazione
+    window.addEventListener('DOMContentLoaded', function () {
+        popolaRegioni('register-regione', 'register-provincia', 'register-comune', '<?php echo isset($_GET["rg"])?$_GET["rg"]:"";?>', '<?php echo isset($_GET["pr"])?$_GET["pr"]:"";?>', '<?php echo isset($_GET["cm"])?$_GET["cm"]:"";?>', false)
+    });
+    document.getElementById('register-regione').addEventListener('change', function () {
+        popolaProvince('register-regione', 'register-provincia', 'register-comune')
+    });
+    document.getElementById('register-provincia').addEventListener('change', function () {
+        popolaComuni('register-provincia', 'register-comune')
+    });
+</script>

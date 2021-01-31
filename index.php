@@ -479,8 +479,8 @@ $utente["fotoProfilo"] = "venditore1.jpg";
 
 
 <?php include_once "common/footer.php"?>
-
 <?php include_once "common/common_script.php"; ?>
+
 <script src="js/carosello.js"></script>
 <script src="js/owl.carousel.js"></script>
 <script>
@@ -489,7 +489,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
             popolaRegioni('regione' + i)
         });
         document.getElementById('regione' + i).addEventListener('change', function () {
-            popolaProvince('regione' + i, 'provincia' + i, '', true)
+            popolaProvince('regione' + i, 'provincia' + i, null, true)
         });
     }
 

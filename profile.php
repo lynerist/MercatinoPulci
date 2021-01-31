@@ -70,7 +70,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                         <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog edit-profile" role="document">
                                 <div class="modal-content">
-                                    <form id="modificaProfilo" action="" onsubmit="return controllaForm(id)">
+                                    <form id="modificaProfilo" action="backend/modificaProfilo_exe.php" method="post" onsubmit="return controllaForm(id)">
                                         <div class="modal-header arancio">
                                             <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
                                         </div>
@@ -90,7 +90,8 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                         <div class="p-3 py-5 no-padding-top form-width">
                                                             <div class="row mt-2">
                                                                 <div class="col-md-6"><label><input id="modificaCodiceFiscale" name="modificaCodiceFiscale" type="text" class="form-control form-custom" placeholder="Codice fiscale" value="<?php echo $utente['codiceFiscale'] ?>" readonly></label></div>
-                                                                <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo" placeholder="E-mail" value="<?php echo $utente['email'] ?>" oninput="colora(id, controllaEmail(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaEmail" name="modificaEmail" type="email" class="form-control form-custom modificaProfilo <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "E") !== false)?"is-invalid":"";?>" placeholder="E-mail" value="<?php echo $utente['email'] ?>" oninput="colora(id, controllaEmail(value))" required></label></div>
+                                                                <label for="modificaEmail" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "E") !== false)?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "E") !== false)?"email già in uso":"";?></label>
                                                             </div>
                                                             <div class="row mt-3">
                                                                 <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo $utente['nome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
@@ -136,9 +137,8 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                                     <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label>
-                                                                        <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
-                                                                    </label>
+                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "Np") !== false)?"is-invalid":"";?>" type="password" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
+                                                                    <label for="ripetiNuovaPassword" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "Np") !== false)?"invalid-feedback":"";?>"></label>
                                                                     <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                                                 </div>
                                                             </div>
@@ -147,10 +147,8 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                             </div>
                                                             <div class="row mt-3">
                                                                 <div class="w-100">
-                                                                    <label>
-<!--                        TODO controllo password con php-->
-                                                                        <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
-                                                                    </label>
+                                                                    <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"is-invalid":"";?>" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
+                                                                    <label for="passwordCorrente" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "P")?"Password errata":"";?></label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -191,7 +189,6 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                 <?php } ?>
 
                 <h6>
-
                     <?php
                     if ($utente["tipoAccount"] == "venditoreAcquirente"){
                         echo 'Acquirente e venditore';
@@ -201,7 +198,6 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                         echo 'Acquirente';
                     }
                     ?>
-
                 </h6>
 
                 <?php
@@ -373,6 +369,8 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
     popolaAnnunciAcquistati('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciVenduti('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciInVendita('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
+
+    <?php echo (isset($_GET['Merr'])?'$("#basicExampleModal").modal()':'');?>
 </script>
 </body>
 </html>

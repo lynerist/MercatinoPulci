@@ -356,6 +356,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
 <script src="js/modal.js"></script>
 <script src="js/profilo.js"></script>
 <script>
+    <?php if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){ ?>
     window.addEventListener('DOMContentLoaded', function () {
         popolaRegioni('modificaRegione', 'modificaProvincia', 'modificaComune', '<?php echo $utente["regione"];?>', '<?php echo $utente["provincia"];?>', '<?php echo $utente["comune"];?>')
     });
@@ -365,11 +366,11 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
     document.getElementById('modificaProvincia').addEventListener('change', function () {
         popolaComuni('modificaProvincia', 'modificaComune')
     });
+    <?php } ?>
 
     popolaAnnunciAcquistati('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciVenduti('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciInVendita('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
-
     <?php echo (isset($_GET['Merr'])?'$("#basicExampleModal").modal()':'');?>
 </script>
 </body>

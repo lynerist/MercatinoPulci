@@ -6,7 +6,7 @@ include_once "../common/query.php";
 $email = mysqli_real_escape_string($cid, $_POST["email"]);
 $password = md5($_POST["password"]);
 
-$login = "SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email';";
+$login = "SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email' and eliminato = '0'";
 $res = $cid -> query($login);
 $utente = $res -> fetch_assoc();
 if ($res->num_rows==0 || $res->num_rows>1){

@@ -22,9 +22,7 @@ $uniqueEmail = !($res -> num_rows);
 
 $validPassword = ($nuovaPassword == $passwordRipetuta and (preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/", $_POST["nuovaPassword"]) or $_POST["nuovaPassword"] == ""));
 
-$res = $cid -> query("SELECT password FROM utente WHERE codiceFiscale = '". $_SESSION["codiceFiscale"] . "'");
-$row = $res -> fetch_row();
-$verifyPassword = ($passwordCorrente == $row[0]);
+$verifyPassword = verifyPassword_sql($cid, $_SESSION["codiceFiscale"], $_POST["passwordCorrente"]);
 
 $_SERVER["HTTP_REFERER"] = "../" . urlCriptato($_SESSION["codiceFiscale"], "");
 if (!($verifyPassword or $uniqueEmail or $validPassword)){
@@ -50,12 +48,37 @@ if (!($verifyPassword or $uniqueEmail or $validPassword)){
     exit;
 }
 
-//TODO non poter modificare se si hanno richieste di acquisto in pendenza
+$res = $cid -> query("SELECT * FROM osserva WHERE acquirente = '". $_SESSION["codiceFiscale"] . "' and richiestaDiAcquisto IS NOT NULL");
+$validAccountChange = ($tipoAccount != "venditore" or !($res -> num_rows));
+if (!$validAccountChange){
+    header("location: " . $_SERVER["HTTP_REFERER"] . $parametri . "&Mml=" . $email . "&Merr=TA");
+    exit;
+}
 
 $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount', password = '$nuovaPassword' WHERE codiceFiscale = '". $_SESSION["codiceFiscale"] . "'";
 if ($_POST["nuovaPassword"] == ""){
     $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount' WHERE codiceFiscale = '" . $_SESSION["codiceFiscale"] . "'";
 }
 $res = $cid->query($modificaProfilo);
+
+if ($tipoAccount == "venditore") $res = $cid -> query("DELETE FROM osserva WHERE acquirente = '". $_SESSION["codiceFiscale"] ."'");
+
+if ($tipoAccount == "acquirente"){
+    $res = $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
+    $res = $cid -> query("DELETE FROM osserva WHERE venditore = '". $_SESSION["codiceFiscale"] ."'");
+}
+
+//Gestione foto
+$currentDirectory = getcwd();
+$uploadDirectory = "/../fotoProfilo/";
+
+$fileName = $_FILES['foto']['name'];
+$fileSize = $_FILES['foto']['size'];
+$fileTmpName  = $_FILES['foto']['tmp_name'];
+$fileType = $_FILES['foto']['type'];
+$fileExtension = strtolower(explode('.', $fileName)[1]);
+
+$uploadPath = $currentDirectory . $uploadDirectory . basename($fileName);
+move_uploaded_file($fileTmpName, $uploadPath);
 
 header('Location: ' . $_SERVER["HTTP_REFERER"]);

@@ -70,7 +70,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                         <div class="modal fade modal-only" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog edit-profile" role="document">
                                 <div class="modal-content">
-                                    <form id="modificaProfilo" action="backend/modificaProfilo_exe.php" method="post" onsubmit="return controllaForm(id)">
+                                    <form id="modificaProfilo" action="backend/modificaProfilo_exe.php" method="post" enctype="multipart/form-data" onsubmit="return controllaForm(id)">
                                         <div class="modal-header arancio">
                                             <h5 class="modal-title" id="exampleModalLabel">Modifica profilo</h5>
                                         </div>
@@ -82,7 +82,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                             <img id="fotoInput" src="fotoProfilo/<?php inserisciFoto($utente['fotoProfilo']);?>" alt=""/>
                                                             <div class="file btn btn-lg x btn-primary mt-0">
                                                                 Cambia foto
-                                                                <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)"  accept="image/png, image/jpeg, image/jpg"/>
+                                                                <input type="file" name="foto" class="w-100 h-100" onchange="loadFile(event)"  accept="image/png, image/jpeg, image/jpg"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -112,11 +112,12 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                             <div class="row mt-3">
                                                                 <div class="col-md-6">
                                                                     <label>
-                                                                        <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo" required>
+                                                                        <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo <?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "TA")?"is-invalid":"";?>" onchange="this.classList.remove('is-invalid');" required>
                                                                             <option value="acquirente"<?php echo $utente["tipoAccount"]=="acquirente"?"selected":"";?>>Acquirente</option>
                                                                             <option value="venditore"<?php echo $utente["tipoAccount"]=="venditore"?"selected":"";?>>Venditore</option>
                                                                             <option value="venditoreAcquirente"<?php echo $utente["tipoAccount"]=="venditoreAcquirente"?"selected":"";?>>Acquirente e venditore</option>
                                                                         </select>
+                                                                        <label for="modificaTipoAccount" class="<?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "TA")?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "TA")?"Hai richieste di acquisto attive, perciò non puoi smettere di essere acquirente.":"";?></label>
                                                                     </label>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -132,12 +133,14 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                             <div class="row mt-3">
                                                                 <div class="col-md-6">
                                                                     <label>
-                                                                        <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="Nuova Password" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))">
+                                                                        <input id="nuovaPassword" name="nuovaPassword" class="form-control form-custom modificaProfilo" type="password" placeholder="Nuova Password" oninput="colora(id, controllaPassword(value) || value === ''); colora('ripetiNuovaPassword',controllaRipetizionePassword('ripetiNuovaPassword',value))" autocomplete="off" readonly
+                                                                               onfocus="this.removeAttribute('readonly');">
                                                                     </label>
                                                                     <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "Np") !== false)?"is-invalid":"";?>" type="password" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))">
+                                                                    <input id="ripetiNuovaPassword" name="ripetiNuovaPassword" class="form-control form-custom modificaProfilo <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "Np") !== false)?"is-invalid":"";?>" type="password" placeholder="Ripeti Password" oninput="colora(id,controllaRipetizionePassword('nuovaPassword',value))" autocomplete="off" readonly
+                                                                           onfocus="this.removeAttribute('readonly');">
                                                                     <label for="ripetiNuovaPassword" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "Np") !== false)?"invalid-feedback":"";?>"></label>
                                                                     <div class="invalid-feedback ml-1">Le due password non corrispondono.</div>
                                                                 </div>
@@ -147,8 +150,11 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                             </div>
                                                             <div class="row mt-3">
                                                                 <div class="w-100">
-                                                                    <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"is-invalid":"";?>" type="password" placeholder="••••••" oninput="colora(id, controllaPassword(value))" required>
-                                                                    <label for="passwordCorrente" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "P")?"Password errata":"";?></label>
+                                                                    <label>
+                                                                        <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"is-invalid":"";?>" type="password" placeholder="Password corrente" oninput="colora(id, controllaPassword(value))" autocomplete="off" readonly
+                                                                               onfocus="this.removeAttribute('readonly');" required>
+                                                                        <label for="passwordCorrente" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "P")?"Password errata":"";?></label>
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -171,14 +177,14 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                     <div class="modal-header">
                                         <h3>Sei sicuro?</h3>
                                     </div>
-                                    <form id="eliminaProfilo" action="backend/eliminaProfilo_exe.php" onsubmit="return controllaForm(id)">
+                                    <form id="eliminaProfilo" action="backend/eliminaProfilo_exe.php" method="post" onsubmit="return controllaForm(id)">
                                         <div class="modal-body">
                                             <h5 class="text-danger">Per creare un nuovo account dovrai contattare un amministratore di sistema.</h5>
-                                            <input id="passwordEliminaProfilo" name="passwordEliminaProfilo" class="form-control form-custom eliminaProfilo" type="password" placeholder="Immetti la tua password" oninput="colora(id, controllaPassword(value))" required>
-                                            <label for="passwordEliminaProfilo" class="invalid-feedback ml-1"></label>
+                                            <input id="passwordEliminaProfilo" name="passwordEliminaProfilo" class="form-control form-custom eliminaProfilo <?php echo (isset($_GET['Mep'])?'is-invalid':'');?>" type="password" placeholder="Immetti la tua password" oninput="colora(id, controllaPassword(value))" required>
+                                            <label for="passwordEliminaProfilo" class="<?php echo (isset($_GET['Mep'])?'invalid-feedback':'');?>"><?php echo (isset($_GET['Mep'])?'Password errata':'');?></label>
                                         </div>
                                         <div class="modal-footer">
-                                            <button href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</button>
+                                            <button data-dismiss="modal" class="btn btn-outline-warning">Annulla</button>
                                             <button type="submit" class="btn btn-danger">Conferma</button>
                                         </div>
                                     </form>
@@ -253,7 +259,6 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                 <?php } ?>
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-
                     <?php
                     if ($utente["tipoAccount"] == "acquirente" or $utente["tipoAccount"] == "venditoreAcquirente"){ ?>
                         <li class="nav-item">
@@ -274,7 +279,6 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#annunciInVendita" role="tab" aria-controls="annunciInVendita" aria-selected="false">Annunci in vendita</a>
                         </li>
                     <?php } ?>
-
                 </ul>
             </div>
         </div>
@@ -371,7 +375,9 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
     popolaAnnunciAcquistati('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciVenduti('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
     popolaAnnunciInVendita('<?php echo base64_encode($utente["codiceFiscale"]);?>', 0);
+
     <?php echo (isset($_GET['Merr'])?'$("#basicExampleModal").modal()':'');?>
+    <?php echo (isset($_GET['Mep'])?'$("#modalEliminaProfilo").modal()':'');?>
 </script>
 </body>
 </html>

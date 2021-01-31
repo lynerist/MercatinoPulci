@@ -4,8 +4,12 @@
 <script src="js/navbar.js"></script>
 <script src="js/controlloInput.js"></script>
 <script src="js/functions.js"></script>
-<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'pwd' or $_GET['dberr'] == 'eml'))?'<script>accediRegistrati(\'tabAccedi\')</script>':'');?>
-<?php echo ((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf' or $_GET['dberr'] == 'E'))?'<script>accediRegistrati(\'tabRegistrati\')</script>':'');?>
+<?php
+if (!isset($_SESSION["codiceFiscale"])) {
+    echo((isset($_GET['dberr']) and ($_GET['dberr'] == 'pwd' or $_GET['dberr'] == 'eml')) ? '<script>accediRegistrati(\'tabAccedi\')</script>' : '');
+    echo((isset($_GET['dberr']) and ($_GET['dberr'] == 'CfE' or $_GET['dberr'] == 'Cf' or $_GET['dberr'] == 'E')) ? '<script>accediRegistrati(\'tabRegistrati\')</script>' : '');
+}
+?>
 <script>
     //ricerca
     window.addEventListener('DOMContentLoaded', function () {
@@ -14,7 +18,6 @@
     document.getElementById('navRegione').addEventListener('change', function () {
         popolaProvince('navRegione', 'navProvincia', null, true)
     });
-
     //registrazione
     window.addEventListener('DOMContentLoaded', function () {
         popolaRegioni('register-regione', 'register-provincia', 'register-comune', '<?php echo isset($_GET["rg"])?$_GET["rg"]:"";?>', '<?php echo isset($_GET["pr"])?$_GET["pr"]:"";?>', '<?php echo isset($_GET["cm"])?$_GET["cm"]:"";?>', false)

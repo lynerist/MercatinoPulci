@@ -390,3 +390,9 @@ order by a.dataOraPubblicazione");
     }
     return $res;
 }
+
+function verifyPassword_sql($cid, $cfSessione, $password){
+    $res = $cid -> query("SELECT password FROM utente WHERE codiceFiscale = '$cfSessione'");
+    $row = $res -> fetch_row();
+    return (md5($password) == $row[0]);
+}

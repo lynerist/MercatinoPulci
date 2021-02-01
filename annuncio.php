@@ -223,7 +223,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
             <?php } ?>
 
             <?php
-            if (!$annuncio["venditoreEliminato"]) echo '<div class="mt-3">Venduto da: <a class="link-profile" href="' . urlCriptato($annuncio['venditore'], '') . '" target="_blank">' . $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] . '</a></div>';
+            if (!$annuncio["venditoreEliminato"]) echo '<div class="mt-3">Venduto da: <a class="link-profile" href="' . urlCriptato($annuncio['venditore'], '') . '>' . $annuncio["nomeVenditore"] . " " . $annuncio["cognomeVenditore"] . '</a></div>';
             else echo '<div class="mt-3">Venduto da: <b>Utente eliminato</b></div>';
             ?>
 

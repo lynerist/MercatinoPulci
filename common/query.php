@@ -396,3 +396,9 @@ function verifyPassword_sql($cid, $cfSessione, $password){
     $row = $res -> fetch_row();
     return (md5($password) == $row[0]);
 }
+
+function modificaFotoProfilo_sql($cid, $cfSessione, $estensione){
+    $foto = md5($cfSessione) . "." . $estensione;
+    $cid -> query("UPDATE utente SET immagine = '$foto' WHERE codiceFiscale = '$cfSessione'");
+    return $foto;
+}

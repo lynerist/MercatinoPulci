@@ -69,16 +69,14 @@ if ($tipoAccount == "acquirente"){
 }
 
 //Gestione foto
-$currentDirectory = getcwd();
-$uploadDirectory = "/../fotoProfilo/";
+$currentDirectory = substr(getcwd(), 0, -7);
+$uploadDirectory = "fotoProfilo/";
 
 $fileName = $_FILES['foto']['name'];
-$fileSize = $_FILES['foto']['size'];
 $fileTmpName  = $_FILES['foto']['tmp_name'];
-$fileType = $_FILES['foto']['type'];
 $fileExtension = strtolower(explode('.', $fileName)[1]);
 
-$uploadPath = $currentDirectory . $uploadDirectory . basename($fileName);
+$uploadPath = $currentDirectory . $uploadDirectory . modificaFotoProfilo_sql($cid, $_SESSION["codiceFiscale"], $fileExtension);
 move_uploaded_file($fileTmpName, $uploadPath);
 
 header('Location: ' . $_SERVER["HTTP_REFERER"]);

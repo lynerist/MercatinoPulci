@@ -1,6 +1,4 @@
 function rimuovi(me, other) {
-	let m = document.getElementById(me);
-	let o = document.getElementById(other);
-	m.style.display = "none";
-	o.style.display = "block";
+	document.getElementById(me).style.display = "none";
+	document.getElementById(other).style.display = "block";
 }

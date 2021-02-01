@@ -59,13 +59,13 @@ $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', emai
 if ($_POST["nuovaPassword"] == ""){
     $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount' WHERE codiceFiscale = '" . $_SESSION["codiceFiscale"] . "'";
 }
-$res = $cid->query($modificaProfilo);
+$cid->query($modificaProfilo);
 
 if ($tipoAccount == "venditore") $res = $cid -> query("DELETE FROM osserva WHERE acquirente = '". $_SESSION["codiceFiscale"] ."'");
 
 if ($tipoAccount == "acquirente"){
-    $res = $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
-    $res = $cid -> query("DELETE FROM osserva WHERE venditore = '". $_SESSION["codiceFiscale"] ."'");
+    $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
+    $cid -> query("DELETE FROM osserva WHERE venditore = '". $_SESSION["codiceFiscale"] ."'");
 }
 
 //Gestione foto

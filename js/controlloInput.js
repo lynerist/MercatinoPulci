@@ -131,3 +131,13 @@ function controllaVaia(pagina, maxPagina) {
     if (pagina > 0) return pagina;
     return 1;
 }
+
+function isChecked(id1, id2) {
+    if (!document.getElementById(id1).checked && !document.getElementById(id2).checked){
+        document.getElementById('labelRadioButton').style.display = "block";
+    }
+}
+
+function removeDisplayBlock() {
+    document.getElementById('labelRadioButton').style.display = "none";
+}

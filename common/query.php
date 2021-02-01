@@ -402,3 +402,12 @@ function modificaFotoProfilo_sql($cid, $cfSessione, $estensione){
     $cid -> query("UPDATE utente SET immagine = '$foto' WHERE codiceFiscale = '$cfSessione'");
     return $foto;
 }
+
+function richiestaDiAcquistoEffettuata_sql($cid, $cfSessione, $dop, $v){
+    $res = $cid -> query("SELECT richiestaDiAcquisto FROM osserva WHERE acquirente = '$cfSessione' and venditore = '$v' and dataOraPubblicazione = '$dop' and richiestaDiAcquisto is not null");
+    return ($res -> num_rows);
+}
+
+function smettiDiOsservare_sql($cid, $cfSessione, $dop, $v){
+    return $cid -> query("DELETE FROM osserva WHERE acquirente = '$cfSessione' and dataOraPubblicazione = '$dop' and venditore = '$v' and richiestaDiAcquisto is null");
+}

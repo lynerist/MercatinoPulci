@@ -476,15 +476,10 @@ include_once "common/query.php";
 
         </div>
     </div>
-
 </div>
 
-<?php include_once "common/footer.php" ?>
+<?php include_once "common/footer.php";?>
+<?php include_once "common/common_script.php";?>
 
-<script src="js/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap.bundle.js"></script>
-<script src="js/navbar.js"></script>
-<script src="js/controlloInput.js"></script>
 </body>
 </html>

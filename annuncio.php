@@ -228,7 +228,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
             ?>
 
             <?php
-            if (isset($_SESSION["codiceFiscale"]) and  $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"]== "inVendita"){ ?>
+            if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] != $annuncio["venditore"] and $_SESSION["tipoAccount"] != 'venditore' and $annuncio["statoAnnuncio"] == "inVendita" and !richiestaDiAcquistoEffettuata_sql($cid, $_SESSION["codiceFiscale"], $annuncio["dataOraPubblicazione"], $annuncio["venditore"])){ ?>
                 <button type="button" class="destra btn btn-secondary btn-outline-success btn-sm mt-5" data-toggle="modal" data-target="#modalconfermaAcquisto">Compra</button>
                 <div class="modal fade" id="modalconfermaAcquisto">
                     <div class="modal-dialog">
@@ -236,23 +236,26 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                             <div class="modal-header">
                                 <h3>Richiesta di acquisto</h3>
                             </div>
-                            <div class="modal-body text-left">
-                                <h5>Come vuoi effettuare il pagamento?</h5>
-                                <form action="" class="myform">
-                                    <div class="radiobtn">
-                                        <input type="radio" class="" id="diPersona" name="metodoPagamento" value="0">
-                                        <label for="diPersona" class="form-check-label"><i class="fas fa-coins"></i> Di persona</label>
+                            <form action="backend/compraAnnuncio_exe.php<?php echo '?dop=' . $_GET["dop"] . '&v=' . $_GET["v"];?>" method="post">
+                                <div class="modal-body text-left">
+                                    <h5>Come vuoi effettuare il pagamento?</h5>
+                                    <div class="myform">
+                                        <div id="radioButtons" class="radiobtn">
+                                            <input type="radio" id="diPersona" name="metodoPagamento" value="0" onclick="removeDisplayBlock()" required>
+                                            <label for="diPersona" class="form-check-label"><i class="fas fa-coins"></i> Di persona</label>
+                                        </div>
+                                        <div class="radiobtn">
+                                            <input type="radio" id="cartaDiCredito" name="metodoPagamento" value="1" onclick="removeDisplayBlock()" required>
+                                            <label for="cartaDiCredito" class="form-check-label"><i class="fas fa-credit-card"></i> Carta di credito</label>
+                                        </div>
                                     </div>
-                                    <div class="radiobtn">
-                                        <input type="radio" class="" id="cartaDiCredito" name="metodoPagamento" value="1">
-                                        <label for="cartaDiCredito" class="form-check-label"><i class="fas fa-credit-card"></i> Carta di credito</label>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                <a href="richiestaDiAcquisto.php" class="btn btn-success">Invia</a>
-                            </div>
+                                    <label for="radioButtons" id="labelRadioButton" class="text-danger text-center mt-3 display-none">Devi prima selezionare uno dei metodi di pagamento.</label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-outline-warning">Annulla</button>
+                                    <button type="submit" class="btn btn-success" onclick="isChecked('diPersona', 'cartaDiCredito')">Invia</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

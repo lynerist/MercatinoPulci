@@ -57,18 +57,16 @@ if($res -> num_rows == 0){
 }
 while ($annuncio = $res->fetch_assoc()) {
     $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
-    $annuncio['titolo'] = $annuncio['titolo'];
-    $annuncio['prodotto'] = $annuncio['prodotto'];
     
     if ($annuncio["scadenza"] < 1) continue;
     $token = '<div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="' . $i . '">
             <div class="media d-block d-sm-flex text-center text-sm-left">
-                <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">
+                <a class="cart-item-thumb mx-auto mr-sm-4" href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '">
                     <img src="fotoAnnuncio/' . (is_null($annuncio['fotoAnnuncio'])?'image_not_found.png':$annuncio['fotoAnnuncio']) . '" alt="Product" id="foto' . $i . '">
                 </a>
                 <div class="media-body pt-3">
                     <h3 class="product-card-title font-weight-semibold border-0 pb-0" id="titolo' . $i . '">
-                        <a href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '" target="_blank">' . $annuncio['titolo'] .'</a>
+                        <a href="' . urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']) . '">' . $annuncio['titolo'] .'</a>
                     </h3>
                     <div class="font-size-sm" id="prodotto' . $i . '"><span class="text-muted mr-2">Prodotto:</span>' . $annuncio['prodotto'] . '</div>
                     <div class="font-size-sm" id="tempoUsura' . $i . '"><span class="text-muted mr-2"><b>' . array("Usato", "Nuovo")[$annuncio["tempoUsura"] == 0] . '</b></span></div>

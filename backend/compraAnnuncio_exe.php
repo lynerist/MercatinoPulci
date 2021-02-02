@@ -8,7 +8,7 @@ $dataOraPubblicazione = base64_decode($_GET["dop"]);
 $venditore = base64_decode($_GET["v"]);
 $richiestaDiAcquisto = $_POST["metodoPagamento"];
 
-smettiDiOsservare_sql($cid, $_SESSION["codiceFiscale"], $dataOraPubblicazione, $venditore);
-$cid -> query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('" . $_SESSION["codiceFiscale"] . "', '$dataOraPubblicazione', '$venditore', '$richiestaDiAcquisto')");
+smettiDiOsservare_sql($cid, $dataOraPubblicazione, $venditore, $_SESSION["codiceFiscale"]);
+acquista_sql($cid, $dataOraPubblicazione, $venditore, $_SESSION["codiceFiscale"], $richiestaDiAcquisto);
 
-header("location: ../richiestaDiAcquisto.php");
+header("location: ../richiestaDiAcquisto.php?");

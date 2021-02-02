@@ -128,7 +128,7 @@ include_once "common/query.php";
                                     <div class="font-size-sm pb-3 text-newline">
                                         <span class="text-muted mr-2">Pagamento:</span><?php echo $annuncio['pagamento']?'Carta di credito':'Contanti';?>
                                     </div>
-                                    <form action="" method="get">
+                                    <form method="post" action="backend/confermaVendita_exe.php<?php echo "?a=" . base64_encode($annuncio['acquirente']) . "&v=" . base64_encode($annuncio['venditore']) . "&dop=" . base64_encode($annuncio['dataOraPubblicazione'])?>" >
                                         <div class="non-osservare d-flex">
                                             <button type="submit" class="btn btn-sm btn-outline-success mr-1">Approva</button>
                                         </div>

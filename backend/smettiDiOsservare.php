@@ -24,7 +24,7 @@ if ($utente["codiceFiscale"] == ""){
     unset($osservati["$daRimuovere"]);
     setcookie("annunciOsservati", serialize($osservati), time() + (10 * 365 * 24 * 60 * 60), "/mercatinopulci");
 }else{
-    $res = smettiDiOsservare_sql($cid ,$_SESSION["codiceFiscale"], $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
+    $res = smettiDiOsservare_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $_SESSION["codiceFiscale"]);
     if (!$res) {
         $risultato["errore"] = true;
         echo json_encode($risultato);

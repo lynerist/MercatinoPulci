@@ -408,6 +408,20 @@ function richiestaDiAcquistoEffettuata_sql($cid, $cfSessione, $dop, $v){
     return ($res -> num_rows);
 }
 
-function smettiDiOsservare_sql($cid, $cfSessione, $dop, $v){
-    return $cid -> query("DELETE FROM osserva WHERE acquirente = '$cfSessione' and dataOraPubblicazione = '$dop' and venditore = '$v' and richiestaDiAcquisto is null");
+function smettiDiOsservare_sql($cid, $dop, $venditore, $acquirente){
+    //tutti gli annunci di una persona da aquirente e da venditore
+    if ($dop == "") return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente' or venditore = '$venditore'");
+    //tutte le persone di un annuncio
+    if ($acquirente == "") return $cid -> query("DELETE FROM osserva WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore'"); 
+    //un annuncio di una persona
+    return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente' and dataOraPubblicazione = '$dop' and venditore = '$venditore'");
 }
+
+function confermaVendita_sql($cid, $dop, $venditore, $acquirente){
+    $cid->query("INSERT INTO acquista (dataOraPubblicazione, venditore, acquirente, valutazioneSuAcquirente) VALUES ('$dop', '$venditore', '$acquirente', null)");
+}
+
+function acquista_sql($cid, $dop, $venditore, $acquirente, $richiestaDiAcquisto){
+    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$acquirente', '$dop', '$venditore', $richiestaDiAcquisto)");
+}
+

@@ -76,7 +76,9 @@ $fileName = $_FILES['foto']['name'];
 $fileTmpName  = $_FILES['foto']['tmp_name'];
 $fileExtension = strtolower(explode('.', $fileName)[1]);
 
-$uploadPath = $currentDirectory . $uploadDirectory . modificaFotoProfilo_sql($cid, $_SESSION["codiceFiscale"], $fileExtension);
-move_uploaded_file($fileTmpName, $uploadPath);
+if ($fileName != ""){
+    $uploadPath = $currentDirectory . $uploadDirectory . modificaFotoProfilo_sql($cid, $_SESSION["codiceFiscale"], $fileExtension);
+    move_uploaded_file($fileTmpName, $uploadPath);
+}
 
 header('Location: ' . $_SERVER["HTTP_REFERER"]);

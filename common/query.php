@@ -422,6 +422,10 @@ function confermaVendita_sql($cid, $dop, $venditore, $acquirente){
 }
 
 function acquista_sql($cid, $dop, $venditore, $acquirente, $richiestaDiAcquisto){
-    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$acquirente', '$dop', '$venditore', $richiestaDiAcquisto)");
+    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$acquirente', '$dop', '$venditore', '$richiestaDiAcquisto')");
 }
 
+function inserisciValutazione_sql($cid, $dop, $venditore, $acquirente, $valutazione, $verso){
+    if ($verso == "acquirente") $cid->query("UPDATE acquista SET valutazioneSuAcquirente = '$valutazione' WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore' and acquirente = '$acquirente'");
+    else $cid->query("UPDATE annuncio SET valutazioneSuVenditore = '$valutazione' WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore'");
+}

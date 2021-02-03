@@ -71,22 +71,22 @@ function controllaTempoUsura(idTempoUsura, idStatoUsura){
 
 var countAreaVisibilita = 0;
 try {
-    popolaRegioni('visibilita-regione_' + countAreaVisibilita);
+    popolaRegioni('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, "", "", "", true);
     document.getElementById('visibilita-regione_' + countAreaVisibilita).addEventListener('change', function () {
-        popolaProvince('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita)
+        popolaProvince('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, true)
     });
     document.getElementById('visibilita-provincia_' + countAreaVisibilita).addEventListener('change', function () {
-        popolaComuni('visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita)
+        popolaComuni('visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, "", true)
     });
 }catch (error){}
 
 function aggiungiAreaVisibilita(id){
     countAreaVisibilita++
-    let nodo = '<div class="row"><div class="md-form md-outline container-fluid mt-0"><label><select name="regione" id="visibilita-regione_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Regione</option></select></label><label><select name="provincia" id="visibilita-provincia_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Provincia</option></select></label><label><select name="comune" id="visibilita-comune_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Comune</option></select></label></div></div>'
-    document.getElementById(id).previousElementSibling.outerHTML += nodo
-    popolaRegioni('visibilita-regione_' + countAreaVisibilita);
-    document.getElementById('visibilita-regione_' + countAreaVisibilita).addEventListener('change', function () {popolaProvince('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita)});
-    document.getElementById('visibilita-provincia_' + countAreaVisibilita).addEventListener('change', function () {popolaComuni('visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita)});
+    let nodo = '<div class="row"><div class="md-form md-outline container-fluid mt-0"><label><select id="visibilita-regione_' + countAreaVisibilita + '" name="regione_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Regione</option></select></label><label><select id="visibilita-provincia_' + countAreaVisibilita + '" name="provincia_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Provincia</option></select></label><label><select id="visibilita-comune_' + countAreaVisibilita + '" name="comune_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Comune</option></select></label></div></div>'
+    document.getElementById(id).outerHTML = nodo + document.getElementById(id).outerHTML;
+    popolaRegioni('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, "", "", "", true);
+    document.getElementById('visibilita-regione_' + countAreaVisibilita).addEventListener('change', function () {popolaProvince('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, true)});
+    document.getElementById('visibilita-provincia_' + countAreaVisibilita).addEventListener('change', function () {popolaComuni('visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, "", true)});
 }
 
 function visualizzaAreaVisibilita(visibilita, idAreavisibilita){

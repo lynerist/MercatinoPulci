@@ -79,7 +79,7 @@ function popolaProvince(idR, idP, idC, opzionale, provinciaSelezionata, comuneSe
                     provincia.selected = (provincia.value === provinciaSelezionata);
                     select.appendChild(provincia);
                 }
-                popolaComuni(idP, idC, comuneSelezionato);
+                popolaComuni(idP, idC, comuneSelezionato, opzionale);
             }
         };
         xttp.open("GET", "common/getProvince.php?regione=" + regioneSelezionata, true);
@@ -87,7 +87,7 @@ function popolaProvince(idR, idP, idC, opzionale, provinciaSelezionata, comuneSe
     }
 }
 
-function popolaComuni(idP, idC, comuneSelezionato) {
+function popolaComuni(idP, idC, comuneSelezionato, opzionale) {
     let provinciaSelect = document.getElementById(idP);
     let provinciaSelezionata = provinciaSelect.options[provinciaSelect.selectedIndex].value;
 
@@ -103,7 +103,11 @@ function popolaComuni(idP, idC, comuneSelezionato) {
 
                 let comuni = risposta.contenuto;
                 let select = document.getElementById(idC);
+
                 select.innerHTML = "";
+                if (opzionale){
+                    select.innerHTML = "<option value=\"Ogni comune\">Ogni comune</option>";
+                }
                 for (let i = 0; i < comuni.length; i++) {
                     let comune = document.createElement('option');
                     comune.setAttribute("value", comuni[i]);

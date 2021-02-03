@@ -15,5 +15,6 @@ if (!$verifyPassword){
 $res = $cid -> query("UPDATE utente SET eliminato = '1' WHERE codiceFiscale = '" . $_SESSION["codiceFiscale"] . "'");
 $res = $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
 smettiDiOsservare_sql($cid, "", $_SESSION["codiceFiscale"], $_SESSION["codiceFiscale"]);
+rimuoviVisibilitaAnnuncio_sql($cid, "", $_SESSION["codiceFiscale"]);
 
 header("location: ../profilo_eliminato.php?status=eliminato");

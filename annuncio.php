@@ -45,7 +45,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                     <div class="modal fade modal-only" id="modalModificaAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog edit-annuncio" role="document">
                             <div class="modal-content">
-                                <form id="modificaAnnuncio" onsubmit="return controllaForm(id)">
+                                <form id="modificaAnnuncio" action="backend/modificaAnnuncio_exe.php . <?php echo "?dop=" . $annuncio['dataOraPubblicazione'];?>" method="post" onsubmit="return controllaForm(id)">
                                     <div class="modal-header arancio">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifica annuncio</h5>
                                     </div>
@@ -65,13 +65,13 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                 <div class="col-md-8">
                                                     <div class="p-3 py-5 no-padding-top form-width">
                                                         <div class="row mt-2">
-                                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="<?php echo $annuncio['titolo'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
-                                                            <div class="col-md-6"><label><input id="prezzo" type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value="<?php echo $annuncio['prezzo'] ?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="titolo" name="titolo" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Titolo" value="<?php echo $annuncio['titolo'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="prezzo" name="prezzo" type="text" class="form-control form-custom testo-grande modificaAnnuncio" placeholder="Prezzo in €" value="<?php echo $annuncio['prezzo'] ?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="categoria" id="categoria" class="form-control modificaAnnuncio" required>
+                                                                    <select id="categoria" name="categoria" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Categoria</option>
                                                                         <option value="elettrodomestici">Elettrodomestici</option>
                                                                         <option value="abbigliamento">Abbigliamento</option>
@@ -82,7 +82,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="sottcategoria" id="sottocategoria" class="form-control modificaAnnuncio" required>
+                                                                    <select id="sottocategoria" name="sottocategoria" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Sottocategoria</option>
                                                                         <option value="altro">Altro</option>
                                                                     </select>
@@ -90,10 +90,10 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
-                                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Prodotto" value="<?php echo $annuncio['prodotto'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                                            <div class="col-md-6"><label><input id="prodotto" name="prodotto" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Prodotto" value="<?php echo $annuncio['prodotto'] ?>" oninput="colora(id,controllaTesto(value))" required></label></div>
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="visibilita" id="visibilita" class="form-control modificaAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
+                                                                    <select id="visibilita" name="visibilita" class="form-control modificaAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
                                                                         <option value="" disabled selected hidden>Visibilità</option>
                                                                         <option value="pubblica" <?php if ($annuncio["visibilita"] == "pubblica") echo "selected"; ?>>Pubblica</option>
                                                                         <option value="ristretta" <?php if ($annuncio["visibilita"] == "ristretta") echo "selected"; ?>>Ristretta</option>
@@ -105,7 +105,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select name="statoUsura" id="statoUsura" class="form-control modificaAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
+                                                                    <select id="statoUsura" name="statoUsura" class="form-control modificaAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
                                                                         <option value="" disabled selected hidden>Stato usura</option>
                                                                         <option value="nuovo" <?php if ($annuncio["tempoUsura"] == 0) echo "selected"; ?>>Nuovo</option>
                                                                         <option value="comeNuovo" <?php if ($annuncio["statoUsura"] == "comeNuovo") echo "selected"; ?>>Come nuovo</option>
@@ -117,11 +117,11 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label id="labelTempoUsura" class="display-none">
-                                                                    <input id="tempoUsura" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo $annuncio['tempoUsura'] ?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
+                                                                    <input id="tempoUsura" name="tempoUsura" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo $annuncio['tempoUsura'] ?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                                 </label>
                                                                 <label id="labelScadenzaGaranzia" class="display-none">
                                                                     <!-- TODO gestire valore null di scadenza garanzia -->
-                                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])); ?>" onfocus="(this.type='date')">
+                                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])); ?>" onfocus="(this.type='date')">
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -132,17 +132,17 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                         <div class="row mt-3">
                                                             <div class="md-form md-outline container-fluid">
                                                                 <label>
-                                                                    <select name="regione" id="luogoVenditaRegione" class="form-control modificaAnnuncio" required>
+                                                                    <select id="luogoVenditaRegione" name="luogoVenditaRegione" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Regione</option>
                                                                     </select>
                                                                 </label>
                                                                 <label>
-                                                                    <select name="provincia" id="luogoVenditaProvincia" class="form-control modificaAnnuncio" required>
+                                                                    <select id="luogoVenditaProvincia" name="luogoVenditaProvincia" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Provincia</option>
                                                                     </select>
                                                                 </label>
                                                                 <label>
-                                                                    <select name="comune" id="luogoVenditaComune" class="form-control modificaAnnuncio" required>
+                                                                    <select id="luogoVenditaComune" name="luogoVenditaComune" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Comune</option>
                                                                     </select>
                                                                 </label>
@@ -156,22 +156,13 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                             <div class="row">
                                                                 <div class="md-form md-outline container-fluid">
                                                                     <label>
-                                                                        <select name="regione" id="visibilita-regione_0" class="form-control">
-                                                                            <option value="" disabled selected hidden>Regione</option>
-                                                                            <option value="Lombardia">Lombardia</option>
-                                                                        </select>
+                                                                        <select id="visibilita-regione_0" name="regione_0" class="form-control"></select>
                                                                     </label>
                                                                     <label>
-                                                                        <select name="provincia" id="visibilita-provincia_0" class="form-control">
-                                                                            <option value="" disabled selected hidden>Provincia</option>
-                                                                            <option value="Milano">Milano</option>
-                                                                        </select>
+                                                                        <select id="visibilita-provincia_0" name="provincia_0" class="form-control"></select>
                                                                     </label>
                                                                     <label>
-                                                                        <select name="comune" id="visibilita-comune_0" class="form-control">
-                                                                            <option value="" disabled selected hidden>Comune</option>
-                                                                            <option value="Milano">Milano</option>
-                                                                        </select>
+                                                                        <select id="visibilita-comune_0" name="comune_0" class="form-control"></select>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -317,7 +308,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
 <script>visualizza('statoUsura')</script>
 <script>
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('luogoVenditaRegione')
+        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo $annuncio["regione"];?>', '<?php echo $annuncio["provincia"];?>', '<?php echo $annuncio["comune"];?>')
     });
     document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
         popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')

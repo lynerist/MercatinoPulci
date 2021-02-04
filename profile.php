@@ -18,6 +18,14 @@ $utente["nRecensioniVenditore"] = $valutazioni["nValutazioniVenditore"];
 
 $utente["nAnnunciAcquistati"] = nAnnunciAcquistati_sql($cid, $utente["codiceFiscale"]);
 $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"]);
+
+if (isset($_GET["Mnm"])) $utente["nome"] = $_GET["Mnm"];
+if (isset($_GET["Mcg"])) $utente["cognome"] = $_GET["Mcg"];
+if (isset($_GET["Mrg"])) $utente["regione"] = $_GET["Mrg"];
+if (isset($_GET["Mpr"])) $utente["provincia"] = $_GET["Mpr"];
+if (isset($_GET["Mcm"])) $utente["comune"] = $_GET["Mcm"];
+if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
+
 ?>
 
 <!DOCTYPE html>
@@ -151,8 +159,7 @@ $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"])
                                                             <div class="row mt-3">
                                                                 <div class="w-100">
                                                                     <label>
-                                                                        <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"is-invalid":"";?>" type="password" placeholder="Password corrente" oninput="colora(id, controllaPassword(value))" autocomplete="off" readonly
-                                                                               onfocus="this.removeAttribute('readonly');" required>
+                                                                        <input id="passwordCorrente" name="passwordCorrente" class="form-control form-custom <?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"is-invalid":"";?>" type="password" placeholder="Password corrente" oninput="colora(id, controllaPassword(value))" autocomplete="off" required>
                                                                         <label for="passwordCorrente" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "P") !== false)?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "P")?"Password errata":"";?></label>
                                                                     </label>
                                                                 </div>

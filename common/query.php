@@ -403,6 +403,14 @@ function modificaFotoProfilo_sql($cid, $cfSessione, $estensione){
     return $foto;
 }
 
+function modificaFotoAnnuncio_sql($cid, $dop, $v, $estensione){
+    $res = $cid -> query("SELECT COUNT(*) FROM annuncio WHERE venditore = '$v' and dataOraPubblicazione < '$dop'");
+    $nAnnunciPrecedenti = ($res -> fetch_row())[0];
+    $foto = md5($v . $nAnnunciPrecedenti . "." . $estensione);
+    $cid -> query("UPDATE annuncio SET foto = '$foto' WHERE venditore = '$v' and dataOraPubblicazione = 'dop'");
+    return $foto;
+}
+
 function richiestaDiAcquistoEffettuata_sql($cid, $cfSessione, $dop, $v){
     $res = $cid -> query("SELECT richiestaDiAcquisto FROM osserva WHERE acquirente = '$cfSessione' and venditore = '$v' and dataOraPubblicazione = '$dop' and richiestaDiAcquisto is not null");
     return ($res -> num_rows);
@@ -422,6 +430,15 @@ function confermaVendita_sql($cid, $dop, $venditore, $acquirente){
 }
 
 function acquista_sql($cid, $dop, $venditore, $acquirente, $richiestaDiAcquisto){
-    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$acquirente', '$dop', '$venditore', $richiestaDiAcquisto)");
+    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$acquirente', '$dop', '$venditore', '$richiestaDiAcquisto')");
 }
 
+function inserisciValutazione_sql($cid, $dop, $venditore, $acquirente, $valutazione, $verso){
+    if ($verso == "acquirente") $cid->query("UPDATE acquista SET valutazioneSuAcquirente = '$valutazione' WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore' and acquirente = '$acquirente'");
+    else $cid->query("UPDATE annuncio SET valutazioneSuVenditore = '$valutazione' WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore'");
+}
+
+function rimuoviVisibilitaAnnuncio_sql($cid, $dop, $v){
+    if ($dop == "") $cid->query("DELETE FROM areavisibilita WHERE venditore = '$v'");
+    else $cid->query("DELETE FROM areavisibilita WHERE venditore = '$v' and dataOraPubblicazione = '$dop'");
+}

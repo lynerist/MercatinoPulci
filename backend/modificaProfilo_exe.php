@@ -68,6 +68,9 @@ if ($tipoAccount == "acquirente"){
     $cid -> query("DELETE FROM osserva WHERE venditore = '". $_SESSION["codiceFiscale"] ."'");
 }
 
+$_SESSION["nome"] = $nome;
+$_SESSION["tipoAccount"] = $tipoAccount;
+
 //Gestione foto
 $currentDirectory = substr(getcwd(), 0, -7);
 $uploadDirectory = "fotoProfilo/";

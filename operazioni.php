@@ -307,7 +307,7 @@ include_once "common/query.php";
                                 </div>
                             </div>
                         </div>
-                        <form id="valutazioneAcquirente_<?php echo $j;?>" action="" method="get">
+                        <form id="valutazioneAcquirente_<?php echo $j;?>" action="backend/inserisciValutazione_exe.php?verso=acquirente<?php echo "&a=" . base64_encode($annuncio['acquirente']) . "&v=" . base64_encode($annuncio['venditore']) . "&dop=" . base64_encode($annuncio['dataOraPubblicazione'])?>" method="post">
                             <div class="media-body pt-3 mt-3">
                                 <div class="starrating risingstar d-flex flex-row-reverse">
                                     <div class="ml-auto">
@@ -429,7 +429,7 @@ include_once "common/query.php";
                                 </div>
                             </div>
                         </div>
-                        <form id="valutazioneVenditore_<?php echo $j;?>" action="">
+                        <form id="valutazioneVenditore_<?php echo $j;?>" action="backend/inserisciValutazione_exe.php?verso=venditore<?php echo "&a=" . base64_encode($annuncio['acquirente']) . "&v=" . base64_encode($annuncio['venditore']) . "&dop=" . base64_encode($annuncio['dataOraPubblicazione'])?>" method="post">
                             <div class="media-body pt-3 mt-3">
                                 <div class="starrating risingstar d-flex flex-row-reverse">
                                     <div class="ml-auto">
@@ -476,6 +476,7 @@ include_once "common/query.php";
 
         </div>
     </div>
+
 </div>
 
 <?php include_once "common/footer.php";?>

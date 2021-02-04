@@ -20,8 +20,7 @@ if ($res == null) {
 }
 
 $prov= array();
-while($row=$res->fetch_row())
-{
+while($row=$res->fetch_row()){
     $prov[]=$row[0];
 }
 $risultato["contenuto"]=$prov;

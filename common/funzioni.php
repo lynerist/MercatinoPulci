@@ -51,3 +51,10 @@ function isWatched($cid, $dop, $v, $cfSessione, $cookie){
     }
     return false;
 }
+
+function gestisciValoreOgniProvincia($regione, $provincia){
+    if ($provincia == "Ogni provincia"){
+        return $provincia . ":::::" . $regione;
+    }
+    return $provincia;
+}

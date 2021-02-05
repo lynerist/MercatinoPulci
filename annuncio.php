@@ -88,8 +88,8 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                                                     <select id="categoria" name="categoria" class="form-control modificaAnnuncio" onchange="sottoCategoria('sottocategoria', selectedIndex)" required>
                                                                         <option value="" disabled selected hidden>Categoria</option>
                                                                         <option value="elettrodomestici" <?php echo $annuncio["categoria"] == "elettrodomestici"?"selected":"";?>>Elettrodomestici</option>
+                                                                        <option value="fotoEVideo" <?php echo $annuncio["categoria"] == "Foto e video"?"selected":"";?>>Foto e video</option>
                                                                         <option value="abbigliamento" <?php echo $annuncio["categoria"] == "abbigliamento"?"selected":"";?>>Abbigliamento</option>
-                                                                        <option value="fotoEVideo" <?php echo $annuncio["categoria"] == "fotoEVideo"?"selected":"";?>>Foto e video</option>
                                                                         <option value="hobby" <?php echo $annuncio["categoria"] == "hobby"?"selected":"";?>>Hobby</option>
                                                                     </select>
                                                                 </label>
@@ -120,11 +120,11 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                                                 <label>
                                                                     <select id="statoUsura" name="statoUsura" class="form-control modificaAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
                                                                         <option value="" disabled selected hidden>Stato usura</option>
-                                                                        <option value="nuovo" <?php if ($annuncio["tempoUsura"] == "0") echo "selected"; ?>>Nuovo</option>
-                                                                        <option value="comeNuovo" <?php if ($annuncio["statoUsura"] == "comeNuovo") echo "selected"; ?>>Come nuovo</option>
-                                                                        <option value="buono" <?php if ($annuncio["statoUsura"] == "buono") echo "selected"; ?>>Buono</option>
-                                                                        <option value="medio" <?php if ($annuncio["statoUsura"] == "medio") echo "selected"; ?>>Medio</option>
-                                                                        <option value="usurato" <?php if ($annuncio["statoUsura"] == "usurato") echo "selected"; ?>>Usurato</option>
+                                                                        <option value="nuovo" <?php if ($annuncio["tempoUsura"] == "0") echo "selected";?>>Nuovo</option>
+                                                                        <option value="comeNuovo" <?php if ($annuncio["statoUsura"] == "Come nuovo") echo "selected";?>>Come nuovo</option>
+                                                                        <option value="buono" <?php if ($annuncio["statoUsura"] == "buono") echo "selected";?>>Buono</option>
+                                                                        <option value="medio" <?php if ($annuncio["statoUsura"] == "medio") echo "selected";?>>Medio</option>
+                                                                        <option value="usurato" <?php if ($annuncio["statoUsura"] == "usurato") echo "selected";?>>Usurato</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -133,8 +133,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                                                     <input id="tempoUsura" name="tempoUsura" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo $annuncio['tempoUsura'] ?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                                 </label>
                                                                 <label id="labelScadenzaGaranzia" class="display-none">
-                                                                    <!-- TODO gestire valore null di scadenza garanzia -->
-                                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])); ?>" onfocus="(this.type='date')">
+                                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo $annuncio["scadenzaGaranzia"]?date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])):"";?>" onfocus="(this.type='date')">
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -294,7 +293,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                             echo "Nessuna garanzia";
                         }
                     }elseif ($annuncio["tempoUsura"] > 0){
-                        echo "Usato per: " . $annuncio["tempoUsura"]; echo array(" mese", " mesi")[$annuncio["tempoUsura"] > 1];
+                        echo "Usato per " . ($annuncio["tempoUsura"]>12?(intval($annuncio["tempoUsura"]/12) . array(" anno", " anni")[$annuncio["tempoUsura"] > 23] . " e " ):"") . $annuncio["tempoUsura"]%12 . array(" mese", " mesi")[$annuncio["tempoUsura"]%12 > 1];
                     }
                     ?>
                 </i>
@@ -331,9 +330,11 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
     });
 
     <?php echo (isset($_GET['Merr'])?'$("#modalModificaAnnuncio").modal();':'');?>
+
     sottoCategoria('sottocategoria', document.getElementById("categoria").selectedIndex);
-    document.getElementById('sottocategoria').childNodes.forEach(item => item.selected = item.value === "<?php echo $annuncio['sottoCategoria'];?>")
+    document.getElementById('sottocategoria').childNodes.forEach(item => {
+            if (item.value !== undefined)  item.selected = item.value.toLowerCase() === "<?php echo $annuncio['sottoCategoria'];?>".replace(/\s/g, "").toLowerCase();
+    })
 </script>
 </body>
-
 </html>

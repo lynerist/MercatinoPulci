@@ -4,6 +4,8 @@ include_once "../common/funzioni.php";
 include_once "../common/connessioneDB.php";
 include_once "../common/query.php";
 
+$dataOraPubblicazione = $_GET["dop"];
+$venditore = $_SESSION["codiceFiscale"];
 $titolo = mysqli_real_escape_string($cid, $_POST["titolo"]);
 $prezzo = mysqli_real_escape_string($cid, $_POST["prezzo"]);
 $categoria = $_POST["categoria"];
@@ -30,11 +32,7 @@ while (isset($_POST["regione_" . $iterator])){
 }
 
 if ($statoUsura == "nuovo") $tempoUsura = 0;
-if ($scadenzaGaranzia == ""){
-    $scadenzaGaranzia = 'NULL';
-}else{
-    $scadenzaGaranzia = "'" . $scadenzaGaranzia . "'";
-}
+if ($scadenzaGaranzia == "") $scadenzaGaranzia = 'NULL';
 
 $parametri = "&Mt=$titolo&Mct=$categoria&Msc=$sottocategoria&Mpd=$prodotto&Mv=$visibilita&Msu=$statoUsura&Mr=$luogoVenditaRegione&Mp=$luogoVenditaProvincia&Mc=$luogoVenditaComune";
 
@@ -42,7 +40,10 @@ $validPrice = preg_match("/^[1-9][0-9]{0,3}((.|,)[0-9]{1,2})?$/", $prezzo);
 $validTempoUsura = ($statoUsura == "nuovo" or $statoUsura != "nuovo" and $tempoUsura > 0);
 $validScadenzaGaranzia = ($statoUsura != "nuovo" or strtotime($scadenzaGaranzia) > time() or $scadenzaGaranzia == "NULL");
 
-$_SERVER["HTTP_REFERER"] = "../" . urlCriptato($_SESSION["codiceFiscale"], $_GET["dop"]);
+if ($scadenzaGaranzia != "NULL") $scadenzaGaranzia = "'" . $scadenzaGaranzia . "'";
+
+
+$_SERVER["HTTP_REFERER"] = "../" . urlCriptato($venditore, $dataOraPubblicazione);
 if (!($validPrice or $validTempoUsura or $validScadenzaGaranzia)){
     header("location: " . $_SERVER["HTTP_REFERER"] . $parametri . "&Merr=PTG");
     exit;
@@ -73,12 +74,16 @@ if ($statoUsura == "nuovo"){
     $statoUsura = "'" . $statoUsura . "'";
 }
 
-/*$tmp = "UPDATE annuncio SET titolo = '$titolo', prodotto = '$prodotto', categoria = '$categoria', sottoCategoria = '$sottocategoria', prezzo = '$prezzo', statoUsura = $statoUsura, tempoUsura = '$tempoUsura', scadenzaGaranzia = '$scadenzaGaranzia', visibilita = '$visibilita', provincia = '$luogoVenditaProvincia', comune = '$luogoVenditaComune' WHERE dataOraPubblicazione = '" .  $_GET["dop"] . "' and '" . $_SESSION["codiceFiscale"] . "'";
-echo "<script>console.log('$tmp')</script>";
-exit;*/
-$cid -> query("UPDATE annuncio SET titolo = '$titolo', prodotto = '$prodotto', categoria = '$categoria', sottoCategoria = '$sottocategoria', prezzo = '$prezzo', statoUsura = " . $statoUsura . ", tempoUsura = '$tempoUsura', scadenzaGaranzia = " . $scadenzaGaranzia . ", visibilita = '$visibilita', provincia = '$luogoVenditaProvincia', comune = '$luogoVenditaComune' WHERE dataOraPubblicazione = '" .  $_GET["dop"] . "' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
+$cid -> query("UPDATE annuncio SET titolo = '$titolo', prodotto = '$prodotto', categoria = '$categoria', sottoCategoria = '$sottocategoria', prezzo = '$prezzo', statoUsura = " . $statoUsura . ", tempoUsura = '$tempoUsura', scadenzaGaranzia = " . $scadenzaGaranzia . ", visibilita = '$visibilita', provincia = '$luogoVenditaProvincia', comune = '$luogoVenditaComune' WHERE dataOraPubblicazione = '$dataOraPubblicazione' and venditore = '$venditore'");
 
+//svuota areavisibilita prima di riempirlo per evitare chiavi duplicate
+$cid->query("DELETE FROM areavisibilita WHERE venditore = '$venditore' and dataOraPubblicazione = '$dataOraPubblicazione'");
 
+for ($i=0; $i<$iterator; $i++) {
+    if ($regioneVisibilita[$i] == "Tutta Italia") continue;
+    $provincia = gestisciValoreOgniProvincia($regioneVisibilita[$i], $provinciaVisibilita[$i]);
+    $cid->query("INSERT INTO areavisibilita (dataOraPubblicazione, venditore, comune, provincia) VALUES ('$dataOraPubblicazione', '$venditore', '$comuneVisibilita[$i]', '$provincia')");
+}
 
 
 //Gestione foto
@@ -90,7 +95,7 @@ $fileTmpName  = $_FILES['foto']['tmp_name'];
 $fileExtension = strtolower(explode('.', $fileName)[1]);
 
 if ($fileName != ""){
-    $uploadPath = $currentDirectory . $uploadDirectory . modificaFotoAnnuncio_sql($cid, $_GET["dop"], $_SESSION["codiceFiscale"], $fileExtension);
+    $uploadPath = $currentDirectory . $uploadDirectory . modificaFotoAnnuncio_sql($cid, $dataOraPubblicazione, $venditore, $fileExtension);
     move_uploaded_file($fileTmpName, $uploadPath);
 }
 

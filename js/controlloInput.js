@@ -111,8 +111,6 @@ function loadFile(event){
 }
 
 function sottoCategoria(id, indexCategoria){
-    console.log(id);
-    console.log(indexCategoria);
     switch (indexCategoria){
         case 1:
             document.getElementById(id).innerHTML = '<option value="" disabled selected hidden>Sottocategoria</option>\n" + "<option value="aspirapolveri">Aspirapolveri</option>\n" + "<option value="caffettiere">Caffettiere</option>\n" + "<option value="tostapane">Tostapane</option>\n" + "<option value="frullatori">Frullatori</option>\n" + "<option value="altro">Altro</option>"';
@@ -130,7 +128,6 @@ function sottoCategoria(id, indexCategoria){
 }
 
 function controllaVaia(pagina, maxPagina) {
-    console.log(pagina, maxPagina);
     if (pagina > maxPagina) return maxPagina;
     if (pagina > 0) return pagina;
     return 1;

@@ -295,7 +295,7 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                                     <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="" class="altezza-massima">
                                 </a>
                                 <?php
-                                if ((!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] != "venditore") and !$annuncio["isWatched"] and $_SESSION["codiceFiscale"] != $annuncio["venditore"]) {
+                                if ((!isset($_SESSION["tipoAccount"]) or $_SESSION["tipoAccount"] != "venditore" and $_SESSION["codiceFiscale"] != $annuncio["venditore"]) and !$annuncio["isWatched"]) {
 
                                     echo '<a href="#0" class="adtocart" id="binocolo' . $i . '" onclick="checked(id); osservaAnnuncioAjax(\'' . base64_encode($annuncio["dataOraPubblicazione"]) . '\', \'' . base64_encode($annuncio["venditore"]) . '\')">
                                         <img class="obs-icon" src="img/binocolo.svg" alt="">

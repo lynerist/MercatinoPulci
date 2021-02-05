@@ -11,6 +11,20 @@ if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])) {
 
 $annuncio = trovaAnnuncio_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
 $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
+
+if (isset($_GET["Mt"])) $annuncio["titolo"] = $_GET["Mt"];
+if (isset($_GET["Mpz"])) $annuncio["prezzo"] = $_GET["Mpz"];
+if (isset($_GET["Mct"])) $annuncio["categoria"] = $_GET["Mct"];
+if (isset($_GET["Msc"])) $annuncio["sottoCategoria"] = $_GET["Msc"];
+if (isset($_GET["Mpd"])) $annuncio["prodotto"] = $_GET["Mpd"];
+if (isset($_GET["Mv"])) $annuncio["visibilita"] = $_GET["Mv"];
+if (isset($_GET["Msu"])) $annuncio["statoUsura"] = $_GET["Msu"];
+if (isset($_GET["Mr"])) $annuncio["regione"] = $_GET["Mr"];
+if (isset($_GET["Mp"])) $annuncio["provincia"] = $_GET["Mp"];
+if (isset($_GET["Mc"])) $annuncio["comune"] = $_GET["Mc"];
+if (isset($_GET["Mtu"])) $annuncio["tempoUsura"] = $_GET["Mtu"];
+if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
+
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -71,12 +85,12 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                         <div class="row mt-3">
                                                             <div class="col-md-6">
                                                                 <label>
-                                                                    <select id="categoria" name="categoria" class="form-control modificaAnnuncio" required>
+                                                                    <select id="categoria" name="categoria" class="form-control modificaAnnuncio" onchange="sottoCategoria('sottocategoria', selectedIndex)" required>
                                                                         <option value="" disabled selected hidden>Categoria</option>
-                                                                        <option value="elettrodomestici">Elettrodomestici</option>
-                                                                        <option value="abbigliamento">Abbigliamento</option>
-                                                                        <option value="fotoEVideo">Foto e video</option>
-                                                                        <option value="hobby">Hobby</option>
+                                                                        <option value="elettrodomestici" <?php echo $annuncio["categoria"] == "elettrodomestici"?"selected":"";?>>Elettrodomestici</option>
+                                                                        <option value="abbigliamento" <?php echo $annuncio["categoria"] == "abbigliamento"?"selected":"";?>>Abbigliamento</option>
+                                                                        <option value="fotoEVideo" <?php echo $annuncio["categoria"] == "fotoEVideo"?"selected":"";?>>Foto e video</option>
+                                                                        <option value="hobby" <?php echo $annuncio["categoria"] == "hobby"?"selected":"";?>>Hobby</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -84,7 +98,6 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                                 <label>
                                                                     <select id="sottocategoria" name="sottocategoria" class="form-control modificaAnnuncio" required>
                                                                         <option value="" disabled selected hidden>Sottocategoria</option>
-                                                                        <option value="altro">Altro</option>
                                                                     </select>
                                                                 </label>
                                                             </div>
@@ -107,7 +120,7 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
                                                                 <label>
                                                                     <select id="statoUsura" name="statoUsura" class="form-control modificaAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
                                                                         <option value="" disabled selected hidden>Stato usura</option>
-                                                                        <option value="nuovo" <?php if ($annuncio["tempoUsura"] == 0) echo "selected"; ?>>Nuovo</option>
+                                                                        <option value="nuovo" <?php if ($annuncio["tempoUsura"] == "0") echo "selected"; ?>>Nuovo</option>
                                                                         <option value="comeNuovo" <?php if ($annuncio["statoUsura"] == "comeNuovo") echo "selected"; ?>>Come nuovo</option>
                                                                         <option value="buono" <?php if ($annuncio["statoUsura"] == "buono") echo "selected"; ?>>Buono</option>
                                                                         <option value="medio" <?php if ($annuncio["statoUsura"] == "medio") echo "selected"; ?>>Medio</option>
@@ -316,6 +329,10 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
     document.getElementById('luogoVenditaProvincia').addEventListener('change', function () {
         popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')
     });
+
+    <?php echo (isset($_GET['Merr'])?'$("#modalModificaAnnuncio").modal();':'');?>
+    sottoCategoria('sottocategoria', document.getElementById("categoria").selectedIndex);
+    document.getElementById('sottocategoria').childNodes.forEach(item => item.selected = item.value === "<?php echo $annuncio['sottoCategoria'];?>")
 </script>
 </body>
 

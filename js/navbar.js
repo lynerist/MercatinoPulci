@@ -73,6 +73,7 @@ function popolaProvince(idR, idP, idC, opzionale, provinciaSelezionata, comuneSe
                         select.innerHTML = "<option value=\"Ogni provincia\">Ogni provincia</option>";
                 }
                 for (let i = 0; i < province.length; i++) {
+                    if (province[i].length > 22) continue;
                     let provincia = document.createElement('option');
                     provincia.setAttribute("value", province[i]);
                     provincia.innerText = province[i];
@@ -109,6 +110,7 @@ function popolaComuni(idP, idC, comuneSelezionato, opzionale) {
                     select.innerHTML = "<option value=\"Ogni comune\">Ogni comune</option>";
                 }
                 for (let i = 0; i < comuni.length; i++) {
+                    if (comuni[i] === "Ogni comune") continue;
                     let comune = document.createElement('option');
                     comune.setAttribute("value", comuni[i]);
                     comune.innerText = comuni[i];

@@ -25,9 +25,9 @@ $comuneVisibilita = array();
 
 $iterator = 0;
 while (isset($_POST["regione_" . $iterator])){
-    $regioneVisibilita[] = $_POST["regione_" . $iterator];
-    $provinciaVisibilita[] = $_POST["provincia_" . $iterator];
-    $comuneVisibilita[] = $_POST["comune_" . $iterator];
+    $regioneVisibilita[] = mysqli_real_escape_string($cid, $_POST["regione_" . $iterator]);
+    $provinciaVisibilita[] = mysqli_real_escape_string($cid, $_POST["provincia_" . $iterator]);
+    $comuneVisibilita[] = mysqli_real_escape_string($cid, $_POST["comune_" . $iterator]);
     $iterator++;
 }
 

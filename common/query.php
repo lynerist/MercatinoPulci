@@ -406,8 +406,8 @@ function modificaFotoProfilo_sql($cid, $cfSessione, $estensione){
 function modificaFotoAnnuncio_sql($cid, $dop, $v, $estensione){
     $res = $cid -> query("SELECT COUNT(*) FROM annuncio WHERE venditore = '$v' and dataOraPubblicazione < '$dop'");
     $nAnnunciPrecedenti = ($res -> fetch_row())[0];
-    $foto = md5($v . $nAnnunciPrecedenti . "." . $estensione);
-    $cid -> query("UPDATE annuncio SET foto = '$foto' WHERE venditore = '$v' and dataOraPubblicazione = 'dop'");
+    $foto = md5($v . $nAnnunciPrecedenti) . "." . $estensione;
+    $cid -> query("UPDATE annuncio SET foto = '$foto' WHERE venditore = '$v' and dataOraPubblicazione = '$dop'");
     return $foto;
 }
 
@@ -441,4 +441,8 @@ function inserisciValutazione_sql($cid, $dop, $venditore, $acquirente, $valutazi
 function rimuoviVisibilitaAnnuncio_sql($cid, $dop, $v){
     if ($dop == "") $cid->query("DELETE FROM areavisibilita WHERE venditore = '$v'");
     else $cid->query("DELETE FROM areavisibilita WHERE venditore = '$v' and dataOraPubblicazione = '$dop'");
+}
+
+function trovaAreeVisibilita_sql($cid, $dop, $v){
+    return $cid->query("SELECT regione, a.provincia, a.comune FROM areavisibilita join areageografica a on a.comune = areavisibilita.comune and a.provincia = areavisibilita.provincia WHERE dataOraPubblicazione = '$dop' and venditore='$v' ORDER BY regione, provincia, comune");
 }

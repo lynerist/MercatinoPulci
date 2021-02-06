@@ -28,3 +28,8 @@ function smettiDiOsservareAjax(dop, v) {
     xttp.open("GET", "backend/smettiDiOsservare.php?dop=" + dop + "&v=" + v, true);
     xttp.send();
 }
+
+function rimuovi(me, other) {
+    document.getElementById(me).style.display = "none";
+    document.getElementById(other).style.display = "block";
+}

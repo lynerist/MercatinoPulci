@@ -12,6 +12,10 @@ if (!($annuncio["dataOraPubblicazione"] and $annuncio["venditore"])) {
 $annuncio = trovaAnnuncio_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
 $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
 
+$areeVisibilita = array();
+if ($annuncio["visibilita"] == "ristretta") $areeVisibilita = trovaAreeVisibilita_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
+
+
 if (isset($_GET["Mt"])) $annuncio["titolo"] = $_GET["Mt"];
 if (isset($_GET["Mpz"])) $annuncio["prezzo"] = $_GET["Mpz"];
 if (isset($_GET["Mct"])) $annuncio["categoria"] = $_GET["Mct"];
@@ -59,7 +63,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                     <div class="modal fade modal-only" id="modalModificaAnnuncio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog edit-annuncio" role="document">
                             <div class="modal-content">
-                                <form id="modificaAnnuncio" action="backend/modificaAnnuncio_exe.php . <?php echo "?dop=" . $annuncio['dataOraPubblicazione'];?>" method="post" onsubmit="return controllaForm(id)">
+                                <form id="modificaAnnuncio" action="backend/modificaAnnuncio_exe.php . <?php echo "?dop=" . $annuncio['dataOraPubblicazione'];?>" method="post" enctype="multipart/form-data" onsubmit="return controllaForm(id)">
                                     <div class="modal-header arancio">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifica annuncio</h5>
                                     </div>
@@ -68,11 +72,10 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                             <div class="row">
                                                 <div class="col-md-4 border-right">
                                                     <div class="annuncio-img">
-<!--                                                        TODO gestire valore null fotoAnnuncio-->
-                                                        <img id="fotoInput" src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="""/>
+                                                        <img id="fotoInput" src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt=""/>
                                                         <div class="file btn btn-lg x btn-primary mt-0">
                                                             Cambia foto
-                                                            <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
+                                                            <input type="file" name="foto" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -160,11 +163,13 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                        <br>
-                                                        <div id="containerAreaVisibilita">
+                                                        <div id="containerAreaVisibilita" class="mt-4">
                                                             <div class="mb-2">
                                                                 <b>Area di visibilità</b>
                                                             </div>
+                                                            <?php
+                                                            if ($annuncio["visibilita"] != "ristretta" or $areeVisibilita -> num_rows == 0){
+                                                            ?>
                                                             <div class="row">
                                                                 <div class="md-form md-outline container-fluid">
                                                                     <label>
@@ -178,6 +183,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                                                     </label>
                                                                 </div>
                                                             </div>
+                                                            <?php } ?>
                                                             <div id="piu" class="piu" onclick="aggiungiAreaVisibilita(id)">
                                                                 <i class="fas fa-plus btn btn-outline-warning"></i>
                                                             </div>
@@ -203,10 +209,9 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                     <h3>Sei sicuro?</h3>
                                 </div>
                                 <div class="modal-footer">
-                                    <form>
-                                        <a href="#" data-dismiss="modal" class="btn btn-outline-warning">Annulla</a>
-                                        <!--TODO rimandare alla pagina di "annuncio_eliminato.php" tramite funzione di backend-->
-                                        <button  type="submit" class="btn btn-danger">Conferma</button>
+                                    <form class="myform" action="backend/eliminaAnnuncio_exe.php<?php echo '?dop=' . $annuncio['dataOraPubblicazione'] . '&v=' . $annuncio['venditore'];?>" method="post">
+                                        <button data-dismiss="modal" class="btn btn-outline-warning">Annulla</button>
+                                        <button type="submit" class="btn btn-danger">Conferma</button>
                                     </form>
                                 </div>
                             </div>
@@ -315,10 +320,19 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
 
 <?php include_once "common/common_script.php"; ?>
 
-<script src="js/bottoni.js"></script>
+<?php
+if ($annuncio["visibilita"] == 'ristretta') {
+    while ($areaVisibilita = $areeVisibilita->fetch_assoc()) {
+        echo "<script>aggiungiAreaVisibilita('piu', '" . mysqli_real_escape_string($cid, $areaVisibilita["regione"]) . "', '" . mysqli_real_escape_string($cid, $areaVisibilita["provincia"]) . "', '" . mysqli_real_escape_string($cid, $areaVisibilita["comune"]) . "')</script>";
+    }
+}
+?>
+
 <script src="js/modal.js"></script>
-<script>visualizza('statoUsura')</script>
 <script>
+    visualizza('statoUsura');
+    visualizzaAreaVisibilita('<?php echo $annuncio['visibilita'];?>', 'containerAreaVisibilita');
+
     window.addEventListener('DOMContentLoaded', function () {
         popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo $annuncio["regione"];?>', '<?php echo $annuncio["provincia"];?>', '<?php echo $annuncio["comune"];?>')
     });
@@ -333,7 +347,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
 
     sottoCategoria('sottocategoria', document.getElementById("categoria").selectedIndex);
     document.getElementById('sottocategoria').childNodes.forEach(item => {
-            if (item.value !== undefined)  item.selected = item.value.toLowerCase() === "<?php echo $annuncio['sottoCategoria'];?>".replace(/\s/g, "").toLowerCase();
+        if (item.value !== undefined) item.selected = item.value.toLowerCase() === "<?php echo $annuncio['sottoCategoria'];?>".replace(/\s/g, "").toLowerCase();
     })
 </script>
 </body>

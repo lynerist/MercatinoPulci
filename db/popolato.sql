@@ -8092,7 +8092,7 @@ INSERT INTO `areageografica` (`comune`, `provincia`, `regione`) VALUES
 ('Ogni comune', 'Ogni provincia:::::Trentino-Alto Adige', 'Trentino-Alto Adige'),
 ('Ogni comune', 'Ogni provincia:::::Veneto', 'Veneto'),
 ('Ogni comune', 'Ogni provincia:::::Friuli-Venezia Giulia', 'Friuli-Venezia Giulia'),
-('Ogni comune', 'Ogni provincia:::::Emilia Romagna', 'Emilia Romagna'),
+('Ogni comune', 'Ogni provincia:::::Emilia-Romagna', 'Emilia-Romagna'),
 ('Ogni comune', 'Ogni provincia:::::Toscana', 'Toscana'),
 ('Ogni comune', 'Ogni provincia:::::Umbria', 'Umbria'),
 ('Ogni comune', 'Ogni provincia:::::Marche', 'Marche'),
@@ -8223,7 +8223,7 @@ CREATE TABLE `areavisibilita` (
   `dataOraPubblicazione` timestamp NOT NULL DEFAULT current_timestamp(),
   `venditore` varchar(16) NOT NULL,
   `comune` varchar(35) NOT NULL,
-  `provincia` varchar(22) NOT NULL
+  `provincia` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

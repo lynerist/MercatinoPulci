@@ -68,6 +68,7 @@ function controllaTempoUsura(idTempoUsura, idStatoUsura){
     return true
 }
 
+var countAreaVisibilita = 0;
 try {
     popolaRegioni('visibilita-regione_0', 'visibilita-provincia_0', 'visibilita-comune_0', "", "", "", true);
     document.getElementById('visibilita-regione_0').addEventListener('change', function () {
@@ -76,14 +77,15 @@ try {
     document.getElementById('visibilita-provincia_0').addEventListener('change', function () {
         popolaComuni('visibilita-provincia_0', 'visibilita-comune_0', "", true)
     });
-}catch (error){}
+}catch (error){
+    countAreaVisibilita--
+}
 
-var countAreaVisibilita = 0;
-function aggiungiAreaVisibilita(id){
+function aggiungiAreaVisibilita(id, regioneSelezionata, provinciaSelezionata, comuneSelezionato){
     countAreaVisibilita++;
     let nodo = '<div class="row"><div class="md-form md-outline container-fluid mt-0"><label><select id="visibilita-regione_' + countAreaVisibilita + '" name="regione_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Regione</option></select></label><label><select id="visibilita-provincia_' + countAreaVisibilita + '" name="provincia_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Provincia</option></select></label><label><select id="visibilita-comune_' + countAreaVisibilita + '" name="comune_' + countAreaVisibilita + '" class="form-control"><option value="" disabled selected hidden>Comune</option></select></label></div></div>'
     document.getElementById(id).outerHTML = nodo + document.getElementById(id).outerHTML;
-    popolaRegioni('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, "", "", "", true);
+    popolaRegioni('visibilita-regione_' + countAreaVisibilita, 'visibilita-provincia_' + countAreaVisibilita, 'visibilita-comune_' + countAreaVisibilita, regioneSelezionata, provinciaSelezionata, comuneSelezionato, true);
     let progressivo = countAreaVisibilita.toString();
     document.getElementById('visibilita-regione_' + progressivo).addEventListener('change', function () {
         popolaProvince('visibilita-regione_' + progressivo, 'visibilita-provincia_' + progressivo, 'visibilita-comune_' + progressivo, true)

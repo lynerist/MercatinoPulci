@@ -7965,7 +7965,7 @@ INSERT INTO `areageografica` (`comune`, `provincia`, `regione`) VALUES
 ('Ogni comune', 'Ogni provincia:::::Trentino-Alto Adige', 'Trentino-Alto Adige'),
 ('Ogni comune', 'Ogni provincia:::::Veneto', 'Veneto'),
 ('Ogni comune', 'Ogni provincia:::::Friuli-Venezia Giulia', 'Friuli-Venezia Giulia'),
-('Ogni comune', 'Ogni provincia:::::Emilia Romagna', 'Emilia Romagna'),
+('Ogni comune', 'Ogni provincia:::::Emilia-Romagna', 'Emilia-Romagna'),
 ('Ogni comune', 'Ogni provincia:::::Toscana', 'Toscana'),
 ('Ogni comune', 'Ogni provincia:::::Umbria', 'Umbria'),
 ('Ogni comune', 'Ogni provincia:::::Marche', 'Marche'),

@@ -17,17 +17,14 @@ function arrotondaValutazione($valutazione): float{
     return $valutazione;
 }
 
-function calcolaScadenza($dop, $v, $tempoUsura): int{
+function calcolaScadenza($cid, $dop, $v, $tempoUsura): int{
     $etaAnnuncio = (new DateTime('now')) -> diff(new DateTime(date('Y-m-d', strtotime($dop))));
     $vitaAnnuncio = array(3, 10)[$tempoUsura == 0];
     $giorniScadenza = $vitaAnnuncio - $etaAnnuncio -> days;
     if ($giorniScadenza <= 0){
-//    TODO elimina questo annuncio tramite query
+        eliminaAnnuncio_sql($cid, $dop, $v);
     }
-    // TODO TOGLIERE    
-    //return $giorniScadenza;
-    return 1;
-
+    return $giorniScadenza;
 }
 
 function inserisciFoto($foto){

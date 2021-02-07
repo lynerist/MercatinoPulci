@@ -396,7 +396,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                             $annunciTop = annunciTop_sql($cid, isset($_SESSION["isLogged"])?$_SESSION["codiceFiscale"]:'');
                             $i = 1;
                             while ($annuncio = $annunciTop -> fetch_assoc()){
-                                $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                                $annuncio["scadenza"] = calcolaScadenza($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
                                 if ($annuncio["scadenza"] < 1) {
                                     $annuncio["statoAnnuncio"] = "eliminato";
                                     continue;

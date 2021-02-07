@@ -37,7 +37,7 @@ if (!$haAnnunciInVendita) {
 }
 while ($annuncio = $utente["annunciInVendita"]->fetch_assoc()) {
     $annuncio["statoUsura"] = array("Usato", "Nuovo")[0 == $annuncio["tempoUsura"]];
-    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+    $annuncio["scadenza"] = calcolaScadenza($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
     if ($annuncio["scadenza"] < 1) {
         $annuncio["statoAnnuncio"] = "eliminato";
         continue;

@@ -70,7 +70,7 @@ include_once "common/query.php";
                           </div>';
                 }
                 while ($annuncio = $daApprovare -> fetch_assoc()){
-                    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                    $annuncio["scadenza"] = calcolaScadenza($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
                     if ($annuncio["scadenza"] < 1) {
                         $annuncio["statoAnnuncio"] = "eliminato";
                         continue;
@@ -164,7 +164,7 @@ include_once "common/query.php";
                           </div>';
                 }
                 while ($annuncio = $effettuate -> fetch_assoc()){
-                    $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+                    $annuncio["scadenza"] = calcolaScadenza($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
                     if ($annuncio["scadenza"] < 1) {
                         $annuncio["statoAnnuncio"] = "eliminato";
                         continue;

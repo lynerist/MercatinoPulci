@@ -143,7 +143,7 @@ function trovaAnnuncio_sql($cid, $dop, $v, $cfSessione){
     $annuncio["tempoUsura"] = intval($annuncio["tempoUsura"]);
     //controllo scadenza annuncio
     if ($annuncio["statoAnnuncio"] == "inVendita") {
-        $annuncio["scadenza"] = calcolaScadenza($annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
+        $annuncio["scadenza"] = calcolaScadenza($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"], $annuncio["tempoUsura"]);
         if ($annuncio["scadenza"] < 1) $annuncio["statoAnnuncio"] = "eliminato";
     }
     return $annuncio;
@@ -445,4 +445,8 @@ function rimuoviVisibilitaAnnuncio_sql($cid, $dop, $v){
 
 function trovaAreeVisibilita_sql($cid, $dop, $v){
     return $cid->query("SELECT regione, a.provincia, a.comune FROM areavisibilita join areageografica a on a.comune = areavisibilita.comune and a.provincia = areavisibilita.provincia WHERE dataOraPubblicazione = '$dop' and venditore='$v' ORDER BY regione, provincia, comune");
+}
+
+function eliminaAnnuncio_sql($cid, $dop, $v){
+    $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE venditore = '$v' and dataOraPubblicazione = '$dop'");
 }

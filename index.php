@@ -35,7 +35,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
         <div class="modal-dialog edit-profile" role="document">
             <?php if ($_SESSION["tipoAccount"] != "acquirente"){?>
                 <div class="modal-content">
-                <form id="nuovoAnnuncio" onsubmit="return controllaForm(id)">
+                <form id="nuovoAnnuncio" action="backend/inserisciAnnuncio_exe.php" method="post" enctype="multipart/form-data" onsubmit="return controllaForm(id)">
                     <div class="modal-header arancio">
                         <h5 class="modal-title" id="exampleModalLabel">Nuovo annuncio</h5>
                     </div>
@@ -47,45 +47,45 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                         <img id="fotoInput" src="fotoAnnuncio/image_not_found.png" alt=""/>
                                         <div class="file btn btn-lg x btn-primary mt-0">
                                             Inserisci foto
-                                            <input type="file" name="file" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
+                                            <input type="file" name="foto" class="w-100 h-100" onchange="loadFile(event)" accept="image/png, image/jpeg, image/jpg"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="p-3 py-5 no-padding-top form-width">
                                         <div class="row mt-2">
-                                            <div class="col-md-6"><label><input id="titolo" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Titolo" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
-                                            <div class="col-md-6"><label><input id="prezzo"  type="text" class="form-control form-custom testo-grande nuovoAnnuncio" placeholder="Prezzo in €" value=""  oninput="colora(id,controllaPrezzo(value))" required></label></div>
+                                            <div class="col-md-6"><label><input id="titolo" name="titolo" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Titolo" value="<?php echo isset($_GET["Nt"])?$_GET["Nt"]:'';?>" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                            <div class="col-md-6"><label><input id="prezzo" name="prezzo" type="text" class="form-control form-custom testo-grande nuovoAnnuncio" placeholder="Prezzo in €" value="<?php echo isset($_GET["Npz"])?$_GET["Npz"]:'';?>"  oninput="colora(id,controllaPrezzo(value))" required></label></div>
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <label>
                                                     <select name="categoria" id="categoria" class="form-control nuovoAnnuncio" onchange="sottoCategoria('sottocategoria', selectedIndex)" required>
                                                         <option value="" disabled selected hidden>Categoria</option>
-                                                        <option value="elettrodomestici">Elettrodomestici</option>
-                                                        <option value="fotoEVideo">Foto e video</option>
-                                                        <option value="abbigliamento">Abbigliamento</option>
-                                                        <option value="hobby">Hobby</option>
+                                                        <option value="elettrodomestici" <?php echo (isset($_GET["Nct"]) and $_GET["Nct"]=='elettrodomestici')?'selected':'';?>>Elettrodomestici</option>
+                                                        <option value="fotoEVideo" <?php echo (isset($_GET["Nct"]) and $_GET["Nct"]=='fotoEVideo')?'selected':'';?>>Foto e video</option>
+                                                        <option value="abbigliamento" <?php echo (isset($_GET["Nct"]) and $_GET["Nct"]=='abbigliamento')?'selected':'';?>>Abbigliamento</option>
+                                                        <option value="hobby" <?php echo (isset($_GET["Nct"]) and $_GET["Nct"]=='hobby')?'selected':'';?>>Hobby</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
                                                 <label>
-                                                    <select name="sottcategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
+                                                    <select name="sottocategoria" id="sottocategoria" class="form-control nuovoAnnuncio" required>
                                                         <option value="" disabled selected hidden>Sottocategoria</option>
                                                     </select>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-6"><label><input id="prodotto" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Prodotto" value="" oninput="colora(id,controllaTesto(value))" required></label></div>
+                                            <div class="col-md-6"><label><input id="prodotto" name="prodotto" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Prodotto" value="<?php echo isset($_GET["Npd"])?$_GET["Npd"]:'';?>" oninput="colora(id,controllaTesto(value))" required></label></div>
                                             <div class="col-md-6">
                                                 <label>
                                                     <select name="visibilita" id="visibilita" class="form-control nuovoAnnuncio" onchange="visualizzaAreaVisibilita(value, 'containerAreaVisibilita')" required>
                                                         <option value="" disabled selected hidden>Visibilità</option>
-                                                        <option value="pubblica">Pubblica</option>
-                                                        <option value="ristretta">Ristretta</option>
-                                                        <option value="privata">Privata</option>
+                                                        <option value="pubblica" <?php echo (isset($_GET["Nv"]) and $_GET["Nv"]=='pubblica')?'selected':'';?>>Pubblica</option>
+                                                        <option value="ristretta" <?php echo (isset($_GET["Nv"]) and $_GET["Nv"]=='ristretta')?'selected':'';?>>Ristretta</option>
+                                                        <option value="privata" <?php echo (isset($_GET["Nv"]) and $_GET["Nv"]=='privata')?'selected':'';?>>Privata</option>
                                                     </select>
                                                 </label>
                                             </div>
@@ -95,20 +95,20 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                                 <label>
                                                     <select name="statoUsura" id="statoUsura" class="form-control nuovoAnnuncio" onchange="visualizza(id); colora('tempoUsura', controllaTempoUsura('tempoUsura', id))" required>
                                                         <option value="" disabled selected hidden>Stato usura</option>
-                                                        <option value="nuovo">Nuovo</option>
-                                                        <option value="comeNuovo">Come nuovo</option>
-                                                        <option value="buono">Buono</option>
-                                                        <option value="medio">Medio</option>
-                                                        <option value="usurato">Usurato</option>
+                                                        <option value="nuovo" <?php echo (isset($_GET["Ntu"]) and $_GET["Ntu"]==0)?'selected':'';?>>Nuovo</option>
+                                                        <option value="comeNuovo" <?php echo (isset($_GET["Nsu"]) and $_GET["Nsu"]=='comeNuovo')?'selected':'';?>>Come nuovo</option>
+                                                        <option value="buono" <?php echo (isset($_GET["Nsu"]) and $_GET["Nsu"]=='buono')?'selected':'';?>>Buono</option>
+                                                        <option value="medio" <?php echo (isset($_GET["Nsu"]) and $_GET["Nsu"]=='medio')?'selected':'';?>>Medio</option>
+                                                        <option value="usurato" <?php echo (isset($_GET["Nsu"]) and $_GET["Nsu"]=='usurato')?'selected':'';?>>Usurato</option>
                                                     </select>
                                                 </label>
                                             </div>
                                             <div class="col-md-6">
                                                 <label id="labelTempoUsura" class="display-none">
-                                                    <input id="tempoUsura" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Tempo usura in mesi" value="" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
+                                                    <input id="tempoUsura" name="tempoUsura" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo isset($_GET["Ntu"])?$_GET["Ntu"]:'';?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                 </label>
                                                 <label id="labelScadenzaGaranzia" class="display-none">
-                                                    <input id="scadenzaGaranzia" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Scadenza garanzia" onfocus="(this.type='date')">
+                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Scadenza garanzia" value="<?php echo isset($_GET["Nsg"])?date('d/m/Y', strtotime($_GET["Nsg"])):"";?>" onfocus="(this.type='date')">
                                                 </label>
                                             </div>
                                         </div>
@@ -143,19 +143,13 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                             <div class="row">
                                                 <div class="md-form md-outline container-fluid">
                                                     <label>
-                                                        <select name="visibilita-regione_0" id="visibilita-regione_0" class="form-control">
-                                                            <option value="" disabled selected hidden>Regione</option>
-                                                        </select>
+                                                        <select name="regione_0" id="visibilita-regione_0" class="form-control"></select>
                                                     </label>
                                                     <label>
-                                                        <select name="visibilita-provincia_0" id="visibilita-provincia_0" class="form-control">
-                                                            <option value="" disabled selected hidden>Provincia</option>
-                                                        </select>
+                                                        <select name="provincia_0" id="visibilita-provincia_0" class="form-control"></select>
                                                     </label>
                                                     <label>
-                                                        <select name="visibilita-comune_0" id="visibilita-comune_0" class="form-control">
-                                                            <option value="" disabled selected hidden>Comune</option>
-                                                        </select>
+                                                        <select name="comune_0" id="visibilita-comune_0" class="form-control"></select>
                                                     </label>
                                                 </div>
                                             </div>
@@ -170,7 +164,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-outline-danger" data-dismiss="modal">Annulla</button>
-                        <button class="btn btn-primary btn-outline-success" type="submit">Pubblica</button>
+                        <button type="submit" class="btn btn-primary btn-outline-success">Pubblica</button>
                     </div>
                 </form>
             </div>
@@ -478,8 +472,8 @@ $utente["fotoProfilo"] = "venditore1.jpg";
 </div>
 
 
-<?php include_once "common/footer.php"?>
-<?php include_once "common/common_script.php"; ?>
+<?php include_once "common/footer.php";?>
+<?php include_once "common/common_script.php";?>
 
 <script src="js/carosello.js"></script>
 <script src="js/owl.carousel.js"></script>
@@ -493,8 +487,14 @@ $utente["fotoProfilo"] = "venditore1.jpg";
         });
     }
 
+    <?php echo (isset($_GET['Nerr'])?'$("#modalNuovoAnnuncio").modal();':'');?>
+    <?php if (isset($_GET["Nerr"])){?>
+    visualizza('statoUsura');
+    visualizzaAreaVisibilita('<?php echo $_GET["Nv"];?>', 'containerAreaVisibilita');
+    <?php } ?>
+
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('luogoVenditaRegione')
+        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo isset($_GET["Nr"])?$_GET["Nr"]:"";?>', '<?php echo isset($_GET["Np"])?$_GET["Np"]:"";?>', '<?php echo isset($_GET["Nc"])?$_GET["Nc"]:"";?>')
     });
     document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
         popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')
@@ -502,6 +502,13 @@ $utente["fotoProfilo"] = "venditore1.jpg";
     document.getElementById('luogoVenditaProvincia').addEventListener('change', function () {
         popolaComuni('luogoVenditaProvincia', 'luogoVenditaComune')
     });
+
+    <?php if (isset($_GET["Nsc"])){?>
+    sottoCategoria('sottocategoria', document.getElementById("categoria").selectedIndex);
+    document.getElementById('sottocategoria').childNodes.forEach(item => {
+        if (item.value !== undefined) item.selected = item.value.toLowerCase() === "<?php echo $_GET['Nsc'];?>".replace(/\s/g, "").toLowerCase();
+    })
+    <?php } ?>
 </script>
 
 </body>

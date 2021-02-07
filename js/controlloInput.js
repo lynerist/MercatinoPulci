@@ -68,6 +68,10 @@ function controllaTempoUsura(idTempoUsura, idStatoUsura){
     return true
 }
 
+function controllaScadenzaGaranzia(data){
+    return (new Date(data) > new Date() || data === "");
+}
+
 var countAreaVisibilita = 0;
 try {
     popolaRegioni('visibilita-regione_0', 'visibilita-provincia_0', 'visibilita-comune_0', "", "", "", true);

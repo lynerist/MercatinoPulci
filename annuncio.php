@@ -13,7 +13,7 @@ $annuncio = trovaAnnuncio_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio
 $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
 
 $areeVisibilita = array();
-if ($annuncio["visibilita"] == "ristretta") $areeVisibilita = trovaAreeVisibilita_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
+$areeVisibilita = trovaAreeVisibilita_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
 
 
 if (isset($_GET["Mt"])) $annuncio["titolo"] = $_GET["Mt"];
@@ -136,7 +136,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                                                     <input id="tempoUsura" name="tempoUsura" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo $annuncio['tempoUsura'] ?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                                 </label>
                                                                 <label id="labelScadenzaGaranzia" class="display-none">
-                                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo $annuncio["scadenzaGaranzia"]?date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])):"";?>" onfocus="(this.type='date')">
+                                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom modificaAnnuncio" placeholder="Scadenza garanzia" value="<?php echo $annuncio["scadenzaGaranzia"]?date('d/m/Y', strtotime($annuncio["scadenzaGaranzia"])):"";?>" onfocus="(this.type='date')" oninput="colora(id, controllaScadenzaGaranzia(value))">
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -194,7 +194,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                                         </div>
                                     </div>
                                     <div class="modal-footer flex-row d-flex">
-                                        <a class="btn btn-secondary btn-danger" data-toggle="modal" href="#modalEliminaAnnuncio">Elimina annuncio</a>
+                                        <a href="#modalEliminaAnnuncio" class="btn btn-secondary btn-danger" data-toggle="modal">Elimina annuncio</a>
                                         <button type="button" class="btn btn-secondary btn-outline-danger ml-auto" data-dismiss="modal">Annulla</button>
                                         <button type="submit" class="btn btn-primary btn-outline-success">Salva</button>
                                     </div>
@@ -321,7 +321,7 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
 <?php include_once "common/common_script.php"; ?>
 
 <?php
-if ($annuncio["visibilita"] == 'ristretta') {
+if ($annuncio["visibilita"] == 'ristretta' and $areeVisibilita -> num_rows != 0) {
     while ($areaVisibilita = $areeVisibilita->fetch_assoc()) {
         echo "<script>aggiungiAreaVisibilita('piu', '" . mysqli_real_escape_string($cid, $areaVisibilita["regione"]) . "', '" . mysqli_real_escape_string($cid, $areaVisibilita["provincia"]) . "', '" . mysqli_real_escape_string($cid, $areaVisibilita["comune"]) . "')</script>";
     }

@@ -108,7 +108,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
                                                     <input id="tempoUsura" name="tempoUsura" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Tempo usura in mesi" value="<?php echo isset($_GET["Ntu"])?$_GET["Ntu"]:'';?>" oninput="colora(id, controllaTempoUsura(id, 'statoUsura'))">
                                                 </label>
                                                 <label id="labelScadenzaGaranzia" class="display-none">
-                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Scadenza garanzia" value="<?php echo isset($_GET["Nsg"])?date('d/m/Y', strtotime($_GET["Nsg"])):"";?>" onfocus="(this.type='date')">
+                                                    <input id="scadenzaGaranzia" name="scadenzaGaranzia" type="text" class="form-control form-custom nuovoAnnuncio" placeholder="Scadenza garanzia" value="<?php echo isset($_GET["Nsg"])?date('d/m/Y', strtotime($_GET["Nsg"])):"";?>" onfocus="(this.type='date')" oninput="colora(id, controllaScadenzaGaranzia(value))">
                                                 </label>
                                             </div>
                                         </div>

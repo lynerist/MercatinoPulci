@@ -7,7 +7,13 @@ WHERE visibilita = 'pubblica'
                                             FROM areavisibilita AS AV
                                             WHERE (AV.provincia, AV.comune) = (SELECT provincia, comune
                                                                                FROM utente
-                                                                               WHERE codiceFiscale = '$cf'))
+                                                                               WHERE codiceFiscale = '$cf')
+                                            OR AV.comune LIKE 'Ogni comune' AND AV.provincia LIKE (SELECT CONCAT('%', (SELECT regione
+                                                                                                                       FROM utente JOIN areageografica a ON utente.comune = a.comune
+                                                                                                                       WHERE codiceFiscale = '$cf')))
+                                            OR AV.comune LIKE 'Ogni comune' AND AV.provincia LIKE (SELECT provincia
+                                                                                                   FROM utente 
+                                                                                                   WHERE codiceFiscale = '$cf'))
    OR venditore = '$cf'";
 }
 

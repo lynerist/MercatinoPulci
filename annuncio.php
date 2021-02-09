@@ -329,6 +329,7 @@ if ($annuncio["visibilita"] == 'ristretta' and $areeVisibilita -> num_rows != 0)
 ?>
 
 <script src="js/modal.js"></script>
+<?php if ($annuncio["venditore"] == (isset($_SESSION["codiceFiscale"])?$_SESSION["codiceFiscale"]:"")) {?>
 <script>
     visualizza('statoUsura');
     visualizzaAreaVisibilita('<?php echo $annuncio['visibilita'];?>', 'containerAreaVisibilita');
@@ -350,5 +351,6 @@ if ($annuncio["visibilita"] == 'ristretta' and $areeVisibilita -> num_rows != 0)
         if (item.value !== undefined) item.selected = item.value.toLowerCase() === "<?php echo $annuncio['sottoCategoria'];?>".replace(/\s/g, "").toLowerCase();
     })
 </script>
+<?php } ?>
 </body>
 </html>

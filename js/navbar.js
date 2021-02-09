@@ -33,6 +33,7 @@ function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, c
 
             let regioni = risposta.contenuto;
             let select = document.getElementById(id);
+            if (select === null) return
 
             if (opzionale){
                 select.innerHTML = "<option value=\"Tutta Italia\">Tutta Italia</option>";
@@ -67,6 +68,7 @@ function popolaProvince(idR, idP, idC, opzionale, provinciaSelezionata, comuneSe
 
                 let province = risposta.contenuto;
                 let select = document.getElementById(idP);
+                if (select === null) return
 
                 select.innerHTML = "";
                 if (opzionale){
@@ -104,6 +106,7 @@ function popolaComuni(idP, idC, comuneSelezionato, opzionale) {
 
                 let comuni = risposta.contenuto;
                 let select = document.getElementById(idC);
+                if (select === null) return
 
                 select.innerHTML = "";
                 if (opzionale){

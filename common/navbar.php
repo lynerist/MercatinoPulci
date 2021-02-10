@@ -1,3 +1,11 @@
+<?php
+require_once "common/session.php";
+include_once "common/connessioneDB.php";
+include_once "common/query.php";
+
+$nNotifiche = nNotificheRichiesteRicevute_sql($cid, isset($_SESSION["codiceFiscale"])?$_SESSION["codiceFiscale"]:"");
+$nNotifiche += nNotificheValutazioniSuVenditore_sql($cid, isset($_SESSION["codiceFiscale"])?$_SESSION["codiceFiscale"]:"");
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="index.php">
         <img src="img/bee.svg" class="icon-bee" alt="bee"><span>Be</span><span>e-Market</span></a>
@@ -31,7 +39,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="operazioni.php">
                     <img id="iconaOperazioni" src="img/operazioni.svg" class="nav-icon" alt="Operazioni">
-                    <p class="nav-icon-text nav-link">Operazioni</p>
+                    <p class="nav-icon-text nav-link mr-2">Operazioni</p><?php if ($nNotifiche>0) echo '<span class="badge badge-danger rounded-circle position-absolute">' . $nNotifiche . '</span>'?>
                 </a>
             </li>
             <li class="nav-item active">

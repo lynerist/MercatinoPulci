@@ -307,7 +307,8 @@ function trovaDaApprovare_sql($cid, $sessioneCf){
        codiceFiscale       as acquirente,
        nome,
        cognome,
-       richiestaDiAcquisto as pagamento
+       richiestaDiAcquisto as pagamento,
+       daNotificare
 from osserva
          join annuncio a on a.dataOraPubblicazione = osserva.dataOraPubblicazione and a.venditore = osserva.venditore
          join utente u on u.codiceFiscale = osserva.acquirente
@@ -364,6 +365,7 @@ from acquista
          join utente u on u.codiceFiscale = acquista.acquirente
 where acquista.valutazioneSuAcquirente is null
   and a.venditore = '$sessioneCf'
+  and u.eliminato = '0'
 order by a.dataOraPubblicazione");
     if ($res == null) {
         header("location: erroreConnessione.php");
@@ -383,12 +385,14 @@ function trovaVersoVenditore_sql($cid, $sessioneCf){
        immagine      as fotoProfilo,
        codiceFiscale as acquirente,
        nome,
-       cognome
+       cognome,
+       daNotificare
 from acquista
          join annuncio a on a.dataOraPubblicazione = acquista.dataOraPubblicazione and a.venditore = acquista.venditore
          join utente u on u.codiceFiscale = acquista.venditore
 where a.valutazioneSuVenditore is null
   and acquista.acquirente = '$sessioneCf'
+  and u.eliminato = '0'
 order by a.dataOraPubblicazione");
     if ($res == null) {
         header("location: erroreConnessione.php");
@@ -436,7 +440,7 @@ function confermaVendita_sql($cid, $dop, $venditore, $acquirente){
 }
 
 function acquista_sql($cid, $dop, $venditore, $acquirente, $richiestaDiAcquisto){
-    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$acquirente', '$dop', '$venditore', '$richiestaDiAcquisto')");
+    $cid->query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto, daNotificare) VALUES ('$acquirente', '$dop', '$venditore', '$richiestaDiAcquisto', '1')");
 }
 
 function inserisciValutazione_sql($cid, $dop, $venditore, $acquirente, $valutazione, $verso){
@@ -455,4 +459,21 @@ function trovaAreeVisibilita_sql($cid, $dop, $v){
 
 function eliminaAnnuncio_sql($cid, $dop, $v){
     $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE venditore = '$v' and dataOraPubblicazione = '$dop'");
+    smettiDiOsservare_sql($cid, $dop, $v, "");
+    rimuoviVisibilitaAnnuncio_sql($cid, $dop, $v);
+}
+
+function nNotificheRichiesteRicevute_sql($cid, $cfSessione){
+    $res = $cid -> query("SELECT count(*) from osserva where venditore = '$cfSessione' and daNotificare = '1'");
+    return $res -> fetch_row()[0];
+}
+
+function nNotificheValutazioniSuVenditore_sql($cid, $cfSessione){
+    $res = $cid -> query("SELECT count(*) from acquista where acquirente = '$cfSessione' and daNotificare = '1'");
+    return $res -> fetch_row()[0];
+}
+
+function svuotaNotifiche_sql($cid, $cfSessione){
+    $cid -> query("UPDATE osserva SET daNotificare = '0' where venditore = '$cfSessione'");
+    $cid -> query("UPDATE acquista SET daNotificare = '0' where acquirente = '$cfSessione'");
 }

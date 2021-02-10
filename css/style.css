@@ -496,3 +496,7 @@ button.blu:hover {
 #iconaOperazioni{
     height: 27px;
 }
+
+.background-notifica{
+    background: #fff3cd;
+}

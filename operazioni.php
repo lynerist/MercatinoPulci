@@ -4,6 +4,8 @@ include_once "common/funzioni.php";
 include_once "common/connessioneDB.php";
 include_once "common/query.php";
 
+$nNotificheRichiesteRicevute = nNotificheRichiesteRicevute_sql($cid,isset($_SESSION["codiceFiscale"])?$_SESSION["codiceFiscale"]:"");
+$nNotificheValutazioniSuVenditore = nNotificheValutazioniSuVenditore_sql($cid,isset($_SESSION["codiceFiscale"])?$_SESSION["codiceFiscale"]:"");
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -32,7 +34,7 @@ include_once "common/query.php";
 <ul class="nav nav-pills mb-3 justify-content-center container" id="pills-tab" role="tablist">
     <li class="nav-item w-25">
         <a class="nav-link orange-nav bordo-zero <?php if (isset($_SESSION["tipoAccount"]) and $_SESSION["tipoAccount"] != "acquirente") echo "active" ?>" data-toggle="pill" href="#tab-1" role="tab" aria-controls="pills-home"
-           aria-selected="true">Da approvare</a>
+           aria-selected="true">Da approvare<?php if ($nNotificheRichiesteRicevute>0) echo '<span class="badge badge-warning rounded ml-2">' . $nNotificheRichiesteRicevute . ' novità</span>'?></a>
     </li>
     <li class="nav-item w-25">
         <a class="nav-link orange-nav bordo-zero <?php if (isset($_SESSION["tipoAccount"]) and $_SESSION["tipoAccount"] == "acquirente") echo "active" ?>" data-toggle="pill" href="#tab-2" role="tab" aria-controls="pills-profile"
@@ -44,7 +46,7 @@ include_once "common/query.php";
     </li>
     <li class="nav-item w-25">
         <a class="nav-link orange-nav bordo-zero" data-toggle="pill" href="#tab-3" role="tab"
-           aria-controls="pills-contact" aria-selected="false">Verso venditore</a>
+           aria-controls="pills-contact" aria-selected="false">Verso venditore<?php if ($nNotificheValutazioniSuVenditore>0) echo '<span class="badge badge-warning rounded ml-2">' . $nNotificheValutazioniSuVenditore . ' novità</span>'?></a>
     </li>
 </ul>
 
@@ -76,9 +78,9 @@ include_once "common/query.php";
                         continue;
                     }
                     $valutazioni = valutazioni_sql($cid, $annuncio["acquirente"]);?>
-                    <div class="col-md-12 d-flex flex-row row">
+                    <div class="col-md-12 d-flex flex-row row border-bottom <?php echo ($annuncio['daNotificare']=='1'?'background-notifica':'');?>">
                         <!-- Item-->
-                        <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra">
+                        <div class="justify-content-between my-4 pb-4 col-md-6">
                             <div class="media d-block d-sm-flex text-center text-sm-left">
                                 <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" target="_blank">
                                 <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product"></a>
@@ -95,7 +97,7 @@ include_once "common/query.php";
                             </div>
                         </div>
                         <!-- Item-->
-                        <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+                        <div class="justify-content-between my-4 pb-4 col-md-6">
                             <div class="media d-block d-sm-flex text-center text-sm-left">
                                 <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['acquirente'], '');?>" target="_blank">
                                     <img src="fotoProfilo/<?php inserisciFoto($annuncio['fotoProfilo']);?>" alt="Profilo">
@@ -171,9 +173,9 @@ include_once "common/query.php";
                     }
                     $valutazioni = valutazioni_sql($cid, $annuncio["venditore"]);?>
 
-                    <div class="col-md-12 d-flex flex-row row">
+                    <div class="col-md-12 d-flex flex-row row border-bottom">
                         <!-- Item-->
-                        <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra">
+                        <div class="justify-content-between my-4 pb-4 col-md-6">
                             <div class="media d-block d-sm-flex text-center text-sm-left">
                                 <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" target="_blank">
                                     <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product"></a>
@@ -190,7 +192,7 @@ include_once "common/query.php";
                             </div>
                         </div>
                         <!-- Item-->
-                        <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+                        <div class="justify-content-between my-4 pb-4 col-md-6">
                             <div class="media d-block d-sm-flex text-center text-sm-left">
                                 <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], '');?>" target="_blank">
                                     <img src="fotoProfilo/<?php inserisciFoto($annuncio['fotoProfilo']);?>" alt="Profilo">
@@ -256,9 +258,9 @@ include_once "common/query.php";
                 while ($annuncio = $versoAcquirente -> fetch_assoc()){
                     $valutazioni = valutazioni_sql($cid, $annuncio["acquirente"]);?>
 
-                    <div class="col-md-12 d-flex flex-row row">
+                    <div class="col-md-12 d-flex flex-row row border-bottom">
                     <!-- Item-->
-                    <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra">
+                    <div class="justify-content-between my-4 pb-4 col-md-6">
                         <div class="media d-block d-sm-flex text-center text-sm-left">
                             <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" target="_blank">
                                 <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product"></a>
@@ -275,7 +277,7 @@ include_once "common/query.php";
                         </div>
                     </div>
                     <!-- Item-->
-                    <div class="justify-content-between my-4 pb-4 border-bottom col-md-6">
+                    <div class="justify-content-between my-4 pb-4 col-md-6">
                         <div class="media d-block d-sm-flex text-center text-sm-left">
                             <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['acquirente'], '');?>" target="_blank">
                                 <img src="fotoProfilo/<?php inserisciFoto($annuncio['fotoProfilo']);?>" alt="Profilo">
@@ -378,9 +380,9 @@ include_once "common/query.php";
                 while ($annuncio = $versoVenditore -> fetch_assoc()){
                     $valutazioni = valutazioni_sql($cid, $annuncio["venditore"])
                     ?>
-                    <div class="col-md-12 d-flex flex-row row">
+                    <div class="col-md-12 d-flex flex-row row border-bottom <?php echo ($annuncio['daNotificare']=='1'?'background-notifica':'');?>">
                     <!-- Item-->
-                    <div class="justify-content-between my-4 pb-4 border-bottom col-md-6 nascondi-barra">
+                    <div class="justify-content-between my-4 pb-4 col-md-6">
                         <div class="media d-block d-sm-flex text-center text-sm-left">
                             <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], $annuncio['dataOraPubblicazione']);?>" target="_blank">
                                 <img src="fotoAnnuncio/<?php inserisciFoto($annuncio['fotoAnnuncio']);?>" alt="Product"></a>
@@ -397,7 +399,7 @@ include_once "common/query.php";
                         </div>
                     </div>
                     <!-- Item-->
-                    <div class="justify-content-between my-4 pb-4 border-bottom col-md-6" id="2">
+                    <div class="justify-content-between my-4 pb-4 col-md-6" id="2">
                         <div class="media d-block d-sm-flex text-center text-sm-left">
                             <a class="cart-item-thumb mx-auto mr-sm-4" href="<?php echo urlCriptato($annuncio['venditore'], '');?>" target="_blank">
                                 <img src="fotoProfilo/<?php inserisciFoto($annuncio['fotoProfilo']);?>" alt="Profilo">
@@ -479,6 +481,7 @@ include_once "common/query.php";
 
 </div>
 
+<?php svuotaNotifiche_sql($cid, isset($_SESSION["codiceFiscale"])?$_SESSION["codiceFiscale"]:"");?>
 <?php include_once "common/footer.php";?>
 <?php include_once "common/common_script.php";?>
 

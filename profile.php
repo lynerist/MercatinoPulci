@@ -9,6 +9,9 @@ if (!$utente['codiceFiscale']){
 }
 
 $utente = trovaUtente_sql($cid, $utente["codiceFiscale"]);
+$utente["regione"] = mysqli_real_escape_string($cid, $utente["regione"]);
+$utente["provincia"] = mysqli_real_escape_string($cid, $utente["provincia"]);
+$utente["comune"] = mysqli_real_escape_string($cid, $utente["comune"]);
 
 $valutazioni = valutazioni_sql($cid, $utente["codiceFiscale"]);
 $utente["punteggioAcquirente"] = arrotondaValutazione($valutazioni["mediaAcquirente"]);

@@ -13,14 +13,14 @@ if (!isset($_SESSION["codiceFiscale"])) {
 <script>
     //ricerca
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('navRegione', 'navProvincia', null, '<?php echo isset($_GET["regione"])?$_GET["regione"]:"";?>', '<?php echo isset($_GET["provincia"])?$_GET["provincia"]:"";?>', null, true)
+        popolaRegioni('navRegione', 'navProvincia', null, '<?php echo isset($_GET["regione"])?mysqli_real_escape_string($cid, $_GET["regione"]):"";?>', '<?php echo isset($_GET["provincia"])?mysqli_real_escape_string($cid, $_GET["provincia"]):"";?>', null, true)
     });
     document.getElementById('navRegione').addEventListener('change', function () {
         popolaProvince('navRegione', 'navProvincia', null, true)
     });
     //registrazione
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('register-regione', 'register-provincia', 'register-comune', '<?php echo isset($_GET["rg"])?$_GET["rg"]:"";?>', '<?php echo isset($_GET["pr"])?$_GET["pr"]:"";?>', '<?php echo isset($_GET["cm"])?$_GET["cm"]:"";?>', false)
+        popolaRegioni('register-regione', 'register-provincia', 'register-comune', '<?php echo isset($_GET["rg"])?mysqli_real_escape_string($cid, $_GET["rg"]):"";?>', '<?php echo isset($_GET["pr"])?mysqli_real_escape_string($cid, $_GET["pr"]):"";?>', '<?php echo isset($_GET["cm"])?mysqli_real_escape_string($cid, $_GET["cm"]):"";?>', false)
     });
     document.getElementById('register-regione').addEventListener('change', function () {
         popolaProvince('register-regione', 'register-provincia', 'register-comune')

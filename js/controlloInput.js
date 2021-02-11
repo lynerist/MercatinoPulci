@@ -37,7 +37,7 @@ function controllaCodiceFiscale(codice){
 }
 
 function controllaEmail(email){
-    return /\S+@\S+.\S+/.test(email);
+    return /\S+@\S+.\S+/.test(email) && email.length < 31;
 }
 
 function controllaPassword(password){
@@ -49,11 +49,11 @@ function controllaRipetizionePassword(idpassword, ripetizione){
 }
 
 function controllaTesto(testo){
-    return testo != "";
+    return testo != "" && testo.length < 151;
 }
 
 function controllaTestoAnagrafico(testo){
-    return /^([^0-9]*)$/.test(testo);
+    return /^([^0-9]*)$/.test(testo) && testo.length < 21;
 }
 
 function controllaPrezzo(prezzo){

@@ -494,7 +494,7 @@ $utente["fotoProfilo"] = "venditore1.jpg";
     <?php } ?>
 
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo isset($_GET["Nr"])?$_GET["Nr"]:"";?>', '<?php echo isset($_GET["Np"])?$_GET["Np"]:"";?>', '<?php echo isset($_GET["Nc"])?$_GET["Nc"]:"";?>')
+        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo isset($_GET["Nr"])?mysqli_real_escape_string($cid, $_GET["Nr"]):"";?>', '<?php echo isset($_GET["Np"])?mysqli_real_escape_string($cid, $_GET["Np"]):"";?>', '<?php echo isset($_GET["Nc"])?mysqli_real_escape_string($cid, $_GET["Nc"]):"";?>')
     });
     document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
         popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')

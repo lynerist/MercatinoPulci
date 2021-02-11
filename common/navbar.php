@@ -161,7 +161,7 @@ $nNotifiche += nNotificheValutazioniSuVenditore_sql($cid, isset($_SESSION["codic
                                     <i class="fas fa-lock prefix"></i>
                                     <input type="password" id="passwordRegistrazione" name="regPassword" class="form-control formLoginRegister-register" placeholder="Password" oninput="colora(id,controllaPassword(value)); colora('passwordRipetizioneRegistrazione',controllaRipetizionePassword('passwordRipetizioneRegistrazione',value))" required>
                                     <label data-error="wrong" data-success="right" for="passwordRegistrazione"></label>
-                                    <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero ed una maiuscola.</div>
+                                    <div class="invalid-feedback ml-1">Minimo 8 caratteri, almeno un numero, una maiuscola ed una minuscola.</div>
                                 </div>
                                 <div class="md-form md-outline">
                                     <i class="fas fa-key prefix"></i>

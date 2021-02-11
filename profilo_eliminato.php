@@ -1,7 +1,6 @@
 <?php
-session_start();
+require_once "common/session.php";
 if(isset($_GET['status']) && $_GET['status'] == 'eliminato'){
-    session_start();
     session_destroy();
     header('Location:profilo_eliminato.php');
 }

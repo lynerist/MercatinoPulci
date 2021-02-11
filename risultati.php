@@ -197,10 +197,9 @@ $risultati = trovaRisultati_sql($cid, $_GET, isset($_SESSION["isLogged"])?$_SESS
                     <header class="card-header">Prezzo massimo</header>
                     <!-- Section: Price version 2 -->
                     <section class="mb-4">
-                        <h6 class="font-weight-bold mb-3 mt-2">Prezzo</h6>
                         <div class="d-flex justify-content-center my-4">
                             <div class="w-75">
-                                <label><input type="range" class="custom-range table-warning" id="customRange11" name="prezzo" min="0" max="1000" value="<?php if (isset($_GET['p'])) echo $_GET['p'];?>"></label>
+                                <label><input type="range" class="custom-range table-warning" id="customRange11" name="prezzo" min="0" max="1000" value="<?php echo (isset($_GET['p'])?$_GET['p']:'1000');?>"></label>
                             </div>
                             <span class="font-weight-bold price-color ml-2 valueSpan2" id="custom-span"></span>
                         </div>

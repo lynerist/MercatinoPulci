@@ -281,13 +281,15 @@ limit 12");
 }
 
 function venditoriTop_sql($cid){
-    $res = $cid->query("select codiceFiscale, nome, cognome, immagine as fotoProfilo, avg(valutazioneSuVenditore), count(*)
-from utente join annuncio a on utente.codiceFiscale = a.venditore
-where statoAnnuncio = 'venduto' and eliminato <> 0 and (dataOraPubblicazione between subdate(curdate(), interval 1 month ) and now())
-group by codiceFiscale
-having avg(valutazioneSuVenditore) >= 2.5
-order by count(*) desc , avg(valutazioneSuVenditore) desc
-limit 12");
+    $res = $cid->query("select codiceFiscale, nome, cognome, immagine as fotoProfilo
+                        from utente join annuncio a on utente.codiceFiscale = a.venditore
+                        where statoAnnuncio = 'venduto'
+                          and eliminato != '1'
+                          and (dataOraPubblicazione between subdate(curdate(), interval 1 month) and now())
+                        group by codiceFiscale
+                        having avg(valutazioneSuVenditore) >= 2.5
+                        order by count(*) desc, avg(valutazioneSuVenditore) desc
+                        limit 12");
     if ($res == null) {
         header("location: erroreConnessione.php");
         exit;

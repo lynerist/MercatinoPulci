@@ -49,11 +49,11 @@ function controllaRipetizionePassword(idpassword, ripetizione){
 }
 
 function controllaTesto(testo){
-    return testo != "" && testo.length < 151;
+    return testo !== "" && testo.length < 151 && !(testo.includes("<") || testo.includes(">"));
 }
 
 function controllaTestoAnagrafico(testo){
-    return /^([^0-9]*)$/.test(testo) && testo.length < 21;
+    return /^([^0-9]*)$/.test(testo) && testo.length < 21 && !(testo.includes("<") || testo.includes(">"));
 }
 
 function controllaPrezzo(prezzo){

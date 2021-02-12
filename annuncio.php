@@ -333,7 +333,7 @@ if ($annuncio["visibilita"] == 'ristretta' and $areeVisibilita -> num_rows != 0)
     visualizzaAreaVisibilita('<?php echo $annuncio['visibilita'];?>', 'containerAreaVisibilita');
 
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo mysqli_real_escape_string($cid, $annuncio["regione"]);?>', '<?php mysqli_real_escape_string($cid, $annuncio["provincia"]);?>', '<?php echo mysqli_real_escape_string($cid, $annuncio["comune"]);?>')
+        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo mysqli_real_escape_string($cid, $annuncio["regione"]);?>', '<?php echo mysqli_real_escape_string($cid, $annuncio["provincia"]);?>', '<?php echo mysqli_real_escape_string($cid, $annuncio["comune"]);?>')
     });
     document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
         popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')

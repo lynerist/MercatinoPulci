@@ -20,7 +20,7 @@ if (!isset($_SESSION["codiceFiscale"])) {
     });
     //registrazione
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('register-regione', 'register-provincia', 'register-comune', '<?php echo (isset($_GET["rg"])?mysqli_real_escape_string($cid, $_GET["rg"]):"");?>', '<?php echo (isset($_GET["pr"])?mysqli_real_escape_string($cid, $_GET["pr"]):"");?>', '<?php echo (isset($_GET["cm"])?mysqli_real_escape_string($cid, $_GET["cm"]):"");?>', false)
+        popolaRegioni('register-regione', 'register-provincia', 'register-comune', '<?php echo (isset($_GET["rg"])?$_GET["rg"]:"");?>', '<?php echo (isset($_GET["pr"])?$_GET["pr"]:"");?>', '<?php echo (isset($_GET["cm"])?$_GET["cm"]:"");?>', false)
     });
     document.getElementById('register-regione').addEventListener('change', function () {
         popolaProvince('register-regione', 'register-provincia', 'register-comune')

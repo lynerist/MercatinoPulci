@@ -9,9 +9,6 @@ if (!$utente['codiceFiscale']){
 }
 
 $utente = trovaUtente_sql($cid, $utente["codiceFiscale"]);
-$utente["regione"] = mysqli_real_escape_string($cid, $utente["regione"]);
-$utente["provincia"] = mysqli_real_escape_string($cid, $utente["provincia"]);
-$utente["comune"] = mysqli_real_escape_string($cid, $utente["comune"]);
 
 $valutazioni = valutazioni_sql($cid, $utente["codiceFiscale"]);
 $utente["punteggioAcquirente"] = arrotondaValutazione($valutazioni["mediaAcquirente"]);
@@ -372,7 +369,7 @@ if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
 <script>
     <?php if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){ ?>
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('modificaRegione', 'modificaProvincia', 'modificaComune', '<?php echo $utente["regione"];?>', '<?php echo $utente["provincia"];?>', '<?php echo $utente["comune"];?>')
+        popolaRegioni('modificaRegione', 'modificaProvincia', 'modificaComune', '<?php echo mysqli_real_escape_string($cid, $utente["regione"]);?>', '<?php echo mysqli_real_escape_string($cid, $utente["provincia"]);?>', '<?php echo mysqli_real_escape_string($cid, $utente["comune"]);?>')
     });
     document.getElementById('modificaRegione').addEventListener('change', function () {
         popolaProvince('modificaRegione', 'modificaProvincia', 'modificaComune')

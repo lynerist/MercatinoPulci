@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "../common/funzioni.php";
-include_once "../common/query.php";
+include_once "../../common/funzioni.php";
+include_once "../../common/query.php";
 $hostname = 'localhost';
 $username = 'root';
 $password = '';

@@ -48,7 +48,7 @@ function popolaRegioni(id, idP, idC, regioneSelezionata, provinciaSelezionata, c
             popolaProvince(id, idP, idC, opzionale, provinciaSelezionata, comuneSelezionato)
         }
     };
-    xttp.open("GET", "common/getRegioni.php", true);
+    xttp.open("GET", "backend/getFromDB/getRegioni.php", true);
     xttp.send();
 }
 
@@ -85,7 +85,7 @@ function popolaProvince(idR, idP, idC, opzionale, provinciaSelezionata, comuneSe
                 popolaComuni(idP, idC, comuneSelezionato, opzionale);
             }
         };
-        xttp.open("GET", "common/getProvince.php?regione=" + regioneSelezionata, true);
+        xttp.open("GET", "backend/getFromDB/getProvince.php?regione=" + regioneSelezionata, true);
         xttp.send();
     }
 }
@@ -122,7 +122,7 @@ function popolaComuni(idP, idC, comuneSelezionato, opzionale) {
                 }
             }
         };
-        xttp.open("GET", "common/getComuni.php?provincia=" + provinciaSelezionata, true);
+        xttp.open("GET", "backend/getFromDB/getComuni.php?provincia=" + provinciaSelezionata, true);
         xttp.send();
     }
 }

@@ -13,7 +13,7 @@ function popolaAnnunciAcquistati(cf, offset) {
             contenutoTab.innerHTML = annunci;
         }
     };
-    xttp.open("GET", "backend/getAnnunciAcquistati.php?cf=" + cf + "&offset=" + offset, true);
+    xttp.open("GET", "backend/getFromDB/getAnnunciAcquistati.php?cf=" + cf + "&offset=" + offset, true);
     xttp.send();
 }
 
@@ -32,7 +32,7 @@ function popolaAnnunciVenduti(cf, offset) {
             contenutoTab.innerHTML = annunci;
         }
     };
-    xttp.open("GET", "backend/getAnnunciVenduti.php?cf=" + cf + "&offset=" + offset, true);
+    xttp.open("GET", "backend/getFromDB/getAnnunciVenduti.php?cf=" + cf + "&offset=" + offset, true);
     xttp.send();
 }
 
@@ -51,6 +51,6 @@ function popolaAnnunciInVendita(cf, offset) {
             contenutoTab.innerHTML = annunci;
         }
     };
-    xttp.open("GET", "backend/getAnnunciInVendita.php?cf=" + cf + "&offset=" + offset, true);
+    xttp.open("GET", "backend/getFromDB/getAnnunciInVendita.php?cf=" + cf + "&offset=" + offset, true);
     xttp.send();
 }

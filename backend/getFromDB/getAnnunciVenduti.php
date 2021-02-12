@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "../common/funzioni.php";
-include_once "../common/query.php";
+include_once "../../common/funzioni.php";
+include_once "../../common/query.php";
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
@@ -53,44 +53,6 @@ $risultato["html"] .= '</div>
                         </div>';
 
 if ($haVendite) {
-
-    /*'<nav class="pagination-wrapper pagination-box nav-padding" aria-label="Esempio di navigazione con jump to page">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-angle-left"></i>
-                                        <span class="sr-only">Pagina precedente</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">7</a></li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">8</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#" aria-current="page">9</a>
-                                </li>
-                                <li class="page-item sparisci"><a class="page-link sparisci" href="#">10</a></li>
-                                <li class="page-item sparisci-2"><a class="page-link sparisci-2" href="#">11</a></li>
-                                <li class="page-item"><span class="page-link">...</span></li>
-                                <li class="page-item"><a class="page-link" href="#">50</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <span class="sr-only">Pagina successiva</span>
-                                        <i class="fas fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="form-group page-box">
-                                <label for="jumpToPageAnnunciVenduti">
-                                    <span aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="jumpToPageAnnunciVenduti" maxlength="3">
-                                    Vai a ...<span class="sr-only">Indica la pagina desiderata</span>
-                                </label>
-                            </div>
-                        </nav>
-                    </div>';*/
-
-
 
     $risultato["html"] .= '<nav class="pagination-wrapper pagination-box d-flex justify-content-between" aria-label="Esempio di navigazione con jump to page">
             <ul class="pagination">

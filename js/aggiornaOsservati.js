@@ -14,6 +14,6 @@ function aggiornaOsservati(runOnes) {
         }
     };
     if (!runOnes) setTimeout(aggiornaOsservati, 30000);
-    xttp.open("GET", "backend/getOsservati.php", true);
+    xttp.open("GET", "backend/getFromDB/getOsservati.php", true);
     xttp.send();
 }

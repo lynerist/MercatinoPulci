@@ -15,17 +15,16 @@ $annuncio["nOsservatori"] = contaOsservatori_sql($cid, $annuncio["dataOraPubblic
 $areeVisibilita = array();
 $areeVisibilita = trovaAreeVisibilita_sql($cid, $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
 
-
-if (isset($_GET["Mt"])) $annuncio["titolo"] = $_GET["Mt"];
-if (isset($_GET["Mpz"])) $annuncio["prezzo"] = $_GET["Mpz"];
+if (isset($_GET["Mt"])) $annuncio["titolo"] = mysqli_real_escape_string($cid, $_GET["Mt"]);
+if (isset($_GET["Mpz"])) $annuncio["prezzo"] = mysqli_real_escape_string($cid, $_GET["Mpz"]);
 if (isset($_GET["Mct"])) $annuncio["categoria"] = $_GET["Mct"];
 if (isset($_GET["Msc"])) $annuncio["sottoCategoria"] = $_GET["Msc"];
-if (isset($_GET["Mpd"])) $annuncio["prodotto"] = $_GET["Mpd"];
+if (isset($_GET["Mpd"])) $annuncio["prodotto"] = mysqli_real_escape_string($cid, $_GET["Mpd"]);
 if (isset($_GET["Mv"])) $annuncio["visibilita"] = $_GET["Mv"];
 if (isset($_GET["Msu"])) $annuncio["statoUsura"] = $_GET["Msu"];
-if (isset($_GET["Mr"])) $annuncio["regione"] = $_GET["Mr"];
-if (isset($_GET["Mp"])) $annuncio["provincia"] = $_GET["Mp"];
-if (isset($_GET["Mc"])) $annuncio["comune"] = $_GET["Mc"];
+if (isset($_GET["Mr"])) $annuncio["regione"] = mysqli_real_escape_string($cid, $_GET["Mr"]);
+if (isset($_GET["Mp"])) $annuncio["provincia"] = mysqli_real_escape_string($cid, $_GET["Mp"]);
+if (isset($_GET["Mc"])) $annuncio["comune"] = mysqli_real_escape_string($cid, $_GET["Mc"]);
 if (isset($_GET["Mtu"])) $annuncio["tempoUsura"] = $_GET["Mtu"];
 if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
 
@@ -219,12 +218,11 @@ if (isset($_GET["Msg"])) $annuncio["scadenzaGaranzia"] = $_GET["Msg"];
                     </div>
                 </div>
             <?php } ?>
-
             <br>
             <div class="luogo"><?php echo $annuncio["regione"] . ", " . $annuncio["provincia"] . ", " . $annuncio["comune"] ?></div>
             <div class="lead">€ <?php echo $annuncio["prezzo"] ?></div>
             <div class="lead mb-3"><?php echo $annuncio["prodotto"] ?></div>
-            <div class="font-weight-bold mb-3"><?php if ($annuncio["tempoUsura"] == 0) echo "Nuovo"; else echo "Usato" ?></div>
+            <div class="font-weight-bold mb-3"><?php echo $annuncio["tempoUsura"] == 0?"Nuovo":"Usato" ?></div>
             <div class="mb-5"><?php echo $annuncio["statoUsura"] ?></div>
             <?php if ($annuncio["statoAnnuncio"] == "inVendita"){ ?>
                 <div class="font-italic mt-5">Osservato da <?php if ($annuncio["nOsservatori"] == "1") echo "una persona"; else echo $annuncio["nOsservatori"] . " persone" ?></div>
@@ -335,7 +333,7 @@ if ($annuncio["visibilita"] == 'ristretta' and $areeVisibilita -> num_rows != 0)
     visualizzaAreaVisibilita('<?php echo $annuncio['visibilita'];?>', 'containerAreaVisibilita');
 
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo $annuncio["regione"];?>', '<?php echo $annuncio["provincia"];?>', '<?php echo $annuncio["comune"];?>')
+        popolaRegioni('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune', '<?php echo mysqli_real_escape_string($cid, $annuncio["regione"]);?>', '<?php mysqli_real_escape_string($cid, $annuncio["provincia"]);?>', '<?php echo mysqli_real_escape_string($cid, $annuncio["comune"]);?>')
     });
     document.getElementById('luogoVenditaRegione').addEventListener('change', function () {
         popolaProvince('luogoVenditaRegione', 'luogoVenditaProvincia', 'luogoVenditaComune')

@@ -15,9 +15,9 @@ $visibilita = $_POST["visibilita"];
 $statoUsura = $_POST["statoUsura"];
 $tempoUsura = mysqli_real_escape_string($cid, $_POST["tempoUsura"]);
 $scadenzaGaranzia = mysqli_real_escape_string($cid, $_POST["scadenzaGaranzia"]);
-$luogoVenditaRegione = $_POST["luogoVenditaRegione"];
-$luogoVenditaProvincia = $_POST["luogoVenditaProvincia"];
-$luogoVenditaComune = $_POST["luogoVenditaComune"];
+$luogoVenditaRegione = mysqli_real_escape_string($cid, $_POST["luogoVenditaRegione"]);
+$luogoVenditaProvincia = mysqli_real_escape_string($cid, $_POST["luogoVenditaProvincia"]);
+$luogoVenditaComune = mysqli_real_escape_string($cid, $_POST["luogoVenditaComune"]);
 
 $regioneVisibilita = array();
 $provinciaVisibilita = array();

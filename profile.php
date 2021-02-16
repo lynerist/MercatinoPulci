@@ -19,13 +19,6 @@ $utente["nRecensioniVenditore"] = $valutazioni["nValutazioniVenditore"];
 $utente["nAnnunciAcquistati"] = nAnnunciAcquistati_sql($cid, $utente["codiceFiscale"]);
 $utente["nAnnunciVenduti"] = nAnnunciVenduti_sql($cid, $utente["codiceFiscale"]);
 
-if (isset($_GET["Mnm"])) $utente["nome"] = $_GET["Mnm"];
-if (isset($_GET["Mcg"])) $utente["cognome"] = $_GET["Mcg"];
-if (isset($_GET["Mrg"])) $utente["regione"] = $_GET["Mrg"];
-if (isset($_GET["Mpr"])) $utente["provincia"] = $_GET["Mpr"];
-if (isset($_GET["Mcm"])) $utente["comune"] = $_GET["Mcm"];
-if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
-
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +95,7 @@ if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
                                                                 <label for="modificaEmail" class="<?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "E") !== false)?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and strpos($_GET["Merr"], "E") !== false)?"email già in uso":"";?></label>
                                                             </div>
                                                             <div class="row mt-3">
-                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo $utente['nome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaNome" name="modificaNome" type="text" class="form-control form-custom modificaProfilo" placeholder="Nome" value="<?php echo (isset($_GET["Mnm"]))?$_GET["Mnm"]:$utente["nome"];?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaRegione" id="modificaRegione" class="form-control modificaProfilo" required></select>
@@ -110,7 +103,7 @@ if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
                                                                 </div>
                                                             </div>
                                                             <div class="row mt-3">
-                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="<?php echo $utente['cognome'] ?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
+                                                                <div class="col-md-6"><label><input id="modificaCognome" name="modificaCognome" type="text" class="form-control form-custom modificaProfilo" placeholder="Cognome" value="<?php echo (isset($_GET["Mcg"]))?$_GET["Mcg"]:$utente["cognome"];?>" oninput="colora(id, controllaTestoAnagrafico(value))" required></label></div>
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaProvincia" id="modificaProvincia" class="form-control modificaProfilo" required></select>
@@ -121,9 +114,9 @@ if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
                                                                 <div class="col-md-6">
                                                                     <label>
                                                                         <select name="modificaTipoAccount" id="modificaTipoAccount" class="form-control modificaProfilo <?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "TA")?"is-invalid":"";?>" onchange="this.classList.remove('is-invalid');" required>
-                                                                            <option value="acquirente"<?php echo $utente["tipoAccount"]=="acquirente"?"selected":"";?>>Acquirente</option>
-                                                                            <option value="venditore"<?php echo $utente["tipoAccount"]=="venditore"?"selected":"";?>>Venditore</option>
-                                                                            <option value="venditoreAcquirente"<?php echo $utente["tipoAccount"]=="venditoreAcquirente"?"selected":"";?>>Acquirente e venditore</option>
+                                                                            <option value="acquirente"<?php echo ((isset($_GET["Mtp"]))?$_GET["Mtp"]:$utente["tipoAccount"])=="acquirente"?"selected":"";?>>Acquirente</option>
+                                                                            <option value="venditore"<?php echo ((isset($_GET["Mtp"]))?$_GET["Mtp"]:$utente["tipoAccount"])=="venditore"?"selected":"";?>>Venditore</option>
+                                                                            <option value="venditoreAcquirente"<?php echo ((isset($_GET["Mtp"]))?$_GET["Mtp"]:$utente["tipoAccount"])=="venditoreAcquirente"?"selected":"";?>>Acquirente e venditore</option>
                                                                         </select>
                                                                         <label for="modificaTipoAccount" class="<?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "TA")?"invalid-feedback":"";?>"><?php echo (isset($_GET["Merr"]) and $_GET["Merr"] == "TA")?"Hai richieste di acquisto attive, perciò non puoi smettere di essere acquirente.":"";?></label>
                                                                     </label>
@@ -369,7 +362,7 @@ if (isset($_GET["Mtp"])) $utente["tipoAccount"] = $_GET["Mtp"];
 <script>
     <?php if (isset($_SESSION["codiceFiscale"]) and $_SESSION["codiceFiscale"] == $utente["codiceFiscale"]){ ?>
     window.addEventListener('DOMContentLoaded', function () {
-        popolaRegioni('modificaRegione', 'modificaProvincia', 'modificaComune', '<?php echo mysqli_real_escape_string($cid, $utente["regione"]);?>', '<?php echo mysqli_real_escape_string($cid, $utente["provincia"]);?>', '<?php echo mysqli_real_escape_string($cid, $utente["comune"]);?>')
+        popolaRegioni('modificaRegione', 'modificaProvincia', 'modificaComune', '<?php echo (isset($_GET["Mrg"]))?$_GET["Mrg"]:mysqli_real_escape_string($cid, $utente["regione"]);?>', '<?php echo (isset($_GET["Mpr"]))?$_GET["Mpr"]:mysqli_real_escape_string($cid, $utente["provincia"]);?>', '<?php echo (isset($_GET["Mcm"]))?$_GET["Mcm"]:mysqli_real_escape_string($cid, $utente["comune"]);?>')
     });
     document.getElementById('modificaRegione').addEventListener('change', function () {
         popolaProvince('modificaRegione', 'modificaProvincia', 'modificaComune')

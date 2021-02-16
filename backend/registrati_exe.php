@@ -18,7 +18,7 @@ $newsletter = isset($_POST["regNewsletter"]) and $_POST["regNewsletter"] == "on"
 
 $notUnique = "&nm=$nome&cg=$cognome&rg=$regione&pr=$provincia&cm=$comune&tp=$tipoAccount&nw=$newsletter";
 
-$uniqueEmail = !(existsEmail_sql($cid, $email));
+$uniqueEmail = !(existsEmail_sql($cid, $email, ""));
 
 $uniqueCodiceFiscale = !(existsCodiceFiscale_sql($cid, $codiceFiscale));
 

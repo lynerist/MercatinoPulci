@@ -429,7 +429,9 @@ function richiestaDiAcquistoEffettuata_sql($cid, $cfSessione, $dop, $v){
 }
 
 function smettiDiOsservare_sql($cid, $dop, $venditore, $acquirente){
-    //tutti gli annunci di una persona da aquirente e da venditore
+    //tutti gli annunci di una persona da acquirente
+    if ($dop == "" and $venditore == "") return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente'");
+    //tutti gli annunci di una persona da acquirente e da venditore
     if ($dop == "") return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente' or venditore = '$venditore'");
     //tutte le persone di un annuncio
     if ($acquirente == "") return $cid -> query("DELETE FROM osserva WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore'"); 
@@ -480,8 +482,8 @@ function svuotaNotifiche_sql($cid, $cfSessione){
     $cid -> query("UPDATE acquista SET daNotificare = '0' where acquirente = '$cfSessione'");
 }
 
-function existsEmail_sql($cid, $email){
-    $res = $cid -> query("SELECT count(*) FROM utente WHERE email = '$email';");
+function existsEmail_sql($cid, $email, $daIgnorare){
+    $res = $cid -> query("SELECT count(*) FROM utente WHERE email = '$email' and codiceFiscale != '$daIgnorare'");
     return ($res -> fetch_row()[0]) > 0;
 }
 
@@ -496,4 +498,17 @@ function registraUtente_sql($cid, $codiceFiscale, $tipoAccount, $nome, $cognome,
 
 function osservaAnnuncio_sql($cid, $cfSessione, $dop, $v){
     return $cid -> query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$cfSessione', '$dop', '$v', null)");
+}
+
+function attendeRispostaARichiestaDiAcquisto_sql($cid, $cfSessione){
+    $res = $cid -> query("SELECT count(*) FROM osserva WHERE acquirente = '$cfSessione' and richiestaDiAcquisto IS NOT NULL");
+    return ($res -> fetch_row()[0]) > 0;
+}
+
+function modificaProfilo_sql($cid, $nome, $cognome, $email, $provincia, $comune, $tipoAccount, $nuovaPassword, $cfSessione){
+    $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount', password = '$nuovaPassword' WHERE codiceFiscale = '$cfSessione'";
+    if ($nuovaPassword == ""){
+        $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount' WHERE codiceFiscale = '$cfSessione'";
+    }
+    $cid->query($modificaProfilo);
 }

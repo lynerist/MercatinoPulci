@@ -18,11 +18,9 @@ $newsletter = isset($_POST["regNewsletter"]) and $_POST["regNewsletter"] == "on"
 
 $notUnique = "&nm=$nome&cg=$cognome&rg=$regione&pr=$provincia&cm=$comune&tp=$tipoAccount&nw=$newsletter";
 
-$res = $cid -> query("SELECT * FROM utente WHERE email = '$email';");
-$uniqueEmail = !($res -> num_rows);
+$uniqueEmail = !(existsEmail_sql($cid, $email));
 
-$res = $cid -> query("SELECT * FROM utente WHERE codiceFiscale = '$codiceFiscale';");
-$uniqueCodiceFiscale = !($res -> num_rows);
+$uniqueCodiceFiscale = !(existsCodiceFiscale_sql($cid, $codiceFiscale));
 
 $link = explode('?', $_SERVER['HTTP_REFERER']);
 $_SERVER["HTTP_REFERER"] = $link[0];
@@ -38,8 +36,7 @@ if (!$uniqueCodiceFiscale and !$uniqueEmail){
     exit;
 }
 
-$registrati = "INSERT INTO utente (codiceFiscale, tipoAccount, nome, cognome, email, password, immagine, comune, provincia, eliminato) VALUES ('" . $codiceFiscale . "', '" . $tipoAccount . "', '" . $nome . "', '" . $cognome . "', '" . $email . "', '" . $password . "', null, '" . $comune . "', '" . $provincia . "', '0')";
-$res = $cid->query($registrati);
+registraUtente_sql($cid, $codiceFiscale, $tipoAccount, $nome, $cognome, $email, $password, $comune, $provincia);
 
 session_start();
 $_SESSION["isLogged"] = true;

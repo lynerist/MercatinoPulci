@@ -479,3 +479,21 @@ function svuotaNotifiche_sql($cid, $cfSessione){
     $cid -> query("UPDATE osserva SET daNotificare = '0' where venditore = '$cfSessione'");
     $cid -> query("UPDATE acquista SET daNotificare = '0' where acquirente = '$cfSessione'");
 }
+
+function existsEmail_sql($cid, $email){
+    $res = $cid -> query("SELECT count(*) FROM utente WHERE email = '$email';");
+    return ($res -> fetch_row()[0]) > 0;
+}
+
+function existsCodiceFiscale_sql($cid, $cf){
+    $res = $cid -> query("SELECT count(*) FROM utente WHERE codiceFiscale = '$cf';");
+    return ($res -> fetch_row()[0]) > 0;
+}
+
+function registraUtente_sql($cid, $codiceFiscale, $tipoAccount, $nome, $cognome, $email, $password, $comune, $provincia){
+    $cid->query("INSERT INTO utente (codiceFiscale, tipoAccount, nome, cognome, email, password, immagine, comune, provincia, eliminato) VALUES ('" . $codiceFiscale . "', '" . $tipoAccount . "', '" . $nome . "', '" . $cognome . "', '" . $email . "', '" . $password . "', null, '" . $comune . "', '" . $provincia . "', '0')");
+}
+
+function osservaAnnuncio_sql($cid, $cfSessione, $dop, $v){
+    return $cid -> query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$cfSessione', '$dop', '$v', null)");
+}

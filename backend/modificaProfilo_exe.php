@@ -58,8 +58,7 @@ modificaProfilo_sql($cid, $nome, $cognome, $email, $provincia, $comune, $tipoAcc
 if ($tipoAccount == "venditore") smettiDiOsservare_sql($cid, "", "", $_SESSION["codiceFiscale"]);
 
 if ($tipoAccount == "acquirente"){
-    $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
-    $cid -> query("DELETE FROM osserva WHERE venditore = '". $_SESSION["codiceFiscale"] ."'");
+    eliminaTuttiGliAnnunciDiUnVenditore_sql($cid, $_SESSION["codiceFiscale"]);
 }
 
 $_SESSION["nome"] = $nome;

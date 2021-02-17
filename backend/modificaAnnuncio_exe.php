@@ -74,15 +74,13 @@ if ($statoUsura == "nuovo"){
     $statoUsura = "'" . $statoUsura . "'";
 }
 
-$cid -> query("UPDATE annuncio SET titolo = '$titolo', prodotto = '$prodotto', categoria = '$categoria', sottoCategoria = '$sottocategoria', prezzo = '$prezzo', statoUsura = " . $statoUsura . ", tempoUsura = '$tempoUsura', scadenzaGaranzia = " . $scadenzaGaranzia . ", visibilita = '$visibilita', provincia = '$luogoVenditaProvincia', comune = '$luogoVenditaComune' WHERE dataOraPubblicazione = '$dataOraPubblicazione' and venditore = '$venditore'");
+modificaAnnuncio_sql($cid, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaProvincia, $luogoVenditaComune, $dataOraPubblicazione, $venditore);
 
 //svuota areavisibilita prima di riempirlo per evitare chiavi duplicate
 $cid->query("DELETE FROM areavisibilita WHERE venditore = '$venditore' and dataOraPubblicazione = '$dataOraPubblicazione'");
 
 for ($i=0; $i<$iterator; $i++) {
-    if ($regioneVisibilita[$i] == "Tutta Italia") continue;
-    $provincia = gestisciValoreOgniProvincia($regioneVisibilita[$i], $provinciaVisibilita[$i]);
-    $cid->query("INSERT INTO areavisibilita (dataOraPubblicazione, venditore, comune, provincia) VALUES ('$dataOraPubblicazione', '$venditore', '$comuneVisibilita[$i]', '$provincia')");
+    inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regioneVisibilita[$i], $provinciaVisibilita[$i], $comuneVisibilita[$i]);
 }
 
 

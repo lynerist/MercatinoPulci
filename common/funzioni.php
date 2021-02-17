@@ -58,4 +58,5 @@ function gestisciValoreOgniProvincia($regione, $provincia){
 
 function console($arg){
     echo " <script>console.log('$arg')</script> ";
+    exit;
 }

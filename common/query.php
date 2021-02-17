@@ -429,6 +429,8 @@ function richiestaDiAcquistoEffettuata_sql($cid, $cfSessione, $dop, $v){
 }
 
 function smettiDiOsservare_sql($cid, $dop, $venditore, $acquirente){
+    //tutti gli annunci di una persona da venditore
+    if ($dop == "" and $acquirente == "") return $cid -> query("DELETE FROM osserva WHERE venditore = '$venditore'");
     //tutti gli annunci di una persona da acquirente
     if ($dop == "" and $venditore == "") return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente'");
     //tutti gli annunci di una persona da acquirente e da venditore
@@ -507,8 +509,31 @@ function attendeRispostaARichiestaDiAcquisto_sql($cid, $cfSessione){
 
 function modificaProfilo_sql($cid, $nome, $cognome, $email, $provincia, $comune, $tipoAccount, $nuovaPassword, $cfSessione){
     $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount', password = '$nuovaPassword' WHERE codiceFiscale = '$cfSessione'";
-    if ($nuovaPassword == ""){
+    if ($nuovaPassword == "d41d8cd98f00b204e9800998ecf8427e"){
         $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount' WHERE codiceFiscale = '$cfSessione'";
     }
     $cid->query($modificaProfilo);
+}
+
+function eliminaTuttiGliAnnunciDiUnVenditore_sql($cid, $cfSessione){
+    $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '$cfSessione'");
+    smettiDiOsservare_sql($cid, "", $cfSessione, "");
+}
+
+function modificaAnnuncio_Sql($cid, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaProvincia, $luogoVenditaComune, $dataOraPubblicazione, $venditore){
+    $cid -> query("UPDATE annuncio SET titolo = '$titolo', prodotto = '$prodotto', categoria = '$categoria',
+                    sottoCategoria = '$sottocategoria', prezzo = '$prezzo', statoUsura = " . $statoUsura . ", 
+                    tempoUsura = '$tempoUsura', scadenzaGaranzia = " . $scadenzaGaranzia . ", visibilita = '$visibilita',
+                    provincia = '$luogoVenditaProvincia', comune = '$luogoVenditaComune'
+                    WHERE dataOraPubblicazione = '$dataOraPubblicazione' and venditore = '$venditore'");
+}
+
+function inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regioneVisibilita, $provinciaVisibilita, $comuneVisibilita){
+    if ($regioneVisibilita == "Tutta Italia") return;
+    $provincia = gestisciValoreOgniProvincia($regioneVisibilita, $provinciaVisibilita);
+    $cid->query("INSERT INTO areavisibilita (dataOraPubblicazione, venditore, comune, provincia) VALUES ('$dataOraPubblicazione', '$venditore', '$comuneVisibilita', '$provincia')");
+}
+
+function login_sql($cid, $email){
+    return $cid -> query("SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email' and eliminato = '0'");
 }

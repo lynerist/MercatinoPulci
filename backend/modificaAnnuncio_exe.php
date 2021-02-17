@@ -14,7 +14,7 @@ $prodotto = mysqli_real_escape_string($cid, $_POST["prodotto"]);
 $visibilita = $_POST["visibilita"];
 $statoUsura = $_POST["statoUsura"];
 $tempoUsura = mysqli_real_escape_string($cid, $_POST["tempoUsura"]);
-$scadenzaGaranzia = mysqli_real_escape_string($cid, $_POST["scadenzaGaranzia"]);
+$scadenzaGaranzia = mysqli_real_escape_string($cid, date('Y-m-d', strtotime(str_replace("/", "-", $_POST["scadenzaGaranzia"]))));
 $luogoVenditaRegione = mysqli_real_escape_string($cid, $_POST["luogoVenditaRegione"]);
 $luogoVenditaProvincia = mysqli_real_escape_string($cid, $_POST["luogoVenditaProvincia"]);
 $luogoVenditaComune = mysqli_real_escape_string($cid, $_POST["luogoVenditaComune"]);
@@ -41,7 +41,6 @@ $validTempoUsura = ($statoUsura == "nuovo" or $statoUsura != "nuovo" and $tempoU
 $validScadenzaGaranzia = ($statoUsura != "nuovo" or strtotime($scadenzaGaranzia) > time() or $scadenzaGaranzia == "NULL");
 
 if ($scadenzaGaranzia != "NULL") $scadenzaGaranzia = "'" . $scadenzaGaranzia . "'";
-
 
 $_SERVER["HTTP_REFERER"] = "../" . urlCriptato($venditore, $dataOraPubblicazione);
 if (!($validPrice or $validTempoUsura or $validScadenzaGaranzia)){
@@ -77,7 +76,7 @@ if ($statoUsura == "nuovo"){
 modificaAnnuncio_sql($cid, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaProvincia, $luogoVenditaComune, $dataOraPubblicazione, $venditore);
 
 //svuota areavisibilita prima di riempirlo per evitare chiavi duplicate
-$cid->query("DELETE FROM areavisibilita WHERE venditore = '$venditore' and dataOraPubblicazione = '$dataOraPubblicazione'");
+svuotaAreaVisibilita_sql($cid, $venditore, $dataOraPubblicazione);
 
 for ($i=0; $i<$iterator; $i++) {
     inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regioneVisibilita[$i], $provinciaVisibilita[$i], $comuneVisibilita[$i]);

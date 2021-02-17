@@ -528,6 +528,10 @@ function modificaAnnuncio_Sql($cid, $titolo, $prodotto, $categoria, $sottocatego
                     WHERE dataOraPubblicazione = '$dataOraPubblicazione' and venditore = '$venditore'");
 }
 
+function svuotaAreaVisibilita_sql($cid, $venditore, $dataOraPubblicazione){
+    $cid->query("DELETE FROM areavisibilita WHERE venditore = '$venditore' and dataOraPubblicazione = '$dataOraPubblicazione'");
+}
+
 function inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regioneVisibilita, $provinciaVisibilita, $comuneVisibilita){
     if ($regioneVisibilita == "Tutta Italia") return;
     $provincia = gestisciValoreOgniProvincia($regioneVisibilita, $provinciaVisibilita);
@@ -536,4 +540,16 @@ function inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regio
 
 function login_sql($cid, $email){
     return $cid -> query("SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email' and eliminato = '0'");
+}
+
+function inserisciAnnuncio_sql($cid, $venditore, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaComune, $luogoVenditaProvincia){
+    $cid -> query("insert into annuncio (venditore, titolo, prodotto, categoria, sottoCategoria, prezzo, statoUsura, tempoUsura,
+                      scadenzaGaranzia, foto, valutazioneSuVenditore, visibilita, comune, provincia) 
+                      values ('$venditore', '$titolo', '$prodotto', '$categoria', '$sottocategoria', '$prezzo', " . $statoUsura . ", 
+                      '$tempoUsura', " . $scadenzaGaranzia . ", NULL, NULL, '$visibilita', '$luogoVenditaComune', '$luogoVenditaProvincia')");
+}
+
+function ricavaDataOraPubblicazione($cid, $venditore){
+    $res = $cid -> query("SELECT dataOraPubblicazione FROM annuncio WHERE venditore = '$venditore' ORDER BY dataOraPubblicazione DESC LIMIT 1");
+    return $res -> fetch_row()[0];
 }

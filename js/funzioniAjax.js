@@ -1,8 +1,3 @@
-function accediRegistrati(id) {
-    $("#modalLoginRegister").modal("show");
-    $("#" + id).click();
-}
-
 function AjaxRequest() {
     let request;
     try {
@@ -125,4 +120,55 @@ function popolaComuni(idP, idC, comuneSelezionato, opzionale) {
         xttp.open("GET", "backend/getFromDB/getComuni.php?provincia=" + provinciaSelezionata, true);
         xttp.send();
     }
+}
+
+function osservaAnnuncioAjax(dop, v){
+    let xttp = new AjaxRequest();
+    xttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let risposta = JSON.parse(this.response);
+
+            if (risposta.errore){
+                window.location.replace("erroreConnessione.php");
+            }
+        }
+    };
+    xttp.open("GET", "backend/osservaAnnuncio.php?dop=" + dop + "&v=" + v, true);
+    xttp.send();
+}
+
+function smettiDiOsservareAjax(dop, v) {
+    let xttp = new AjaxRequest();
+    xttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let risposta = JSON.parse(this.response);
+
+            if (risposta.errore){
+                window.location.replace("erroreConnessione.php");
+            }
+        }
+        aggiornaOsservati(true);
+    };
+    xttp.open("GET", "backend/smettiDiOsservare.php?dop=" + dop + "&v=" + v, true);
+    xttp.send();
+}
+
+function aggiornaOsservati(runOnes) {
+    let xttp = new AjaxRequest();
+    xttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let risposta = JSON.parse(this.response);
+
+            if (risposta.errore){
+                window.location.replace("erroreConnessione.php");
+            }
+
+            let osservati = risposta.html;
+            let container = document.getElementById('containerOsservati');
+            container.innerHTML = osservati;
+        }
+    };
+    if (!runOnes) setTimeout(aggiornaOsservati, 30000);
+    xttp.open("GET", "backend/getFromDB/getOsservati.php", true);
+    xttp.send();
 }

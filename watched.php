@@ -18,7 +18,6 @@
 <?php include_once "common/footer.php" ?>
 
 <?php include_once "common/common_script.php"; ?>
-<script src="js/aggiornaOsservati.js"></script>
 <script>aggiornaOsservati()</script>
 
 </body>

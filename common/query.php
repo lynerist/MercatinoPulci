@@ -429,7 +429,11 @@ function richiestaDiAcquistoEffettuata_sql($cid, $cfSessione, $dop, $v){
 }
 
 function smettiDiOsservare_sql($cid, $dop, $venditore, $acquirente){
-    //tutti gli annunci di una persona da aquirente e da venditore
+    //tutti gli annunci di una persona da venditore
+    if ($dop == "" and $acquirente == "") return $cid -> query("DELETE FROM osserva WHERE venditore = '$venditore'");
+    //tutti gli annunci di una persona da acquirente
+    if ($dop == "" and $venditore == "") return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente'");
+    //tutti gli annunci di una persona da acquirente e da venditore
     if ($dop == "") return $cid -> query("DELETE FROM osserva WHERE acquirente = '$acquirente' or venditore = '$venditore'");
     //tutte le persone di un annuncio
     if ($acquirente == "") return $cid -> query("DELETE FROM osserva WHERE dataOraPubblicazione = '$dop' and venditore = '$venditore'"); 
@@ -478,4 +482,74 @@ function nNotificheValutazioniSuVenditore_sql($cid, $cfSessione){
 function svuotaNotifiche_sql($cid, $cfSessione){
     $cid -> query("UPDATE osserva SET daNotificare = '0' where venditore = '$cfSessione'");
     $cid -> query("UPDATE acquista SET daNotificare = '0' where acquirente = '$cfSessione'");
+}
+
+function existsEmail_sql($cid, $email, $daIgnorare){
+    $res = $cid -> query("SELECT count(*) FROM utente WHERE email = '$email' and codiceFiscale != '$daIgnorare'");
+    return ($res -> fetch_row()[0]) > 0;
+}
+
+function existsCodiceFiscale_sql($cid, $cf){
+    $res = $cid -> query("SELECT count(*) FROM utente WHERE codiceFiscale = '$cf';");
+    return ($res -> fetch_row()[0]) > 0;
+}
+
+function registraUtente_sql($cid, $codiceFiscale, $tipoAccount, $nome, $cognome, $email, $password, $comune, $provincia){
+    $cid->query("INSERT INTO utente (codiceFiscale, tipoAccount, nome, cognome, email, password, immagine, comune, provincia, eliminato) VALUES ('" . $codiceFiscale . "', '" . $tipoAccount . "', '" . $nome . "', '" . $cognome . "', '" . $email . "', '" . $password . "', null, '" . $comune . "', '" . $provincia . "', '0')");
+}
+
+function osservaAnnuncio_sql($cid, $cfSessione, $dop, $v){
+    return $cid -> query("INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('$cfSessione', '$dop', '$v', null)");
+}
+
+function attendeRispostaARichiestaDiAcquisto_sql($cid, $cfSessione){
+    $res = $cid -> query("SELECT count(*) FROM osserva WHERE acquirente = '$cfSessione' and richiestaDiAcquisto IS NOT NULL");
+    return ($res -> fetch_row()[0]) > 0;
+}
+
+function modificaProfilo_sql($cid, $nome, $cognome, $email, $provincia, $comune, $tipoAccount, $nuovaPassword, $cfSessione){
+    $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount', password = '$nuovaPassword' WHERE codiceFiscale = '$cfSessione'";
+    if ($nuovaPassword == "d41d8cd98f00b204e9800998ecf8427e"){
+        $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount' WHERE codiceFiscale = '$cfSessione'";
+    }
+    $cid->query($modificaProfilo);
+}
+
+function eliminaTuttiGliAnnunciDiUnVenditore_sql($cid, $cfSessione){
+    $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '$cfSessione'");
+    smettiDiOsservare_sql($cid, "", $cfSessione, "");
+}
+
+function modificaAnnuncio_Sql($cid, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaProvincia, $luogoVenditaComune, $dataOraPubblicazione, $venditore){
+    $cid -> query("UPDATE annuncio SET titolo = '$titolo', prodotto = '$prodotto', categoria = '$categoria',
+                    sottoCategoria = '$sottocategoria', prezzo = '$prezzo', statoUsura = " . $statoUsura . ", 
+                    tempoUsura = '$tempoUsura', scadenzaGaranzia = " . $scadenzaGaranzia . ", visibilita = '$visibilita',
+                    provincia = '$luogoVenditaProvincia', comune = '$luogoVenditaComune'
+                    WHERE dataOraPubblicazione = '$dataOraPubblicazione' and venditore = '$venditore'");
+}
+
+function svuotaAreaVisibilita_sql($cid, $venditore, $dataOraPubblicazione){
+    $cid->query("DELETE FROM areavisibilita WHERE venditore = '$venditore' and dataOraPubblicazione = '$dataOraPubblicazione'");
+}
+
+function inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regioneVisibilita, $provinciaVisibilita, $comuneVisibilita){
+    if ($regioneVisibilita == "Tutta Italia") return;
+    $provincia = gestisciValoreOgniProvincia($regioneVisibilita, $provinciaVisibilita);
+    $cid->query("INSERT INTO areavisibilita (dataOraPubblicazione, venditore, comune, provincia) VALUES ('$dataOraPubblicazione', '$venditore', '$comuneVisibilita', '$provincia')");
+}
+
+function login_sql($cid, $email){
+    return $cid -> query("SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email' and eliminato = '0'");
+}
+
+function inserisciAnnuncio_sql($cid, $venditore, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaComune, $luogoVenditaProvincia){
+    $cid -> query("insert into annuncio (venditore, titolo, prodotto, categoria, sottoCategoria, prezzo, statoUsura, tempoUsura,
+                      scadenzaGaranzia, foto, valutazioneSuVenditore, visibilita, comune, provincia) 
+                      values ('$venditore', '$titolo', '$prodotto', '$categoria', '$sottocategoria', '$prezzo', " . $statoUsura . ", 
+                      '$tempoUsura', " . $scadenzaGaranzia . ", NULL, NULL, '$visibilita', '$luogoVenditaComune', '$luogoVenditaProvincia')");
+}
+
+function ricavaDataOraPubblicazione($cid, $venditore){
+    $res = $cid -> query("SELECT dataOraPubblicazione FROM annuncio WHERE venditore = '$venditore' ORDER BY dataOraPubblicazione DESC LIMIT 1");
+    return $res -> fetch_row()[0];
 }

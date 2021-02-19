@@ -6,8 +6,7 @@ include_once "../common/query.php";
 $email = mysqli_real_escape_string($cid, $_POST["email"]);
 $password = md5($_POST["password"]);
 
-$login = "SELECT codiceFiscale, nome, tipoAccount, password FROM utente WHERE email = '$email' and eliminato = '0'";
-$res = $cid -> query($login);
+$res = login_sql($cid, $email);
 $utente = $res -> fetch_assoc();
 if ($res->num_rows==0 || $res->num_rows>1){
     header("location: " . $_SERVER["HTTP_REFERER"] . (parse_url($_SERVER["HTTP_REFERER"], PHP_URL_QUERY) ? '&' : '?') . "dberr=eml");

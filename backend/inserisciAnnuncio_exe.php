@@ -74,20 +74,12 @@ if ($statoUsura == "nuovo"){
 }
 
 
-$cid -> query("
-insert into annuncio (venditore, titolo, prodotto, categoria, sottoCategoria, prezzo, statoUsura, tempoUsura,
-                      scadenzaGaranzia, foto, valutazioneSuVenditore, visibilita, comune, provincia)
-values ('$venditore', '$titolo', '$prodotto', '$categoria', '$sottocategoria', '$prezzo', " . $statoUsura . ", 
-        '$tempoUsura', " . $scadenzaGaranzia . ", NULL, NULL, '$visibilita', '$luogoVenditaComune', '$luogoVenditaProvincia')
-");
+inserisciAnnuncio_sql($cid, $venditore, $titolo, $prodotto, $categoria, $sottocategoria, $prezzo, $statoUsura, $tempoUsura, $scadenzaGaranzia, $visibilita, $luogoVenditaComune, $luogoVenditaProvincia);
 
-$res = $cid->query("SELECT dataOraPubblicazione FROM annuncio WHERE venditore = '$venditore' ORDER BY dataOraPubblicazione DESC LIMIT 1");
-$dataOraPubblicazione = $res->fetch_row()[0];
+$dataOraPubblicazione = ricavaDataOraPubblicazione($cid, $venditore);
 
 for ($i=0; $i<$iterator; $i++) {
-    if ($regioneVisibilita[$i] == "Tutta Italia") continue;
-    $provincia = gestisciValoreOgniProvincia($regioneVisibilita[$i], $provinciaVisibilita[$i]);
-    $cid->query("INSERT INTO areavisibilita (dataOraPubblicazione, venditore, comune, provincia) VALUES ('$dataOraPubblicazione', '$venditore', '$comuneVisibilita[$i]', '$provincia')");
+    inserisciAreaVisibilita($cid, $dataOraPubblicazione, $venditore, $regioneVisibilita[$i], $provinciaVisibilita[$i], $comuneVisibilita[$i]);
 }
 
 //Gestione foto

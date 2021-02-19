@@ -17,8 +17,7 @@ $passwordCorrente = md5($_POST["passwordCorrente"]);
 
 $parametri = "&Mnm=$nome&Mcg=$cognome&Mrg=$regione&Mpr=$provincia&Mcm=$comune&Mtp=$tipoAccount";
 
-$res = $cid -> query("SELECT * FROM utente WHERE email = '$email' and codiceFiscale != '". $_SESSION["codiceFiscale"] ."'");
-$uniqueEmail = !($res -> num_rows);
+$uniqueEmail = !(existsEmail_sql($cid, $email, $_SESSION["codiceFiscale"]));
 
 $validPassword = ($nuovaPassword == $passwordRipetuta and (preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/", $_POST["nuovaPassword"]) or $_POST["nuovaPassword"] == ""));
 
@@ -48,24 +47,18 @@ if (!($verifyPassword or $uniqueEmail or $validPassword)){
     exit;
 }
 
-$res = $cid -> query("SELECT * FROM osserva WHERE acquirente = '". $_SESSION["codiceFiscale"] . "' and richiestaDiAcquisto IS NOT NULL");
-$validAccountChange = ($tipoAccount != "venditore" or !($res -> num_rows));
+$validAccountChange = ($tipoAccount != "venditore" or !(attendeRispostaARichiestaDiAcquisto_sql($cid, $_SESSION["codiceFiscale"])));
 if (!$validAccountChange){
     header("location: " . $_SERVER["HTTP_REFERER"] . $parametri . "&Mml=" . $email . "&Merr=TA");
     exit;
 }
 
-$modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount', password = '$nuovaPassword' WHERE codiceFiscale = '". $_SESSION["codiceFiscale"] . "'";
-if ($_POST["nuovaPassword"] == ""){
-    $modificaProfilo = "UPDATE utente SET nome = '$nome', cognome = '$cognome', email = '$email', provincia = '$provincia', comune = '$comune', tipoAccount = '$tipoAccount' WHERE codiceFiscale = '" . $_SESSION["codiceFiscale"] . "'";
-}
-$cid->query($modificaProfilo);
+modificaProfilo_sql($cid, $nome, $cognome, $email, $provincia, $comune, $tipoAccount, $nuovaPassword, $_SESSION["codiceFiscale"]);
 
-if ($tipoAccount == "venditore") $res = $cid -> query("DELETE FROM osserva WHERE acquirente = '". $_SESSION["codiceFiscale"] ."'");
+if ($tipoAccount == "venditore") smettiDiOsservare_sql($cid, "", "", $_SESSION["codiceFiscale"]);
 
 if ($tipoAccount == "acquirente"){
-    $cid -> query("UPDATE annuncio SET statoAnnuncio = 'eliminato' WHERE statoAnnuncio = 'inVendita' and venditore = '" . $_SESSION["codiceFiscale"] . "'");
-    $cid -> query("DELETE FROM osserva WHERE venditore = '". $_SESSION["codiceFiscale"] ."'");
+    eliminaTuttiGliAnnunciDiUnVenditore_sql($cid, $_SESSION["codiceFiscale"]);
 }
 
 $_SESSION["nome"] = $nome;

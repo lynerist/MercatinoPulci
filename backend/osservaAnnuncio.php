@@ -26,9 +26,8 @@ if ($utente["codiceFiscale"] == ""){
 
     setcookie("annunciOsservati", serialize($osservati), time() + (10 * 365 * 24 * 60 * 60), "/mercatinopulci");
 }else{
-    $osservaAnnuncio = "INSERT INTO osserva (acquirente, dataOraPubblicazione, venditore, richiestaDiAcquisto) VALUES ('" . $_SESSION["codiceFiscale"] . "', '" . $annuncio["dataOraPubblicazione"] . "', '" . $annuncio["venditore"] . "', null)";
-    $res = $cid->query($osservaAnnuncio);
-    if (!$res) {
+    $osservatoConSuccesso = osservaAnnuncio_sql($cid, $_SESSION["codiceFiscale"], $annuncio["dataOraPubblicazione"], $annuncio["venditore"]);
+    if (!$osservatoConSuccesso) {
         $risultato["errore"] = true;
         echo json_encode($risultato);
         exit;

@@ -32,7 +32,7 @@ while (isset($_POST["regione_" . $iterator])){
 }
 
 if ($statoUsura == "nuovo") $tempoUsura = 0;
-if ($scadenzaGaranzia == "") $scadenzaGaranzia = 'NULL';
+if ($_POST["scadenzaGaranzia"] == "") $scadenzaGaranzia = 'NULL';
 
 $parametri = "&Mt=$titolo&Mct=$categoria&Msc=$sottocategoria&Mpd=$prodotto&Mv=$visibilita&Msu=$statoUsura&Mr=$luogoVenditaRegione&Mp=$luogoVenditaProvincia&Mc=$luogoVenditaComune";
 

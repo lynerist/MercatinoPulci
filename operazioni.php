@@ -472,7 +472,7 @@ $nNotificheValutazioniSuVenditore = nNotificheValutazioniSuVenditore_sql($cid,is
                     </div>
                 </div>
 
-                <?php } ?>
+                <?php $j++; } ?>
 
             <?php } ?>
 
